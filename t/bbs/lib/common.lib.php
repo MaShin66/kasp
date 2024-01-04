@@ -1112,7 +1112,7 @@ function sql_connect($host, $user, $pass)
 {
     global $g4;
 
-    return @mysql_connect($host, $user, $pass);
+    return new mysqli($host, $user, $pass);
 }
 
 

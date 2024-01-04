@@ -33,7 +33,7 @@ $admin_email = $_POST[admin_email];
 
 if (strtolower($g4[charset]) == 'utf-8') @mysql_query("set names utf8"); 
 else if (strtolower($g4[charset]) == 'euc-kr') @mysql_query("set names euckr"); 
-$dblink = @mysql_connect($mysql_host, $mysql_user, $mysql_pass);
+$dblink = new mysqli($mysql_host, $mysql_user, $mysql_pass);
 if (!$dblink) {
     echo "<meta http-equiv='content-type' content='text/html; charset=$g4[charset]'>";
     echo "<script language='JavaScript'>alert('MySQL Host, User, Password 를 확인해 주십시오.');history.back();</script>"; 

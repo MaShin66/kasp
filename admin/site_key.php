@@ -1,6 +1,6 @@
 <?
 include "$_SERVER[DOCUMENT_ROOT]/admin/dbcon.php";
-$connect = @mysql_connect($db_host, $db_user, $db_pass) or error("DB 접속시 에러가 발생했습니다.");
+$connect = new mysqli($db_host, $db_user, $db_pass) or error("DB 접속시 에러가 발생했습니다.");
 @mysql_select_db($db_name, $connect) or error("DB Select 에러가 발생했습니다");
 include "$_SERVER[DOCUMENT_ROOT]/admin/inc/site_info.php";
 ?>

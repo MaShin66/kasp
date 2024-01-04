@@ -51,7 +51,7 @@ include WIZHOME_PATH."/lib_puny.php";
 * 데이타 베이스 접속
 ******************************************************************************/
 include WIZHOME_PATH."/dbcon.php";
-$connect = @mysql_connect($db_host, $db_user, $db_pass) or error("DB 접속시 에러가 발생했습니다.");
+$connect = new mysqli($db_host, $db_user, $db_pass) or error("DB 접속시 에러가 발생했습니다.");
 @mysql_select_db($db_name, $connect) or error("DB Select 에러가 발생했습니다");
 
 @mysql_query( "set names utf8;" );

@@ -7,7 +7,7 @@
 if($_POST[mode] == "keyupdate"){
 
 	include "$_SERVER[DOCUMENT_ROOT]/admin2/dbcon.php";
-	$connect = @mysql_connect($db_host, $db_user, $db_pass) or error("DB 접속시 에러가 발생했습니다.");
+	$connect = new mysqli($db_host, $db_user, $db_pass) or error("DB 접속시 에러가 발생했습니다.");
 	@mysql_select_db($db_name, $connect) or error("DB Select 에러가 발생했습니다");
 
 	$site_key = trim($_POST[site_key]);
@@ -53,7 +53,7 @@ if($_POST[mode] == "keyupdate"){
 	if(file_exists("./dbcon.php")) alert("이미 위즈홈이 설치되었습니다. \\n\\n재설치하려면 해당 파일(dbcon.php)을 지우세요","install.php");
 
 	// mysql 접속테스트
-	$connect = @mysql_connect($db_host, $db_user, $db_pass) or alert("DB 접속시 에러가 발생했습니다.\\n\\nDB정보를 확인하세요","install.php");
+	$connect = new mysqli($db_host, $db_user, $db_pass) or alert("DB 접속시 에러가 발생했습니다.\\n\\nDB정보를 확인하세요","install.php");
 	@mysql_select_db($db_name, $connect) or alert("DB Select 에러가 발생했습니다.\\n\\nDB정보를 확인하세요","install.php");
 
 	@mysql_query( "set names utf8;" );

@@ -1390,7 +1390,7 @@ switch ($action) {
                     if ($new_server['extension'] == 'mysql') {
                         $socket = empty($new_server['socket']) || $new_server['connect_type'] == 'tcp' ? '' : ':' . $new_server['socket'];
                         $port = empty($new_server['port']) || $new_server['connect_type'] == 'socket' ? '' : ':' . $new_server['port'];
-                        $conn = @mysql_connect($new_server['host'] . $socket . $port, $new_server['controluser'], $new_server['controlpass']);
+                        $conn = new mysqli($new_server['host'] . $socket . $port, $new_server['controluser'], $new_server['controlpass']);
                         if ($conn === FALSE) {
                             message('error', 'Could not connect as control user!');
                             $err = TRUE;

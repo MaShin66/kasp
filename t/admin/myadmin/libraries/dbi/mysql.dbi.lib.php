@@ -30,13 +30,13 @@ function PMA_DBI_real_connect($server, $user, $password, $client_flags) {
         if ($cfg['PersistentConnections']) {
             $link = @mysql_pconnect($server, $user, $password);
         } else {
-            $link = @mysql_connect($server, $user, $password);
+            $link = new mysqli($server, $user, $password);
         }
     } else {
         if ($cfg['PersistentConnections']) {
             $link = @mysql_pconnect($server, $user, $password, $client_flags);
         } else {
-            $link = @mysql_connect($server, $user, $password, FALSE, $client_flags);
+            $link = new mysqli($server, $user, $password, FALSE, $client_flags);
         }
     }
 
