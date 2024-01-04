@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<? include "$_SERVER[DOCUMENT_ROOT]/admin2/module/connect.php";     // 로그분석 ?>
+<? include "$_SERVER[DOCUMENT_ROOT]/admin2/module/popup.php";     // 팝업관리 ?>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="서울특별시 금천구 가산동 위치, 우주분야 산업체, 공공기관 상호협력, 우주기술 개발 진흥 등 안내.">
+  <title>KASP - 사단법인 한국우주기술진흥협회</title>
+  <link href="/common/css/layout2.css?v=4" rel="stylesheet" type="text/css">
+  <link href="/common/css/layout2_response.css?v=4" rel="stylesheet" type="text/css">
+	<script language="JavaScript" src="/common/js/jquery-1.9.0.min.js"></script>
+  <script language="JavaScript" src="/common/js/common.js"></script>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-208803054-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-208803054-1');
+  </script>
+</head>
+<body <? if( $fileName == "popup"){ ?> class="popup" <? } ?>>
+  <header>
+    <h1 class="logo">
+      <a href="/index_test.html"><img src="/common/images/default/logo.png" alt="KASP 사단법인 한국우주기술진흥협회 Korea Association for Space Teachnology Promotion"></a>
+    </h1>
+    <div class="gnb">
+      <ul>
+        <li <? if( $pageName == "EVENT"){ ?> class="on" <? } ?> >
+          <a href="/kasp/introduction_test.html">협회소개</a>
+          <ul class="sub_menu">
+            <li><a href="/kasp/introduction_test.html">인사말</a></li>
+            <li><a href="/kasp/outline_test.html">협회개요</a></li>
+            <li><a href="/kasp/history_test.html">연혁</a></li>
+            <li><a href="/kasp/ci_test.html">CI 소개</a></li>
+            <li><a href="/kasp/organization_test.html">조직도/연락처</a></li>
+            <li><a href="/kasp/map_test.html">오시는 길</a></li>
+          </ul>
+        </li>
+        <li <? if( $pageName == "EVENT"){ ?> class="on" <? } ?> >
+          <a href="/work/study_test.html">협회업무</a>
+          <ul class="sub_menu">
+            <li><a href="/work/study_test.html">정책연구</a></li>
+            <li><a href="/work/analysis_test.html">동향조사</a></li>
+            <li><a href="/work/global_test.html">수출 및 국제지원</a></li>
+            <li><a href="/work/support_test.html">기술개발지원</a></li>
+            <li><a href="/work/edu_test.html">교육사업</a></li>
+            <li><a href="/work/service_test.html">회원사지원</a></li>
+          </ul>
+        </li>
+        <li <? if( $pageName == "EVENT"){ ?> class="on" <? } ?> >
+          <a href="/industry/feature_test.html">우주산업이해</a>
+          <ul class="sub_menu">
+            <li><a href="/industry/feature_test.html">우주산업특징</a></li>
+            <li><a href="/industry/condition_test.html">국내산업현황</a></li>
+            <li><a href="/industry/roadmap_test.html">국가우주개발</a></li>            
+          </ul>
+        </li>
+        <li <? if( $pageName == "EVENT"){ ?> class="on" <? } ?> >
+          <a href="/member/info_test.html">회원사소개</a>
+          <ul class="sub_menu">
+            <li><a href="/member/info_test.html">회원사소개</a></li>
+            <li><a href="/member/member_test.html">회원가입안내</a></li>
+          </ul>
+        </li>
+        <li <? if( $pageName == "EVENT"){ ?> class="on" <? } ?> >
+          <a href="/center/space_news_test.html">정보센터</a>
+          <ul class="sub_menu">
+            <!-- <li><a href="/center/report.html">연구보고서</a></li> -->
+            <li><a href="/center/space_news_test.html">국내 동향</a></li>
+            <li><a href="/center/space_globalnews_test.html">글로벌 동향</a></li>
+            <li><a href="/center/market_test.html">국가별 개발현황</a></li>
+            <li><a href="/center/download_test.html">자료실</a></li>
+            <li><a href="/center/law_test.html">관계법령</a></li>
+          </ul>
+        </li>
+        <li <? if( $pageName == "EVENT"){ ?> class="on" <? } ?> >
+          <a href="/community/member_news_test.html">회원사 소식</a>
+          <ul class="sub_menu">
+            <li><a href="/community/member_news_test.html">회원사 소식</a></li>
+            <!--li><a href="/community/propose.html">협회건의사항</a></li-->
+          </ul>
+        </li>
+        <li <? if( $pageName == "EVENT"){ ?> class="on" <? } ?> >
+          <a href="/kasp_news/kasp_notice_test.html">협회동정</a>
+          <ul class="sub_menu">
+            <li><a href="/kasp_news/kasp_notice_test.html">공지사항</a></li>
+            <li><a href="/kasp_news/kasp_news_test.html">협회소식</a></li>            
+            <li><a href="/gallery/gallery_test.html">갤러리</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <div class="util">
+      <? include "$_SERVER[DOCUMENT_ROOT]/admin2/module/toplogin.php";     // 로그인,로그아웃 ?>
+      <? include "$_SERVER[DOCUMENT_ROOT]/admin2/module/topjoin.php";     // 회원가입,정보수정 ?>
+      <!-- <a href="#" class="study_combination">연구조합</a> -->
+      <button type="button" class="all_link">전체메뉴</button>
+    </div>
+    <button type="button" class="m_link">모바일메뉴</button>
+    <div class="all_menu">
+      <div class="m_bg"></div>
+      <div class="box_outer">
+        <div class="box_inner">
+          <div class="box_top">
+            <div class="m_util">
+              <? include "$_SERVER[DOCUMENT_ROOT]/admin2/module/toplogin.php";     // 로그인,로그아웃 ?>
+              <? include "$_SERVER[DOCUMENT_ROOT]/admin2/module/topjoin.php";     // 회원가입,정보수정 ?>
+            </div>
+            <button type="button" class="close"><span>닫기</span></button>
+          </div>
+          <ul class="m_gnb">
+            <li>
+              <h3><span>협회소개</span></h3>
+              <ul>
+                <li><a href="/kasp/introduction_test.html">인사말</a></li>
+                <li><a href="/kasp/outline_test.html">협회개요</a></li>
+                <li><a href="/kasp/history_test.html">연혁</a></li>
+                <li><a href="/kasp/ci_test.html">CI 소개</a></li>
+                <li><a href="/kasp/organization_test.html">조직도/연락처</a></li>
+                <li><a href="/kasp/map_test.html">오시는 길</a></li>
+              </ul>
+            </li>
+            <li>
+              <h3><span>협회업무</span></h3>
+              <ul>
+                <li><a href="/work/study_test.html">정책연구</a></li>
+                <li><a href="/work/analysis_test.html">동향조사</a></li>
+                <li><a href="/work/global_test.html">국제협력사업</a></li>
+                <li><a href="/work/support_test.html">기술개발지원</a></li>
+                <li><a href="/work/edu_test.html">교육사업</a></li>
+                <li><a href="/work/service_test.html">회원사지원</a></li>
+              </ul>
+            </li>
+            <li>
+              <h3><span>우주산업이해</span></h3>
+              <ul>
+                <li><a href="/industry/feature_test.html">우주산업특징</a></li>
+                <li><a href="/industry/condition_test.html">국내산업현황</a></li>
+                <li><a href="/industry/roadmap_test.html">국가우주개발</a></li>                
+              </ul>
+            </li>
+            <li>
+              <h3><span>회원사소개</span></h3>
+              <ul>
+                <li><a href="/member/info_test.html">회원사소개</a></li>
+                <li><a href="/member/member_test.html">회원가입안내</a></li>
+              </ul>
+            </li>
+            <li>
+              <h3><span>정보센터</span></h3>
+              <ul>                
+                <!--li><a href="/center/report.html">연구보고서</a></li-->
+                <li><a href="/center/space_news_test.html">국내 동향 </a></li>
+                <li><a href="/center/space_globalnews_test.html">글로벌 동향 </a></li>
+                <li><a href="/center/market_test.html">국가별 개발현황</a></li>
+                <li><a href="/center/download_test.html">자료실</a></li>
+                <li><a href="/center/law_test.html">관계법령</a></li>
+              </ul>
+            </li>
+            <li>
+              <h3><span>회원사소식</span></h3>
+              <ul>
+                <li><a href="/community/member_news_test.html">회원사소식</a></li>
+                <!--li><a href="/community/propose_test.html">협회건의사항</a></li-->
+              </ul>
+            </li>
+            <li>
+              <h3><span>협회동정</span></h3>
+              <ul>
+                <li><a href="/kasp_news/kasp_notice_test.html">공지사항</a></li>
+                <li><a href="/kasp_news/kasp_news_test.html">협회소식</a></li>
+                <li><a href="/gallery/gallery_test.html">갤러리 </a></li>
+                <!--li><a href="/gallery/gallery2.html">한국우주기술진흥연구조합</a></li-->
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </header>

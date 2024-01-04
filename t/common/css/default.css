@@ -1,0 +1,185 @@
+@charset "utf-8";
+/* noto-sans-kr-300 - korean_latin */
+@font-face {
+    font-family: 'Noto Sans KR';
+    font-style: normal;
+    font-weight: 300;
+    src: url('/common/webfont/Fonts/noto-sans-kr-v11-korean_latin-300.eot'); /* IE9 Compat Modes */
+    src: local('Noto Sans KR Light'), local('NotoSansKR-Light'),
+        url('/common/webfont/Fonts/noto-sans-kr-v11-korean_latin-300.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+        url('/common/webfont/Fonts/noto-sans-kr-v11-korean_latin-300.woff2') format('woff2'), /* Super Modern Browsers */
+        url('/common/webfont/Fonts/noto-sans-kr-v11-korean_latin-300.woff') format('woff'), /* Modern Browsers */
+        url('/common/webfont/Fonts/noto-sans-kr-v11-korean_latin-300.ttf') format('truetype'), /* Safari, Android, iOS */
+        url('/common/webfont/Fonts/noto-sans-kr-v11-korean_latin-300.svg#NotoSansKR') format('svg'); /* Legacy iOS */
+}
+/* noto-sans-kr-regular - korean_latin */
+@font-face {
+    font-family: 'Noto Sans KR';
+    font-style: normal;
+    font-weight: 400;
+    src: url('/common/webfont/Fonts/noto-sans-kr-v11-korean_latin-regular.eot'); /* IE9 Compat Modes */
+    src: local('Noto Sans KR Regular'), local('NotoSansKR-Regular'),
+        url('/common/webfont/Fonts/noto-sans-kr-v11-korean_latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+        url('/common/webfont/Fonts/noto-sans-kr-v11-korean_latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+        url('/common/webfont/Fonts/noto-sans-kr-v11-korean_latin-regular.woff') format('woff'), /* Modern Browsers */
+        url('/common/webfont/Fonts/noto-sans-kr-v11-korean_latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+        url('/common/webfont/Fonts/noto-sans-kr-v11-korean_latin-regular.svg#NotoSansKR') format('svg'); /* Legacy iOS */
+}
+/* noto-sans-kr-500 - korean_latin */
+@font-face {
+    font-family: 'Noto Sans KR';
+    font-style: normal;
+    font-weight: 500;
+    src: url('/common/webfont/Fonts/noto-sans-kr-v11-korean_latin-500.eot'); /* IE9 Compat Modes */
+    src: local('Noto Sans KR Medium'), local('NotoSansKR-Medium'),
+        url('/common/webfont/Fonts/noto-sans-kr-v11-korean_latin-500.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+        url('/common/webfont/Fonts/noto-sans-kr-v11-korean_latin-500.woff2') format('woff2'), /* Super Modern Browsers */
+        url('/common/webfont/Fonts/noto-sans-kr-v11-korean_latin-500.woff') format('woff'), /* Modern Browsers */
+        url('/common/webfont/Fonts/noto-sans-kr-v11-korean_latin-500.ttf') format('truetype'), /* Safari, Android, iOS */
+        url('/common/webfont/Fonts/noto-sans-kr-v11-korean_latin-500.svg#NotoSansKR') format('svg'); /* Legacy iOS */
+}
+/* noto-sans-kr-700 - korean_latin */
+@font-face {
+    font-family: 'Noto Sans KR';
+    font-style: normal;
+    font-weight: 700;
+    src: url('/common/webfont/Fonts/noto-sans-kr-v11-korean_latin-700.eot'); /* IE9 Compat Modes */
+    src: local('Noto Sans KR Bold'), local('NotoSansKR-Bold'),
+        url('/common/webfont/Fonts/noto-sans-kr-v11-korean_latin-700.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+        url('/common/webfont/Fonts/noto-sans-kr-v11-korean_latin-700.woff2') format('woff2'), /* Super Modern Browsers */
+        url('/common/webfont/Fonts/noto-sans-kr-v11-korean_latin-700.woff') format('woff'), /* Modern Browsers */
+        url('/common/webfont/Fonts/noto-sans-kr-v11-korean_latin-700.ttf') format('truetype'), /* Safari, Android, iOS */
+        url('/common/webfont/Fonts/noto-sans-kr-v11-korean_latin-700.svg#NotoSansKR') format('svg'); /* Legacy iOS */
+}
+/* default */
+html, body {width:100%;margin:0;padding:0;}
+body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,li,dl,dt,dd,table,th,td,form,fieldset,legend,input,textarea,button,select,pre,menu{margin:0;padding:0;}
+body {background:#fff;min-width:320px;-webkit-text-size-adjust:none;-webkit-text-stroke-width:0;font-family:'Noto Sans KR','Droid Sans','Apple-Gothic',sans-serif;
+	font-size:12px;line-height:1.2;color:#666;letter-spacing:-0.05em; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;}
+
+span,button,input	{margin:0;padding:0;border:0 none;}
+ol, ul, li, dl, dt, dd	{list-style:none;}
+
+input:disabled{background:#f4f4f4 !important;border:0 !important}
+input::placeholder{color:#bbb}
+
+fieldset, img {border:0 none;}
+img,input,select,button {vertical-align:middle;}
+legend{overflow:hidden;visibility:hidden;position:absolute;top:0;left:0;width:1px;height:1px;font-size:0;line-height:0}
+
+em,address,i{font-style:normal}
+label {display:inline-block}
+table {border-spacing:0;border:0 none;table-layout:fixed;border-collapse:separate;*border-collapse:collapse;width:100%;mso-table-lspace:0;mso-table-rspace:0;}
+table, th, td{word-break:break-all;}
+caption {display:none}
+
+button{background:transparent;cursor:pointer;*overflow:visible;}
+button, input, select, textarea {font-size:inherit;color:inherit;margin:0;vertical-align:middle;font-family:'Noto Sans KR','Droid Sans','Apple-Gothic',sans-serif;}
+button, input {line-height:normal;}
+button, select {text-transform:none;}
+button, html input[type="text"], input[type="button"], input[type="number"], input[type="password"],input[type="email"],input[type="search"],input[type="reset"], input[type="submit"], input[type="file"], input[type="date"] {
+	-webkit-appearance:none;*overflow:visible; /* IE 7에서 텍스트 입력에 영향을 주지 않고 내부 간격을 제거하는 핵 */border-radius:0;
+}
+button[disabled], html input[disabled] {cursor:default;}
+input[type="checkbox"], input[type="radio"] {
+    box-sizing:border-box; /* IE 8/9에서 box sizing 속성값을 content-box에서 border-box로 변경 */
+    padding:0; /* IE 8/9에서 패딩 제거 */
+    *height:13px; /* IE 7에서 핵을 이용해 패딩 제거 */
+    *width:13px; /* IE 7에서 핵을 이용해 패딩 제거 */
+}
+input.ie7_class5 {border:none !important;}
+input[type="reset"], input[type="submit"] {-webkit-appearance:button;cursor:pointer;}
+input[type="radio"] {-webkit-border:1px solid #ddd;-webkit-appearance:none;}
+input[type="search"] {
+    -webkit-appearance:textfield; /* 사파리 5와 크롬에서 텍스트 입력이 가능하게 설정 */
+    -moz-box-sizing:content-box;
+    -webkit-box-sizing:content-box; /* 콘텐츠 영역만큼의 크기만 설정하도록 content-box 설정 */
+    box-sizing:content-box;border-radius:0;
+}
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {-webkit-appearance:none;border-radius:0;}/* 맥의 OS X기반의 사파리 5와 크롬의 내부 패딩과 검색 취소 버튼을 제거 */
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+    border:0;
+    padding:0;
+}/* 파이어폭스용 버튼 내부패딩없애기  */
+textarea {
+    overflow:auto;/* IE 6/7/8/9의 textarea 요소에 기본 지정된 세로 스크롤 제거 */
+    vertical-align:top; /* 모든 브라우저에서 가독성 향상과 정렬을 위함 */
+    resize:none;border-radius:0;-webkit-appearance:none;
+}
+.my-placeholder {color:#666;}
+
+/* html5  reset */
+article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section, summary {display:block;margin:0;}
+audio, canvas, video {display:inline-block;*display:inline;*zoom:1;}
+audio:not([controls]) {display:none;height:0;}
+abbr[title] {border-bottom:1px dotted;}
+blockquote {margin:0;}
+dfn {font-style:italic;}
+hr {-moz-box-sizing:content-box;box-sizing:content-box;height:0;}
+mark {background: #ff0;color: #000;}
+p, pre {margin:0;}
+code, kbd, pre, samp {font-family:monospace,serif;_font-family:'courier new',monospace;font-size:1em;}
+pre {white-space:pre;white-space:pre-wrap;word-wrap:break-word;}
+q {quotes:none;}
+q:before, q:after {content:'';content:none;}
+small {font-size:80%;}
+sub, sup {font-size:75%;position:relative;vertical-align:baseline;}
+sup {top: -12px;font-size:22px;}
+sub {bottom:0.1em;}
+svg:not(:root) {overflow:hidden;}/* IE 9에서 svg 요소가 영역의 크기를 벗어나지 않도록 설정 */
+figure {margin:0;}
+
+input {box-sizing:border-box;}
+input:focus	{outline:medium none}
+input[readonly] {background:#f3f3f3;}
+input[type="tel"], input[type="text"], input[type="email"], input[type="search"], input[type="number"], input[type="password"], input[type="date"]{width:100%;padding:0 10px;border:1px solid #ddd;background:#fff;height:35px;line-height:35px;box-sizing:border-box;border-radius:0;-webkit-appearance:none;}
+input[type="date"]{background:#fff url(/common/images/mypage/icon_cal.png) 100% 50% no-repeat;background-size:17.5px;-webkit-appearance:none;-moz-appearance:none;text-indent:0;}
+/* input number over시 화살표 안나오게 */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0;}
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="date"]::-webkit-inner-spin-button{opacity:0;}
+
+input:checked{border:1px solid #666;border-radius:10px}
+input[type="checkbox"]	{width:15px;height:15px;border:1px solid #666;border-radius:0;-webkit-appearance:checkbox}
+input[type="radio"]	{width:15px;height:15px;-webkit-appearance:radio;-webkit-border-radius:10px;}
+input[type="radio"]:checked	{width:15px;height:15px;-webkit-appearance:radio;-webkit-border-radius:10px;}
+input[type="radio"]:disabled{width:15px;height:15px;-webkit-appearance:radio;-webkit-border-radius:10px;}
+button {border:0;background:none;cursor:pointer;box-sizing:border-box;}
+select {padding:0 10px 0 0;padding:0 3px 0 0;color:#111;border:1px solid #ddd;border-radius:0;font-size:12px;font-weight:normal;width:100%;height:35px;line-height:35px;cursor:pointer;
+	background:#fff url(/common/images/default/mb_arrow_type1.png) right center no-repeat;background-size:22px;-webkit-appearance:none;-moz-appearance:none;text-indent:5px;box-sizing:border-box;}
+select::-ms-expand{opacity:0;}
+textarea{padding:10px 10px 13px;height:80px;border:1px solid #ddd;width:100%;box-sizing:border-box;vertical-align:middle;resize:none;}
+
+a	{display:block;font-family:'Noto Sans KR','Droid Sans','Apple-Gothic',sans-serif;color:inherit;text-decoration:none}
+a:link,a:visited{text-decoration:none}
+a:hover,a:active {text-decoration:none}
+
+img {border:0;max-width:100%;height:auto;}
+h1,h2,h3,h4,h5,h6,b,strong	{font-weight:600;}
+
+::-webkit-input-placeholder,
+-ms-input-placeholder,
+-moz-placeholder {font-family:'Noto Sans KR','돋움',dotum;}
+input:-ms-input-placeholder, textarea:-ms-input-placeholder {color:#666;}
+::-ms-value {border:none;}
+input[type=text]::-ms-clear {display:none;}
+
+/* align - 정렬*/
+.hidden {display:none !important;}
+
+/* mobile 320px이하 해상도에서 실행할 CSS 코드를 여기에 작성 */
+@media screen and (max-width:320px){
+input[type="password"] {letter-spacing:-0.125em;}
+}
+
+/* PC 768px이상 해상도에서 실행할 CSS 코드를 여기에 작성 */
+@media all and (min-width: 768px){
+body{font-size:16px;}
+input[type="checkbox"], input[type="checkbox"]:checked {width:14px;height:14px;}
+input[type="tel"], input[type="text"], input[type="email"], input[type="search"],input[type="number"], input[type="password"] {font-size:16px;height:44px;line-height:44px}
+select{font-size:16px;height:44px;line-height:44px;background-size:30px}
+input[type="date"]{background-size:26px;}
+}

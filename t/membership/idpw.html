@@ -1,0 +1,24 @@
+<?
+	$pageNum="9";
+	$subNum="4";
+	$folderName = "membership";
+	$fileName = "idpw";
+	$pageName = "멤버쉽";
+	$subName = "아이디/비밀번호찾기";
+?>
+<? include ("/home/hosting_users/kasp/www/t/common/include/header.html"); ?>
+<? include ("/home/hosting_users/kasp/www/t/common/include/subtitle.html"); ?>
+<style>
+	.lnb{display:none}
+</style>
+<div class="contents membership idpw_page">
+	<div class="wrap">
+		<div class="content">
+			<? include "$_SERVER[DOCUMENT_ROOT]/admin/module/idpw.php"; // 아이디/비번찾기 ?>
+		</div>
+	</div>
+</div>
+<? include ("/home/hosting_users/kasp/www/t/common/include/footer.html"); ?>
+
+
+

@@ -1,0 +1,18 @@
+<?
+	$pageNum="1";
+	$subNum="2";
+	$folderName = "community";
+	$fileName = "member_news";
+	$pageName = "회원사 소식";
+	$subName = "회원사 소식";
+?>
+<? include ("/home/hosting_users/kasp/www/t/common/include/header.html"); ?>
+<? include ("/home/hosting_users/kasp/www/t/common/include/subtitle.html"); ?>
+<div class="contents community member_news_page">
+	<div class="wrap">
+		<div class="content">
+			<? $code="member_news"; include "$_SERVER[DOCUMENT_ROOT]/admin/module/bbs.php"; // 게시판 ?>
+		</div>
+	</div>
+</div>
+<? include ("/home/hosting_users/kasp/www/t/common/include/footer.html"); ?>

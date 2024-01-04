@@ -1,0 +1,21 @@
+<?
+	$pageNum="9";
+	$subNum="2";
+	$folderName = "membership";
+	$fileName = "member";
+	$pageName = "멤버쉽";
+	$subName = "회원가입";
+?>
+<? include ("/home/hosting_users/kasp/www/common/include/header2.html"); ?>
+<? include ("/home/hosting_users/kasp/www/common/include/subtitle2.html"); ?>
+<style>
+	.lnb{display:none}
+</style>
+<div class="contents membership join join_page">
+	<div class="wrap">
+		<div class="content">
+			<? include "$_SERVER[DOCUMENT_ROOT]/admin2/module/join.php"; // 회원가입 ?>
+		</div>
+	</div>
+</div>
+<? include ("/home/hosting_users/kasp/www/common/include/footer2.html"); ?>

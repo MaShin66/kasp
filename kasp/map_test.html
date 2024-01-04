@@ -1,0 +1,135 @@
+<?
+	$pageNum="1";
+	$subNum="2";
+	$folderName = "kasp";
+	$fileName = "outline";
+	$pageName = "협회소개";
+	$subName = "오시는 길";
+?>
+<? include ("/home/hosting_users/kasp/www/common/include/header2.html"); ?>
+<? include ("/home/hosting_users/kasp/www/common/include/subtitle2.html"); ?>
+<div class="contents kasp map_page">
+	<div class="wrap">
+		<div class="content">
+			<div class="map_box">
+				<!-- <div class="map" id="map1">
+					<div id="daumRoughmapContainer1623679194462" class="root_daum_roughmap root_daum_roughmap_landing"></div>
+				</div> -->
+        <div class="map" id="map"></div>
+			</div>
+      <div class="txt_box">
+        <h3 class="tit">협회사무국</h3>
+        <ul class="list">
+          <li>
+            <p class="list_tit">주소</p>
+            <p class="sub_txt">(08507)서울시 금천구 가산디지털 1로 168 우림라이온스밸리 B동 12층 1211호</p>
+          </li>
+          <li>
+            <p class="list_tit">교통편</p>
+            <p class="sub_txt">지하철 : 가산디지털단지역 하차 7번출구 또는 지하연결통로 이용</p>
+          </li>
+          <li>
+            <p class="list_tit">전화번호</p>
+            <p class="sub_txt">02)6494-0020</p>
+          </li>
+          <li>
+            <p class="list_tit">FAX</p>
+            <p class="sub_txt">02)588-0325</p>
+          </li>							
+          <li>
+            <p class="list_tit">E-mail</p>
+            <p class="sub_txt">kasp@kasp.or.kr</p>
+          </li>																														
+        </ul>
+      </div>
+      <div class="txt_box">
+        <h3 class="tit">교육센터</h3>
+        <ul class="list">
+          <li>
+            <p class="list_tit">주소</p>
+            <p class="sub_txt">(08507)서울시 금천구 가산디지털 1로 168 우림라이온스밸리 B동 12층 1212호</p>
+          </li>
+          <li>
+            <p class="list_tit">교통편</p>
+            <p class="sub_txt">지하철 : 가산디지털단지역 하차 7번출구 또는 지하연결통로 이용</p>
+          </li>
+          <li>
+            <p class="list_tit">전화번호</p>
+            <p class="sub_txt">02)6494-0023</p>
+          </li>
+          <li>
+            <p class="list_tit">FAX</p>
+            <p class="sub_txt">02)588-0325</p>
+          </li>							
+          <li>
+            <p class="list_tit">E-mail</p>
+            <p class="sub_txt">kasp@kasp.or.kr</p>
+          </li>																														
+        </ul>
+      </div>	
+		</div>
+	</div>
+</div>
+<script>
+  const locations = [
+    { lat: 37.479954, lng: 126.882687, text: '협회사무국', address: '서울시 금천구 가산디지털 1로 168 우림라이온스밸리 B동 12층 1211호' },
+    { lat: 37.479929, lng: 126.882783, text: '교육센터', address: '서울시 금천구 가산디지털 1로 168 우림라이온스밸리 B동 12층 1212호' },
+  ]
+  function initMap() {
+    const map = new google.maps.Map(document.getElementById("map"), { 
+      center: { lat: 37.480300, lng: 126.882800 },
+      zoom: 18,
+    });
+
+    const infoWindow = new google.maps.InfoWindow({
+      content: "",
+      disableAutoPan: true,
+    });
+
+    // Add some markers to the map.
+    const markers = locations.map((e, i) => {
+      const marker = new google.maps.Marker({
+        position: { lat: e.lat, lng: e.lng },
+        icon: {
+          url: "/common/images/kasp/icon_map_dot.png",
+          labelOrigin: new google.maps.Point(10, 45),
+          size: new google.maps.Size(53,73),
+          anchor: new google.maps.Point(18,73)
+        }
+      });
+
+      // markers can only be keyboard focusable when they have click listeners
+      // open info window when marker is clicked
+      marker.addListener("click", () => {
+        infoWindow.setContent(`
+          <div class="info_text">
+            <p>
+              <b>${e.text}</b>
+              <img src="/common/images/kasp/icon_location.png" /> ${e.address}
+            </p>
+          </div>
+        `);
+        infoWindow.open(map, marker);
+      });
+
+      return marker;
+    });
+
+    // Add a marker clusterer to manage the markers.
+    new markerClusterer.MarkerClusterer({ map, markers });
+  }
+</script>
+<script src="https://unpkg.com/@googlemaps/markerclusterer/dist/index.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDGOoW5i2cmUDsE5DYp6RInGDqJcvrAdsM&callback=initMap&region=kr"></script>
+<!-- <script charset="UTF-8" class="daum_roughmap_loader_script" src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
+<script charset="UTF-8">
+	new daum.roughmap.Lander({
+		"timestamp" : "1623679194462",
+		"key" : "2685j",
+	}).render();
+	new daum.roughmap.Lander({
+		"timestamp" : "1624854648233",
+		"key" : "26edc",
+	}).render();
+</script>		 -->
+<? include ("/home/hosting_users/kasp/www/common/include/footer2.html"); ?>

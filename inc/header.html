@@ -1,0 +1,172 @@
+﻿<? include "$_SERVER[DOCUMENT_ROOT]/admin2/module/connect.php";     // 로그분석 ?>
+<? include "$_SERVER[DOCUMENT_ROOT]/admin2/module/popup.php";     // 팝업관리 ?>
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=1108, user-scalable=1" />
+<meta name="description" content="서울특별시 금천구 가산동 위치, 우주분야 산업체, 공공기관 상호협력, 우주기술 개발 진흥 등 안내.">
+<title>KASP - 사단법인 한국우주기술진흥협회</title>
+<link href="/inc/kasp.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="/navi_files/mbcsmbmcp.css" type="text/css" />
+<script language="JavaScript" src="/inc/common.js"></script>
+
+
+<script type="text/javascript">
+ var stmnLEFT = 0; // 오른쪽 여백 
+ var stmnGAP1 = 0; // 위쪽 여백 
+ var stmnGAP2 = 161; // 스크롤시 브라우저 위쪽과 떨어지는 거리 
+ var stmnBASE = 150; // 스크롤 시작위치 
+ var stmnActivateSpeed = 35; //스크롤을 인식하는 딜레이 (숫자가 클수록 느리게 인식)
+ var stmnScrollSpeed = 20; //스크롤 속도 (클수록 느림)
+ var stmnTimer; 
+ 
+ function RefreshStaticMenu() { 
+  var stmnStartPoint, stmnEndPoint; 
+  stmnStartPoint = parseInt(document.getElementById('STATICMENU').style.top, 10); 
+  stmnEndPoint = Math.max(document.documentElement.scrollTop, document.body.scrollTop) + stmnGAP2; 
+  if (stmnEndPoint < stmnGAP1) stmnEndPoint = stmnGAP1; 
+  if (stmnStartPoint != stmnEndPoint) { 
+   stmnScrollAmount = Math.ceil( Math.abs( stmnEndPoint - stmnStartPoint ) / 15 ); 
+   document.getElementById('STATICMENU').style.top = parseInt(document.getElementById('STATICMENU').style.top, 10) + ( ( stmnEndPoint<stmnStartPoint ) ? -stmnScrollAmount : stmnScrollAmount ) + 'px'; 
+   stmnRefreshTimer = stmnScrollSpeed; 
+   }
+  stmnTimer = setTimeout("RefreshStaticMenu();", stmnActivateSpeed); 
+  } 
+ function InitializeStaticMenu() {
+  document.getElementById('STATICMENU').style.right = stmnLEFT + 'px';  //처음에 오른쪽에 위치. left로 바꿔도.
+  document.getElementById('STATICMENU').style.top = document.body.scrollTop + stmnBASE + 'px'; 
+  RefreshStaticMenu();
+  }
+</script>
+
+<style type="text/css">
+#STATICMENU {
+position: absolute;
+left:50%;
+width:74px;
+margin:0 auto;
+margin-left:510px;
+}
+</style>
+
+<div id="STATICMENU">
+<table border="0" cellspacing="0" cellpadding="0">
+<tr><td><img src="/img/qm_title.gif" /></td></tr>
+<tr><td><a href="/center/report.html"><img src="/img/qm_btn1.gif" onMouseOver="this.src='/img/qm_btns1.gif'" onMouseOut="this.src='/img/qm_btn1.gif'" title="연구보고서"></a></td></tr>
+<tr><td><a href="/gallery/brochure.html"><img src="/img/qm_btn2.gif" onMouseOver="this.src='/img/qm_btns2.gif'" onMouseOut="this.src='/img/qm_btn2.gif'" title="홍보브로셔"></a></td></tr>
+<tr><td><a href="/center/download.html"><img src="/img/qm_btn3.gif" onMouseOver="this.src='/img/qm_btns3.gif'" onMouseOut="this.src='/img/qm_btn3.gif'" title="자료실"></a></td></tr>
+<tr><td><a href="/member/info.html"><img src="/img/qm_btn4.gif" onMouseOver="this.src='/img/qm_btns4.gif'" onMouseOut="this.src='/img/qm_btn4.gif'" title="회원가입안내"></a></td></tr>
+<tr><td><a href="/krastp/krastp.html"><img src="/img/qm_btn5.gif" onMouseOver="this.src='/img/qm_btns5.gif'" onMouseOut="this.src='/img/qm_btn5.gif'" title="연구조합"></a></td></tr>
+</table>
+</div>
+
+
+
+
+
+</head>
+
+<body onload="InitializeStaticMenu();">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+		<td align="center">
+			<table width="1000" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td height="110" valign="bottom" style="padding-bottom:15px;">
+						<table width="100%" border="0" cellspacing="0" cellpadding="0">
+							<tr>
+								<td align="left"><a href="/"><img src="/img/logo.gif" title="홈으로" /></a></td>
+								<td align="right" valign="bottom">
+									<table border="0" cellspacing="0" cellpadding="0">
+										<tr>
+											<td style="border-right:1px solid #ededed; padding:0 10px;"><a href="/">홈</a></td>
+											<td style="border-right:1px solid #ededed; padding:0 10px;"><a href="/krastp/krastp.html">연구조합</a></td>
+											<td style="border-right:1px solid #ededed; padding:0 10px;"><? include "$_SERVER[DOCUMENT_ROOT]/admin2/module/toplogin.php";     // 로그인,로그아웃 ?></td>
+											<td style="border-right:1px solid #ededed; padding:0 10px;"><? include "$_SERVER[DOCUMENT_ROOT]/admin2/module/topjoin.php";     // 회원가입,정보수정 ?></td>
+											<td style="padding:0 10px;"><a href="javascript:window.external.AddFavorite('주소들어가는곳', 'KASP - 사단법인 한국우주기술진흥협회')">즐겨찾기추가</a></td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td>
+<div id="mbmcpebul_wrapper" style="max-width: 1000px;">
+  <ul id="mbmcpebul_table" class="mbmcpebul_menulist css_menu">
+  <li><div class="buttonbg"><a href="/kasp/introduction.html">협회소개</a></div>
+    <ul>
+    <li style="width:125px"><a title="인사말" href="/kasp/introduction.html">인사말</a></li>
+    <li><a title="협회개요" href="/kasp/outline.html">협회개요</a></li>
+    <li><a title="연혁" href="/kasp/history.html">연혁</a></li>
+    <li><a title="CI소개" href="/kasp/ci.html">CI소개</a></li>
+    <li><a title="조직도/연락처" href="/kasp/organization.html">조직도/연락처</a></li>
+    <li><a title="오시는 길" href="/kasp/map.html">오시는 길</a></li>
+    </ul></li>
+  <li><div class="buttonbg"><a href="/work/study.html">협회업무</a></div>
+    <ul>
+    <li><a title="정책연구" href="/work/study.html">정책연구</a></li>
+    <li><a title="동향분석" href="/work/analysis.html">동향분석</a></li>
+    <li><a title="국제협력사업" href="/work/global.html">국제협력사업</a></li>
+    <li><a title="전시사업" href="/work/exhibit.html">전시사업</a></li>
+    <li><a title="기술개발지원" href="/work/support.html">기술개발지원</a></li>
+    <li><a title="교육사업" href="/work/edu.html">교육사업</a></li>
+    <li><a title="회원사서비스" href="/work/service.html">회원사서비스</a></li>
+    </ul></li>
+  <li><div class="buttonbg"><a href="/industry/feature.html">우주산업이해</a></div>
+    <ul>
+    <li style="width:125px"><a title="우주산업특징" href="/industry/feature.html">우주산업특징</a></li>
+    <li><a title="국내산업현황" href="/industry/condition.html">국내산업현황</a></li>
+    <li><a title="사업로드맵" href="/industry/roadmap.html">사업로드맵</a></li>
+    <li><a title="주요우주사업" href="/industry/business.html">주요우주사업</a></li>
+    </ul></li>
+  <li><div class="buttonbg"><a href="/member/info.html">회원사소개</a></div>
+    <ul>
+    <li style="width:125px"><a title="회원가입안내" href="/member/info.html">회원가입안내</a></li>
+    <li><a title="정회원사" href="/member/member.html">정회원사</a></li>
+    </ul></li>
+  <li><div class="buttonbg"><a href="/gallery/brochure.html">홍보갤러리</a></div>
+    <ul>
+    <li style="width:125px"><a title="홍보브로셔" href="/gallery/brochure.html">홍보브로셔</a></li>
+	<li><a class="with_arrow" href="/gallery/gallery1.html">갤러리</a>
+		<ul>
+		<li><a title="갤러리" href="/gallery/gallery1.html">한국우주기술진흥협회</a></li>
+		<li><a title="갤러리" href="/gallery/gallery2.html">한국우주기술진흥연구조합</a></li>
+		</ul>
+	</li>
+	<li><a title="홍보동영상" href="/gallery/video.html">홍보동영상</a></li>
+    </ul></li>
+  <li><div class="buttonbg"><a href="/center/report.html">정보센터</a></div>
+    <ul>
+    <li><a title="연구보고서" href="/center/report.html">연구보고서</a></li>
+    <li><a title="세계시장동향" href="/center/market.html">세계시장동향</a></li>
+    <li><a title="자료실" href="/center/download.html">자료실</a></li>
+    <li><a title="관계법령" href="/center/law.html">관계법령</a></li>
+    <li><a title="국가우주개발계획" href="/center/plan.html">국가우주개발계획</a></li>
+    <li><a title="국내외 우주관련 매거진" href="/center/magazine.html">국내외 우주관련 매거진</a></li>
+    </ul></li>
+  <li><div class="buttonbg"><a href="/community/opinion.html">커뮤니티</a></div>
+    <ul>
+    <li style="width:125px"><a title="정책별의견수렴" href="/community/opinion.html">정책별의견수렴</a></li>
+    <li><a title="협회건의사항" href="/community/propose.html">협회건의사항</a></li>
+    <li><a title="업계소식" href="/community/space_news.html">업계소식</a></li>
+    <li><a title="회원사소식" href="/community/member_news.html">회원사소식</a></li>
+	<li><a title="구인/구직소식" href="/community/recruit.html">구인/구직소식</a></li>
+    </ul></li>
+  <li><div class="buttonbg"><a href="/kasp_news/kasp_news.html">협회동정</a></div>
+    <ul>
+    <li style="width:125px"><a title="정책별의견수렴" href="/kasp_news/kasp_news.html">협회소식</a></li>
+    <li><a title="협회건의사항" href="/kasp_news/kasp_notice.html">공지사항</a></li>
+    <li><a title="업계소식" href="/kasp_news/kasp_newspaper.html">협회지</a></li>
+    </ul></li>
+  </ul>
+</div>
+<script type="text/javascript" src="/kasp/navi_files/mbjsmbmcp.js"></script>				
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>

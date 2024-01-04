@@ -1,0 +1,32 @@
+						<tr>
+							<td style="padding-bottom:30px;">
+								<table width="100%" border="0" cellspacing="0" cellpadding="0">
+									<tr><?if ($subNum==1){echo "<td><div style='border-bottom:1px solid #e7e7e7; padding:10px 0 10px 8px;'><span class=onm>정책별의견수렴</span></div></td>";}else{echo "<td><a href=/community/opinion.html class=sm><div style='border-bottom:1px solid #e7e7e7; padding:10px 0 10px 8px;'>정책별의견수렴</div></a></td>";}?></tr>
+									<tr><?if ($subNum==2){echo "<td><div style='border-bottom:1px solid #e7e7e7; padding:10px 0 10px 8px;'><span class=onm>협회건의사항</span></div></td>";}else{echo "<td><a href=/community/propose.html class=sm><div style='border-bottom:1px solid #e7e7e7; padding:10px 0 10px 8px;'>협회건의사항</div></a></td>";}?></tr>
+									<tr><?if ($subNum==3){echo "<td><div style='border-bottom:1px solid #e7e7e7; padding:10px 0 10px 8px;'><span class=onm>업계소식</span></div></td>";}else{echo "<td><a href=/community/space_news.html class=sm><div style='border-bottom:1px solid #e7e7e7; padding:10px 0 10px 8px;'>업계소식</div></a></td>";}?></tr>
+									<tr><?if ($subNum==4){echo "<td><div style='border-bottom:1px solid #e7e7e7; padding:10px 0 10px 8px;'><span class=onm>회원사소식</span></div></td>";}else{echo "<td><a href='/community/member_news.html' class='sm'><div style='border-bottom:1px solid #e7e7e7; padding:10px 0 10px 8px;'>회원사소식</div></a></td>";}?></tr>
+									<tr>
+									<?if ($subNum==5){
+									echo "<td id='job' onMouseOver='javascript:on()' onMouseOut='javascript:out()'><div style='border-bottom:1px solid #e7e7e7; padding:10px 0 10px 8px;'><span class=onm>구인/구직소식</span>";
+									echo  "<table id='jobtable' style='display:none;'><tr><td><a href='/community/recruit.html' class='sm'>- 구인소식</a></td></tr><tr><td><a href=/community/findjob.html class=sm>- 구직소식</a></td></tr></table>";
+									echo "</div></td>";
+									
+									} else { 
+									
+									echo "<td id='job' onMouseOver='javascript:on()' onMouseOut='javascript:out()'><a href=/community/recruit.html class=sm><div style='border-bottom:1px solid #e7e7e7; padding:10px 0 10px 8px;'>구인/구직소식</a>";
+									echo  "<table id='jobtable' style='display:none;'><tr><td><a href='/community/recruit.html' class='sm'>- 구인소식</a></td></tr><tr><td><a href=/community/findjob.html class=sm>- 구직소식</a></td></tr></table>";
+									echo "</div></td>";
+									}									
+									?>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<script>
+							function on(){
+								document.getElementById('jobtable').style.display="block"; 
+							}
+							function out(){
+								document.getElementById('jobtable').style.display="none"; 
+							}
+						</script>

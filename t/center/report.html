@@ -1,0 +1,19 @@
+<?
+	$pageNum="6";
+	$subNum="1";
+	$folderName = "center";
+	$fileName = "report";
+	$pageName = "정보센터";
+	$subName = "연구보고서";
+?>
+<? include ("/home/hosting_users/kasp/www/t/common/include/header.html"); ?>
+<? include ("/home/hosting_users/kasp/www/t/common/include/subtitle.html"); ?>
+<div class="contents">
+	<div class="wrap">
+		<div class="content">
+			<? $code="report"; include "$_SERVER[DOCUMENT_ROOT]/admin/module/bbs.php"; // 게시판 ?>
+		</div>
+	</div>
+</div>
+
+<? include ("/home/hosting_users/kasp/www/t/common/include/footer.html"); ?>

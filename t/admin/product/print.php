@@ -1,0 +1,266 @@
+<?
+@ini_set('session.bug_compat_warn', 0);
+@ini_set('session.bug_compat_42', 0);
+
+include_once "$_SERVER[DOCUMENT_ROOT]/admin/common.php";
+include "$_SERVER[DOCUMENT_ROOT]/admin/inc/prd_info.php";
+
+if($_GET[catcode] != "") $catcode = $_GET[catcode];
+
+$param = "searchopt=$searchopt&searchkey=$searchkey";
+
+// 상품정보
+$sql = "select wp.*, wc.catcode, wcat.prd_skin, wcat.purl
+				from wiz_product as wp left join wiz_cprelation as wc on wp.prdcode = wc.prdcode
+				left join wiz_category as wcat on wc.catcode = wcat.catcode
+				where wp.prdcode='$prdcode'";
+$result = mysql_query($sql) or error(mysql_error());
+$row = mysql_fetch_array($result);
+
+// 오늘본 상품목록에 추가
+$view_exist = false;
+$view_idx = count($view_list);
+for($ii = 0; $ii < $view_idx; $ii++){
+	if($view_list[$ii][prdcode] == $prdcode){ $view_exist = true; break; }
+}
+
+if(!$view_exist){
+	$view_list[$view_idx][prdcode] = $prdcode;
+	$view_list[$view_idx][purl] = $row[purl];
+	$view_list[$view_idx][prdimg] = $row[prdimg_R];
+	session_register("view_list",$view_list);
+}
+
+// 스킨위치
+if(!empty($row[prd_skin])) $skin_dir = "/admin/product/skin/".$row[prd_skin];
+
+echo "<link href=\"".$skin_dir."/style.css\" rel=\"stylesheet\" type=\"text/css\">";
+
+$shortexp = nl2br($row[shortexp]);
+$content = $row[content];
+$prdimg = "/admin/data/product/".$row[prdimg_M1];
+$prdname = $row[prdname];
+$prdnum = $row[prdnum];
+
+$prdimg_S1 = $row[prdimg_S1];
+$prdimg_S2 = $row[prdimg_S2];
+$prdimg_S3 = $row[prdimg_S3];
+$prdimg_S4 = $row[prdimg_S4];
+$prdimg_S5 = $row[prdimg_S5];
+$prdimg_S6 = $row[prdimg_S6];
+$prdimg_S7 = $row[prdimg_S7];
+$prdimg_S8 = $row[prdimg_S8];
+$prdimg_S9 = $row[prdimg_S9];
+$prdimg_S10 = $row[prdimg_S10];
+$prdimg_S11 = $row[prdimg_S11];
+$prdimg_S12 = $row[prdimg_S12];
+
+$info_name1 = $row[info_name1];
+$info_value1 = $row[info_value1];
+$info_name2 = $row[info_name2];
+$info_value2 = $row[info_value2];
+$info_name3 = $row[info_name3];
+$info_value3 = $row[info_value3];
+$info_name4 = $row[info_name4];
+$info_value4 = $row[info_value4];
+$info_name5 = $row[info_name5];
+$info_value5 = $row[info_value5];
+
+$info_name6 = $row[info_name6];
+$info_value6 = $row[info_value6];
+$info_name7 = $row[info_name7];
+$info_value7 = $row[info_value7];
+$info_name8 = $row[info_name8];
+$info_value8 = $row[info_value8];
+$info_name9 = $row[info_name9];
+$info_value9 = $row[info_value9];
+$info_name10 = $row[info_name10];
+$info_value10 = $row[info_value10];
+
+$upfile1 = $row[upfile1];
+$upfile2 = $row[upfile2];
+$upfile3 = $row[upfile3];
+$upfile4 = $row[upfile4];
+$upfile5 = $row[upfile5];
+
+$upfile1_name = $row[upfile1_name];
+$upfile2_name = $row[upfile2_name];
+$upfile3_name = $row[upfile3_name];
+$upfile4_name = $row[upfile4_name];
+$upfile5_name = $row[upfile5_name];
+
+if($prdimg_max < 12) $prdimg_hide_max = 12;
+else $prdimg_hide_max = $prdimg_max;
+for($ii = 1; $ii <= $prdimg_hide_max; $ii++) {
+	if(!is_file("$_SERVER[DOCUMENT_ROOT]/admin/data/product/".${prdimg_S.$ii})){
+		${prdimg_hide_start.$ii} = "<!--"; ${prdimg_hide_end.$ii} = "-->";
+	}
+}
+for($ii = 1; $ii <= $prdfile_max; $ii++) {
+	if(!is_file("$_SERVER[DOCUMENT_ROOT]/admin/data/product/".${upfile.$ii})){
+		${upfile_hide_start.$ii} = "<!--"; ${upfile_hide_end.$ii} = "-->";
+		${upfile.$ii._click} = " onClick=\"alert('첨부파일이 존재하지 않습니다.');\" style=\"cursor:pointer\" ";
+	} else {
+		${upfile.$ii} = "<a href='/admin/product/down.php?prdcode=".$prdcode."&no=".$ii."'>".${upfile.$ii._name}."</a>";
+		${upfile.$ii._click} = " onClick=\"document.location='/admin/product/down.php?prdcode=".$prdcode."&no=".$ii."';\">";
+	}
+}
+
+if(empty($catcode)) $catcode = $row[catcode];
+
+// 카테고리 정보
+$catcode1 = substr($catcode,0,2);
+$catcode2 = substr($catcode,0,4);
+$position = "";
+
+$sql = "select * from wiz_category where catuse != 'N' and (
+						catcode = '000000'
+						or (catcode like '$catcode1%' and depthno = 1)
+						or (catcode like '$catcode2%' and depthno = 2)
+						or (catcode = '$catcode')) order by priorno01 asc, priorno02 asc, priorno03 asc";
+
+$result = mysql_query($sql) or error(mysql_error());
+
+while($cat_row = mysql_fetch_array($result)){
+	if($catcode == $cat_row[catcode]){
+		$cat_info = $cat_row;
+		$catname = $cat_row[catname];
+	}
+	if(is_file(WIZHOME_PATH."/data/product/".$cat_row[catimg])) $catimg = "<img src='/admin/data/product/".$cat_row[catimg]."'>";
+	$position .= " &gt; <a href='$PHP_SELF?ptype=list&catcode=".$cat_row[catcode]."'>".$cat_row[catname]."</a>";
+
+}
+
+if($cat_info[depthno] == 1) $tmp_catcode = substr($catcode,0,2);
+else if($cat_info[depthno] == 2) $tmp_catcode = substr($catcode,0,4);
+else if($cat_info[depthno] == 3) $tmp_catcode = substr($catcode,0,4);
+if($cat_info[depthno] < 3) $cat_info[depthno]++;
+
+$brow = 1;
+$sql = "select catcode, catname, depthno from wiz_category where catuse != 'N' and catcode like '$tmp_catcode%' and depthno = '".$cat_info[depthno]."' order by priorno01, priorno02, priorno03 asc";
+$result = mysql_query($sql) or error(mysql_error());
+while($cat_row = mysql_fetch_array($result)){
+	$tr = "";
+	if($brow % 5 == 0 && $brow != 0) $tr = "<tr>";
+
+	if($catcode == $cat_row[catcode]) $cat_row[catname] = "<strong>".$cat_row[catname]."</strong>";
+	$catlist .= "<td><a href='$PHP_SELF?ptype=list&catcode=".$cat_row[catcode]."'>".$cat_row[catname]."</a></td>".$tr;
+$brow++;
+}
+
+// 하위 카테고리가 없을 경우 현재 카테고리
+if($brow <= 1) {
+	
+	$cat_info[depthno] = $cat_info[depthno] - 1;
+	
+	if($cat_info[depthno] == 1) $tmp_catcode = substr($catcode,0,2);
+	else if($cat_info[depthno] == 2) $tmp_catcode = substr($catcode,0,2);
+	else if($cat_info[depthno] == 3) $tmp_catcode = substr($catcode,0,4);
+
+	$csql = "select catcode, catname, depthno, purl from wiz_category where catuse != 'N' and catcode like '$tmp_catcode%' and depthno = '".$cat_info[depthno]."' order by priorno01, priorno02, priorno03 asc";
+	$cresult = mysql_query($csql) or error(mysql_error());
+	while($crow = mysql_fetch_array($cresult)){
+		$tr = "";
+		if($brow % 5 == 0 && $brow != 0) $tr = "<tr>";
+	
+		if($catcode == $crow[catcode]) $crow[catname] = "<strong>".$crow[catname]."</strong>";
+		if(!empty($crow[purl])) $purl = "/".$crow[purl];
+		else $purl = $PHP_SELF;
+		$catlist .= "<td><a href='$purl?ptype=list&catcode=".$crow[catcode]."'>".$crow[catname]."</a></td>".$tr;
+		$brow++;
+	}
+}
+
+if($info_name1 == ""){
+	$info_hide_start1 = "<!--"; $info_hide_end1 = "-->";
+}
+if($info_name2 == ""){
+	$info_hide_start2 = "<!--"; $info_hide_end2 = "-->";
+}
+if($info_name3 == ""){
+	$info_hide_start3 = "<!--"; $info_hide_end3 = "-->";
+}
+if($info_name4 == ""){
+	$info_hide_start4 = "<!--"; $info_hide_end4 = "-->";
+}
+if($info_name5 == ""){
+	$info_hide_start5 = "<!--"; $info_hide_end5 = "-->";
+}
+if($info_name6 == ""){
+	$info_hide_start6 = "<!--"; $info_hide_end6 = "-->";
+}
+if($info_name7 == ""){
+	$info_hide_start7 = "<!--"; $info_hide_end7 = "-->";
+}
+if($info_name8 == ""){
+	$info_hide_start8 = "<!--"; $info_hide_end8 = "-->";
+}
+if($info_name9 == ""){
+	$info_hide_start9 = "<!--"; $info_hide_end9 = "-->";
+}
+if($info_name10 == ""){
+	$info_hide_start10 = "<!--"; $info_hide_end10 = "-->";
+}
+
+$print_btn = "<a href=\"javascript:prdPrint();\"><img src='".$skin_dir."/image/btn_print.gif' border='0'></a>";
+
+?>
+<script language="javascript">
+<!--
+
+var prdimg = "<?=$row[prdimg_L1]?>";
+
+function chgImage(idx){
+<?php
+for($ii = 1; $ii <= $prdimg_max; $ii++) {
+?>
+	if(idx == "<?=$ii?>"){
+		prdimg = "<?=$row[prdimg_L.$ii]?>";
+		document.prdimg.src = "/admin/data/product/<?=$row[prdimg_M.$ii]?>";
+	}
+<?php
+}
+?>
+
+}
+
+function prdImg(){
+   var url = "/admin/product/prdimg.php?prdimg=" + prdimg;
+   window.open(url,"prdImg","width=100,height=100,scrollbars=no,resizable=yes");
+}
+
+function prevAlert(){
+	alert("이전상품이 없습니다.");
+}
+
+function nextAlert(){
+	alert("다음상품이 없습니다.");
+}
+
+// 프린트
+function prdPrint(){
+	print();
+}
+
+-->
+</script>
+
+<?
+// 다음이전 상품
+$prev = "";
+$next = "";
+?>
+<html>
+<head>
+<title>::상품출력::</title>
+</head>
+<body onLoad="resizeTo(700, 750);prdPrint()">
+<?php
+// 상단파일
+include "$_SERVER[DOCUMENT_ROOT]/$skin_dir/view_head.php";
+
+// 하단파일
+include "$_SERVER[DOCUMENT_ROOT]/$skin_dir/view_foot.php";
+?>
+</body>
+</html>

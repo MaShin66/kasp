@@ -1,0 +1,223 @@
+<?
+	$pageNum="1";
+	$subNum="2";
+	$folderName = "member";
+	$fileName = "info";
+	$pageName = "회원사소개";
+	$subName = "회원사 소개";
+?>
+<? include ("/home/hosting_users/kasp/www/common/include/header2.html"); ?>
+<? include ("/home/hosting_users/kasp/www/common/include/subtitle2.html");
+
+include_once "../admin/ycommon.php";
+$sql = "
+    select
+        a.type, a.logo_path1, a.com_name, a.boss_name, a.idx, a.homepage, a.member_type
+    from dm_member_company as a
+    where a.show = '1'
+    order by a.type desc,
+    (
+    	case
+			when a.member_type = '이사사' then 1
+			when a.member_type = '감사사' then 2
+			when a.member_type = '정회원' then 3
+			when a.member_type = '특별회원' then 4
+			else 5
+    	end
+    ) asc,
+    (
+		case
+			when LEFT(a.com_name,1) REGEXP '^[가-힣]+' THEN 1
+			when LEFT(a.com_name,1) REGEXP '^[0-9]+' THEN 2
+			when LEFT(a.com_name,1) REGEXP '^[a-zA-Z]+' THEN 3
+			ELSE 4
+		END
+	) asc,
+    a.com_name asc
+";
+$member_company_data = $DB->select_assoc_query($sql);
+// yprint($member_company_data);
+
+$member_company_proc_data = array();
+if (is_array($member_company_data) && count($member_company_data) > 0) {
+	foreach($member_company_data as $l) {
+		$member_company_proc_data[$l['type']][] = $l;
+	}
+}
+unset($member_company_data);
+//yprint($member_company_proc_data[4]);
+
+?>
+<div class="contents member info_page">
+	<div class="wrap">
+		<div class="content">
+			<div class="m_info_box">
+				<!-- <img src="/common/images/member/list.jpg" alt="통이미지"> -->
+				<h4 class="line_tit first">회장사</h4>
+				<div class="table_box">
+					<ul class="company_list">
+						<?
+						if (
+							isset($member_company_proc_data[4])
+							&& is_array($member_company_proc_data[4])
+							&& (count($member_company_proc_data[4]) > 0)
+							) {
+							foreach($member_company_proc_data[4] as $k => $l) {
+						?>
+						<li class="full">
+							<div class="logo">
+                <div class="img_wrap">
+                  <img src="<?=$company_logo_img_dir?>/<?=$l['logo_path1']?>" alt="<?=$l['com_name']?>">
+                </div>
+							</div>
+							<div class="info">
+								<dl>
+									<dt>업체명</dt>
+									<dd><?=$l["com_name"]?></dd>
+									<dt>대표자</dt>
+									<dd><?=$l["boss_name"]?></dd>
+								</dl>
+								<a href="http://<?=$l['homepage']?>" target="_blank" class="homepage_link_btn">홈페이지 보기</a>
+								<button type="button" class="promotional_down_btn" data-popup='info_popup_proc_test.html?idx=<?=$l["idx"]?>'><span>회사소개보기</span></button>
+							</div>
+						</li>
+						<? } } ?>
+					</ul>
+				</div>
+
+				<h4 class="line_tit">부회장사</h4>
+				<div class="table_box">
+					<ul class="company_list">
+						<?
+						if (
+							isset($member_company_proc_data[3])
+							&& is_array($member_company_proc_data[3])
+							&& (count($member_company_proc_data[3]) > 0)
+						) {
+						foreach($member_company_proc_data[3] as $k => $l) {
+						?>
+						<li>
+							<div class="logo">
+                <div class="img_wrap">
+                  <img src="<?=$company_logo_img_dir?>/<?=$l['logo_path1']?>" alt="<?=$l['com_name']?>">
+                </div>
+							</div>
+							<div class="info">
+								<dl>
+									<dt>업체명</dt>
+									<dd><?=$l["com_name"]?></dd>
+									<dt>대표자</dt>
+									<dd><?=$l["boss_name"]?></dd>
+								</dl>
+								<a href="http://<?=$l['homepage']?>" target="_blank" class="homepage_link_btn">홈페이지 보기</a>
+								<button type="button" class="promotional_down_btn" data-popup='info_popup_proc_test.html?idx=<?=$l["idx"]?>'><span>회사소개보기</span></button>
+							</div>
+						</li>
+						<? } } ?>
+					</ul>
+				</div>
+
+				<h4 class="line_tit">임원사</h4>
+				<div class="table_box">
+					<table class="table_style table_style1">
+						<caption>회원사소개 - 임원사</caption>
+						<colgroup>
+							<col style="width:11.5%;">
+							<col style="width:11.5%;">
+							<col>
+							<col style="width:16%;">
+							<col style="width:22.5%;">
+						</colgroup>
+						<thead>
+							<tr>
+								<th scope="col" colspan="2">회원구분</th>
+								<th scope="col">업체명</th>
+								<th scope="col">대표자</th>
+								<th scope="col">홈페이지/홍보물</th>
+							</tr>
+						</thead>
+						<tbody>
+							<?
+							if (
+								isset($member_company_proc_data[2])
+								&& is_array($member_company_proc_data[2])
+								&& (count($member_company_proc_data[2]) > 0)
+							) {
+								foreach($member_company_proc_data[2] as $k => $l) {
+							?>
+							<tr>
+								<? if ($k === 0) { ?><th scope="row" rowspan="<?=count($member_company_proc_data[3])?>">임원사</th><?}?>
+								<td class="right_line"><?=$l["member_type"]?></td>
+								<td class="company_name">
+									<div class="logo"><img src="<?=$company_logo_img_dir?>/<?=$l['logo_path1']?>" alt="<?=$l['com_name']?>"></div>
+									<div class="name"><?=$l["com_name"]?></div>
+								</td>
+								<td><?=$l["boss_name"]?></td>
+								<td>
+									<a href="http://<?=$l['homepage']?>" target="_blank" class="homepage_link_btn">홈페이지 보기</a>
+									<button type="button" class="promotional_down_btn" data-popup='info_popup_proc_test.html?idx=<?=$l["idx"]?>'><span>회사소개보기</span></button>
+								</td>
+							</tr>
+							<? } } ?>
+							
+						</tbody>
+					</table>
+				</div>
+
+				<h4 class="line_tit">일반 회원사</h4>
+				<div class="table_box">
+					<table class="table_style table_style1">
+						<caption>회원사소개 - 임원사</caption>
+						<colgroup>
+							<col style="width:11.5%;">
+							<col>
+							<col style="width:16.5%;">
+							<col style="width:24%;">
+						</colgroup>
+						<thead>
+							<tr>
+								<th scope="col">회원구분</th>
+								<th scope="col">업체명</th>
+								<th scope="col">대표자</th>
+								<th scope="col">홈페이지/홍보물</th>
+							</tr>
+						</thead>
+						<tbody>
+							<?
+								if (
+									isset($member_company_proc_data[1])
+									&& is_array($member_company_proc_data[1])
+									&& (count($member_company_proc_data[1]) > 0)
+							) {
+							foreach($member_company_proc_data[1] as $k => $l) {
+							?>
+							<tr>
+								<td class="right_line"><?=$l["member_type"]?></td>
+								<td class="company_name">
+									<div class="logo"><img src="<?=$company_logo_img_dir?>/<?=$l['logo_path1']?>" alt="<?=$l['com_name']?>"></div>
+									<div class="name"><?=$l["com_name"]?></div>
+								</td>
+								<td><?=$l["boss_name"]?></td>
+								<td>
+									<? if ($l['homepage']) { ?>
+									<a href="http://<?=$l['homepage']?>" target="_blank" class="homepage_link_btn">홈페이지 보기</a>
+									<? } ?>
+									<button type="button" class="promotional_down_btn" data-popup='info_popup_proc_test.html?idx=<?=$l["idx"]?>'><span>회사소개보기</span></button>
+								</td>
+							</tr>
+							<? } } ?>
+							
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+	$(".promotional_down_btn").on('click', function(){
+		var url = $(this).attr('data-popup');
+		window.open('./'+url, '', 'scrollbars=1, width=930, height=600');
+	})
+</scripT>
+<? include ("/home/hosting_users/kasp/www/common/include/footer2.html"); ?>

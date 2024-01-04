@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="bde7c493-957b-4c9d-a5e3-b81c4db1d8fc" name="kasp" url="http://kasp.or.kr">
+        <fileTransfer host="kasp.or.kr" port="21">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+      <webServer id="1659cbfa-bc88-4175-927c-56de665450bc" name="enkasp" url="http://enkasp.mycafe24.com">
+        <fileTransfer host="enkasp.mycafe24.com" port="21">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

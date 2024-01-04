@@ -1,0 +1,19 @@
+<?
+	$pageNum="6";
+	$subNum="3";
+	$folderName = "center";
+	$fileName = "download";
+	$pageName = "정보센터";
+	$subName = "자료실";
+?>
+<? include ("/home/hosting_users/kasp/www/common/include/header.html"); ?>
+<? include ("/home/hosting_users/kasp/www/common/include/subtitle.html"); ?>
+<div class="contents">
+	<div class="wrap">
+		<div class="content">
+			<? $code="pds"; include "$_SERVER[DOCUMENT_ROOT]/admin2/module/bbs.php"; // 게시판 ?>
+		</div>
+	</div>
+</div>
+
+<? include ("/home/hosting_users/kasp/www/common/include/footer.html"); ?>

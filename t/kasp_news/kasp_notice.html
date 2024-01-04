@@ -1,0 +1,18 @@
+<?
+	$pageNum="8";
+	$subNum="2";
+	$folderName = "kasp_news";
+	$fileName = "kasp_notice";
+	$pageName = "협회동정";
+	$subName = "공지사항";
+?>
+<? include ("/home/hosting_users/kasp/www/t/common/include/header.html"); ?>
+<? include ("/home/hosting_users/kasp/www/t/common/include/subtitle.html"); ?>
+<div class="contents">
+	<div class="wrap">
+		<div class="content">
+			<? $code="kasp_notice"; include "$_SERVER[DOCUMENT_ROOT]/admin/module/bbs.php"; // 게시판 ?>
+		</div>
+	</div>
+</div>
+<? include ("/home/hosting_users/kasp/www/t/common/include/footer.html"); ?>

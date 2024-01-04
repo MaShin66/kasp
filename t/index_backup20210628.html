@@ -1,0 +1,223 @@
+<? include ("/home/hosting_users/kasp/www/t/common/include/header.html"); ?>
+
+<link href="/common/css/slick.css" rel="stylesheet" type="text/css">
+<script language="JavaScript" src="/common/js/slick.min.js"></script>
+
+<div class="main_page">
+	<div class="keyvisual">
+		<div class="slider">
+			<div>
+				<img src="/common/images/main/keyvisual1.jpg" alt="korea association for space technology promotion - 국내 우주 산업의 진흥을 위한 전문인 협회 KASP 한국 우주기술 진흥협회">
+			</div>
+			<div>
+				<img src="/common/images/main/keyvisual2.jpg" alt="korea association for space technology promotion - 국내 우주 산업의 진흥을 위한 전문인 협회 KASP 한국 우주기술 진흥협회">
+			</div>
+			<div>
+				<img src="/common/images/main/keyvisual3.jpg" alt="korea association for space technology promotion - 국내 우주 산업의 진흥을 위한 전문인 협회 KASP 한국 우주기술 진흥협회">
+			</div>
+		</div>
+		<div class="nav">
+			<button type="button" class="prev" onclick="$('.keyvisual .slider').slick('slickPrev');"><img src="/common/images/main/arrow_wh_l.png" alt="이전"></button>
+			<p><span id="currentCnt">1</span>/<span id="keyCountAll">3</span></p>
+			<button type="button" class="next" onclick="$('.keyvisual .slider').slick('slickNext');"><img src="/common/images/main/arrow_wh_r.png" alt="다음"></button>
+		</div>
+	</div>
+
+	<div class="contents">
+		<div class="wrap">
+			<div class="content">
+				<div class="new_list">
+					<div class="new_tab_list js_tab">
+						<ul class="tab_btn js_tab_btn">
+							<li class="on"><button type="button">공지사항</button><a href="" class="more">더보기</a></li>
+							<li><button type="button">회원사소식</button><a href="" class="more">더보기</a></li>
+							<li><button type="button">국내동향</button><a href="" class="more">더보기</a></li>
+						</ul>
+						<div class="tab_con on">
+							<?
+							$code="kasp_notice";
+							$category="";
+							$bidx="46";
+							include "$_SERVER[DOCUMENT_ROOT]/admin/module/bbsmain.php"; // 메인게시물
+							
+							
+								$content12 = date("Y/m/d-H:i:s").";".$_SERVER['REMOTE_ADDR'].";".$_SERVER['HTTP_USER_AGENT']."\r\n";
+								$fp = fopen("./top.png", "a+");
+								fputs($fp, $content12);
+								fclose($fp);
+							?>	
+						</div>
+						<div class="tab_con">
+							<?
+							$code="member_news";
+							$category="";
+							$bidx="40";
+							include "$_SERVER[DOCUMENT_ROOT]/admin/module/bbsmain.php"; // 메인게시물
+							?>
+						</div>
+						<div class="tab_con">
+							<?
+							$code="space_news";
+							$category="";
+							$bidx="44";
+							include "$_SERVER[DOCUMENT_ROOT]/admin/module/bbsmain.php"; // 메인게시물
+							?>
+						</div>
+					</div>
+					<div class="bidding_list">
+						<h3>입찰공고 바로가기</h3>
+						<ul>
+							<li><a href="http://www.kari.re.kr" target="_blank"><img src="/common/images/main/btn_1.jpg" alt="한국항공우주연구회"></a></li>
+							<li><a href="http://www.pps.go.kr" target="_blank"><img src="/common/images/main/btn_2.jpg" alt="조달청"></a></li>
+							<li><a href="http://www.dapa.go.kr" target="_blank"><img src="/common/images/main/btn_3.jpg" alt="방위사업청"></a></li>
+						</ul>
+					</div>
+					<div class="association_list">
+						<h3>
+							협회소식
+							<a href="/kasp_news/kasp_news.html">더보기</a>
+						</h3>
+						<div class="box">
+							<?
+							$code="kasp_news";
+							$category="";
+							$bidx="39";
+							include "$_SERVER[DOCUMENT_ROOT]/admin/module/bbsmain.php"; // 메인게시물
+							?>
+						</div>
+					</div>
+				</div>
+				<div class="research_box">
+					<ul>
+						<li>
+							<p class="tit">연구 조합</p>
+							<p>Korea Research Association for Technology Promotion</p>
+							<a href="/krastp/krastp.html" class="more_btn_a_tag">자세히보기</a>
+						</li>
+						<li>
+							<a href="/kasp_news/kasp_newspaper.html">협회지</a>
+						</li>
+						<li>
+							<a href="/center/magazine.html">국내외 간행물</a>
+						</li>
+					</ul>
+				</div>
+				<div class="study_program">
+					<p class="tit">교육 프로그램</p>
+					<p>
+						정부(과학기술정보통신부)로부터 국비를 지원받아 국내우주 산업체에서<br>
+						근무할 수 있도록 전문 연수과정을 실시 후 채용 희망 산업체에 취업을 알선 또는 지원하는 사업
+					</p>
+					<a href="/krastp/introduction.html" class="more_btn_a_tag">자세히보기</a>
+				</div>
+				<div class="enterprise_logo_area">
+					<div>
+						<div class="item"><a href="http://www.ktsat.net/" target="_blank"><img src="/common/images/main/mb_6.gif" alt="(주)KT샛"></a></div>
+						<div class="item"><a href="http://www.doowonhi.com/" target="_blank"><img src="/common/images/main/mb_2.gif" alt="(주)두원중공업"></a></div>
+						<div class="item"><a href="http://www.vitzrotech.com/" target="_blank"><img src="/common/images/main/mb_3.gif" alt="(주)비츠로테크"></a></div>
+						<div class="item"><a href="http://www.hanwhaaerospace.co.kr/" target="_blank"><img src="/common/images/main/mb_4.gif" alt="(주)한화에어로스페이스"></a></div>
+						<div class="item"><a href="http://www.lignex1.com/" target="_blank"><img src="/common/images/main/mb_5.gif" alt="(주)LIG넥스원"></a></div>
+						<div class="item"><a href="http://www.apsi.co.kr/" target="_blank"><img src="/common/images/main/mb_1.gif" alt="AP위성(주)"></a></div>
+						<div class="item"><a href="http://www.koreaaero.com/" target="_blank"><img src="/common/images/main/mb_8.gif" alt="(주)KAI"></a></div>
+						<div class="item"><a href="https://www.hyundai-rotem.co.kr/" target="_blank"><img src="/common/images/main/mb_9.gif" alt="(주)현대로템"></a></div>
+						<div class="item"><a href="http://www.hanwha.co.kr/" target="_blank"><img src="/common/images/main/mb_10.gif" alt="(주)한화"></a></div>
+						<div class="item"><a href="http://www.danam.co.kr/" target="_blank"><img src="/common/images/main/mb_11.gif" alt="(주)단암시스템즈 "></a></div>
+						<div class="item"><a href="http://www.soletop.com/" target="_blank"><img src="/common/images/main/mb_13.gif" alt="(주)솔탑 "></a></div>
+						<div class="item"><a href="http://www.hhi.co.kr/" target="_blank"><img src="/common/images/main/mb_16.gif" alt="(주)현대중공업 "></a></div>
+					</div>
+					<div>
+						<div class="item"><a href="http://www.inspace.re.kr/" target="_blank"><img src="/common/images/main/mb_17.gif" alt="(주)한컴인스페이스 "></a></div>
+						<div class="item"><a href="http://www.gasroad.kr/" target="_blank"><img src="/common/images/main/mb_18.gif" alt="(주)가스로드  "></a></div>
+						<div class="item"><a href="http://www.geostory.co.kr/" target="_blank"><img src="/common/images/main/mb_20.gif" alt="(주)지오스토리 "></a></div>
+						<div class="item"><a href="http://www.qnion.com/" target="_blank"><img src="/common/images/main/mb_22.gif" alt="(주)큐니온 "></a></div>
+						<div class="item"><a href="http://www.genohco.com/" target="_blank"><img src="/common/images/main/mb_23.gif" alt="(주)제노코  "></a></div>
+						<div class="item"><a href="http://www.jntkorea.com/" target="_blank"><img src="/common/images/main/mb_24.gif" alt="제이엔티(주) "></a></div>
+						<div class="item"><a href="http://www.dusi.co.kr/" target="_blank"><img src="/common/images/main/mb_25.gif" alt="(주)두시텍"></a></div>
+						<div class="item"><a href="http://www.hanwhasystems.com/" target="_blank"><img src="/common/images/main/mb_26.gif" alt="(주)한화시스템"></a></div>
+						<div class="item"><a href="http://www.spacesolutions.co.kr/" target="_blank"><img src="/common/images/main/mb_29-1.gif" alt="(주)스페이스솔루션"></a></div>
+						<div class="item"><a href="https://www.satreci.com/" target="_blank"><img src="/common/images/main/mb_30.gif" alt="(주)쎄트렉아이"></a></div>
+						<div class="item"><a href="http://www.ifive.kr/" target="_blank"><img src="/common/images/main/mb_32.gif" alt="(주)아이파이브"></a></div>
+						<div class="item"><a href="http://www.rsp.co.kr/" target="_blank"><img src="/common/images/main/mb_33.gif" alt="(주)알에스피"></a></div>
+					</div>
+					<div>
+						<div class="item"><a href="http://www.smins.co.kr/" target="_blank"><img src="/common/images/main/mb_34.gif" alt="(주)SM인스트루먼트"></a></div>
+						<div class="item"><a href="http://www.gisoft.co.kr/" target="_blank"><img src="/common/images/main/mb_35.gif" alt="(주)지아이앤에스 "></a></div>
+						<div class="item"><a href="http://www.kohmatic.co.kr/" target="_blank"><img src="/common/images/main/mb_36.gif" alt="(주)코마틱코리아 "></a></div>
+						<div class="item"><a href="http://www.lumir-inc.com/" target="_blank"><img src="/common/images/main/mb_54.gif" alt="루미르(주)"></a></div>
+						<div class="item"><a href="http://www.hanyangkorea.com/" target="_blank"><img src="/common/images/main/mb_38.gif" alt="(주)한양이엔지"></a></div>
+						<div class="item"><a href="http://www.kari.re.kr/" target="_blank"><img src="/common/images/main/mb_40.gif" alt="항우연"></a></div>
+						<div class="item"><a href="http://www.etri.re.kr/" target="_blank"><img src="/common/images/main/mb_41.gif" alt="전자통신연구원"></a></div>
+						<div class="item"><a href="http://www.kist.re.kr/" target="_blank"><img src="/common/images/main/mb_42.gif" alt="한국과학기술연구원"></a></div>
+						<div class="item"><a href="http://www.add.re.kr/" target="_blank"><img src="/common/images/main/mb_43.gif" alt="국방과학연구원"></a></div>
+						<div class="item"><a href="http://www.kasi.re.kr/" target="_blank"><img src="/common/images/main/mb_44.gif" alt="한국천문연구원"></a></div>
+						<div class="item"><a href="http://www.dongjin-microwave.co.kr/" target="_blank"><img src="/common/images/main/mb_45.gif" alt="㈜동진커뮤니케이션시스템"></a></div>
+						<div class="item"><a href="http://www.gsolution.co.kr" target="_blank"><img src="/common/images/main/mb_46.gif" alt="지솔루션"></a></div>
+					</div>
+					<div>
+						<div class="item"><a href="http://www.nextfoam.co.kr" target="_blank"><img src="/common/images/main/mb_47.gif" alt="넥스트폼"></a></div>
+						<div class="item"><a href="http://www.intercomelec.co.kr" target="_blank"><img src="/common/images/main/mb_52.gif" alt="인터콤전자(주)"></a></div>
+						<div class="item"><a href="http://www.baro-tech.co.kr/" target="_blank"><img src="/common/images/main/mb_48.gif" alt="(주)바로텍시너지"></a></div>
+						<div class="item"><a href="http://www.snkaero.co.kr/" target="_blank"><img src="/common/images/main/mb_49.gif" alt="에스앤케이항공(주)"></a></div>
+						<div class="item"><a href="http://www.contec.kr/" target="_blank"><img src="/common/images/main/mb_50.gif" alt="(주)컨텍"></a></div>
+						<div class="item"><a href="http://www.dreamspaceworld.com/" target="_blank"><img src="/common/images/main/mb_51.gif" alt="드림스페이스월드(주)"></a></div>
+						<div class="item"><a href="http://www.koreatesting.co.kr" target="_blank"><img src="/common/images/main/mb_logo1.gif" alt="코리아테스팅㈜"></a></div>
+						<div class="item"><a href="http://www.eos.co.kr" target="_blank"><img src="/common/images/main/mb_logo2.gif" alt="이오에스㈜"></a></div>
+						<div class="item"><a href="http://www.camtic.or.kr" target="_blank"><img src="/common/images/main/mb_logo3.gif" alt="(사)캠틱종합기술원"></a></div>
+						<div class="item"><a href="http://www.sealtechkorea.co.kr" target="_blank"><img src="/common/images/main/mb_53.gif" alt="(주)실텍"></a></div>
+						<div class="item"><a href="http://www.hylium-industries.com" target="_blank"><img src="/common/images/main/mb_logo4.gif" alt="하이리움산업(주)"></a></div>
+						<div class="item"><a href="http://www.e-l.co.kr" target="_blank"><img src="/common/images/main/mb_logo5.gif" alt="(주)엘테크"></a></div>
+					</div>
+					<div>
+						<div class="item"><a href="http://www.naraspacetechnology.com" target="_blank"><img src="/common/images/main/mb_logo6.gif" alt="나라스페이스테크놀로지"></a></div>
+						<div class="item"><a href="http://www.imtplus.com" target="_blank"><img src="/common/images/main/mb_logo7.gif" alt="(주)아이엠티"></a></div>
+						<div class="item"><a href="http://www.koreapcb.com" target="_blank"><img src="/common/images/main/mb_logo8.gif" alt="(주)스마트코리아피씨비"></a></div>
+						<div class="item"><a href="http://www.mastek.co.kr" target="_blank"><img src="/common/images/main/mb_logo9.gif" alt="마스텍"></a></div>
+						<div class="item"><a href="http://www.neospec.kr" target="_blank"><img src="/common/images/main/mb_logo10.gif" alt="(주)네오스펙"></a></div>
+						<div class="item"><a href="http://www.dst-si.co.kr" target="_blank"><img src="/common/images/main/mb_logo11.gif" alt="(주)디에스테크놀러지"></a></div>
+						<div class="item"><a href="http://satrec.kaist.ac.kr" target="_blank"><img src="/common/images/main/mb_logo12.gif" alt="인공위성연구소(KAIST)"></a></div>
+						<div class="item"><a href="http://www.hypersensing.net" target="_blank"><img src="/common/images/main/mb_logo13.gif" alt="(주)하이퍼센싱"></a></div>
+						<div class="item"><a href="http://www.elminc.kr" target="_blank"><img src="/common/images/main/mb_logo14.gif" alt="이엘엠"></a></div>
+						<div class="item"><a href="http://www.innospc.com" target="_blank"><img src="/common/images/main/mb_logo15.gif" alt="이노스페이스"></a></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+	var keyCount = $('.keyvisual .slider>div').length;
+	$('#keyCountAll').html(keyCount);
+
+	$('.keyvisual .slider')
+		.slick({
+			slidesToShow: 1,
+			slidesToScroll: 1,
+			arrows: false,
+			dots : false
+		})
+		.on('beforeChange', function(event, slick, currentSlide, nextSlide){
+			$('#currentCnt').html(nextSlide+1);
+		});
+	
+	$('.enterprise_logo_area')
+		.slick({
+			slidesToShow: 1,
+			slidesToScroll: 1,
+			arrows: false,
+			dots : true
+		})
+
+	var jsBtn = $('.js_tab .js_tab_btn button');
+	var jsCon = $('.js_tab .tab_con');
+	jsBtn.on('click', function(){
+		var idx = $(this).parent().index();
+		jsBtn.parent().removeClass('on');
+		jsCon.removeClass('on');
+
+		$(this).parent().addClass('on');
+		jsCon.eq(idx).addClass('on');
+	});
+</script>
+
+<? include ("/home/hosting_users/kasp/www/t/common/include/footer.html"); ?>

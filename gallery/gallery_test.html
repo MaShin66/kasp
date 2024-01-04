@@ -1,0 +1,40 @@
+<?
+include_once "$_SERVER[DOCUMENT_ROOT]/admin2/common.php";
+include_once "../admin/ycommon.php";
+
+if (!$code) {
+    $sql = "
+        select
+            a.*
+        from dm_gallery as a
+        where a.show = '1'
+        order by a.year desc
+        limit 1
+    ";
+    $gallery_latest_data = $DB->fetch_assoc($sql);
+    $code = $gallery_latest_data['code'];
+}
+
+
+$pageNum="5";
+	$subNum="2";
+	$folderName = "kasp_news";
+	$fileName = "gallery";
+	$pageName = "협회동정";
+	$subName = "갤러리";
+	$gallerylist = "gallery";
+	$gallerylist_page = $code;
+?>
+<? include ("/home/hosting_users/kasp/www/common/include/header2.html"); ?>
+<? include ("/home/hosting_users/kasp/www/common/include/subtitle2.html"); ?>
+<?
+
+?>
+<div class="contents">
+    <div class="wrap">
+        <div class="content gallery_page">
+            <? include "$_SERVER[DOCUMENT_ROOT]/admin2/module/bbs.php"; // 게시판 ?>
+        </div>
+    </div>
+</div>
+<? include ("/home/hosting_users/kasp/www/common/include/footer2.html"); ?>

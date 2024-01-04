@@ -1,0 +1,51 @@
+<?
+	$pageNum="1";
+	$subNum="2";
+	$folderName = "kasp";
+	$fileName = "outline";
+	$pageName = "협회소개";
+	$subName = "연혁";
+?>
+<? include ("/home/hosting_users/kasp/www/common/include/header.html"); ?>
+<? include ("/home/hosting_users/kasp/www/common/include/subtitle.html"); ?>
+
+<?
+include_once "../admin/ycommon.php";
+$sql = "
+    select
+        a.*,
+        (
+            select group_concat(concat('<span class=\"year\">', replace(date, '-', '.'), '</span>', text) order by b.date desc, b.order asc, b.idx asc SEPARATOR '/**/')
+            from dm_history_txt as b
+            where left(b.date,4) = a.year
+        ) as txt
+    from dm_history as a
+	where a.show = '1'
+    order by a.year desc
+";
+$year_list = $DB->select_assoc_query($sql);
+?>
+<div class="contents kasp history_page">
+	<div class="wrap">
+		<div class="content">
+			<div class="year_list year_list2">
+				<ul class="list">
+					<? foreach($year_list as $row) { ?>
+					<li>
+						<h3 class="tit"><?=$row['year']?></h3>
+						<?=($row['picture1']) ? '<img src="'.$history_img_dir."/".$row['picture1'].'" class="year_img" alt="'.$row['year'].'년 이미지" />' : ''?>
+						<?
+						if ($row['txt'] != '') {
+							$txts = explode('/**/', $row['txt']);
+							foreach($txts as $txt) {
+						?>
+						<p class="list_txt"><?=$txt?></p>
+						<? }} ?>
+					</li>
+					<? } ?>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+<? include ("/home/hosting_users/kasp/www/common/include/footer.html"); ?>

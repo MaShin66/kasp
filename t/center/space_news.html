@@ -1,0 +1,19 @@
+<?
+	$pageNum="7";
+	$subNum="3";
+	$folderName = "center";
+	$fileName = "space_news";
+	$pageName = "정보센터";
+	$subName = "국내 동향";
+?>
+<? include ("/home/hosting_users/kasp/www/t/common/include/header.html"); ?>
+<? include ("/home/hosting_users/kasp/www/t/common/include/subtitle.html"); ?>
+<div class="contents industry space_news_page">
+	<div class="wrap">
+		<div class="content">
+			<? $code="space_news"; include "$_SERVER[DOCUMENT_ROOT]/admin/module/bbs.php"; // 게시판 ?>
+		</div>
+	</div>
+</div>
+
+<? include ("/home/hosting_users/kasp/www/t/common/include/footer.html"); ?>

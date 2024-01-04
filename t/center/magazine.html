@@ -1,0 +1,19 @@
+<?
+	$pageNum="6";
+	$subNum="6";
+	$folderName = "center";
+	$fileName = "magazine";
+	$pageName = "정보센터";
+	$subName = "국내외 우주관련 매거진";
+?>
+<? include ("/home/hosting_users/kasp/www/t/common/include/header.html"); ?>
+<? include ("/home/hosting_users/kasp/www/t/common/include/subtitle.html"); ?>
+<div class="contents">
+	<div class="wrap">
+		<div class="content">
+			<? $code="magazine"; include "$_SERVER[DOCUMENT_ROOT]/admin/module/bbs.php"; // 게시판 ?>
+		</div>
+	</div>
+</div>
+
+<? include ("/home/hosting_users/kasp/www/t/common/include/footer.html"); ?>

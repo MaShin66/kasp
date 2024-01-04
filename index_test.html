@@ -1,0 +1,393 @@
+<? include ("/home/hosting_users/kasp/www/common/include/header2.html"); ?>
+<? ini_set('memory_limit','512M');
+
+
+include_once "./admin/ycommon.php";
+
+$sql = "
+    select
+        a.*
+    from dm_main_banner as a
+    order by a.type desc, a.rank asc, a.idx asc
+";
+$banner_data = $DB->select_assoc_query($sql);
+$banner_proc_data = array();
+if (is_array($banner_data) && count($banner_data) > 0) {
+	foreach($banner_data as $l) {
+		$banner_proc_data[$l['type']][] = $l;
+	}
+}
+unset($banner_data);
+//yprint($banner_proc_data);
+?>
+
+<link href="/common/css/slick.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="/common/js/slick.min.js"></script>
+
+
+<div class="main_page">
+	<div class="keyvisual">
+		<div class="slider">
+			<div class="slider_item slider_item01">
+        <div class="text_box">
+          <span><b>K</b>orea <b>A</b>ssociation For <b>S</b>pace Technology <b>P</b>romotion</span>
+          <h2><b>KASP</b> 한국 우주기술 진흥협회</h2>
+        </div>
+			</div>
+			<div class="slider_item slider_item02">
+        <div class="text_box">
+          <span><b>K</b>orea <b>A</b>ssociation For <b>S</b>pace Technology <b>P</b>romotion</span>
+          <h2><b>KASP</b> 한국 우주기술 진흥협회</h2>
+        </div>
+			</div>
+			<div class="slider_item slider_item03">
+        <div class="text_box">
+          <span><b>K</b>orea <b>A</b>ssociation For <b>S</b>pace Technology <b>P</b>romotion</span>
+          <h2><b>KASP</b> 한국 우주기술 진흥협회</h2>
+        </div>
+			</div>
+		</div>
+		<div class="nav">
+			<button type="button" class="prev" onclick="$('.keyvisual .slider').slick('slickPrev');"><img src="/common/images/main/arrow_wh_l.png" alt="이전"></button>
+			<p><span id="currentCnt">1</span>/<span id="keyCountAll">3</span></p>
+			<button type="button" class="next" onclick="$('.keyvisual .slider').slick('slickNext');"><img src="/common/images/main/arrow_wh_r.png" alt="다음"></button>
+		</div>
+	</div>
+
+	<div class="contents">
+		<div class="wrap">
+			<div class="content">
+				<div class="new_list">
+					<div class="new_tab_list js_tab">
+						<ul class="tab_btn js_tab_btn">
+							<li class="on"><button type="button">공지사항</button><a href="/kasp_news/kasp_notice.html" class="more">더보기</a></li>
+							<li><button type="button">회원사소식</button><a href="/community/member_news.html" class="more">더보기</a></li>
+							<li><button type="button">국내동향</button><a href="/center/space_news.html" class="more">더보기</a></li>
+							<li><button type="button">글로벌동향</button><a href="/center/space_globalnews.html" class="more">더보기</a></li>
+						</ul>
+						<? 
+							for ($i=0; $i<4; $i++){
+								if($i == 0){
+									$code = "kasp_notice";	//공지사항
+									$url = "/kasp_news/kasp_notice.html";
+								} else if($i == 1){
+									$code = "member_news";	//회원사소식
+									$url = "/community/member_news.html";
+								} else if($i == 2){
+									$code = "space_news";	//국내동향
+									$url = "/center/space_news.html";
+								} else if($i == 3){
+									$code = "space_globalnews";	//글로벌동향
+									$url = "/center/space_globalnews.html";
+								}
+						?>
+
+						<div class="tab_con <?=$i==0?'on':''?>">
+
+						<?
+							$sql = "select wb.idx,wb.subject,wb.content,wb.upfile1,wb.wdate as wtime,from_unixtime(wb.wdate, '%Y.%m.%d') as wdate,wb.privacy,wb.content,wb.depno,wc.catname, wc.caticon, wb.memid, wb.memgrp, wb.notice
+									from wiz_bbs as wb left join wiz_bbscat as wc on wb.category = wc.idx
+									where wb.code = '$code' order by wb.prino desc limit 4";
+							$result = mysql_query($sql);
+						?>	
+							<ul class="new_list">
+						<?
+								while($row = mysql_fetch_array($result)){
+
+									$row[content] = strip_tags($row[content]);
+
+									$main_subject = cut_str($row[subject],$subject_len);
+									//$main_content = cut_str($row[content],$content_len);
+									$main_name = $row[name];
+									//$main_wdate = str_replace("-",".",$row[wdate]);
+									$main_wdate = $row[wdate];
+									$main_count = $row[count];
+
+									$main_category=""; $main_lock_icon=""; $main_re_icon=""; $main_new_icon=""; $main_hot_icon=""; $main_re_space=""; $main_photo="";
+
+									if($row[caticon] != "") $main_category = "<img src='/admin2/data/category/".$code."/".$row[caticon]."' align='absmiddle'>";		// category
+									else if($row[catname] != "") $main_category = "[".$row[catname]."]";
+
+									$main_link= "$purl?ptype=view&idx=$row[idx]";
+
+									if($row[privacy] == "Y"){																																					// privacy
+										if(
+											($wiz_session[level] == "0") ||																																		// 전체관리자
+											($bbs_info[bbsadmin] != "" && strpos($bbs_info[bbsadmin],$wiz_session[id]) !== false)  ||	// 게시판관리자
+											($row[memid] != "" && $row[memid] == $wiz_session[id])																 ||	// 자신의글
+											($wiz_session[id] != "" && strpos($row[memgrp],$wiz_session[id]) !== false)								// 그룹의글
+										){
+										}else{
+											$main_link = "$purl?ptype=passwd&mode=view&idx=$row[idx]";
+										}
+										$main_lock_icon = "<img src='$skin_dir/image/lock.gif' border='0' align='absmiddle'>";
+									}
+
+									//$main_link = "style=\"cursor:hand\" onClick=\"document.location='$purl?ptype=view&idx=$row[idx]'\"";
+									//$main_link = "$purl?ptype=view&idx=$row[idx]";
+									//$wtime = mktime(0,0,0,substr($row[wtime],5,2),substr($row[wtime],8,2),substr($row[wtime],0,4));
+									$wtime = $row[wtime];
+
+									if(($ttime-$wtime)/86400 <= $bbs_info[newc]) $main_new_icon = "<img src='/admin2/bbsmain/image/new.gif' border='0' align='absmiddle'>";	// new
+									if($row[count] > $bbs_info[hotc]) $main_hot_icon = "<img src='/admin2/bbsmain/image/hot.gif' border='0' align='absmiddle'>";				// hot
+									if($row[depno] != 0) $main_re_icon = "<img src='/admin2/bbsmain/image/re.gif' border='0' align='absmiddle'>";												// re
+									//for($ii=0; $ii < $row[depno]; $ii++) $main_re_space .= " ";																											// respace
+									$main_subject = $main_re_space.$main_re_icon.$main_subject;
+
+									if(file_exists(WIZHOME_PATH."/data/bbs/".$code."/S".$row[upfile1])) $main_photo = "/admin2/data/bbs/".$code."/S".$row[upfile1];		// img
+									else $main_photo = "/admin2/bbs/skin/".$bbs_info[skin]."/image/noimg.gif";
+								?>
+								<li>
+									<div class="tit">
+										<a href="<?=$url?>?ptype=view&amp;idx=<?=$row[idx]?>" target="_parent">
+											<? if($row[notice] == 'Y') { ?>
+											<!--span class="notice">공지</span-->
+											<? }?>
+											<?=$main_subject?>
+										</a>
+									</div>
+									<div class="date"><?=$main_wdate?></div>
+								</li>
+								<? } //end while ?>
+								<!--li>
+									<div class="tit"><a href="/kasp_news/kasp_notice.html?ptype=view&amp;idx=6584" target="_parent"><span class="notice">공지</span>2021년 제3회 신제품(NEP)인증 신규신청2021년 제3회 신제품(NEP)인증 신규신청2021년 제3회 신제품(NEP)인증 신규신청2021년 제3회 신제품(NEP)인증 신규신청...</a></div>
+									<div class="date">2021.06.07</div>
+								</li>
+								<li>
+									<div class="tit"><a href="/kasp_news/kasp_notice.html?ptype=view&amp;idx=6574" target="_parent">2021년도 무인이동체 미래선도 핵심기술개발사2021년도 무인이동체 미래선도 핵심기술개발사2021년도 무인이동체 미래선도 핵심기술개발사...</a></div>
+									<div class="date">2021.05.24</div>
+								</li>
+								<li>
+									<div class="tit"><a href="/kasp_news/kasp_notice.html?ptype=view&amp;idx=6573" target="_parent">서경 우주포럼 개최(6/9)</a></div>
+									<div class="date">2021.05.18</div>
+								</li-->
+							</ul>
+						</div>		
+
+						<? } //end for ?>
+
+					</div>
+					
+
+
+					<div class="bidding_list">
+						<!-- <h3>입찰공고 바로가기</h3> -->
+						<!-- <ul>
+							<li><a href="http://www.kari.re.kr" target="_blank"><img src="/common/images/main/btn_1.jpg" alt="한국항공우주연구회"></a></li>
+							<li><a href="http://www.pps.go.kr" target="_blank"><img src="/common/images/main/btn_2.jpg" alt="조달청"></a></li>
+							<li><a href="http://www.dapa.go.kr" target="_blank"><img src="/common/images/main/btn_3.jpg" alt="방위사업청"></a></li>
+						</ul> -->
+						<ul>
+							<li>
+								<p>우주산업실태조사</p>
+								<a href="/work/analysis.html" target="_blank">자세히보기</a>
+							</li>
+							<li>
+								<p>회원사 소개</p>
+								<a href="/member/info.html" target="_blank">자세히보기</a>
+							</li>
+						</ul>
+					</div>
+					<div class="association_list">
+						<h3>
+							협회소식
+							<a href="/kasp_news/kasp_news.html">더보기</a>
+						</h3>
+						<div class="box">
+							<?
+								$sql = "select wb.idx,wb.subject,wb.content,wb.upfile1,wb.wdate as wtime,from_unixtime(wb.wdate, '%Y.%m.%d') as wdate,wb.privacy,wb.content,wb.depno,wc.catname, wc.caticon, wb.memid, wb.memgrp, wb.notice
+										from wiz_bbs as wb left join wiz_bbscat as wc on wb.category = wc.idx
+										where wb.code = 'kasp_news' order by wb.prino desc limit 1";
+								$result = mysql_query($sql);
+								$row = mysql_fetch_array($result);
+
+								$main_subject = cut_str($row[subject],$subject_len);
+								//$main_content = cut_str($row[content],$content_len);
+
+								if(file_exists("/kasp/www/admin/data/bbs/kasp_news/M".$row[upfile1])) $main_photo = "http://kasp.or.kr/admin/data/bbs/kasp_news/M".$row[upfile1];		// img
+								else $main_photo = "http://kasp.or.kr/admin/bbs/skin/bbsBasic/image/noimg.gif";
+							?>	
+							<a href="/kasp_news/kasp_news.html?ptype=view&amp;idx=<?=$row[idx]?>">
+								<div class="img">
+									<img src="<?=$main_photo?>" alt="">
+								</div>
+								<div class="txt">
+									<?=$main_subject?>
+								</div>
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="banner_wrap">
+					<div class="left_banner">
+						<ul>
+							<?
+								$background1 = $banner_proc_data[1][0]['file1'];
+								$background1_m = $banner_proc_data[1][0]['file2'];
+								$show1 = $banner_proc_data[1][0]['show'];
+								$style1 = ($show1) ? 'style="background-image: url(\''.$main_banner_img_dir.'/'.$background1.'\');"' : 'style="background-image: none;"';
+								$style1_m = ($show1) ? 'style="background-image: url(\''.$main_banner_img_dir.'/'.$background1_m.'\');"' : 'style="background-image: none;"';
+							?>
+							<li class="type01">
+								<? if ($show1) { ?>
+								<div class="bg bg_pc" <?=$style1?>></div>
+								<div class="bg bg_m" <?=$style1_m?>></div>
+								<p class="tit"><?=$banner_proc_data[1][0]['title']?></p>
+								<p><?=nl2br($banner_proc_data[1][0]['contents'])?></p>
+								<a href="<?=$banner_proc_data[1][0]['link']?>" <?=($banner_proc_data[1][0]['target'])?'target="_blank"':''?> class="more_btn_a_tag">자세히보기</a>
+								<? } ?>
+							</li>
+
+							<?
+								$background2 = $banner_proc_data[2][0]['file1'];
+								$background2_m = $banner_proc_data[2][0]['file2'];
+								$show2 = $banner_proc_data[2][0]['show'];
+								$style2 = ($show2) ? 'style="background-image: url(\''.$main_banner_img_dir.'/'.$background2.'\');"' : 'style="background-image: none;"';
+								$style2_m = ($show2) ? 'style="background-image: url(\''.$main_banner_img_dir.'/'.$background2_m.'\');"' : 'style="background-image: none;"';
+							?>
+							<li class="type02">
+								<? if ($show2) { ?>
+								<div class="bg bg_pc" <?=$style2?>></div>
+								<div class="bg bg_m" <?=$style2_m?>></div>
+								<p class="tit"><?=$banner_proc_data[2][0]['title']?></p>
+								<p><?=nl2br($banner_proc_data[2][0]['contents'])?></p>
+								<a href="<?=$banner_proc_data[2][0]['link']?>" <?=($banner_proc_data[2][0]['target'])?'target="_blank"':''?> class="more_btn_a_tag">자세히보기</a>
+								<? } ?>
+							</li>
+						</ul>
+					</div>
+					<div class="right_banner">
+						<?
+							$background5 = $banner_proc_data[5][0]['file1'];
+							$show5 = $banner_proc_data[5][0]['show'];
+							$style5 = ($show5) ? 'style="background-image: url(\''.$main_banner_img_dir.'/'.$background5.'\');"' : 'style="background-image: none;"';
+						?>
+						<div class="bimg" <?=$style5?>>
+							<? if ($show5) { ?>
+							<a href="<?=$banner_proc_data[5][0]['link']?>" <?=($banner_proc_data[5][0]['target'])?'target="_blank"':''?> class="more_btn_a_tag2">자세히보기</a>
+							<? } ?>
+						</div>
+						<ul>
+							<?
+								$background3 = $banner_proc_data[3][0]['file1'];
+								$show3 = $banner_proc_data[3][0]['show'];
+								$style3 = ($show3) ? 'style="background-image: url(\''.$main_banner_img_dir.'/'.$background3.'\');"' : 'style="background-image: none;"';
+							?>
+							<li <?=$style3?>>
+								<? if ($show3) { ?>
+								<a href="<?=$banner_proc_data[3][0]['link']?>" <?=($banner_proc_data[3][0]['target'])?'target="_blank"':''?>>
+									<span><?=$banner_proc_data[3][0]['title']?></span>
+								</a>
+								<? } ?>
+							</li>
+	
+							<?
+								$background4 = $banner_proc_data[4][0]['file1'];
+								$show4 = $banner_proc_data[4][0]['show'];
+								$style4 = ($show4) ? 'style="background-image: url(\''.$main_banner_img_dir.'/'.$background4.'\');"' : 'style="background-image: none;"';
+							?>
+							<li <?=$style4?>>
+								<? if ($show4) { ?>
+								<a href="<?=$banner_proc_data[4][0]['link']?>" <?=($banner_proc_data[4][0]['target'])?'target="_blank"':''?>>
+									<span><?=$banner_proc_data[4][0]['title']?></span>
+								</a>
+								<? } ?>
+							</li>
+						</ul>
+					</div>
+				</div>
+<?
+
+?>
+				<div class="enterprise_logo_area">
+					<?
+						$banner_array = (isset($banner_proc_data[6])) ? $banner_proc_data[6] : array();
+						if (count($banner_array) > 0) {
+							$order_banner_array = array();
+							foreach($banner_array as $k => $l) {
+								if (($k % 12) === 0 || ($k % 12) === 11) {
+									$order_banner_array[] = $k;
+								} else {
+									if (($k % 12) <= 5) {
+										$order_banner_array[] = $k + ($k % 12);
+									} else if (($k % 12) >= 6) {
+										$quotient = 0;
+										if ($k > 1) $quotient = sprintf('%d', $k / 12);
+										$order_banner_array[] = (2 * (($k % 12) - 6)) + 1 + ($quotient * 12);
+									}
+								}
+							}
+							array_multisort($order_banner_array, SORT_ASC, $banner_array);
+						}
+
+						foreach($banner_array as $k => $l) {
+							//if ($k % 12 === 0) {
+							//	echo "<div>";
+							//}
+								$target = ($l['target']) ? 'target="_blank"' : '';
+								$src = $main_banner_img_dir.'/'.$l['file1'];
+								echo '<div><div class="item"><a href="'.$l['link'].'" '.$target.'><img src="'.$src.'" alt="'.$l['alt'].'"></a></div></div>';
+							//if ($k % 12 === 11 || ($k +1 === count($banner_array))) {
+							//	echo "</div>";
+							//}
+						}
+
+					?>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+
+	var keyCount = $('.keyvisual .slider>div').length;
+	$('#keyCountAll').html(keyCount);
+
+	$('.keyvisual .slider').slick({
+			slidesToShow: 1,
+			slidesToScroll: 1,
+			arrows: false,
+			dots : false,
+		}).on('beforeChange', function(event, slick, currentSlide, nextSlide){
+			$('#currentCnt').html(nextSlide+1);
+		});
+	
+	$('.enterprise_logo_area').slick({
+      rows: 2,
+			slidesToShow: 6,
+			slidesToScroll: 6,
+			arrows: false,
+			dots : true,
+      responsive: [
+        {  
+          breakpoint: 1140,
+          settings: {
+            slidesToShow: 5,
+            slidesToScroll: 5,
+          } 
+        },
+        { 
+          breakpoint: 768,
+          settings: {	
+            slidesToShow: 4,
+            slidesToScroll: 4,
+          } 
+        }
+      ]
+		})
+
+	var jsBtn = $('.js_tab .js_tab_btn button');
+	var jsCon = $('.js_tab .tab_con');
+	jsBtn.on('click', function(){
+		var idx = $(this).parent().index();
+		jsBtn.parent().removeClass('on');
+		jsCon.removeClass('on');
+
+		$(this).parent().addClass('on');
+		jsCon.eq(idx).addClass('on');
+	});
+
+</script>
+
+
+<? include ("/home/hosting_users/kasp/www/common/include/footer2.html"); ?>

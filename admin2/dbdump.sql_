@@ -1,0 +1,1901 @@
+-- MySQL dump 10.9
+--
+-- Host: localhost    Database: utfhome
+-- ------------------------------------------------------
+-- Server version	4.1.22-standard
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO,MYSQL323' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `wiz_admin`
+--
+
+DROP TABLE IF EXISTS `wiz_admin`;
+CREATE TABLE `wiz_admin` (
+  `id` varchar(20) NOT NULL default '',
+  `passwd` varchar(20) default NULL,
+  `name` varchar(20) default NULL,
+  `icon` varchar(30) default NULL,
+  `resno` varchar(14) default NULL,
+  `email` varchar(80) default NULL,
+  `tphone` varchar(14) default NULL,
+  `hphone` varchar(14) default NULL,
+  `post` varchar(7) default NULL,
+  `address1` varchar(255) default NULL,
+  `address2` varchar(255) default NULL,
+  `part` int(3) default NULL,
+  `permi` mediumtext,
+  `last` datetime default NULL,
+  `wdate` datetime default NULL,
+  `descript` mediumtext,
+  PRIMARY KEY  (`id`)
+) TYPE=MyISAM;
+
+--
+-- Dumping data for table `wiz_admin`
+--
+
+/*!40000 ALTER TABLE `wiz_admin` DISABLE KEYS */;
+INSERT INTO `wiz_admin` VALUES ('admin','1234','������','admin_icon.jpg','761001-1000004','test@test.com','000-0000-0000','000-0000-0000','000-000','���� ���ʱ� ���ʵ�','000-0���� 000ȣ',0,'','2011-11-24 17:49:25','2006-08-11 11:59:21','�޸�');
+/*!40000 ALTER TABLE `wiz_admin` ENABLE KEYS */;
+
+--
+-- Table structure for table `wiz_banner`
+--
+
+DROP TABLE IF EXISTS `wiz_banner`;
+CREATE TABLE `wiz_banner` (
+  `idx` int(3) NOT NULL auto_increment,
+  `code` varchar(20) NOT NULL default '',
+  `align` enum('R','L') default NULL,
+  `prior` int(3) default NULL,
+  `isuse` enum('Y','N') default NULL,
+  `link_url` varchar(255) default NULL,
+  `link_target` enum('_SELF','_BLANK') default NULL,
+  `de_type` enum('IMG','HTML') default NULL,
+  `de_img` varchar(255) default NULL,
+  `de_html` mediumtext,
+  PRIMARY KEY  (`idx`)
+) TYPE=MyISAM AUTO_INCREMENT=34;
+
+--
+-- Dumping data for table `wiz_banner`
+--
+
+/*!40000 ALTER TABLE `wiz_banner` DISABLE KEYS */;
+/*!40000 ALTER TABLE `wiz_banner` ENABLE KEYS */;
+
+--
+-- Table structure for table `wiz_bannerinfo`
+--
+
+DROP TABLE IF EXISTS `wiz_bannerinfo`;
+CREATE TABLE `wiz_bannerinfo` (
+  `idx` int(5) NOT NULL auto_increment,
+  `title` varchar(20) NOT NULL default '',
+  `code` varchar(20) NOT NULL default '',
+  `types` enum('W','H') NOT NULL default 'W',
+  `types_num` int(3) NOT NULL default '1',
+  `padding` int(3) NOT NULL default '0',
+  `isuse` enum('Y','N') NOT NULL default 'Y',
+  PRIMARY KEY  (`idx`)
+) TYPE=MyISAM AUTO_INCREMENT=13;
+
+--
+-- Dumping data for table `wiz_bannerinfo`
+--
+
+/*!40000 ALTER TABLE `wiz_bannerinfo` DISABLE KEYS */;
+/*!40000 ALTER TABLE `wiz_bannerinfo` ENABLE KEYS */;
+
+--
+-- Table structure for table `wiz_bbs`
+--
+
+DROP TABLE IF EXISTS `wiz_bbs`;
+CREATE TABLE `wiz_bbs` (
+  `idx` int(10) NOT NULL auto_increment,
+  `code` varchar(30) default NULL,
+  `prino` int(10) default NULL,
+  `grpno` int(10) default NULL,
+  `depno` int(2) default NULL,
+  `notice` char(1) default NULL,
+  `category` varchar(80) default NULL,
+  `memid` varchar(20) default NULL,
+  `memgrp` varchar(255) default NULL,
+  `name` varchar(20) default NULL,
+  `nick` varchar(20) default NULL,
+  `email` varchar(50) default NULL,
+  `tphone` varchar(20) default NULL,
+  `hphone` varchar(20) default NULL,
+  `zipcode` varchar(20) default NULL,
+  `address` varchar(255) default NULL,
+  `subject` varchar(100) default NULL,
+  `content` mediumtext,
+  `reply` mediumtext,
+  `addinfo1` varchar(255) default NULL,
+  `addinfo2` varchar(255) default NULL,
+  `addinfo3` varchar(255) default NULL,
+  `addinfo4` varchar(255) default NULL,
+  `addinfo5` varchar(255) default NULL,
+  `ctype` enum('T','H') default NULL,
+  `privacy` enum('Y','N') default NULL,
+  `upfile1` varchar(40) default NULL,
+  `upfile2` varchar(40) default NULL,
+  `upfile3` varchar(40) default NULL,
+  `upfile4` varchar(40) default NULL,
+  `upfile5` varchar(40) default NULL,
+  `upfile6` varchar(40) default NULL,
+  `upfile7` varchar(40) default NULL,
+  `upfile8` varchar(40) default NULL,
+  `upfile9` varchar(40) default NULL,
+  `upfile10` varchar(40) default NULL,
+  `upfile11` varchar(40) default NULL,
+  `upfile12` varchar(40) default NULL,
+  `upfile1_name` varchar(255) default NULL,
+  `upfile2_name` varchar(255) default NULL,
+  `upfile3_name` varchar(255) default NULL,
+  `upfile4_name` varchar(255) default NULL,
+  `upfile5_name` varchar(255) default NULL,
+  `upfile6_name` varchar(255) default NULL,
+  `upfile7_name` varchar(255) default NULL,
+  `upfile8_name` varchar(255) default NULL,
+  `upfile9_name` varchar(255) default NULL,
+  `upfile10_name` varchar(255) default NULL,
+  `upfile11_name` varchar(255) default NULL,
+  `upfile12_name` varchar(255) default NULL,
+  `movie1` mediumtext,
+  `movie2` mediumtext,
+  `movie3` mediumtext,
+  `passwd` varchar(30) default NULL,
+  `count` int(8) default NULL,
+  `recom` int(8) default NULL,
+  `comment` int(8) default NULL,
+  `ip` varchar(15) default NULL,
+  `wdate` int(10) default NULL,
+  `status` char(1) default NULL,
+  PRIMARY KEY  (`idx`),
+  KEY `code` (`code`)
+) TYPE=MyISAM AUTO_INCREMENT=5116;
+
+--
+-- Dumping data for table `wiz_bbs`
+--
+
+/*!40000 ALTER TABLE `wiz_bbs` DISABLE KEYS */;
+/*!40000 ALTER TABLE `wiz_bbs` ENABLE KEYS */;
+
+--
+-- Table structure for table `wiz_bbscat`
+--
+
+DROP TABLE IF EXISTS `wiz_bbscat`;
+CREATE TABLE `wiz_bbscat` (
+  `idx` int(10) unsigned NOT NULL auto_increment,
+  `gubun` char(1) default NULL,
+  `code` varchar(30) default NULL,
+  `catname` varchar(100) default NULL,
+  `catimg` varchar(30) default NULL,
+  `catimg_over` varchar(30) default NULL,
+  `caticon` varchar(30) default NULL,
+  PRIMARY KEY  (`idx`)
+) TYPE=MyISAM AUTO_INCREMENT=49;
+
+--
+-- Dumping data for table `wiz_bbscat`
+--
+
+/*!40000 ALTER TABLE `wiz_bbscat` DISABLE KEYS */;
+/*!40000 ALTER TABLE `wiz_bbscat` ENABLE KEYS */;
+
+--
+-- Table structure for table `wiz_bbsinfo`
+--
+
+DROP TABLE IF EXISTS `wiz_bbsinfo`;
+CREATE TABLE `wiz_bbsinfo` (
+  `code` varchar(30) default NULL,
+  `type` enum('BBS','SCH') default NULL,
+  `title` varchar(50) default NULL,
+  `titleimg` varchar(40) default NULL,
+  `header` varchar(255) default NULL,
+  `footer` varchar(255) default NULL,
+  `category` varchar(255) default NULL,
+  `bbsadmin` varchar(255) default NULL,
+  `lpermi` varchar(6) default NULL,
+  `rpermi` varchar(6) default NULL,
+  `wpermi` varchar(6) default NULL,
+  `apermi` varchar(6) default NULL,
+  `cpermi` varchar(6) default NULL,
+  `datetype_list` varchar(30) default NULL,
+  `datetype_view` varchar(30) default NULL,
+  `skin` varchar(50) default NULL,
+  `permsg` varchar(255) default NULL,
+  `perurl` varchar(255) default NULL,
+  `pageurl` varchar(255) default NULL,
+  `editor` enum('Y','N') default NULL,
+  `usetype` enum('Y','N') default NULL,
+  `privacy` enum('Y','N') default NULL,
+  `sms` enum('Y','N') default NULL,
+  `upfile` int(2) default NULL,
+  `movie` int(2) default NULL,
+  `comment` enum('Y','N') default NULL,
+  `remail` enum('Y','N') default NULL,
+  `imgview` enum('Y','N') default NULL,
+  `recom` enum('Y','N') default NULL,
+  `abuse` enum('Y','N') default NULL,
+  `abtxt` mediumtext,
+  `simgsize` int(3) default NULL,
+  `mimgsize` int(3) default NULL,
+  `rows` int(3) default NULL,
+  `lists` int(3) default NULL,
+  `newc` int(3) default NULL,
+  `hotc` int(3) default NULL,
+  `line` int(3) default NULL,
+  `subject_len` int(3) default NULL,
+  `view_point` int(11) default NULL,
+  `write_point` int(11) default NULL,
+  `down_point` int(11) default NULL,
+  `comment_point` int(11) default NULL,
+  `recom_point` int(11) default NULL,
+  `point_msg` varchar(255) default NULL,
+  `img_align` varchar(10) default NULL,
+  `btn_view` enum('Y','N') default NULL,
+  `spam_check` enum('Y','N') default NULL,
+  `view_list` enum('Y','N') default NULL,
+  `name_type` varchar(5) default NULL,
+  `grp` int(11) default NULL,
+  `prior` bigint(20) default NULL,
+  UNIQUE KEY `code` (`code`)
+) TYPE=MyISAM;
+
+--
+-- Dumping data for table `wiz_bbsinfo`
+--
+
+/*!40000 ALTER TABLE `wiz_bbsinfo` DISABLE KEYS */;
+INSERT INTO `wiz_bbsinfo` VALUES ('schedule','SCH','����','','','','','','','','','0','','','%Y.%m.%d','scheduleBasic','������ �����ϴ�.','/sub07/sub01.php','sub05/sub05_05.php','Y','','',NULL,1,0,'Y','','','N','','',120,500,0,0,0,0,0,0,0,0,0,0,0,'','CENTER','N','Y',NULL,'',0,0);
+/*!40000 ALTER TABLE `wiz_bbsinfo` ENABLE KEYS */;
+
+--
+-- Table structure for table `wiz_bbsmain`
+--
+
+DROP TABLE IF EXISTS `wiz_bbsmain`;
+CREATE TABLE `wiz_bbsmain` (
+  `idx` int(10) unsigned NOT NULL auto_increment,
+  `code` varchar(20) NOT NULL default '',
+  `btype` enum('BBS','PHOTO') default NULL,
+  `purl` varchar(255) default NULL,
+  `cnt` int(3) default NULL,
+  `line` int(3) default NULL,
+  `skin` mediumtext,
+  `subject_len` int(3) default NULL,
+  `content_len` int(3) default NULL,
+  PRIMARY KEY  (`idx`)
+) TYPE=MyISAM AUTO_INCREMENT=33;
+
+--
+-- Dumping data for table `wiz_bbsmain`
+--
+
+/*!40000 ALTER TABLE `wiz_bbsmain` DISABLE KEYS */;
+/*!40000 ALTER TABLE `wiz_bbsmain` ENABLE KEYS */;
+
+--
+-- Table structure for table `wiz_catainfo`
+--
+
+DROP TABLE IF EXISTS `wiz_catainfo`;
+CREATE TABLE `wiz_catainfo` (
+  `idx` int(10) unsigned NOT NULL auto_increment,
+  `code` varchar(10) NOT NULL default '',
+  `title` varchar(128) NOT NULL default '',
+  `status` enum('N','Y') NOT NULL default 'Y',
+  PRIMARY KEY  (`idx`),
+  UNIQUE KEY `code` (`code`)
+) TYPE=MyISAM AUTO_INCREMENT=10;
+
+--
+-- Dumping data for table `wiz_catainfo`
+--
+
+/*!40000 ALTER TABLE `wiz_catainfo` DISABLE KEYS */;
+/*!40000 ALTER TABLE `wiz_catainfo` ENABLE KEYS */;
+
+--
+-- Table structure for table `wiz_catalog`
+--
+
+DROP TABLE IF EXISTS `wiz_catalog`;
+CREATE TABLE `wiz_catalog` (
+  `idx` int(10) unsigned NOT NULL auto_increment,
+  `code` varchar(10) NOT NULL default '',
+  `filename` varchar(64) NOT NULL default '',
+  `status` enum('N','Y') NOT NULL default 'Y',
+  PRIMARY KEY  (`idx`)
+) TYPE=MyISAM AUTO_INCREMENT=27;
+
+--
+-- Dumping data for table `wiz_catalog`
+--
+
+/*!40000 ALTER TABLE `wiz_catalog` DISABLE KEYS */;
+/*!40000 ALTER TABLE `wiz_catalog` ENABLE KEYS */;
+
+--
+-- Table structure for table `wiz_category`
+--
+
+DROP TABLE IF EXISTS `wiz_category`;
+CREATE TABLE `wiz_category` (
+  `catcode` varchar(6) NOT NULL default '',
+  `depthno` int(1) default NULL,
+  `priorno01` int(2) default NULL,
+  `priorno02` int(2) default NULL,
+  `priorno03` int(2) default NULL,
+  `catname` varchar(30) default NULL,
+  `catuse` enum('Y','N') default NULL,
+  `catimg` varchar(100) default NULL,
+  `subimg` mediumtext,
+  `subimg_type` varchar(3) default NULL,
+  `prd_skin` varchar(10) default NULL,
+  `prd_num` int(3) default NULL,
+  `prd_width` varchar(3) default NULL,
+  `prd_height` varchar(3) default NULL,
+  `purl` mediumtext,
+  PRIMARY KEY  (`catcode`)
+) TYPE=MyISAM;
+
+--
+-- Dumping data for table `wiz_category`
+--
+
+/*!40000 ALTER TABLE `wiz_category` DISABLE KEYS */;
+INSERT INTO `wiz_category` VALUES ('000000',0,0,0,0,'��ǰ�Ұ�','','000000_cat.jpg','','','prdBasic',20,'','','sub02/sub00.php'),('100000',1,1,0,0,'��ǰ�з�1','','100000_cat.htm','','','prdBasic',20,'','','sub06/sub06_01.php'),('110000',1,2,0,0,'��ǰ�з�2','','','','','prdBasic2',20,'','','sub06/sub06_02.php'),('101100',2,1,2,0,'2���з�2','','','','','prdBasic',20,'','','sub06/sub06_01.php'),('101010',3,1,1,1,'3���з� 1','','','','','prdBasic',20,'','','sub06/sub06_01.php'),('120000',1,3,0,0,'��ǰ�з�3','','','','','prdBasic2',20,'','','sub06/sub06_03.php'),('101000',2,1,1,0,'2���з�1','','','','','prdBasic',20,'','','sub06/sub06_01.php'),('101011',3,1,1,2,'3���з� 2','','','','','prdBasic',20,'','','sub06/sub06_01.php'),('111000',2,2,1,0,'2���з�1','','','','','prdBasic2',20,'','','sub06/sub06_02.php'),('111100',2,2,2,0,'2���з�2','','','','','prdBasic2',20,'','','sub06/sub06_02.php'),('121000',2,3,1,0,'2���з�1','','','','','prdBasic2',20,'','','sub06/sub06_03.php'),('121100',2,3,2,0,'2���з�2','','','','','prdBasic2',20,'','','sub06/sub06_03.php');
+/*!40000 ALTER TABLE `wiz_category` ENABLE KEYS */;
+
+--
+-- Table structure for table `wiz_comment`
+--
+
+DROP TABLE IF EXISTS `wiz_comment`;
+CREATE TABLE `wiz_comment` (
+  `idx` int(10) NOT NULL auto_increment,
+  `ctype` varchar(10) default NULL,
+  `cidx` int(10) default NULL,
+  `star` int(1) default NULL,
+  `memid` varchar(20) default NULL,
+  `name` varchar(20) default NULL,
+  `nick` varchar(20) default NULL,
+  `content` mediumtext,
+  `passwd` varchar(20) default NULL,
+  `wdate` datetime default NULL,
+  `ip` varchar(20) default NULL,
+  PRIMARY KEY  (`idx`),
+  KEY `cidx` (`cidx`)
+) TYPE=MyISAM AUTO_INCREMENT=220;
+
+--
+-- Dumping data for table `wiz_comment`
+--
+
+/*!40000 ALTER TABLE `wiz_comment` DISABLE KEYS */;
+/*!40000 ALTER TABLE `wiz_comment` ENABLE KEYS */;
+
+--
+-- Table structure for table `wiz_conother`
+--
+
+DROP TABLE IF EXISTS `wiz_conother`;
+CREATE TABLE `wiz_conother` (
+  `os` varchar(20) default NULL,
+  `browser` varchar(20) default NULL,
+  `cnt` int(10) default NULL
+) TYPE=MyISAM;
+
+--
+-- Dumping data for table `wiz_conother`
+--
+
+/*!40000 ALTER TABLE `wiz_conother` DISABLE KEYS */;
+/*!40000 ALTER TABLE `wiz_conother` ENABLE KEYS */;
+
+--
+-- Table structure for table `wiz_conrefer`
+--
+
+DROP TABLE IF EXISTS `wiz_conrefer`;
+CREATE TABLE `wiz_conrefer` (
+  `referer` mediumtext,
+  `host` varchar(30) default NULL,
+  `wdate` date default NULL,
+  `cnt` int(10) default NULL,
+  KEY `host` (`host`),
+  KEY `wdate` (`wdate`)
+) TYPE=MyISAM;
+
+--
+-- Dumping data for table `wiz_conrefer`
+--
+
+/*!40000 ALTER TABLE `wiz_conrefer` DISABLE KEYS */;
+/*!40000 ALTER TABLE `wiz_conrefer` ENABLE KEYS */;
+
+--
+-- Table structure for table `wiz_contime`
+--
+
+DROP TABLE IF EXISTS `wiz_contime`;
+CREATE TABLE `wiz_contime` (
+  `time` int(10) default NULL,
+  `cnt` int(10) default NULL
+) TYPE=MyISAM;
+
+--
+-- Dumping data for table `wiz_contime`
+--
+
+/*!40000 ALTER TABLE `wiz_contime` DISABLE KEYS */;
+/*!40000 ALTER TABLE `wiz_contime` ENABLE KEYS */;
+
+--
+-- Table structure for table `wiz_cprelation`
+--
+
+DROP TABLE IF EXISTS `wiz_cprelation`;
+CREATE TABLE `wiz_cprelation` (
+  `idx` int(10) NOT NULL auto_increment,
+  `prdcode` char(10) default NULL,
+  `catcode` char(6) default NULL,
+  PRIMARY KEY  (`idx`),
+  KEY `catcode` (`catcode`)
+) TYPE=MyISAM AUTO_INCREMENT=72;
+
+--
+-- Dumping data for table `wiz_cprelation`
+--
+
+/*!40000 ALTER TABLE `wiz_cprelation` DISABLE KEYS */;
+/*!40000 ALTER TABLE `wiz_cprelation` ENABLE KEYS */;
+
+--
+-- Table structure for table `wiz_filedesc`
+--
+
+DROP TABLE IF EXISTS `wiz_filedesc`;
+CREATE TABLE `wiz_filedesc` (
+  `idx` int(10) NOT NULL auto_increment,
+  `fdir` text,
+  `fdesc` text,
+  PRIMARY KEY  (`idx`)
+) TYPE=MyISAM AUTO_INCREMENT=427;
+
+--
+-- Dumping data for table `wiz_filedesc`
+--
+
+/*!40000 ALTER TABLE `wiz_filedesc` DISABLE KEYS */;
+INSERT INTO `wiz_filedesc` VALUES (1,'',''),(2,'/admin2/member','ȸ�����/admin2/'/admin/member/join_save.php','ȸ��������/admin2/��'),(4,'/admin/member/join_/admin2/hp','ȸ���Է� ������'),(5,'/admin2/member/loginbox.p/admin2/��ιڽ�'),(6,'/admi/admin2/'�Խ���'),(7,'/admin/min/admin2/Ȩ��'),(8,'/admin/manage','����/admin2/�'),(9,'/admin/bbs/do/admin2/,'÷������ �ٿ�ε�'),(10,'/adm/admin2/copy.php','�Խ/admin2/),(11,'/admin/bbs/move.php',/admin2/�'),(12,'/admin/bbs/skin','��Ų/admin2/,(13,'/admin/bbs/comment.p/admin2/�Ʈ'),(14,'/admin/bbs/input/admin2/�Է�������'),(15,'/admin/bbs/admin2/hp','����Ʈ������'),(16,'/ad/admin2//passwd.php','��й�ȣüũ'),(17,'/ad/admin2//save.php','����Ÿ����'),(/admin2/min/bbs/list_bak.php','����Ʈ�����/admin2/,(19,'/admin/bbs/norobot_ima/admin2/,'���Ա۹��� /admin2/��'),(20,'/admin/bbs/view.php','��/admin2/�'),(21,'/adm/admin2/view_img.php','/admin2/� Ȯ�뺸��'),(22,'/admi/admin2/in','���ΰԽù�'),(23,'/admin/bbsmain/admin2/,'�̹���'),(24,'/a/admin2/smain/skin','��Ų ���丮/admin2/'/admin/data','������ ���丮'),(26/admin2/n/form','������'),(27,'/admi/admin2/skin','��Ų ���丮'),(28,'/admin/admin2/nput.php','������ �ۼ�'),(2/admin2/in/form/save.php','������ �/admin2/30,'/admin/inc','��Ŭ��� ���丮'),/admin2/dmin/inc/admin_check.php','������ ü/admin2/,'/admin/inc/bbs_info.php','�Խ�/admin2/'),(33,'/admin/inc/bbsmain_in/admin2/,'���ΰԽù� ����'),(34,'/admin/inc/cl/admin2/.php','SMS Ŭ����'),(35,/admin2//inc/form_info.php','������ ����'),/admin2/dmin/inc/mem_info.php','ȸ������ ��/admin2/7,'/admin/inc/msg_info.php','�/admin2/ ����'),(38,/admin2//inc/point_info.p/admin2/��Ʈ���� ����'),(39,/admin2//inc/poll_info.php','�������/admin2/),(40,'/admin/inc/pollmain_info.php'/admin2/������ ����'),(41,'/admin/inc/prd_/admin2/p','��ǰ���� ����'),(42,'/admi/admin2/rdmain_info.php','���λ�ǰ ����'),(43,'/ad/admin2//sch_info.php','�������� ����'),(/admin2/min/inc/site_info.php','���/admin2/'),(45,'/admin/js','js �/admin2/46,'/admin/mail','����'),(47,'/admin/mail/admin2/���� �̹���'),(48,'/admin/manage/b/admin2/'��ʰ���'),(49,'/admin/manage/banner/ba/admin2/put.php','��ʱ׷� �Է�������'),(50,'/admin/m/admin2/anner/banner_list.php','��ʱ׷� ���/admin2/),(51,'/admin/manage/banner/banner/admin2/hp','������ ����'),(52,'/admin//admin2/banner/input.php','��� �Է�������'),(53,'/admi/admin2/e/banner/left_menu.php','���� /admin2/54,'/admin/manage/banner/list.php',/admin2/�������'),(55,'/admin/manage/basic','�⺻����/admin2/'/admin/manage/basic/admin_input.php/admin2/�� �Է�'),(57,'/admin/manage/basic/a/admin2/st.php','������ ���'),(58,'/admin2/manage/basic/admin_save/admin2/������ ������ ����'),(59,'/admin/manage/basi/admin2/n_input.php','������ �Է�'),(60/admin2/n/manage/basic/email_input.php','�/admin2/�'),(61,'/admin/manage/basic/left_men/admin2/'�����޴�'),(62,'/admin/manage/basic/admin2/input.php','�˾� �Է�'),(63/admin2/n/manage/basic/popup_list.php','�˾� ���'),(/admin2/min/manage/basic/popup_save.php','�˾�/admin2/ ����'),(65,'/admin/manage/bas/admin2/_info.php','����Ʈ ���� �Է�'),(6/admin2/in/manage/basic/site_save.php','����Ʈ ���/admin2/),(67,'/admin/manage/basic/sms_fill.php/admin2/����'),(68,'/admin/manage/basic//admin2/o.php','SMS ��������'),(69,'//admin2/anage/basic/sms_save.php','SMS ������ ���/admin2/,'/admin/manage/bbs','�Խ���'),(7/admin2/in/manage/bbs/bbs_input.p/admin2/��� �Է�'),(72,'/admin/manage/bbs/bbs_list.ph/admin2/�� ���'),(73,'/admin/manage/bbs/bbs_save.php'/admin2/ ������ ����'),(74,'/admin/manage//admin2/egory.php','ī�װ��� ���'),(75,'/admin/manage/admin2/tegory_input.php','ī�װ��� �Է�'),(76,'/admin/ma/admin2/s/copy.php','�Խù� ����'),(77,'/admin/manage//admin2/n.php','÷������ �ٿ�ε�'),(78,'/admin2/manage/bbs/input.php','�Խù� �Է�'),(79,'/admi/admin2/e/bbs/left_menu.php','�����޴�'),(80,'/admin2/manage/bbs/list.php','�Խù� ���'),(81,'/a/admin2/nage/bbs/list_c.php','�Խù� ��� ��Ų����'),(82/admin2/n/manage/bbs/move.php','�Խù� �̵�'),(83,'/admin/ma/admin2/s/pop_view.php','�Խù� ���� �˾�'),(84,'/admin/mana/admin2/save.php','�Խù� ������ ����'),(85,'/adm/admin2/ge/bbs/view.php','�Խù� ����'),(86,'/adm/admin2/ge/bbs/view_img.php','÷���̹��� Ȯ�뺸��'),(87,'//admin2/anage/config','ȯ�漳��'),(88,'/admin/manage/con/admin2/ner_config.php','��ʰ���'),(89,'/admin/manage/c/admin2/asic_config.php','�⺻����')/admin2/admin/manage/config/basic_save.php','/admin2/����'),(91,'/admin/manage/config/bbs/admin2/.php','�Խ��� ����'),(92,'/admin/manage/conf/admin2/ain_config.php','���ΰԽù� ����'),(93,'/admin//admin2/config/bbsmain_input.php','���ΰԽù� �Է�'),(94/admin2/n/manage/config/bbsmain_save.php','���ΰԽù� ����/admin2/'/admin/manage/config/bbsmain_view.php','���ΰԽù�/admin2/�'),(96,'/admin/manage/config/counter_c/admin2/hp','ī����'),(97,'/admin/manage/confi/admin2/config.php','������'),(98,'/admin/mana/admin2/ig/form_field.php','������ �׸� ���'),(99,'/admin/m/admin2/onfig/form_field_c.php','������ �׸� ��� ���'),(10/admin2/in/manage/config/form_field_input.php',/admin2/ �׸� �Է�'),(101,'/admin/manage/config/form_input.ph/admin2/��� �Է�'),(102,'/admin/manage/config/f/admin2/e.php','������ ����'),(103,'/admin/man/admin2/fig/form_save_c.php','������ ���� ���'),(104,'/admin2/manage/config/left_menu.php','���� �޴�'),(105,'/admin//admin2/config/levelcheck_config.php',/admin2/���ٱ���'),(106,'/admin/manage/config/admin2/nfig.php','�α׺м�'),(107,'/admin/manage/co/admin2/mber_config.php','ȸ������'/admin2/'/admin/manage/config/member_save.p/admin2/����� ����'),(109,'/admin/manage/config/messa/admin2/ig.php','��������'),(110,'/admin/manage/config/message_sa/admin2/,'�������� ����'),(111,'/admin/manage/con/admin2/i_config.php','�̴�Ȩ�� ����'),(112,'/admin/manage/config/mini_sav/admin2/'�̴�Ȩ�� ���� ����'),(113,'/admin/manage//admin2/page_config.php/admin2/�� ����'),(114,'/admin/manage/config/point_conf/admin2/,'����Ʈ ����'),(115,'/admin/manage//admin2/point_save.php','����Ʈ ����/admin2/,(116,'/admin/manage/config/poll_config.php','/admin2/� '),(117,'/admin/manage/config/poll/admin2/_b.php','�������� ���'),/admin2/admin/manage/config/pollmain_c/admin2/hp','���μ�������'),(11/admin2/in/manage/config/pollmain_input.php','�/admin2/��� �Է�'),(120,'/admin/ma/admin2/nfig/pollmain_save.php','���μ�����/admin2/'),(121,'/admin/manage//admin2/popup_config.php','�˾�����'),(/admin2/dmin/manage/config/prdmain_input.php','���/admin2/�� �Է�'),(123,'/admin2/manage/config/prdmain_save.php','���� ��ǰ���� /admin2/(124,'/admin/manage/config/prdmain_view/admin2/���� ��ǰ���� �̸�����'),(125,/admin2//manage/config/product_config.php','��ǰ����'),/admin2/admin/manage/config/schedule_config.p/admin2/������'),(127,'/admin/manage/config/sms_co/admin2/p','SMS �߼�'),(128,'/admin/manage/c/admin2/,'�������'),(129,'/admin/manage/connect/connect_key/admin2/p','�˻�Ű����м�'),(130,'/admin/m/admin2/onnect/connect_list.php','�����ںм�')/admin2//admin/manage/connect/connect_param.php/admin2/Ķ���� ����'),(132,'/admin/manage/connect/admin2/t_refer.php','���Ӱ�κм�'),(133,'/adm/admin2/ge/connect/connect_save.php','�ʱ�ȭ �� �Ķ���� ���� ����'),(134,'/adm/admin2/ge/connect/left_menu.php','�����޴�'),(135,'/admin//admin2/form','������'),(136,'/admin/manage/fo/admin2/.php','÷������ �ٿ�ε�'),(137,'/admin/admin2//form/form_input.php','������ �Է�'),(138,'/admin/admin2//form/form_list.php','������ ���'),(139,'/admin/admin2//form/form_save.php','������ ����'),(14/admin2/in/manage/form/form_view.php',/admin2/ ����'),(141,'/admin/manage/form/left_men/admin2/'�����޴�'),(142,'/admin/manage/image'/admin2/'),(143,'/admin/manage/image/bbs',/admin2/�̹���'),(144,'/admin/manage/imag/admin2/'�޷� �̹���'),(145,'/admin/manage/i/admin2/in','���� �̹���'),(146,'/admin/manage/ima/admin2/','��ǰ�з� Ʈ�� �̹���'),(147,'/admin/manage/ma/admin2/��'),(148,'/admin/manage/main/left_m/admin2/','�����޴�'),(149,'/admin//admin2/main/main.php','����������'),(150,'/adm/admin2/ge/member','ȸ������'),(151,'//admin2/anage/member/id_check.php','���̵� �ߺ��˻�'/admin2/'/admin/manage/member/left_menu.php',/admin2/�'),(153,'/admin/manage/member/lev/admin2/t.php','ȸ����� �Է�'),(154/admin2/n/manage/member/level_list.php'/admin2/� ���'),(155,'/admin/manage/member/level_s/admin2/','ȸ����� ����'),(156,'/admin/manage//admin2/mail_input.php','�޼������� �Է�'),(1/admin2/min/manage/member/mail_list.php','�޼��/admin2/��'),(158,'/admin/manage/member/mail_popup/admin2/���Ϲ߼� �˾�'),(159,'/admin/m/admin2/ember/mail_save.php','�޼������� ����'),(160,/admin2//manage/member/mail_send.php','��ü/admin2/),(161,'/admin/manage/member/mail_set.php','���� ��/admin2/'),(162,'/admin/manage//admin2/mail_test.php','���Ϲ߼��׽�Ʈ'),(16/admin2/in/manage/member/member_analy.php','ȸ�����'),(164/admin2/n/manage/member/member_config.p/admin2/�Ծ�� �� �������� ��ȣ��å'),(16/admin2/in/manage/member/member_excel.p/admin2/����� ���� �ٿ�ε�'),(166,'/admi/admin2/e/member/member_input.php','ȸ������ /admin2/167,'/admin/manage/member/member_list.php','ȸ�/admin2/(168,'/admin/manage/member/member_point.p/admin2/�����Ʈ ���'),(169,'/admin//admin2/member/member_save.php','ȸ�� ������ ���/admin2/0,'/admin/manage/member/message_input.php','���� �/admin2/71,'/admin/manage/member/message_list.php','/admin2/�'),(172,'/admi/admin2/e/member/message_save.php','���� ���/admin2/3,'/admin/manage/member/message/admin2/hp','�����߼�'),(174,'/admin/manage/member/out/admin2/hp','Ż��ȸ��'),(175,'/admin/ma/admin2/mber/point_config.php','����Ʈ ����'),/admin2/admin/manage/member/point_list.php','����Ʈ /admin2/177,'/admin/manage/member/point_save.php','����Ʈ ����'),/admin2/admin/manage/member/search_zip.php','/admin2/),(179,'/admin/manage/member/sms_po/admin2/','SMS �߼� �˾�'),(180,'/admin/manage/admin2//sms_save.php','SMS �߼�'),(181,'/admin/manage//admin2/sms_send.php','��üSMS�߼�'),/admin2/admin/manage/mini','�̴�Ȩ��'),(183,/admin2//manage/mini/down.php','÷������ �ٿ�ε�'),(/admin2/dmin/manage/mini/input.php','�Խù� �Է�'),(185,/admin2//manage/mini/left_menu.php','�����޴�'),(18/admin2/in/manage/mini/list.php','�Խù����'/admin2/'/admin/manage/mini/mini_inp/admin2/,'�̴�Ȩ�� �Է�'),(188,'/admin/manage/mini/m/admin2/t.php','�̴�Ȩ�� ���'),(189,'/admin/manage/mini/mini_sa/admin2/,'�̴�Ȩ�� ����'),(190,'/admin/manage/mini/save.ph/admin2/� ����'),(191,'/admin/manage/mini/skin_input.php/admin2/�Է�'),(192,'/admin/manage/mini/skin_list.php','/admin2/'),(193,'/admin/manage/mini/skin/admin2/hp','��Ų ����'),(194,'/admin/manage/mini/url_check/admin2/�̴�Ȩ��URL �ߺ�üũ'),(195,'/admin/manage/m/admin2/w.php','�Խñ� ����'),(196,'//admin2/anage/mini/view_img.php','/admin2/� Ȯ�뺸��'),(197,'/admin/manage/page','/admin2/���'),(198,'/admin/manage/page/left_/admin2/p','�����޴�'),(199,'/admin/man/admin2/e/page_input.php','������ �Է�')/admin2//admin/manage/page/page_list.php','������ ���'),(201,'/adm/admin2/ge/page/page_save.php','������ ��/admin2/02,'/admin/manage/poll','��������'),(/admin2/dmin/manage/poll/left_menu.php','�����޴�'),/admin2/admin/manage/poll/poll_input.php'/admin2/��� �Է�'),(205,'/admin/m/admin2/oll/poll_list.php','�������� ���'),(206,'/a/admin2/nage/poll/poll_question.php','��/admin2/�Է�'),(207,'/admin/mana/admin2//poll_save.php','�������� ���/admin2/8,'/admin/manage/poll/pollinfo_input.php','���/admin2/,(209,'/admin/manage/poll/pollinfo_list./admin2/��� ���'),(/admin2/dmin/manage/poll/pollinfo_save.php','/admin2/��'),(211,'/admin/manage/pr/admin2/'��ǰ����'),(212,'/admin/man/admin2/duct/cat_list.php','��ǰ�з� ���'),/admin2/admin/manage/product/cat_s/admin2/','��ǰ�з� ����'),(214,'/a/admin2/nage/product/left_menu.php','�����޴�'),(2/admin2/min/manage/product/prd_cat.php','��ǰ�з/admin2/6,'/admin/manage/p/admin2/prd_copy.php','��ǰ ����'),(217,'/admin/manag/admin2/ct/prd_img.php','��ǰ/admin2/�ǰ����'),(218,'/admin/manage/produc/admin2/mgsize.php','��ǰ�̹����/admin2/���'),(219,'/admin/manage/pr/admin2/rd_input.php','��ǰ �Է�'),(220,'/admin//admin2/product/prd_list.php','��ǰ ���')/admin2//admin/manage/product/prd_/admin2/p','��ǰ �̵�'),(222,'/admin/manage/admin2/t/prd_save.php','��ǰ ����'),(223,'/adm/admin2/ge/schedule','��������'),(22/admin2/in/manage/schedule/calendar.p/admin2/�޷�'),(225,'/admin/manage/schedule//admin2/r_s.php','���� �޷�'),(226,'/admin/manag/admin2/ule/down.php','÷������ �ٿ�ε/admin2/7,'/admin/manage/schedule/input.p/admin2/�� �Է�'),(228,'/admin/manage/schedule/left_menu.ph/admin2/��޴�'),(229,'/admin/manage/sc/admin2/list.php','���� ���'),(230,'/admin/ma/admin2/hedule/save.php','���� ����'/admin2/'/admin/manage/schedule/sch_in/admin2/','�������� �Է�'),(232,'/admin/manage/sch/admin2/ch_list.php','�������� ���'),(233,'/admin/manag/admin2/ule/sch_save.php','�������� ����'),(234,'/admin/manag/admin2/ule/schedule_s.php','������ ���� �����޷�')/admin2//admin/manage/schedule/view.php','�/admin2/�'),(236,'/admin/manage/schedule/vi/admin2/php','÷���̹��� Ȯ�뺸��'),(237/admin2/n/manage/db_backup.php','DB ���'),(238/admin2/n/manage/foot.php','������ �ϴ�'),(239,'/ad/admin2/age/head.php','������ ���'),(240,'//admin2/anage/site_info.php','����Ʈ �⺻���/admin2/1,'/admin/member/skin','��Ų ���丮'/admin2/'/admin/member/id_check.php','���̵� �ߺ�üũ'),(243/admin2/n/member/idpw.php','���̵�/��й�ȣ ã��'),(244/admin2/n/member/join_agree.php','ȸ������ �/admin2/������� ��ȣ��å ����'),(24/admin2/in/member/join_ok.php','ȸ������ �Ϸ�'),(246/admin2/n/member/login.php','�α��� ����/admin2/47,'/admin/member/login_/admin2/hp','�α��� ó��'),(248,'/admin2/member/logout.php','�α׾ƿ� ó��/admin2/,'/admin/member/myinfo.php','ȸ������'/admin2/'/admin/member/myin/admin2/.php','ȸ������ ����'),(251,'/admin2/member/myout.php','ȸ��Ż��')/admin2//admin/member/myout_sav/admin2/'ȸ��Ż�� ó��'),(253,'/admin/membe/admin2/check.php','�Ǹ�����'),(254,'/admin/memb/admin2/_check.php','�г���/admin2/),(255,'/admin/member/post_search.p/admin2/����ȣ ã��'),(256,'/admin/message'/admin2/),(257,'/admin/message/skin',/admin2/�丮'),(258,'/admin/message/down.ph/admin2/���� �ٿ�ε�'),(259,'/adm/admin2/age/friend.ph/admin2/���'),(260,'/admin/message/input.php',/admin2/�'),(261,'/admin//admin2//list.php','�������'),(262,'/ad/admin2/sage/member.php','ȸ�����'),(263,'//admin2/essage/passwd.php','����Ȯ�� ������/admin2/,'/admin/message/pop_me/admin2/hp','���� ���� �˾�'),(265,'/admin/mess/admin2/e.php','���� ����'),(2/admin2/min/message/save_b.p/admin2/�� ���� ���'),(267,'/admin//admin2//view.php','���� ����'),(268,'/admin/admin2/e/view_img.php','÷���̹��� Ȯ�뺸��'),(269,'//admin2/ini/bbs','�Խ���'),(270,'/admin/mi/admin2/skin','��Ų ���丮'),(271/admin2/n/mini/bbs/comment.php','�ڸ�Ʈ'),(272,'/admin2/mini/bbs/down.php','÷������ �ٿ�ε/admin2/3,'/admin/mini/bbs/input.php','�Է������/admin2/4,'/admin/mini/bbs/list.ph/admin2/������'),(275,'/admin/mini/bbs/move.php',/admin2/̵�'),(276,'/admin/mini/bbs/passwd.php',/admin2/üũ'),(277,'/admin/mini/bbs/save.php','���/admin2/'),(278,'/admin/mini/bbs/view.php','��/admin2/�'),(279,'/admin/mini/bbs/view_img.php'/admin2/��� Ȯ�뺸��'),(280,'/ad/admin2/i/image','�̹��� ���丮'),(281,'/admi/admin2/inc','��Ŭ��� ���丮'),(282,'/admin/min/admin2/ini_connect.php','�̴�Ȩ�� �α׺м�'),(283,/admin2//mini/inc/mini_i/admin2/','�̴�Ȩ�� ����'),(284,'/admin/m/admin2//minibbs_info.php','�̴�Ȩ�� �Խ��� ����'/admin2/'/admin/mini/makeucc','UCC �/admin2/),(286,'/admin/mini/makeucc//admin2/','UCC ����'),(287,'/admin/mini/ma/admin2/xample/board','UCC �Խ���'),(288,'/admin2/mini/makeucc/example/boar/admin2/UCC DB ó��'),(289,'/admin/mini/makeucc/admin2/e/board/img','UCC �Խ��� �̹���'),(2/admin2/min/mini/makeucc/view_file.php','UCC ����/admin2/���'),(291,'/admin/mini/music','�̴�Ȩ�� ����'),(29/admin2/in/mini/music/img','�̹/admin2/丮'),(293,'/admin//admin2/d_friend.php','ģ�� �߰�'),(294,'/adm/admin2//admin_connect/admin2/���� > �������'),(295,'/admin/admin2/dmin_friend.php','���� /admin2/��'),(296,'/admin/mini//admin2/nfo.php','���� > �⺻���/admin2/7,'/admin/mini/admin_left.php','����/admin2/�޴�'),(298,/admin2//mini/admin_menu.php','���� > �޴��/admin2/299,'/admin/mini/admin_men/admin2/g.php','���� > �޴����� /admin2/��'),(300,'/admi/admin2/admin_music.php','���� > ���Ǽ���'/admin2/'/admin/mini/admin_music_input.php','�����Է�')/admin2//admin/mini/admin_profile.php','���� > /admin2/),(303,'/admin//admin2/min_skin.php','���� > ��Ų����'),(304,'/admin2/mini/admin_skin_input.php','��Ų�Է�/admin2/,'/admin/mini/bbs.php','�Խ��/admin2/6,'/admin/mini/bbs_left.php','�Խ��� ����/admin2/307,'/admin/mini/data/admin2/�ڷ��'),(308,'/admin/mini/da/admin2/.php','�ڷ�� �����޴�'),(309,'/ad/admin2/i/foot.php','�ϴ�����'),(310,'/admin/min/admin2/.php','�����'),(311,'/admin/mini/h/admin2/','�������'),(312,'/admin/mini/admin2/hp','������ > ���Ұ�'),/admin2/admin/mini/info_input/admin2/���Ұ� �Է�'),(314,'/admin/min/admin2/list.php','���Ұ� ���'),(315,'/admin2/mini/main.php','/admin2/���'),(316,'/admin/mini/main_conte/admin2/,'���������� ����'),(317,'/admin/mini//admin2/ft.php','���������� �����޴�'),(318,/admin2//mini/menu.php','�����޴�'),(319,'/admin/mini/mini/admin2/php','�̴�Ȩ�� �ε���'),(320,'/admin/mini/mini_my.php',/admin2/Ȩ�ǰ���'),(321,'/admin/mini/movie.php','������'),(32/admin2/in/mini/movie_left.php','������ �����޴�'),(323/admin2/n/mini/photo.php','������'),(324,'/admin/mini/photo/admin2/hp','������ �����޴�'),(325,'/admin/mini/profile./admin2/�����'),(326,'/admin/mini/profile_left.p/admin2/���� �����޴�'),(327,'/admin/mini/save.php','����������'/admin2/'/admin/mini/url_check./admin2/̴�Ȩ�� URL �ߺ�üũ'),(/admin2/dmin/module','���'),(330,'/admi/admin2/e/banner.php','��� ���'),(331,'/admin2/module/bbs.php','�Խ��� ���/admin2/,'/admin/module/bbsm/admin2/','���ΰԽù� ���'),(333,'/admin/module//admin2/.php','�α׺м� ���'),(334,'/admin/mod/admin2/nter.php','ī��/admin2/),(335,'/admin/module/fo/admin2/,'������ ���'),(336,'/admin/modul/admin2/php','���̵�/��й�ȣ/admin2/�'),(337,'/admin/module/joi/admin2/'ȸ������ ���'),/admin2/admin/module/levelcheck.php','���������/admin2/�'),(339,'/admin/module/login.php','�α��� ��/admin2/0,'/admin/module/loginbox.php','�α��ιڽ� /admin2/341,'/admin/module/msg_count.php'/admin2/��� ���'),(342,'/admin/module/msg_friend.php/admin2/�� ���'),(343,'/adm/admin2/le/msg_member.php','ȸ�����/admin2/(344,'/admin/module/msg_receive.php','�������� ���'),(345,'/admin/module/msg_send.php','�������� ���'),(346,'/admin/module/myinfo.php','ȸ���������� ���'),(347,'/admin/module/myout.php','ȸ��Ż�� ���'),(348,'/admin/module/mypoint.php','ȸ�� ����Ʈ���� ���'),(349,'/admin/module/page.php','������ ���'),(350,'/admin/module/point.php','����Ʈ ���'),(351,'/admin/module/poll.php','�������� ���'),(352,'/admin/module/pollmain.php','���μ������� ���'),(353,'/admin/module/popup.php','�˾� ���'),(354,'/admin/module/prdmain.php','��ǰ�������� ���'),(355,'/admin/module/product.php','��ǰ ���'),(356,'/admin/module/schedule.php','����(��) ���'),(357,'/admin/module/schedule_s.php','����(��) ���'),(358,'/admin/module/sms.php','SMS�߼� ���'),(359,'/admin/module/topjoin.php','�α���/�α׾ƿ� ž�޴� ���'),(360,'/admin/module/toplogin.php','ȸ������/���������� ž�޴� ���'),(361,'/admin/point','����Ʈ'),(362,'/admin/point/skin','��Ų ���丮'),(363,'/admin/point/mypoint.php','����Ʈ����'),(364,'/admin/poll','��������'),(365,'/admin/poll/skin','��Ų ���丮'),(366,'/admin/poll/list.php','��� ������'),(367,'/admin/poll/passwd.php','��й�ȣ üũ'),(368,'/admin/poll/save.php','����������'),(369,'/admin/poll/view.php','���� ������'),(370,'/admin/popup','�˾�'),(371,'/admin/popup/popup.php','�Ϲ� �˾�'),(372,'/admin/popup/popup_layer.php','���̾� �˾�'),(373,'/admin/product','��ǰ'),(374,'/admin/product/skin','��Ų ���丮'),(375,'/admin/product/list.php','��� ������'),(376,'/admin/product/prdimg.php','��ǰ�̹��� Ȯ�뺸��'),(377,'/admin/product/view.php','���� ������'),(378,'/admin/schedule','����'),(379,'/admin/schedule/skin','��Ų ���丮'),(380,'/admin/schedule/comment.php','�ڸ�Ʈ'),(381,'/admin/schedule/down.php','÷������ �ٿ�ε�'),(382,'/admin/schedule/input.php','�Է�������'),(383,'/admin/schedule/list.php','���������'),(384,'/admin/schedule/list_s.php','���������(��)'),(385,'/admin/schedule/passwd.php','��й�ȣüũ'),(386,'/admin/schedule/save.php','����������'),(387,'/admin/schedule/view.php','����������'),(388,'/admin/schedule/view_img.php','÷���̹��� Ȯ�뺸��'),(389,'/admin/sms','SMS �߼�'),(390,'/admin/sms/image','�̹��� ���丮'),(391,'/admin/sms/input.php','�Է� ������'),(392,'/admin/sms/send.php','�߼� ������'),(393,'/admin/webedit','��������'),(394,'/admin/webedit/PopupWin','�˾� ������'),(395,'/admin/webedit/PopupWin/Editor_Help.htm','�������� ����'),(396,'/admin/webedit/PopupWin/Editor_InsertFlash.htm','�÷��� �Է�'),(397,'/admin/webedit/PopupWin/Editor_InsertImage.htm','�̹��� �Է�'),(398,'/admin/webedit/PopupWin/Editor_InsertMovie.htm','������ �Է�'),(399,'/admin/webedit/PopupWin/Editor_InsertTable.htm','���̺� �Է�'),(400,'/admin/webedit/PopupWin/Editor_SelectColor.htm','���� ����'),(401,'/admin/webedit/PopupWin/Editor_Version.htm','�������� ����'),(402,'/admin/webedit/PopupWin/Editor_InsertFlash.php','�÷��� ����'),(403,'/admin/webedit/PopupWin/Editor_InsertImage.php','�̹��� ����'),(404,'/admin/webedit/PopupWin/Editor_InsertMovie.php','������ ����'),(405,'/admin/webedit/images','�̹��� ���丮'),(406,'/admin/common.php','��������'),(407,'/admin/dbcon.php','DB ���� ����'),(408,'/admin/desc_file.php','���ϱ���'),(409,'/admin/desc_table.php','���Ű��'),(410,'/admin/index.php','������ �ε���������'),(411,'/admin/install.php','�ַ�� ��ġ ���� �Է�'),(412,'/admin/install_ok.php','�ַ�� ��ġ'),(413,'/admin/lib.php','�Լ�����'),(414,'/admin/login.php','������ �α���'),(415,'/admin/logout.php','������ �α׾ƿ�'),(416,'/admin/phpinfo.php','PHP ���� phpinfo()'),(417,'/admin/query.php','������'),(418,'/admin/site_key.php','���̼���Ű �Է�'),(419,'/admin/manage/bbs/group.php','�Խ��Ǳ׷� ���'),(420,'/admin/manage/bbs/group_input.php','�Խ��Ǳ׷� �Է�'),(421,'/admin/manage/bbs/list_b.php','�Խù� ��� ���'),(422,'/admin/manage/config/prd_config.php','��ǰ����'),(423,'/admin/manage/config/prdmain_config.php','���λ�ǰ����'),(424,'/admin/bbs/order.php','�Խù� ��������'),(425,'/admin/manage/bbs/bbs.php','�Խ���'),(426,'/admin/desc_file_b.php','���ϱ��� ���');
+/*!40000 ALTER TABLE `wiz_filedesc` ENABLE KEYS */;
+
+--
+-- Table structure for table `wiz_form`
+--
+
+DROP TABLE IF EXISTS `wiz_form`;
+CREATE TABLE `wiz_form` (
+  `idx` int(10) NOT NULL auto_increment,
+  `code` varchar(20) default NULL,
+  `name` varchar(20) default NULL,
+  `phone` varchar(20) default NULL,
+  `email` varchar(50) default NULL,
+  `subject` varchar(255) default NULL,
+  `content` mediumtext,
+  `reply` mediumtext,
+  `upfile1` varchar(255) default NULL,
+  `upfile2` varchar(255) default NULL,
+  `upfile3` varchar(255) default NULL,
+  `upfile1_name` varchar(255) default NULL,
+  `upfile2_name` varchar(255) default NULL,
+  `upfile3_name` varchar(255) default NULL,
+  `wdate` datetime default NULL,
+  `ip` varchar(15) default NULL,
+  `status` varchar(20) default NULL,
+  PRIMARY KEY  (`idx`)
+) TYPE=MyISAM AUTO_INCREMENT=161;
+
+--
+-- Dumping data for table `wiz_form`
+--
+
+/*!40000 ALTER TABLE `wiz_form` DISABLE KEYS */;
+/*!40000 ALTER TABLE `wiz_form` ENABLE KEYS */;
+
+--
+-- Table structure for table `wiz_formfield`
+--
+
+DROP TABLE IF EXISTS `wiz_formfield`;
+CREATE TABLE `wiz_formfield` (
+  `idx` int(10) NOT NULL auto_increment,
+  `fidx` varchar(20) default NULL,
+  `fprior` int(3) default NULL,
+  `fname` varchar(60) default NULL,
+  `ftype` varchar(20) default NULL,
+  `fessen` enum('Y','N') default NULL,
+  `fsize` varchar(5) default NULL,
+  `fnum` varchar(5) default NULL,
+  `fimg` varchar(100) default NULL,
+  `flist` mediumtext,
+  PRIMARY KEY  (`idx`)
+) TYPE=MyISAM AUTO_INCREMENT=151;
+
+--
+-- Dumping data for table `wiz_formfield`
+--
+
+/*!40000 ALTER TABLE `wiz_formfield` DISABLE KEYS */;
+INSERT INTO `wiz_formfield` VALUES (88,'addinfo',1,'','text','','','1','',''),(89,'addinfo',2,'','text','','','1','',''),(90,'addinfo',3,'','file','','','1','',''),(91,'addinfo',4,'','file','','','1','',''),(92,'addinfo',5,'','text','','','1','','');
+/*!40000 ALTER TABLE `wiz_formfield` ENABLE KEYS */;
+
+--
+-- Table structure for table `wiz_forminfo`
+--
+
+DROP TABLE IF EXISTS `wiz_forminfo`;
+CREATE TABLE `wiz_forminfo` (
+  `idx` int(10) NOT NULL auto_increment,
+  `code` varchar(20) NOT NULL default '',
+  `title` varchar(60) default NULL,
+  `skin` varchar(30) default NULL,
+  `rece_sms` char(1) default NULL,
+  `rece_email` char(1) default NULL,
+  `rece_bbs` char(1) default NULL,
+  `sms_list` mediumtext,
+  `email_list` mediumtext,
+  `agree_use` char(1) default NULL,
+  `agree_text` text,
+  PRIMARY KEY  (`idx`),
+  UNIQUE KEY `code` (`code`)
+) TYPE=MyISAM AUTO_INCREMENT=126;
+
+--
+-- Dumping data for table `wiz_forminfo`
+--
+
+/*!40000 ALTER TABLE `wiz_forminfo` DISABLE KEYS */;
+/*!40000 ALTER TABLE `wiz_forminfo` ENABLE KEYS */;
+
+--
+-- Table structure for table `wiz_friend`
+--
+
+DROP TABLE IF EXISTS `wiz_friend`;
+CREATE TABLE `wiz_friend` (
+  `idx` int(10) unsigned NOT NULL auto_increment,
+  `myid` varchar(20) NOT NULL default '',
+  `frdid` varchar(20) NOT NULL default '',
+  `wdate` date NOT NULL default '0000-00-00',
+  PRIMARY KEY  (`idx`)
+) TYPE=MyISAM AUTO_INCREMENT=13;
+
+--
+-- Dumping data for table `wiz_friend`
+--
+
+/*!40000 ALTER TABLE `wiz_friend` DISABLE KEYS */;
+INSERT INTO `wiz_friend` VALUES (9,'test','test3','2008-02-13'),(12,'test','test2','2008-12-23'),(11,'test1','test','2008-03-13');
+/*!40000 ALTER TABLE `wiz_friend` ENABLE KEYS */;
+
+--
+-- Table structure for table `wiz_level`
+--
+
+DROP TABLE IF EXISTS `wiz_level`;
+CREATE TABLE `wiz_level` (
+  `idx` int(10) NOT NULL auto_increment,
+  `level` int(2) default NULL,
+  `icon` varchar(60) default NULL,
+  `name` varchar(100) default NULL,
+  `permi` mediumtext,
+  `memo` mediumtext,
+  PRIMARY KEY  (`idx`)
+) TYPE=MyISAM AUTO_INCREMENT=5;
+
+--
+-- Dumping data for table `wiz_level`
+--
+
+/*!40000 ALTER TABLE `wiz_level` DISABLE KEYS */;
+INSERT INTO `wiz_level` VALUES (1,3,'','�Ϲ�ȸ��','',''),(2,1,'','���ȸ��','',''),(3,2,'','��ȸ��','','');
+/*!40000 ALTER TABLE `wiz_level` ENABLE KEYS */;
+
+--
+-- Table structure for table `wiz_mailsms`
+--
+
+DROP TABLE IF EXISTS `wiz_mailsms`;
+CREATE TABLE `wiz_mailsms` (
+  `code` varchar(20) NOT NULL default '',
+  `type` varchar(10) default NULL,
+  `subject` varchar(255) default NULL,
+  `sms_send` char(1) default NULL,
+  `sms_msg` varchar(100) default NULL,
+  `email_subj` varchar(255) default NULL,
+  `email_send` char(1) default NULL,
+  `email_msg` mediumtext,
+  `wdate` date default NULL,
+  PRIMARY KEY  (`code`)
+) TYPE=MyISAM;
+
+--
+-- Dumping data for table `wiz_mailsms`
+--
+
+/*!40000 ALTER TABLE `wiz_mailsms` DISABLE KEYS */;
+INSERT INTO `wiz_mailsms` VALUES ('mem_join','MEM','ȸ�����Խ�','Y','[{SITE_NAME}] ȸ���� �������ּż� �����մϴ�.','[{SITE_NAME}] - {MEM_NAME} ȸ���� �������ּż� �����մϴ�.','Y','<STYLE>\r\n  td {font-size:12px;font-family:\'����\',\'����\';color:#4A4A4A;line-height:160%} \r\n  table {border-collapse:collapse;}\r\n</STYLE>\r\n\r\n<TABLE height=\'100%\' cellSpacing=0 cellPadding=0 width=642 align=center border=0>\r\n<TBODY>\r\n<TR>\r\n<TD align=mid/admin2/n<TABLE cellSpacing=0 cellPadding=0 border=0>\r\n<TBODY>\r\n<TR>\r\n</admin2/ src=\'{SITE_URL}/admin/mail/img/top_02.gif\'></TD></TR>\r\n<TR>\r\n<TD background={SITE_URL}/admin/mail/img/bg_line.gif>\r\n<TABLE cellSpacing=0 cellPadding=0 width=642 border=0>\r\n<TBODY>\r\n<TR>\r\n<TD style=\'PADDING-RIGHT: 30px; PADDING-LEFT: 30px; PADDING-BOTTOM: 10px; PADDING-TOP: 10px\'>ȸ���� ����/admin2/�����մϴ�.<BR><BR>���̵� : {MEM_ID}</TD>\r\n<TD vAlign=bottom align=/admin2/idth=190><IMG src=\'{SITE_URL}/admin/mail/img/img_06.gif\'></TD></TR></TBODY></TABLE></TD></TR>\r\n<TR>\r\n<TD><IMG src=\'{SITE_URL}/admin/mail/img/bottom.gif\'></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE>','2007-01-01'),('mem_out','MEM','ȸ��Ż���','Y','[{SITE_NAME}] ȸ���� Ż��ó�� �Ǿ����ϴ�. ��������� �˼��մϴ�','[{SITE_NAME}] -  {MEM_NAME}ȸ���� Ż��ó���Ǿ����ϴ�.','Y','<STYLE>\r\n  td {font-size:12px;font-family:\'����\',\'����\';color:#4A4A4A;line-height:160%} \r\n  table {border-collapse:coll/admin2/r\n</STYLE>\r\n\r\n<TABLE height=\'100%\' cellSpacing=0 cellPadding=0/admin2/642 align=center border=0>\r\n<TBODY>\r\n<TR>\r\n<TD align=middle>\r\n<TABLE cellSpacing=0 cellPadding=0 border=0>\r\n<TBODY>\r\n<TR>\r\n<TD><IMG src=\'{SITE_URL}/admin/mail/img/top_03.gif\'></TD></TR>\r\n<TR>\r\n<TD background={SITE_URL}/admin/mail/img/bg_line.gif>\r\n<TABLE cellSpacing=0 cellPadding=0 width=642 bo/admin2/\r\n<TBODY>\r\n<TR>\r\n<TD style=\'PADDING-RIGHT: 30px; PADDING-LEFT: 30px; PADDING-BOTTOM: 10p/admin2/ING-TOP: 10px\'>ȸ���� Ż��ó�� �Ǿ����ϴ�. ��������� �˼��մϴ� </TD>\r\n<TD vAlign=bottom align=right width=190><IMG src=\'{SITE_URL}/admin/mail/img/img_06.gif\'></TD></TR></TBODY></TABLE></TD></TR>\r\n<TR>\r\n<TD><IMG src=\'{SITE_URL}/admin/mail/img/bottom.gif\'></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE>','2007-01-02'),('basic','','�Ϲ� ���� �߼۽�','','','','','<STYLE>\r\n  td {font-size:12px;font-family:/admin2/��;color:#4A4A4A;line-height:160%} \r\n  table {borde/admin2/pse:collapse;}\r\n</STYLE>\r\n\r\n<TABLE height=100% cellSpacing=0 cellPadding=0 width=642 align=center border=0>\r\n<TBODY>\r\n<TR>\r\n<TD align=middle>\r\n<TABLE cellSpacing=0 cellPadding=0 border=0>\r\n<TBODY>\r\n<TR>\r\n<TD><IMG src={SITE_URL}/admin/mail/img/top_0/admin2//TD></TR>\r\n<TR>\r\n<TD background={SITE_URL}/admin/mail/img/bg_line.gif>\r\n<TABLE cellSpacing=0 cellPadding=0 width=642 border=0>\r\n<TBODY>\r\n<TR>\r\n<TD style=\'PADDING-RIGHT: 10px; PADDING-LEFT: 10px; PADDING-BOTTOM: 10px; PADDING-TOP: 10px\'></TD></TR></TBODY></TABLE></TD></TR>\r\n<TR>\r\n<TD><IMG src={SITE_URL}/admin/mail/img/bottom.gif></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE>','2007-01-05'),('mem_idpw','MEM','���̵�/��й�ȣ ã��','Y','[{SITE_NAME}] ȸ������ ���̵� ��й�ȣ�� {MEM_ID} : {MEM_PW} �Դϴ�.','[{SITE_NAME}] -  {MEM_NAME}ȸ������ ��û�Ͻ� ���/admin2/','Y','\r\n<STYLE>\r\n  td {font-size:12px;font-family:/admin2/",\"����\";color:#4A4A4A;line-height:160%} \r\n  table {border-collapse:collapse;}\r\n</STYLE>\r\n\r\n<TABLE height=\"100%\" cellSpacing=0 cellPadding=0 width=642 align=center border=0>\r\n<TBODY>\r\n<TR>\r\n<TD align=middle>\r\n<TABLE cellSpacing=0 cellPadding=0 border=0>\r\n<TBODY>\r\n<TR>\r\n<TD><IMG src=\"{SITE_URL}/admin/mail/img/top/admin2/\"></TD></TR>\r\n<TR>\r\n<TD background={SITE_URL}/admin/mail/img/bg_line.gif>\r\n<TABLE cellSp/admin2/ cellPadding=0 width=642 border=0>\r\n<TBODY>\r\n<TR>\r\n<TD style=\"PADDING-RIGHT: 30px; PADDING-LEFT: 30px; PADDING-BOTTOM: 10px; PADDING-TOP: 10px\">ȸ������ ��û�Ͻ� ���̵�/��й�ȣ �Դϴ�.<BR><BR>���̵� : {MEM_ID}<BR>��й�ȣ : {MEM_PW}</TD>\r\n<TD vAlign=bottom align=right width=190><IMG src=\"{SITE_URL}/admin/mail/img/img_06.gif\"></TD></TR></TBODY></TABLE></TD></TR>\r\n<TR>\r\n<TD><IMG src=\"{SITE_URL}/admin/mail/img/bottom.gif\"></TD></TR></TB/admin2/ABLE></TD></TR></TBODY></TABLE>','2007-01-04'),('bbs','BBS','�Խ��� �亯/admin2/','','','','<STYLE>\r\n  td {font-size:12px;font-family:\'����\',\'����\';color:#4A4A4A;line-height:160%} \r\n  table {border-collapse:collapse;}\r\n</STYLE>\r\n\r\n<TABLE height=\'100%\' cellSpacing=0 cellPadding=0 width=642 align=center borde/admin2/n<TBODY>\r\n<TR>\r\n<TD align=middle>\r\n<TABLE cellSpacing=0 cellPadding=0 border=0>\r\n<TBODY>\r\n<TR>\r\n<TD><IMG src=\'{SITE_URL}/admin/mail/img/top_01.gif\'></TD></TR>\r\n<TR>\r\n<TD background={SITE_URL}/admin/mail/img/bg_line.gif>\r\n<TABLE cellSpacing=0 cellPadding=0 width=642 border=0>\r\n<TBODY>\r\n<TR>\r\n<TD style=\'PADDING-RIGHT: 10px; PADDING-LEFT: 10px; PADDING-BOTTOM: 10px; PADDING-TOP: 10px\'>{MESSAGE}</TD></TR></TBODY></TABLE></TD></TR>\r\n<TR>\r\n<TD><IMG src=\'{SITE_URL}/admin/mail/img/bottom.gif\'> </TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE>','2007-01-05'),('mailling','ADD','1�� ���� ���� - �׽�Ʈ','','','','','1�� ���� ���� - �׽�Ʈ','/admin2/-06'),('mem_id','MEM','���̵� ã��','Y','[{SITE_NAME/admin2/��� ���̵�� {MEM_ID} �Դϴ�.','[{SITE_NAME}] -  {MEM_NAME}ȸ������ ��û�Ͻ� ���� �Դϴ�.','Y','<STYLE>\r\n  td {font-size:12px;font-family:\'����\',\'����\';color:#4A4A4A;line-height:160%} \r\n  table {border-collapse:collapse;}\r\n</STYLE>\r\n\r\n/admin2/height=\'100%\' cellSpacing=0 cellPadding=0 width=642 align=center border=0>\r\n<TBODY>\r\n<TR>/admin2/ align=middle>\r\n<TABLE cellSpacing=0 cellPadding=0 border=0>\r\n<TBODY>\r\n<TR>\r\n<TD><IMG src=\'{SITE_URL}/admin/mail/img/top_04.gif\'></TD></TR>\r\n<TR>\r\n<TD background={SITE_URL}/admin/mail/img/bg_line.gif>\r\n<TABLE cellSpacing=0 cellPadding=0 width=642 border=0>\r\n<TBODY>\r\n<TR>\r\n<TD style=\'PADDING-RIGHT: 30px; PADDING-LEFT: 30px; PADDING-BOTTOM: 10px; PADDING-TOP: 10px\'>ȸ������ ��û�Ͻ� ���̵��Դϴ�.<BR><BR>���̵� : {MEM_ID}</TD>\r\n<TD vAlign=bottom align=right width=190><IMG src=\'{SITE_URL}/admin/mail/img/img_06.gif\'></TD></TR></TBODY></TABLE></TD>/admin2/\n<TR>\r\n<TD><IMG src=\'{SITE_URL}/admin/mail/img/bottom.gif\'></TD>/admin2/TBODY></TABLE></TD></TR></TBODY></TABLE>','2007-01-04'),('mem_pw','MEM','��й�ȣ ã��','Y','[{SITE_NAME}] ȸ������ ��й�ȣ�� {MEM_PW} �Դϴ�.','[{SITE_NAME}] -  {MEM_NAME}ȸ������ ��û�Ͻ� ���� �Դϴ�.','Y','<STYLE>\r\n  td {font-size:12px;font-family:\'����\'/admin2/\';color:#4A4A4A;line-height:160%} \r\n  table {border-collapse:collapse;}\r\n</admin2/\r\n\r\n<TABLE height=\'100%\' cellSpacing=0 cellPadding=0 width=642 align=center border=0>\r\n<TBODY>\r\n<TR>\r\n<TD align=middle>\r\n<TABLE cellSpacing=0 cellPadding=0 border=0>\r\n<TBODY>\r\n<TR>\r\n<TD><IMG src=\'{SITE_URL}/admin/mail/img/top_04.gif\'></TD></TR>\r\n<TR>\r\n<TD background={SITE_URL}/admin/mail/img/bg_line.gif>\r\n<TABLE cellSpacing=0 cellPadding=0 width=642 border=0>\r\n<TBODY/admin2/R>\r\n<TD style=\'PADDING-RIGHT: 30px; PADDING-LEFT: 30px; PADDING-BOTTOM/admin2/ PADDING-TOP: 10px\'>ȸ������ ��û�Ͻ� ��й�ȣ �Դϴ�.<BR><BR>��й�ȣ : {MEM_PW}</TD>\r\n<TD vAlign=bottom align=right width=190><IMG src=\'{SITE_URL}/admin/mail/img/img_06.gif\'></TD></TR></TBODY></TABLE></TD></TR>\r\n<TR>\r\n<TD><IMG src=\'{SITE_URL}/admin/mail/img/bo/admin2/f\'></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE>','2007-01-04'),('form','FRM','������ �亯����','','','','','<table border=\"0\" cellspacing=\"0\" cellpadding=\"0\" width=\"642\" align=\"center\" height=\"100%\">\r\n<tbody>\r\n<tr>\r\n<td align=\"center\">\r\n<table border=\"0\" cellspacing=\"0\" cellpadding=\"0\">\r\n<tbody>\r\n<tr>\r\n<td><img alt=\"\" src=\"{SITE_URL}/admin/mail/img/top_01.gif\" /></td></tr>\r\n<tr>\r\n<td background=\"{SITE_URL}/admin/mail/img/bg_line.gif\">\r\n<table border=\"0\" cellspacing=\"0\" cellpadding=\"0\" width=\"642\">\r\n<tbody>\r\n<tr>\r\n<td style=\"padding-bottom: 10px; padding-left: 10px; padding-right: 10px; padding-top: 10px\">{MESSAGE}</td></tr></tbody></table></td></tr>\r\n<tr>\r\n<td><img alt=\"\" src=\"{SITE_URL}/admin/mail/img/bottom.gif\" /> </td></tr></tbody></table></td></tr></tbody></table>',NULL);
+/*!40000 ALTER TABLE `wiz_mailsms` ENABLE KEYS */;
+
+--
+-- Table structure for table `wiz_member`
+--
+
+DROP TABLE IF EXISTS `wiz_member`;
+CREATE TABLE `wiz_member` (
+  `idx` int(10) NOT NULL auto_increment,
+  `id` varchar(20) NOT NULL default '',
+  `passwd` varchar(20) default NULL,
+  `name` varchar(20) default NULL,
+  `photo` varchar(25) default NULL,
+  `icon` varchar(30) default NULL,
+  `nick` varchar(20) default NULL,
+  `resno` varchar(14) default NULL,
+  `email` varchar(50) default NULL,
+  `tphone` varchar(14) default NULL,
+  `hphone` varchar(14) default NULL,
+  `comtel` varchar(14) default NULL,
+  `homepage` varchar(255) default NULL,
+  `post` varchar(7) default NULL,
+  `address1` varchar(255) default NULL,
+  `address2` varchar(255) default NULL,
+  `reemail` enum('Y','N') default NULL,
+  `resms` enum('Y','N') default NULL,
+  `birthday` varchar(10) default NULL,
+  `bgubun` varchar(4) default NULL,
+  `marriage` varchar(4) default NULL,
+  `memorial` varchar(10) default NULL,
+  `scholarship` varchar(30) default NULL,
+  `job` varchar(30) default NULL,
+  `income` varchar(30) default NULL,
+  `car` varchar(6) default NULL,
+  `hobby` varchar(60) default NULL,
+  `consph` varchar(80) default NULL,
+  `conprd` varchar(80) default NULL,
+  `level` varchar(10) default NULL,
+  `recom` varchar(20) default NULL,
+  `visit` int(5) default NULL,
+  `visit_time` datetime default NULL,
+  `intro` mediumtext,
+  `memo` mediumtext,
+  `addinfo1` mediumtext,
+  `addinfo2` mediumtext,
+  `addinfo3` mediumtext,
+  `addinfo4` mediumtext,
+  `addinfo5` mediumtext,
+  `wdate` datetime default NULL,
+  PRIMARY KEY  (`idx`),
+  UNIQUE KEY `id` (`id`)
+) TYPE=MyISAM AUTO_INCREMENT=91;
+
+--
+-- Dumping data for table `wiz_member`
+--
+
+/*!40000 ALTER TABLE `wiz_member` DISABLE KEYS */;
+INSERT INTO `wiz_member` VALUES (48,'test','test','�׽�Ʈ','test.gif','test_icon.gif','','761001-1000004','test@test.com','00-0000-0000','000-0000-0000','--','','153-023','���� ��õ�� ���굿','1234����','','','-0-0','','','-0-0','','','','','',',','','1','',407,'2011-12-04 00:17:24','','','','','','','','2008-07-03 17:38:36'),(68,'test2','test2','�׽�Ʈ2','',NULL,'','761001-1000005','keii@anywiz.co.kr','00-0000-0000','000-0000-0000','--','','137-130','���� ���ʱ� ���絿','1234����','','','-0-0','','','-0-0','','','','','',',','','3','',10,'2010-06-21 17:30:52','','test2@test.com','','','','','','2009-02-11 10:27:44');
+/*!40000 ALTER TABLE `wiz_member` ENABLE KEYS */;
+
+--
+-- Table structure for table `wiz_meminfo`
+--
+
+DROP TABLE IF EXISTS `wiz_meminfo`;
+CREATE TABLE `wiz_meminfo` (
+  `skin` varchar(50) default NULL,
+  `agreement` mediumtext,
+  `safeinfo` mediumtext,
+  `infouse` mediumtext,
+  `infoess` mediumtext,
+  `join_url` varchar(255) default NULL,
+  `login_url` varchar(255) default NULL,
+  `idpw_url` varchar(255) default NULL,
+  `myinfo_url` varchar(255) default NULL,
+  `out_url` varchar(255) default NULL,
+  `login_img` varchar(255) default NULL,
+  `logout_img` varchar(255) default NULL,
+  `join_img` varchar(255) default NULL,
+  `myinfo_img` varchar(255) default NULL,
+  `job_list` mediumtext,
+  `sch_list` mediumtext,
+  `income_list` mediumtext,
+  `consph_list` mediumtext,
+  `addname` mediumtext,
+  `method` enum('E','A') default NULL
+) TYPE=MyISAM;
+
+--
+-- Dumping data for table `wiz_meminfo`
+--
+
+/*!40000 ALTER TABLE `wiz_meminfo` DISABLE KEYS */;
+INSERT INTO `wiz_meminfo` VALUES ('memberBasic','�� 1�� (����) \r\n�� ����� ������� ����� �� �� �� ����ɿ� ���Ͽ� OOO(���� \"ȸ��\" �� �մϴ�.)�� �����ϴ� ���ͳ� Ȩ������ ���� (���� \"����\" �� �մϴ�.)�� �̿����� �� ������ ���� ����, ȸ��� �̿����� �Ǹ��� �ǹ� �� å�ӻ����� �������� �������� �մϴ�.\r\n \r\n�� 2�� (����� ȿ�°� ����) \r\n1. �� ����� ������Ż���� �� 31 ��, �� �� �����Ģ �� 21���� 2�� ���� ���������� ��ģ �� Ȩ�������� ���Ͽ� �̸� �����ϰų� ���ڿ��� ��Ÿ�� ������� �̿��ڿ��� ���������ν� ȿ���� �߻��մϴ�.\r\n \r\n2. ȸ��� �� ����� ���� ���� ���� ������ �� ������, ������ ����� ��9���� ���� ������� �����մϴ�. ȸ���� ������ ����� �������� �ƴ��ϴ� ��� ������ ȸ������� ���(ȸ��Ż��)�� �� ������, ��� ����� ���� ��� ������ ���� ���Ƿ� ���ֵ˴ϴ�. ������ ����� ������ ���ÿ� �� ȿ���� �߻��˴ϴ�.\r\n  \r\n�� 3�� (����̿��� ��Ģ) \r\n�� ����� ���õǾ� ���� ���� ������ ������� �⺻��, ������� �����, ��Ÿ ���ù����� ������ �����ϴ�.\r\n \r\n�� 4�� (����� ����) \r\n�� ������� ����ϴ� ����� ���Ǵ� ������ �����ϴ�.\r\n \r\n1. ȸ�� : ���񽺿� ���������� �����Ͽ� ȸ������� �� �ڷμ�, ������ ������ ���������� ����������, �̿��� �� �ִ� �ڸ� ���մϴ�. \r\n2. �̿��� : �� ����� ���� ȸ�簡 �����ϴ� ���񽺸� �޴� ȸ�� �� ��ȸ���� ���մϴ�.\r\n3. ���̵� (ID) : ȸ�� �ĺ��� ȸ���� ���� �̿��� ���Ͽ� ȸ���� �����ϰ� ȸ�簡 �����ϴ� ���ڿ� ������ ������ ���մϴ�.  \r\n4. ��й�ȣ : ȸ���� ��Ż��� �ڽ��� ����� ��ȣ�ϱ� ���� ������ ���ڿ� ������ ������ ���մϴ�.  \r\n5. ���ڿ��� (E-mail) : ���ͳ��� ���� �����Դϴ�.  \r\n6. ���� : ȸ�� �Ǵ� ȸ���� ���� �̿� ���� �� �̿����� ���� ��Ű�� �ǻ�ǥ�ø� ���մϴ�.  \r\n7. Ȩ������ : ȸ�簡 �̿��ڿ��� ���񽺸� �����ϱ� ���Ͽ� ��ǻ�� �� ������ż��� �̿��Ͽ� �̿��ڰ� ���� �� �̿��� �� �ֵ��� ������ ������ ���� ������ ���մϴ�.\r\n  \r\n�� 5�� (������ ���� �� ����) \r\n1. ȸ�簡 �����ϴ� ���񽺴� ������ �����ϴ�.\r\n \r\n1) ȸ�翡 ���� ȫ�� ����\r\n2) ȸ�簡 �Ǹ��ϴ� ��ǰ �ȳ�\r\n3) ��Ÿ ȸ�簡 �����ϴ� ���� ����\r\n4) ���� ��� ����\r\n5) ȸ�� �̿� ����\r\n \r\n2. ȸ��� �ʿ��� ��� ������ ������ �߰� �Ǵ� �����Ͽ� ������ �� �ֽ��ϴ�.\r\n  \r\n�� 6�� (������ �ߴ�) \r\n1. ȸ��� ��ǻ�� �� ������ż����� ��������/��ü �� ����, ����� ���� ���� ������ �߻��� ��쿡�� ������ ������ �Ͻ������� �ߴ��� �� �ֽ��ϴ�.\r\n \r\n2. �� 1�׿� ���� ���� �ߴ��� ��쿡�� �� 9���� ���� ������� �̿��ڿ��� �����մϴ�.\r\n \r\n3. ȸ��� ��1���� ������ ������ ������ �Ͻ������� �ߴܵ����� ���Ͽ� �̿��� �Ǵ� ��3�ڰ� ���� ���ؿ� ���Ͽ� ������� �ƴ��մϴ�. ��, ȸ�翡 ���� �Ǵ� �߰����� �ִ� ��쿡�� �׷����� �ƴ��մϴ�.\r\n  \r\n�� 7�� (ȸ������) \r\n1. �̿��ڴ� ȸ�簡 ���� ���Ծ�Ŀ� ���� ȸ�������� ������ �� �� ����� �����Ѵٴ� �ǻ�ǥ�ø� �����μ� ȸ�������� ��û�մϴ�.\r\n \r\n2. �̿��ڴ� �ݵ�� �Ǹ����� ȸ�������� �Ͽ��� �ϸ�, 1���� �ֹε�Ϲ�ȣ�� ���� 1���� ȸ�����Խ�û�� �� �� �ֽ��ϴ�.\r\n \r\n3. ȸ��� �� 1�װ� ���� ȸ������ ������ ���� ��û�� �̿��� �� ���� �� ȣ�� �ش����� �ʴ� �� ȸ������ ����մϴ�.\r\n \r\n 1) �̸��� �Ǹ��� �ƴ� ���\r\n \r\n2) ��� ���뿡 ����, ���紩��, ���Ⱑ �ִ� ���\r\n \r\n3) Ÿ���� ���Ǹ� ����Ͽ� ��û�� ���\r\n \r\n4) ���Խ�û�ڰ� �� ��� �� 8�� 3�׿� ���Ͽ� ������ ȸ���ڰ��� ����� ���� �ִ� ���(��, �� 8�� 3�׿� ���� ȸ���ڰ� ��� �� 3���� ����� �ڷμ� ȸ���� ȸ�� �簡�� �³��� ���� ���� ���ܷ� �մϴ�.)\r\n \r\n5) �� 14�� �̸��� �Ƶ�\r\n \r\n6) ��Ÿ ȸ������ ȸ�� ������ �̿��û����� �������� ���ϴ� ���\r\n  \r\n4. ȸ�����԰���� �����ñ�� ȸ���� �³��� �̿��ڿ��� ������ �������� �մϴ�.\r\n \r\n5. ȸ���� �� 10�� 1�׿� ���� ��ϻ��׿� ������ �ִ� ��� ȸ���������� �׸��� ���� ���� ��������� ����, ����Ͽ��� �մϴ�.\r\n  \r\n�� 8�� (ȸ��Ż�� �� �ڰ� ��� ��) \r\n1. ȸ���� �������� ȸ���� Ż�� Ȩ�������� ��û�� �� ������, Ȩ�������� ��� �̿� ���մϴ�.\r\n \r\n2. ȸ���� ���� �� ȣ�� ������ �ش��ϴ� ���, ȸ��� ȸ���ڰ��� ���� �� ������ų �� �ֽ��ϴ�.\r\n \r\n 1) ���� ��û �ÿ� ���� ������ ����� ���\r\n \r\n2) Ÿ���� ���� �̿��� �����ϰų� �� ������ �����ϴ� �� ���� ������� �����ϴ� ���\r\n \r\n3) ���񽺸� �̿��Ͽ� ���ɰ� �� ����� �����ϰų�, ������ӿ� ���ϴ� ������ �ϴ� ���\r\n \r\n4) �� 13�� �� ����� ȸ���� �ǹ������� �ؼ����� ���� ���\r\n  \r\n3. ȸ�簡 ȸ���ڰ��� ����/������Ų ��, ������ ������ 2ȸ �̻� �ݺ��ǰų� 30�� �̳��� �� ������ �������� �ƴ��ϴ� ��� ȸ��� ȸ���ڰ��� ��� ��ų �� �ֽ��ϴ�.\r\n \r\n4. ȸ�簡 ȸ���ڰ��� ��� ��Ű�� ��� ȸ������ �̸� �����ϰ� Ż�� ó���մϴ�. �� ��� ȸ������ �̸� �����ϰ�, Ż�� ���� �Ҹ��� ��ȸ�� �ο��մϴ�.\r\n \r\n \r\n�� 9�� (�̿��ڿ� ���� ����) \r\n1. ȸ�簡 �̿��ڿ� ���� ������ �ϴ� ���, �̿��ڰ� ���񽺿� ������ ���ڿ��� �ּҷ� �� �� �ֽ��ϴ�.\r\n \r\n2. ȸ�簡 ��Ư�� �ټ� �̿��ڿ� ���� ������ ��� 1���� �̻� ���� �Խ��ǿ� �Խ������ν� ���� ������ ������ �� �ֽ��ϴ�.\r\n \r\n \r\n�� 10�� (���� ���� ��ȣ) \r\n1. ȸ��� �̿��� ���� ���� �� ȸ������ �ʿ��� �ּ����� ������ �����մϴ�.\r\n���� ������ �ʼ��������� �ϸ� �� �� ������ ���û������� �մϴ�.\r\n \r\n1) ����\r\n2) �ֹε�Ϲ�ȣ\r\n3) ��� ID\r\n4) ��й�ȣ\r\n5) E-mail\r\n6) �ּ�\r\n7) ��ȭ��ȣ\r\n8) favor ���� ����\r\n \r\n2. ȸ�簡 �̿����� ���νĺ��� ������ ���������� �����ϴ� ������ �ݵ�� ���� �̿����� ���Ǹ� �޽��ϴ�.\r\n \r\n3. ������ ���������� ���� �̿����� ���� ���� �� 3�ڿ��� ������ �� ������, �̿� ���� ��� å���� ȸ�簡 ���ϴ�. �ٸ� ������ ��쿡�� ���ܷ� �մϴ�.\r\n \r\n 1) ��۾����� ��۾�ü���� ��ۿ� �ʿ��� �ּ����� �̿����� ����\r\n(����, �ּ�, ��ȭ��ȣ)�� �˷��ִ� ���\r\n \r\n2) ����ۼ�, �м����� �Ǵ� �������縦 ���Ͽ� �ʿ��� ���μ� Ư�� ������ �ĺ��� �� ���� ���·� �����ϴ� ���\r\n \r\n3) ������ɿ� ���Ͽ� ����������κ��� �䱸 ���� ���\r\n \r\n4) ���˿� ���� ������� ������ �ְų�, ������� ��������ȸ�� ��û�� �ִ� ���\r\n \r\n5) ��Ÿ ������ɿ��� ���� ������ ���� ��û�� �ִ� ���\r\n \r\n \r\n4. �̿��ڴ� �������� ȸ�簡 ������ �ִ� �ڽ��� ���������� ���� ���� �� ���������� �� �� �ֽ��ϴ�.\r\n \r\n5. ȸ��κ��� ���������� �������� �� 3�ڴ� ���������� �������� ������ �޼��� ������ ���� ���������� ��ü ���� �ı��մϴ�.\r\n \r\n \r\n�� 11�� (ȸ���� �ǹ�) \r\n1. ȸ��� �� ������� ���� �ٿ� ���� �����, ���������� ���񽺸� ������ �� �ֵ��� �ּ��� ����� ���Ͽ��߸� �մϴ�.\r\n \r\n2. ȸ��� ���񽺿� ���õ� ���� �׻� ����� �� �ִ� ���·� ����/�����ϰ�, ��ְ� �߻��ϴ� ��� ��ü ���� �̸� ����/������ �� �ֵ��� �ּ��� ����� ���Ͽ��� �մϴ�.\r\n \r\n3. ȸ��� �̿��ڰ� �����ϰ� ���񽺸� �̿��� �� �ֵ��� �̿����� ����������ȣ�� ���� ���Ƚý����� ���߾�� �մϴ�.\r\n \r\n4. ȸ��� �̿��ڰ� ������ �ʴ� ���������� ������ ���ڿ����� �߼����� �ʽ��ϴ�.\r\n \r\n \r\n�� 12�� (ȸ���� ID �� ��й�ȣ�� ���� �ǹ�) \r\n1. ȸ������ �ο��� ���̵�(ID)�� ��й�ȣ�� ����å���� ȸ������ ������ ���� ��Ȧ, ������뿡 ���Ͽ� �߻��ϴ� ��� ����� ���� å���� ȸ������ �ֽ��ϴ�.\r\n \r\n2. ȸ���� �ڽ��� ID �� ��й�ȣ�� ���� ���ϰų� �� 3�ڰ� ����ϰ� ������ ������ ��쿡�� �ٷ� ȸ�翡 �뺸�ϰ� ȸ���� �ȳ��� �ִ� ��쿡�� �׿� ����� �մϴ�.\r\n \r\n \r\n�� 13�� (ȸ���� �ǹ�) \r\n1. ȸ���� �������, �� ����� ����, �̿�ȳ� �� ���ǻ��� �� ȸ�簡 �����ϴ� ������ �ؼ��Ͽ��� �ϸ�, ��Ÿ ȸ���� ������ ���صǴ� ������ �Ͽ����� �ȵ˴ϴ�.\r\n \r\n2. ȸ���� ȸ���� �����³� ���� ���񽺸� �̿��Ͽ� ��� ���������� �� �� �����ϴ�.\r\n \r\n3. ȸ���� ���񽺸� �̿��Ͽ� ���� ������ ȸ���� �����³� ���� ����, ����, ����, ����, ����/��� ��Ÿ�� ������� ����ϰų� �̸� Ÿ�ο��� ������ �� �����ϴ�.\r\n \r\n4. ȸ���� �ڱ� �Ż������� ������� �߻��� �ﰢ �����Ͽ��� �մϴ�.\r\nȸ�������� �������� �ʾ� �߻��ϴ� ��� ����� ���� å���� ȸ������ �ֽ��ϴ�.\r\n \r\n5. ȸ���� ���� �̿�� �����Ͽ� ���� �� ȣ�� ������ ���� �ʾƾ� �ϸ�, ���� ������ ������ �߻��ϴ� ��� ����� ���� å���� ȸ������ �ֽ��ϴ�.\r\n \r\n 1) �ٸ� ȸ���� ���̵�(ID)�� �����ϰ� ����ϴ� ����\r\n \r\n2) �ٸ� ȸ���� E-mail �ּҸ� ����Ͽ� ���Ը����� �߼��ϴ� ����\r\n \r\n3) ���������� �������� �ϰų� ��Ÿ ���������� ���õ� ����\r\n \r\n4) ������ ǳ��, ��Ÿ ��ȸ������ ���ϴ� ����\r\n \r\n5) ȸ�� �� Ÿ���� ������ �Ѽ��ϰų� ����ϴ� ����\r\n \r\n6) ȸ�� �� Ÿ���� �������� ���� �Ǹ��� ħ���ϴ� ����\r\n \r\n7) ��ŷ���� �Ǵ� ��ǻ�� ���̷����� ��������\r\n \r\n8) Ÿ���� �ǻ翡 ���Ͽ� ������ ���� �� ������ ������ ���������� �����ϴ� ����\r\n \r\n9) ������ �������� ��� ������ �ְų� �� ����� �ִ� ��ü�� ����\r\n \r\n10) ȸ�簡 �����ϴ� ������ ������ �����ϴ� ����\r\n\r\n11) ��Ÿ ������ɿ� ����Ǵ� ����\r\n \r\n \r\n \r\n�� 14�� (�Խù� ����) \r\n1. ȸ��� �̿��ڰ� �Խ��ϰų� ����ϴ� ���񽺳��� �Խù��� �� 13���� ������ ���ݵǰų�, ���� �� ȣ�� �ش��Ѵٰ� �ǴܵǴ� ��� �������� ���� �Խù��� ������ �� �ֽ��ϴ�.\r\n \r\n 1) �ٸ� �̿��� �Ǵ� �� 3�ڸ� ����ϰų� �߻������ ������ �ջ��Ű�� ����\r\n \r\n2) �������� �Ǵ� ��ǳ��ӿ� ���ݵǴ� ����\r\n \r\n3) ������ ������ ��εȴٰ� �����Ǵ� ����\r\n \r\n4) �� 3���� ���۱� �� ��Ÿ �Ǹ��� ħ���ϴ� ����\r\n \r\n5) ������ �������� ��� ������ �ְų� �� ����� �ִ� ����\r\n \r\n6) �ٰų� Ȯ������ ���� ȸ�縦 ���ϰų� ����� ������ �����\r\n \r\n7) ��Ÿ ������ɿ� �ǰ��Ͽ� ���ݵȴٰ� �ǴܵǴ� ����\r\n \r\n��, ���ڰԽ����� ��� ������ ���� ���ܸ� �д�.\r\n�뷮�� ū �������� ��� ���ε� �� �Խù��� ���� �����ϸ� �� ���� ���� ������ ������ ��Ȱ�� ��� ���� ���� ������ �Խù����� ������ �� �ִ�.\r\n \r\n2. ȸ��� �̿��ڰ� �Խ��ϰų� ����ϴ� ���񽺳��� �Խù��� �� 13���� ������ ���ݵǰų� �� �� ��1�� �� ȣ�� �ش��Ѵٰ� �ǴܵǴ� ������ ��ũ�ϰ� ���� ��� �������� ���� �Խù��� ������ �� �ֽ��ϴ�.\r\n \r\n \r\n�� 15�� (�Խù��� ���� �Ǹ� / �ǹ�) \r\n�Խù��� ���� ���۱��� ������ ��� �Ǹ� �� å���� �̸� �Խ��� �̿��ڿ��� �ֽ��ϴ�.\r\n \r\n�� 16�� (���� \"Ȩ������\"�� �ǿ��� \"Ȩ������\"���� ����) \r\n1. ���� \"Ȩ������\"�� ���� \"Ȩ������\"�� ������ ��ũ(��:������ ��ũ�� ��󿡴� ����, �׸� �� ��ȭ�� ���� ���Ե�) ��� ������ ����� ���, ���ڸ� ���� \"Ȩ������\"��� �ϰ� ���ڸ� �ǿ��� \"Ȩ������(������Ʈ)\"��� �մϴ�.\r\n \r\n2. ���� \"Ȩ������\"�� �ǿ��� \"Ȩ������\"�� ���������� �����ϴ� ��ȭ?�뿪�� ���Ͽ� �̿��ڿ� ���ϴ� �ŷ��� ���ؼ� ����å���� ���� �ʽ��ϴ�.\r\n \r\n \r\n�� 17�� (���۱��� �ͼ� �� �̿�����) \r\n1. ȸ�簡 �ۼ��� ���۹��� ���� ���۱� �� ��Ÿ ���������� ȸ�翡 �ͼ��մϴ�.\r\n \r\n2. �̿��ڴ� ���񽺸� �̿������ν� ���� ������ ȸ���� �����³� ���� ����, �۽�, ����, ����, ���, ��Ÿ ����� ���Ͽ� ������������ �̿��ϰų� �� 3�ڿ��� �̿��ϰ� �Ͽ����� �ȵ˴ϴ�.\r\n \r\n \r\n�� 18�� (�絵����) \r\nȸ���� ������ �̿����, ��Ÿ �̿� ���� ������ Ÿ�ο��� �絵, ������ �� ������, �̸� �㺸�� ������ �� �����ϴ�.\r\n \r\n�� 19�� (���ع��) \r\nȸ��� ����� �����Ǵ� ���񽺿� �����Ͽ� �̿��ڿ��� ��� ���ذ� �߻��ϴ��� �� ���ذ� ȸ���� �ߴ��� ���ǿ� ���� ��츦 �����ϰ� �̿� ���Ͽ� å���� �ο����� �ƴ��մϴ�.\r\n \r\n�� 20�� (��å / ���) \r\n1. ȸ��� �̿��ڰ� ���񽺿� ������ ����, �ڷ�, ����� ��Ȯ��, �ŷڼ� �� �� ���뿡 ���Ͽ��� ��� å���� �δ����� �ƴ��ϰ�, �̿��ڴ� �ڽ��� å�ӾƷ� ���񽺸� �̿��ϸ�, ���񽺸� �̿��Ͽ� �Խ� �Ǵ� ������ �ڷ� � ���Ͽ� ���ذ� �߻��ϰų� �ڷ��� ��缱��, ��Ÿ ���� �̿�� �����Ͽ� ��� �������� �߻��ϴ��� �̿� ���� ��� å���� �̿��ڿ��� �ֽ��ϴ�.\r\n \r\n2. ȸ��� �� 13���� ������ �����Ͽ� �̿��ڰ� �Ǵ� �̿��ڿ� �� 3�ڰ��� ���񽺸� �Ű��� �� ��ǰ�ŷ� ��� �����Ͽ� ��� å�ӵ� �δ����� �ƴ��ϰ�, �̿��ڰ� ������ �̿�� �����Ͽ� ����ϴ� ���Ϳ� ���Ͽ� å���� �δ����� �ʽ��ϴ�.\r\n \r\n3. �̿��ڰ� �� 13��, ��Ÿ �� ����� ������ ���������� ���Ͽ� ȸ�簡 �̿��� �Ǵ� �� 3�ڿ� ���Ͽ� å���� �δ��ϰ� �ǰ�, �̷ν� ȸ�翡�� ���ذ� �߻��ϰ� �Ǵ� ���, �� ����� ������ �̿��ڴ� ȸ�翡�� �߻��ϴ� ��� ���ظ� ����Ͽ��� �ϸ�, �� ���طκ��� ȸ�縦 ��å���Ѿ� �մϴ�.\r\n \r\n \r\n�� 21�� (������ �ذ�) \r\n1. ȸ��� �̿��ڴ� ���񽺿� �����Ͽ� �߻��� ������ �����ϰ� �ذ��ϱ� ���Ͽ� �ʿ��� ��� ����� �Ͽ��� �մϴ�.\r\n \r\n2. �� 1���� �������� �ұ��ϰ�, �� �������� ���Ͽ� �Ҽ��� ����� ��� �� �Ҽ��� ������������� ���ҷ� �մϴ�.\r\n \r\n3. �� �Ҽۿ��� ���ѹα� ���� �����մϴ�.\r\n \r\n \r\n�� 22�� (��Ÿ) \r\n�� ����� ���õ��� �ƴ��� ������ ó���� ���Ͽ� �̿��ڴ� OOO.(��ȭ��ȣ : 02-xxx-xxxx)�� �̿��մϴ�.\r\n \r\n��Ģ \r\n�� ����� OOOO�� O�� O �Ϻ��� �����մϴ�.','�� �� Ģ\r\n1. OOO�� \"������Ÿ��̿�������������ȣ����ѹ���\"���� ����������ȣ ������ ������źΰ� ������ \"����������\r\n    ȣ��ħ\" �� \"���������� �����/������ ��ȣ��ġ ����\"�� �ؼ��ϰ� �ֽ��ϴ�. ���� OOO�� \"����������ȣ��å\"�� \r\n    �����Ͽ� ȸ������ �������� ��ȣ�� ���� �ּ��� ���ϰ����� �����մϴ�.\r\n2. OOO�� \"����������ȣ��å\"�� ���� ���� �� ���� ��ħ�� ����� OOO�� ���� ��ħ ���濡 ���� ����� �� �ֽ�\r\n    �ϴ�. OOO�� \"����������ȣ��ħ\"�� ����� ��� ��������� OOO Ȩ�������� �������׿� \r\n    �ּ� 7�ϰ� �Խõ˴ϴ�. \r\n\r\n\r\n�� ��������\r\nOOO�� ���ϲ��� OOO�� �̿����� ���뿡 ���� \"�����Ѵ�\" ��ư �Ǵ� \"�������� �ʴ´�\" ��ư�� Ŭ���� �� �ִ� ������ �����Ͽ�, \"�����Ѵ�\" ��ư�� Ŭ���ϸ� �������� ������ ���� ������ ������ ���ϴ�. ����, ���ϲ��� �������Ѵ١� ��ư�� Ŭ���ϸ� �Ʒ��� �������� ���� �׸� �� ����й�ȣ���� ���ֹε�Ϲ�ȣ���� ������ ������ �׸���� OOO�� ����\r\n�� �����ϱ� ���� ���־�ü�� �����ϴ� �Ϳ� ���� ������ ������ �����մϴ�.\r\n\r\n\r\n1. \"��������\"�� ������ ������Ÿ��̿�������������ȣ����ѹ������� �����ϴ� ���뿡 ����, \"�����ϴ� ���ο� ���� \r\n    �����μ� ���� ������ ���ԵǾ� �ִ� ����, �ֹε�Ϲ�ȣ ���� ���׿� ���Ͽ� ���� ������ �ĺ��� �� �ִ� ����(���� \r\n    ���������δ� Ư�� ������ �ĺ��� �� ������ �ٸ� ������ �����ϰ� �����Ͽ� �ĺ��� �� �ִ� ���� �����Ѵ�)\"�� �ǹ�\r\n    �մϴ�. \r\n2. OOO�� �̿��� Ȯ��, ��ݰ���, �̿� ������ ������ Ȯ��, ����ȸ������ ����ȭ�� ����, ��Ÿ �ΰ����� ���� \r\n    ���Ͽ� ȸ������ ���������� �������̿� �մϴ�. �����ϴ� �������� �׸� ���� ��ü���� �������� �� �̿� ������ \r\n    ������ �����ϴ�.\r\n-  ����, ���̵�, ��й�ȣ, �ֹε�Ϲ�ȣ/����ڵ�Ϲ�ȣ : ȸ���� ���� �̿뿡 ���� ���� Ȯ�� ������ �̿�, \r\n-  �̿� ������ ������ Ȯ��\r\n-  �̸����ּ�, ��ȭ��ȣ, �ѽ���ȣ : ������ ���� ������ ���� �ʼ� ���� Ȯ��, �������� ����, �Ҹ�ó�� ���� ���� ��Ȱ\r\n    �� �ǻ� ����\r\n-  ����� Ȯ��, ���ο� ���� �� �Ż�ǰ�̳� �̺�Ʈ ���� ���� �ȳ�\r\n-  ��������, �ſ�ī�� ���� : �������� �̿� �� ���ſ� ���� ����\r\n-  �ּ� : ������ ������ȸ ����, û���� �� ���θ� ��ǰ ��ۿ� ���� ��Ȯ�� ����� Ȯ��\r\n    ��Ű ( ���̵� ) : ��Ű ��� ���� �湮�ڵ��� ���̵� �ڵ� �м��Ͽ� ��޺� ����ȭ�� ���� ���� ����.\r\n    ���������� ������������ �ɼ��� ���������ν� ��Ű�� ����� ������ Ȯ���� ��ġ�ų�, �ƴϸ� ��� ��Ű�� ������ \r\n    �ź��� ���� �ֽ��ϴ�. �׷��� ��Ű�� ������ �ź��� ��� ������ �̿��� ���ѵ� �� �ֽ��ϴ�. \r\n3. OOO�� ȸ�� ���������� ��Ź�������� �ʽ��ϴ�. \r\n4. �̿����� �⺻�� �α� ħ���� ����� �ִ� �ΰ��� ��������(���� �� ����, ��� �� ����, ����� �� ���� ��, ��ġ�� ���� \r\n    �� ���˱��, �ǰ����� �� ����Ȱ ��)�� �䱸���� �ʽ��ϴ�. \r\n5. ���������� ���� �Ⱓ�� \"ȸ���� OOO�� �����ϴ� �������� ���� ��û ��������\"�Դϴ�. OOO�� ȸ��DB�� Ż��\r\n    ��û���� ���������� Ż�� ��� ������� �Ǿ� �ֽ��ϴ�. \r\n    ��, �������� �� �������� ������ �޼��� ��쿡�� ������ ������ ���Ͽ� ������ �ʿ伺�� �ִ� ��쿡�� ������ \r\n    ������ ���� ������ ���������� ������ �� �ֽ��ϴ�.\r\n- ��� �Ǵ� û��öȸ � ���� ��� : 5��\r\n- ��ݰ��� �� ��ȭ���� ���޿� ���� ��� : 5��\r\n- �Һ����� �Ҹ� �Ǵ� ����ó���� ���� ��� : 3�� ��\r\n\r\n\r\n\r\n�� ��3�ڿ� ���� ���� ����\r\n1. OOO�� ȸ������ ���������� �������� Ÿ�� �Ǵ� �ٸ� ȸ�糪 ����� �������� �ʽ��ϴ�. \r\n    ��, ������ �ش��ϴ� ���� ���ܷ� �մϴ�. \r\n-  ������ �̸� ����� ���Ͽ� �ش� �������� ��ϻ���ڿ��� ��û���� ������ �����ϴ� ���\r\n-  ������ �̸��� ���� WHOIS ���񽺸� ���Ͽ� �����ϴ� ��� \r\n-  ������Ÿ��̿�������������ȣ����ѹ��� �� ������ɿ� ���Ͽ� ������� �Ǵ� ���ο��� ������ �Һ��ڴ�ü���� \r\n    ��û�� ���� ��� \r\n-  ���￡ ����� ������ ������� ����ó�� ���� ���� �ⱸ�� ������ ��û�ϴ� ���\r\n-  ���˿� ���� ������� ������ �ְų� ���������������ȸ, �ѱ�������ȣ����� �� ������ü�� ��û�� �ִ� ��� \r\n-  ������ ������ ���Ͽ� ȸ���� ����(����, �ּ�, ��ȭ��ȣ)�� ����ϴ� ��� \r\n-  ����ۼ�, ȫ���ڷ�, �м����� �Ǵ� �������縦 ���Ͽ� �ʿ��� ���μ� Ư�� �������� �ĺ��� �� ���� ���·� ����\r\n    �Ǵ� ���\r\n-  ȸ������ OOO�� ���񽺸� ��û�Ͽ� OOO�� ���� ������ ���� ��۾�ü, �����ݼ��;�ü, ���ι߼� ��ü ��\r\n    �� �ش� ȸ���� ��й�ȣ, �ֹε�Ϲ�ȣ�� �������� �ʴ� �ֹ�����, �ּ��� ����, ����ó ���� �����ϴ� ���\r\n\r\n2. OOO�� ���� �پ��� ���� ������ ���Ͽ� ȸ������ ���������� ���޻翡�� �����ϰų�, ���޻�� �����ϰ��� �� ��\r\n    �� �ݵ�� ������ ȸ�� �������� ���Ǹ� ���ϰڽ��ϴ�. ���޻簡 �������, ���� �Ǵ� �����Ǵ� ���������׸��� ������\r\n    ��, �� �׷��� ���������� �����Ǿ�� �ϴ���, �׸��� �������� ��� ��ȣ, �����Ǵ����� ���� ���������� ���ڿ����� \r\n    ���� �����Ͽ� ���Ǹ� ���ϴ� ������ ��ġ�� �Ǹ�, ���ϲ��� �������� �ʴ� ��쿡�� ���޻翡�� �����ϰų� ���޻�� \r\n    �������� �ʽ��ϴ�.\r\n\r\n\r\n\r\n�� ���������� ���� �� ���� \r\n1. OOO�� ȸ���� �������� �ڽ��� ���������� �����ϰų� �����Ͻ� �� �ֽ��ϴ�. �������� ���� �� ������ ���Ͻô�\r\n    ���� OOO ����Ʈ�� �α׿� �Ͻ� ��, �α׾ƿ� ��ư ���� \"��������\" ��ư�� Ŭ���Ͻʽÿ�. \r\n2. ���� ID�� ��й�ȣ�� �Ҿ������ ȸ���� Ȩ���������� \"ID Ȯ��/��й�ȣ Ȯ��\"���񽺸� ���� ID�� ��й�ȣ�� Ȯ����\r\n    �� �� �ֽ��ϴ�.\r\n3. OOO ȸ�� ID�� ��й�ȣ�� ���� ���� å���� ���ο��� �ֽ��ϴ�.\r\n    ������ ���������� ȿ�������� ��ȣ�ϱ� ���ؼ� �ڽ��� ȸ��ID �� ��й�ȣ�� �����ϰ� �����ϰ� å���� ���� �մϴ�. \r\n    ������ ID�� ��й�ȣ�� �����Ͽ��ٸ� �̿� ���ؼ� OOO�� å���� �����ʽ��ϴ�. �ٸ�, OOO�� ���� Ȥ�� ����\r\n    �� ���� ȸ�� ID�� ��й�ȣ ���⿡ ���ؼ��� �ش� ������ OOO�� å���� ���� �� �ֽ��ϴ�.\r\n    �̿��ڴ� OOO�� ������ �̿��ؼ� ������Ʈ�� �̿��� �ڿ��� �ش� ������ �����Ͻð� �� �������� â�� �ݾ��ֽ�\r\n    �ÿ�. Ư�� ��ǻ�͸� Ÿ�ΰ� �����ϰų� ������ҿ��� ����ϴ� ��� �ݵ�� �α׾ƿ��Ͻðų� �� �������� �����Ͽ�\r\n    �� �մϴ�.\r\n\r\n\r\n\r\n�� ȸ�� Ż��\r\nOOO ȸ���� �������� ������ ���� �� Ż�� �����մϴ�. ȸ�� Ż��� ȸ�� ���� ���� ȭ�鿡�� ��û �����մϴ�. \r\n��, ȸ���� ����ƿ��� �̿� ���� ������ �������� ������ ���� ���, ȸ�� Ż��� �������� �ʽ��ϴ�.\r\n\r\n\r\n\r\n�� ����������ȣ�� ���� ����� ��å\r\nOOO�� ȸ������ ���������� �н�, ����, ����, ���� �Ǵ� �Ѽյ��� �ʵ��� ������ ���� ����� ��å�� �����ϰ� �ֽ�\r\n�ϴ�. \r\n1. ȸ�� �������� ���������� ��й�ȣ�� ���� ��ȣ�Ǹ�, �������� �����ʹ� ������ ���ȱ���� ���� ��ȣ �ǰ� �ֽ��ϴ�. \r\n2. ȸ�� �������� ��й�ȣ�� �̿��� �� ������������ڰ� ����, �ֹε�Ϲ�ȣ, ��ȭ��ȣ �� �����ϱ� ���� ���ڸ� ���\r\n    ��ȣ�� �̿����� �ʵ��� �н����� �ۼ� ��Ģ�� �����ϰ� �����մϴ�.\r\n3. OOO�� ��� ���α׷� �� �Ǽ��ڵ� ��� ����Ʈ������ �̿��Ͽ� ��ǻ�� ���̷����� ���� ���ظ� �����ϰ� ������, \r\n    �ش� ����Ʈ����� ���� �ֱ������� ������Ʈ�ϰ� �ֽ��ϴ�.\r\n4. OOO�� ħ������ ��ɰ� ħ��Ž�� ����� ž���ϰ� �ִ� ������ ����Ϳ� L3 ����ġ ��� ����Ͽ� �������� \r\n    ��Ʈ��ũ ���� ���������� �����ϰ� ��ȣ�ϰ� �ֽ��ϴ�.\r\n5. OOO�� ���� ������ ħ�����ܽý���(Firewall)�� �����Ͽ� 3�� ����������ȣ�ý����� ��ϰ� �ֽ��ϴ�.\r\n6. OOO�� ���������� ����������ȣ�ý��ۿ� ��ȣȭ�Ͽ� �����ϰ� ������, OOO�� ������Ÿ� �ܺη� ���������� \r\n    �۽��ϰų� PC�� ������ ��� ��ȣȭ�Ͽ� �����ϵ��� �ý����� ��ϰ� �ֽ��ϴ�. \r\n\r\n�� �ǰ߼��� �� �Ҹ�ó��\r\nOOO ȸ�� �� OOO�� ����������ȣ�� �����Ͽ� �Ҹ��� ������ ���� �������� ����å���ڿ��� �ǰ��� �ֽø�, ���� ��� ��ġ�Ͽ� ó������� �뺸�� �帮�ڽ��ϴ�. �������� ���� �����̳� ��Ÿ �ɰ��� �������� ħ�� �ÿ��� ���ο��� ��ġ�Ͽ� ����� ��������ħ�� �Ű�����(http://www.cyberpr ivacy.or.kr, http://www.1336.or.kr, ��ȭ 02-1336,)�� �Ҹ�ó�� �Ǵ� ���縦 ��û�Ͻ� ���� �ֽ��ϴ�.\r\n\r\n\r\n\r\n�� ������������ ��ȹ�� ���� �� ����\r\nOOO�� ȸ�� ������ ������ ������������� �����Ͽ� ������ ���� ������ �ؼ��ϰڽ��ϴ�.\r\n1. ������������å������ ���� �� ����������ȣ ��Ģ�� ����, ��� ���� ����\r\n2. ��������������� ������ ���� ����\r\n3. ��������ó���ý����� ���� ��� ���� �� �������� Ȯ�� ����\r\n4. �������� ��� �� ������� ��ȣ��ġ\r\n5. ��Ÿ �������� ��ȣ�� ���� �ʿ��� ����\r\n\r\n\r\n\r\n�� �������� ���� �����\r\nOOO�� ���������� ���� �ǰ߼��� �� �Ҹ�ó���� ����ϴ� �������� ��������ڸ� �����ϰ� �ֽ��ϴ�. \r\n- �������� ���� �����\r\n�� �� : OOO\r\n�� å : OOOO ��ǥ\r\n��ȭ��ȣ : 02-xxx-xxxx\r\nE-mail : xxxx@xxxx.com\r\n\r\n\r\n\r\n�� �Ƶ��� ȸ�� ���Կ� ����\r\n1. OOO�� �Ƶ��� ���������� ��ȣ�ϱ� ���Ͽ� �� 14�� �̸��� �Ƶ��� ȸ�� ������ ��û�� ��� �����븮��(�θ�)�� \r\n    ���ǰ� �־�� �մϴ�. �θ���� ����� �������� 14�� �̸��� �̼����ڿ� ���ؼ��� OOO�� ���Ƿ� ȸ������ ����\r\n    �� �� �ֽ��ϴ�. \r\n2. �� 14�� �̸� �̼������� �����븮���� �븮���� å���Ͽ� �ִ� �̼������� ���������� ���� ����, ����, ����öȸ�� \r\n    ��û�� �� ������, �̷��� ��û�� ���� ��� OOO�� ��ü���� �ʿ��� ��ġ�� ���ϰڽ��ϴ�. \r\n\r\n�� �̼����� �ŷ��� öȸ�� ����\r\nOOO�� �̼����ڿ��� �ŷ��� ������ �����븮��(�θ�)�� ���Ǹ� ���� �ǹ��� ������, �����븮��(�θ�)�� ���Ǹ� ���� ���� �ŷ��� ���, �ŷ��� ����� �� �ֽ��ϴ�. ���� �ŷ� ������� �̼������� �����븮��(�θ�)�� �ŷ� ���� �� 7�� �̳��� öȸ�� ��û�� ���, �ŷ��� öȸ(ȯ��)�ϰڽ��ϴ�.\r\n\r\n\r\n\r\n�� ������ ���� ���ۿ� ����\r\n1. OOO�� ȸ���� ������� OOO�� �����ϰ� �ִ� ���񽺿� ���� �ȳ�, ���񽺿� ���� ���� � ���� ������ ����\r\n    �Ӱ� ���� �� �ֽ��ϴ�.\r\n2. OOO�� ȸ���� ������� ������ ������ ������ �� �ֽ��ϴ�. ��, �̷��� ��쿡�� (����)��� ������ ǥ���Ͽ� ȸ��\r\n    ���� ������ �������� ���� �ľ��� �� �ְ� �ϸ�, ���Űź� �ǻ縦 ���� ȸ�����Դ� ������ ������ �������� �ʰڽ��ϴ�.','email/resno/address/tphone/hphone/reemail/resms/icon/nick/','email/resno/address/tphone/hphone/reemail/resms/','','','','','','','','','','����,�л�,��ǻ��/���ͳ�,���,������,����,���񽺾�,����,����/����/�����,�����,����','����,�ʵ��б�����,�ʵ��б�����,���б�����,���б�����,�����б�����,�����б�����,���б�����,���б�����','100��������,101-200����,201-250����,251-300����,301-400����,400���� �̻�','�ǰ�,��ȭ/����,����,����/����,����,����/����,��Ȱ,������,����,��ǻ��,�й�','1|2|3|4|5|','E');
+/*!40000 ALTER TABLE `wiz_meminfo` ENABLE KEYS */;
+
+--
+-- Table structure for table `wiz_message`
+--
+
+DROP TABLE IF EXISTS `wiz_message`;
+CREATE TABLE `wiz_message` (
+  `idx` int(10) unsigned NOT NULL auto_increment,
+  `se_id` varchar(20) default NULL,
+  `se_name` varchar(20) default NULL,
+  `re_id` varchar(20) default NULL,
+  `re_name` varchar(20) default NULL,
+  `subject` varchar(100) default NULL,
+  `content` mediumtext,
+  `upfile` varchar(40) default NULL,
+  `upfile_name` varchar(255) default NULL,
+  `addinfo1` varchar(255) default NULL,
+  `addinfo2` varchar(255) default NULL,
+  `addinfo3` varchar(255) default NULL,
+  `wdate` datetime default NULL,
+  `status` enum('Y','N') NOT NULL default 'N',
+  `re_status` enum('Y','N') NOT NULL default 'Y',
+  `se_status` enum('Y','N') NOT NULL default 'Y',
+  PRIMARY KEY  (`idx`)
+) TYPE=MyISAM AUTO_INCREMENT=60;
+
+--
+-- Dumping data for table `wiz_message`
+--
+
+/*!40000 ALTER TABLE `wiz_message` DISABLE KEYS */;
+INSERT INTO `wiz_message` VALUES (39,'test','test','test2','�׽�Ʈ2','�׽�Ʈ����','�׽�Ʈ����','0812230730027.gif','logo.gif','','','','2008-12-23 19:30:02','Y','Y','N'),(54,'test','�׽�Ʈ','test2','�׽�Ʈ2','test','test','','','','','','2009-09-09 10:49:00','Y','Y','Y'),(58,'test2','�׽�Ʈ2','test','�׽�Ʈ','���� ��� �׽�Ʈ','���� ��� �׽�Ʈ','','','','','','2010-06-21 17:31:03','Y','Y','Y'),(59,'test2','�׽�Ʈ2','test','�׽�Ʈ','÷���̹��� �׽�Ʈ','÷���̹��� �׽�Ʈ','1006210532254.jpg','0902250154496_1.jpg','','','','2010-06-21 17:32:25','Y','Y','Y');
+/*!40000 ALTER TABLE `wiz_message` ENABLE KEYS */;
+
+--
+-- Table structure for table `wiz_mini_bbs`
+--
+
+DROP TABLE IF EXISTS `wiz_mini_bbs`;
+CREATE TABLE `wiz_mini_bbs` (
+  `idx` int(10) NOT NULL auto_increment,
+  `code` varchar(30) default NULL,
+  `prino` int(10) default NULL,
+  `grpno` int(10) default NULL,
+  `depno` int(2) default NULL,
+  `notice` char(1) default NULL,
+  `category` varchar(80) default NULL,
+  `memid` varchar(20) default NULL,
+  `memgrp` varchar(255) default NULL,
+  `name` varchar(20) default NULL,
+  `email` varchar(50) default NULL,
+  `tphone` varchar(20) default NULL,
+  `hphone` varchar(20) default NULL,
+  `zipcode` varchar(20) default NULL,
+  `address` varchar(20) default NULL,
+  `subject` varchar(100) default NULL,
+  `content` mediumtext,
+  `addinfo1` varchar(255) default NULL,
+  `addinfo2` varchar(255) default NULL,
+  `addinfo3` varchar(255) default NULL,
+  `addinfo4` varchar(255) default NULL,
+  `addinfo5` varchar(255) default NULL,
+  `ctype` enum('T','H') default NULL,
+  `privacy` enum('Y','N') default NULL,
+  `upfile1` varchar(40) default NULL,
+  `upfile2` varchar(40) default NULL,
+  `upfile3` varchar(40) default NULL,
+  `upfile4` varchar(40) default NULL,
+  `upfile5` varchar(40) default NULL,
+  `upfile6` varchar(40) default NULL,
+  `upfile7` varchar(40) default NULL,
+  `upfile8` varchar(40) default NULL,
+  `upfile9` varchar(40) default NULL,
+  `upfile10` varchar(40) default NULL,
+  `upfile11` varchar(40) default NULL,
+  `upfile12` varchar(40) default NULL,
+  `upfile1_name` varchar(255) default NULL,
+  `upfile2_name` varchar(255) default NULL,
+  `upfile3_name` varchar(255) default NULL,
+  `upfile4_name` varchar(255) default NULL,
+  `upfile5_name` varchar(255) default NULL,
+  `upfile6_name` varchar(255) default NULL,
+  `upfile7_name` varchar(255) default NULL,
+  `upfile8_name` varchar(255) default NULL,
+  `upfile9_name` varchar(255) default NULL,
+  `upfile10_name` varchar(255) default NULL,
+  `upfile11_name` varchar(255) default NULL,
+  `upfile12_name` varchar(255) default NULL,
+  `movie1` mediumtext,
+  `movie2` mediumtext,
+  `movie3` mediumtext,
+  `passwd` varchar(30) default NULL,
+  `count` int(8) default NULL,
+  `recom` int(8) default NULL,
+  `comment` int(8) default NULL,
+  `ip` varchar(15) default NULL,
+  `wdate` int(10) default NULL,
+  `ucc_file` varchar(255) default NULL,
+  `ucc_movie` varchar(255) default NULL,
+  `ucc_img` varchar(255) default NULL,
+  `ucc_size` int(11) default NULL,
+  `ucc_time` varchar(10) default NULL,
+  `miniid` varchar(20) default NULL,
+  PRIMARY KEY  (`idx`),
+  KEY `code` (`code`)
+) TYPE=MyISAM AUTO_INCREMENT=100;
+
+--
+-- Dumping data for table `wiz_mini_bbs`
+--
+
+/*!40000 ALTER TABLE `wiz_mini_bbs` DISABLE KEYS */;
+INSERT INTO `wiz_mini_bbs` VALUES (74,'bbs',1,1,0,'','1','test','test','�׽�Ʈ','help@abc.com','','','','','�Խ��� �׽�Ʈ','�Խ��� �׽�Ʈ','','','','','','H','Y','','','','','','','','','','','','','','','','','','','','','','','','','','','','test',187,0,0,'121.134.141.93',1234749004,'','','',0,'','test');
+/*!40000 ALTER TABLE `wiz_mini_bbs` ENABLE KEYS */;
+
+--
+-- Table structure for table `wiz_mini_bbscat`
+--
+
+DROP TABLE IF EXISTS `wiz_mini_bbscat`;
+CREATE TABLE `wiz_mini_bbscat` (
+  `idx` int(10) unsigned NOT NULL auto_increment,
+  `gubun` char(1) default NULL,
+  `code` varchar(30) default NULL,
+  `catname` varchar(30) default NULL,
+  `catimg` varchar(30) default NULL,
+  `catimg_over` varchar(30) default NULL,
+  `caticon` varchar(30) default NULL,
+  `miniid` varchar(20) default NULL,
+  PRIMARY KEY  (`idx`)
+) TYPE=MyISAM AUTO_INCREMENT=15;
+
+--
+-- Dumping data for table `wiz_mini_bbscat`
+--
+
+/*!40000 ALTER TABLE `wiz_mini_bbscat` DISABLE KEYS */;
+INSERT INTO `wiz_mini_bbscat` VALUES (1,'','bbs','�Խ��� 1',NULL,NULL,NULL,'test'),(3,'','bbs','�Խ��� 2',NULL,NULL,NULL,'test'),(4,'','data','�ڷ�� 1',NULL,NULL,NULL,'test'),(5,'','data','�ڷ�� 2',NULL,NULL,NULL,'test'),(13,'','photo','������ 3',NULL,NULL,NULL,'test'),(12,'','photo','������ 2',NULL,NULL,NULL,'test'),(11,'','photo','������ 1',NULL,NULL,NULL,'test'),(9,'','movie','������ 1',NULL,NULL,NULL,'test'),(10,'','movie','������ 2',NULL,NULL,NULL,'test');
+/*!40000 ALTER TABLE `wiz_mini_bbscat` ENABLE KEYS */;
+
+--
+-- Table structure for table `wiz_mini_comment`
+--
+
+DROP TABLE IF EXISTS `wiz_mini_comment`;
+CREATE TABLE `wiz_mini_comment` (
+  `idx` int(10) NOT NULL auto_increment,
+  `ctype` varchar(10) default NULL,
+  `code` varchar(10) default NULL,
+  `cidx` int(10) default NULL,
+  `star` int(1) default NULL,
+  `memid` varchar(20) default NULL,
+  `name` varchar(20) default NULL,
+  `content` mediumtext,
+  `passwd` varchar(20) default NULL,
+  `wdate` datetime default NULL,
+  `ip` varchar(20) default NULL,
+  `miniid` varchar(20) default NULL,
+  PRIMARY KEY  (`idx`),
+  KEY `cidx` (`cidx`)
+) TYPE=MyISAM AUTO_INCREMENT=125;
+
+--
+-- Dumping data for table `wiz_mini_comment`
+--
+
+/*!40000 ALTER TABLE `wiz_mini_comment` DISABLE KEYS */;
+INSERT INTO `wiz_mini_comment` VALUES (72,'MINI',NULL,0,0,'test','�׽�Ʈ','�Ƹ��ٿ��Լ��� ���������� ģ���Ѹ����϶�','','2009-02-13 16:57:04','121.134.141.93','test'),(112,'BBS','data',1,0,'test','�׽�Ʈ','qqq','test','2009-02-23 15:43:16','121.134.141.93','test'),(110,'BBS','guest',1,0,'test','�׽�Ʈ','123','test','2009-02-23 15:42:37','121.134.141.93','test'),(113,'BBS','data',1,0,'test','�׽�Ʈ','www','test','2009-02-23 15:43:17','121.134.141.93','test');
+/*!40000 ALTER TABLE `wiz_mini_comment` ENABLE KEYS */;
+
+--
+-- Table structure for table `wiz_mini_conrefer`
+--
+
+DROP TABLE IF EXISTS `wiz_mini_conrefer`;
+CREATE TABLE `wiz_mini_conrefer` (
+  `referer` mediumtext,
+  `host` varchar(30) default NULL,
+  `wdate` date default NULL,
+  `cnt` int(10) default NULL,
+  `miniid` varchar(20) default NULL,
+  KEY `host` (`host`),
+  KEY `wdate` (`wdate`)
+) TYPE=MyISAM;
+
+--
+-- Dumping data for table `wiz_mini_conrefer`
+--
+
+/*!40000 ALTER TABLE `wiz_mini_conrefer` DISABLE KEYS */;
+INSERT INTO `wiz_mini_conrefer` VALUES ('','','2009-02-09',4,'test'),('','','2009-02-25',2,'test2'),('','','2009-02-10',5,'test'),('','','2009-02-11',15,'test'),('','','2009-02-11',11,'test2'),('','','2009-02-12',14,'test'),('','','2009-02-12',5,'test2'),('','','2009-02-13',12,'test'),('','','2009-02-13',4,'test2'),('','','2009-02-14',1,'test'),('','','2009-02-16',5,'test'),('','','2009-02-16',4,'test2'),('','','2009-02-17',9,'test'),('','','2009-02-25',3,'test'),('','','2009-02-17',2,'test2'),('','','2009-02-18',4,'test'),('','','2009-02-18',2,'test2'),('','','2009-02-20',5,'test'),('','','2009-02-20',3,'test2'),('','','2009-02-23',12,'test'),('','','2009-02-23',2,'test2'),('','','2009-02-23',1,'wizhome'),('','','2009-02-24',2,'test'),('','','2009-03-03',3,'test'),('','','2009-03-05',4,'test'),('','','2009-03-06',5,'test'),('','','2009-03-07',1,'test'),('','','2009-03-16',2,'test'),('','','2009-03-17',8,'test'),('','','2009-03-17',1,'test2'),('','','2009-03-18',4,'test'),('','','2009-03-19',1,'test'),('','','2009-03-19',1,'test2'),('','','2009-03-20',1,'test'),('','','2009-03-23',1,'test'),('','','2009-03-31',1,'test'),('','','2010-12-07',1,'test'),('','','2011-08-25',1,'test'),('','','2010-12-15',1,'test'),('','','2011-06-15',1,'test'),('','','2011-08-26',1,'test'),('','','2011-08-30',1,'test'),('','','2011-09-08',1,'test');
+/*!40000 ALTER TABLE `wiz_mini_conrefer` ENABLE KEYS */;
+
+--
+-- Table structure for table `wiz_mini_contime`
+--
+
+DROP TABLE IF EXISTS `wiz_mini_contime`;
+CREATE TABLE `wiz_mini_contime` (
+  `time` int(10) default NULL,
+  `cnt` int(10) default NULL,
+  `miniid` varchar(20) default NULL
+) TYPE=MyISAM;
+
+--
+-- Dumping data for table `wiz_mini_contime`
+--
+
+/*!40000 ALTER TABLE `wiz_mini_contime` DISABLE KEYS */;
+INSERT INTO `wiz_mini_contime` VALUES (2009020915,2,'test'),(2009020918,1,'test'),(2009021114,1,'test'),(2009020919,1,'test'),(2009021011,1,'test'),(2009021012,1,'test'),(2009021014,1,'test'),(2009021017,2,'test'),(2009021109,1,'test'),(2009021110,3,'test'),(2009021111,1,'test'),(2009021113,1,'test'),(2009021115,2,'test2'),(2009021115,2,'test'),(2009021116,2,'test2'),(2009021116,1,'test'),(2009021117,2,'test'),(2009021117,2,'test2'),(2009021118,2,'test'),(2009021118,4,'test2'),(2009021123,1,'test'),(2009021123,1,'test2'),(2009021210,2,'test'),(2009021210,1,'test2'),(2009021211,4,'test'),(2009021212,1,'test'),(2009021213,1,'test'),(2009021214,2,'test'),(2009021214,1,'test2'),(2009021215,1,'test'),(2009021216,1,'test'),(2009021217,1,'test2'),(2009021218,1,'test'),(2009021218,1,'test2'),(2009021219,1,'test'),(2009021219,1,'test2'),(2009021310,4,'test'),(2009021310,1,'test2'),(2009021311,1,'test'),(2009021311,1,'test2'),(2009021313,1,'test'),(2009021315,1,'test2'),(2009021315,1,'test'),(2009021316,2,'test'),(2009021316,1,'test2'),(2009021317,2,'test'),(2009021323,1,'test'),(2009021422,1,'test'),(2009021610,1,'test'),(2009021611,1,'test'),(2009021612,1,'test2'),(2009021612,1,'test'),(2009021613,1,'test'),(2009021614,2,'test2'),(2009021614,1,'test'),(2009021616,1,'test2'),(2009021710,2,'test'),(2009022510,2,'test'),(2009021713,2,'test'),(2009021713,1,'test2'),(2009021714,3,'test'),(2009021715,1,'test'),(2009021721,1,'test'),(2009021722,1,'test2'),(2009021811,1,'test'),(2009021814,1,'test'),(2009021815,1,'test'),(2009021815,1,'test2'),(2009021818,1,'test'),(2009021818,1,'test2'),(2009022010,2,'test'),(2009022014,1,'test'),(2009022015,1,'test'),(2009022015,1,'test2'),(2009022016,1,'test2'),(2009022018,1,'test'),(2009022018,1,'test2'),(2009022309,1,'test'),(2009022311,1,'test'),(2009022313,6,'test'),(2009022313,1,'test2'),(2009022314,1,'test'),(2009022317,1,'test'),(2009022318,1,'wizhome'),(2009022319,1,'test'),(2009022319,1,'test2'),(2009022323,1,'test'),(2009022418,1,'test'),(2009022419,1,'test'),(2009022513,1,'test2'),(2009022514,1,'test2'),(2009022514,1,'test'),(2009030310,1,'test'),(2009030313,2,'test'),(2009030517,3,'test'),(2009030519,1,'test'),(2009030615,3,'test'),(2009030616,2,'test'),(2009030711,1,'test'),(2009031620,2,'test'),(2009031700,1,'test'),(2009031711,1,'test'),(2009031712,1,'test'),(2009031714,1,'test'),(2009031715,1,'test2'),(2009031715,1,'test'),(2009031716,1,'test'),(2009031718,1,'test'),(2009031721,1,'test'),(2009031801,1,'test'),(2009031816,1,'test'),(2009031819,1,'test'),(2009031822,1,'test'),(2009031916,1,'test'),(2009031916,1,'test2'),(2009032022,1,'test'),(2009032322,1,'test'),(2009033114,1,'test'),(2010120718,1,'test'),(2011082517,1,'test'),(2010121510,1,'test'),(2011061504,1,'test'),(2011082615,1,'test'),(2011083009,1,'test'),(2011090820,1,'test');
+/*!40000 ALTER TABLE `wiz_mini_contime` ENABLE KEYS */;
+
+--
+-- Table structure for table `wiz_mini_data`
+--
+
+DROP TABLE IF EXISTS `wiz_mini_data`;
+CREATE TABLE `wiz_mini_data` (
+  `idx` int(10) NOT NULL auto_increment,
+  `code` varchar(30) default NULL,
+  `prino` int(10) default NULL,
+  `grpno` int(10) default NULL,
+  `depno` int(2) default NULL,
+  `notice` char(1) default NULL,
+  `category` varchar(80) default NULL,
+  `memid` varchar(20) default NULL,
+  `memgrp` varchar(255) default NULL,
+  `name` varchar(20) default NULL,
+  `email` varchar(50) default NULL,
+  `tphone` varchar(20) default NULL,
+  `hphone` varchar(20) default NULL,
+  `zipcode` varchar(20) default NULL,
+  `address` varchar(20) default NULL,
+  `subject` varchar(100) default NULL,
+  `content` mediumtext,
+  `addinfo1` varchar(255) default NULL,
+  `addinfo2` varchar(255) default NULL,
+  `addinfo3` varchar(255) default NULL,
+  `addinfo4` varchar(255) default NULL,
+  `addinfo5` varchar(255) default NULL,
+  `ctype` enum('T','H') default NULL,
+  `privacy` enum('Y','N') default NULL,
+  `upfile1` varchar(40) default NULL,
+  `upfile2` varchar(40) default NULL,
+  `upfile3` varchar(40) default NULL,
+  `upfile4` varchar(40) default NULL,
+  `upfile5` varchar(40) default NULL,
+  `upfile6` varchar(40) default NULL,
+  `upfile7` varchar(40) default NULL,
+  `upfile8` varchar(40) default NULL,
+  `upfile9` varchar(40) default NULL,
+  `upfile10` varchar(40) default NULL,
+  `upfile11` varchar(40) default NULL,
+  `upfile12` varchar(40) default NULL,
+  `upfile1_name` varchar(255) default NULL,
+  `upfile2_name` varchar(255) default NULL,
+  `upfile3_name` varchar(255) default NULL,
+  `upfile4_name` varchar(255) default NULL,
+  `upfile5_name` varchar(255) default NULL,
+  `upfile6_name` varchar(255) default NULL,
+  `upfile7_name` varchar(255) default NULL,
+  `upfile8_name` varchar(255) default NULL,
+  `upfile9_name` varchar(255) default NULL,
+  `upfile10_name` varchar(255) default NULL,
+  `upfile11_name` varchar(255) default NULL,
+  `upfile12_name` varchar(255) default NULL,
+  `movie1` mediumtext,
+  `movie2` mediumtext,
+  `movie3` mediumtext,
+  `passwd` varchar(30) default NULL,
+  `count` int(8) default NULL,
+  `recom` int(8) default NULL,
+  `comment` int(8) default NULL,
+  `ip` varchar(15) default NULL,
+  `wdate` int(10) default NULL,
+  `ucc_file` varchar(255) default NULL,
+  `ucc_movie` varchar(255) default NULL,
+  `ucc_img` varchar(255) default NULL,
+  `ucc_size` int(11) default NULL,
+  `ucc_time` varchar(10) default NULL,
+  `miniid` varchar(20) default NULL,
+  PRIMARY KEY  (`idx`),
+  KEY `code` (`code`)
+) TYPE=MyISAM AUTO_INCREMENT=4;
+
+--
+-- Dumping data for table `wiz_mini_data`
+--
+
+/*!40000 ALTER TABLE `wiz_mini_data` DISABLE KEYS */;
+INSERT INTO `wiz_mini_data` VALUES (1,'data',1,1,0,'','4','test','test','�׽�Ʈ','help@abc.com','','','','','111','111 ','','','','','','H','','0902250154379_1.jpg','','','','','','','','','','','','pic_314x263.jpg','','','','','','','','','','','','','','','test',19,0,3,'121.134.141.93',1235370144,'','','',0,'','test');
+/*!40000 ALTER TABLE `wiz_mini_data` ENABLE KEYS */;
+
+--
+-- Table structure for table `wiz_mini_friend`
+--
+
+DROP TABLE IF EXISTS `wiz_mini_friend`;
+CREATE TABLE `wiz_mini_friend` (
+  `idx` int(11) NOT NULL auto_increment,
+  `myid` varchar(20) default NULL,
+  `mynick` varchar(30) default NULL,
+  `frdid` varchar(20) default NULL,
+  `frdnick` varchar(30) default NULL,
+  `message` mediumtext,
+  `status` enum('Y','N') default NULL,
+  `wdate` datetime default NULL,
+  PRIMARY KEY  (`idx`)
+) TYPE=MyISAM AUTO_INCREMENT=9;
+
+--
+-- Dumping data for table `wiz_mini_friend`
+--
+
+/*!40000 ALTER TABLE `wiz_mini_friend` DISABLE KEYS */;
+INSERT INTO `wiz_mini_friend` VALUES (8,'test2','22','test','11','33','Y','2009-02-11 18:48:44');
+/*!40000 ALTER TABLE `wiz_mini_friend` ENABLE KEYS */;
+
+--
+-- Table structure for table `wiz_mini_guest`
+--
+
+DROP TABLE IF EXISTS `wiz_mini_guest`;
+CREATE TABLE `wiz_mini_guest` (
+  `idx` int(10) NOT NULL auto_increment,
+  `code` varchar(30) default NULL,
+  `prino` int(10) default NULL,
+  `grpno` int(10) default NULL,
+  `depno` int(2) default NULL,
+  `notice` char(1) default NULL,
+  `category` varchar(80) default NULL,
+  `memid` varchar(20) default NULL,
+  `memgrp` varchar(255) default NULL,
+  `name` varchar(20) default NULL,
+  `email` varchar(50) default NULL,
+  `tphone` varchar(20) default NULL,
+  `hphone` varchar(20) default NULL,
+  `zipcode` varchar(20) default NULL,
+  `address` varchar(20) default NULL,
+  `subject` varchar(100) default NULL,
+  `content` mediumtext,
+  `addinfo1` varchar(255) default NULL,
+  `addinfo2` varchar(255) default NULL,
+  `addinfo3` varchar(255) default NULL,
+  `addinfo4` varchar(255) default NULL,
+  `addinfo5` varchar(255) default NULL,
+  `ctype` enum('T','H') default NULL,
+  `privacy` enum('Y','N') default NULL,
+  `upfile1` varchar(40) default NULL,
+  `upfile2` varchar(40) default NULL,
+  `upfile3` varchar(40) default NULL,
+  `upfile4` varchar(40) default NULL,
+  `upfile5` varchar(40) default NULL,
+  `upfile6` varchar(40) default NULL,
+  `upfile7` varchar(40) default NULL,
+  `upfile8` varchar(40) default NULL,
+  `upfile9` varchar(40) default NULL,
+  `upfile10` varchar(40) default NULL,
+  `upfile11` varchar(40) default NULL,
+  `upfile12` varchar(40) default NULL,
+  `upfile1_name` varchar(255) default NULL,
+  `upfile2_name` varchar(255) default NULL,
+  `upfile3_name` varchar(255) default NULL,
+  `upfile4_name` varchar(255) default NULL,
+  `upfile5_name` varchar(255) default NULL,
+  `upfile6_name` varchar(255) default NULL,
+  `upfile7_name` varchar(255) default NULL,
+  `upfile8_name` varchar(255) default NULL,
+  `upfile9_name` varchar(255) default NULL,
+  `upfile10_name` varchar(255) default NULL,
+  `upfile11_name` varchar(255) default NULL,
+  `upfile12_name` varchar(255) default NULL,
+  `movie1` mediumtext,
+  `movie2` mediumtext,
+  `movie3` mediumtext,
+  `passwd` varchar(30) default NULL,
+  `count` int(8) default NULL,
+  `recom` int(8) default NULL,
+  `comment` int(8) default NULL,
+  `ip` varchar(15) default NULL,
+  `wdate` int(10) default NULL,
+  `ucc_file` varchar(255) default NULL,
+  `ucc_movie` varchar(255) default NULL,
+  `ucc_img` varchar(255) default NULL,
+  `ucc_size` int(11) default NULL,
+  `ucc_time` varchar(10) default NULL,
+  `miniid` varchar(20) default NULL,
+  PRIMARY KEY  (`idx`),
+  KEY `code` (`code`)
+) TYPE=MyISAM AUTO_INCREMENT=4;
+
+--
+-- Dumping data for table `wiz_mini_guest`
+--
+
+/*!40000 ALTER TABLE `wiz_mini_guest` DISABLE KEYS */;
+INSERT INTO `wiz_mini_guest` VALUES (1,'guest',1,1,0,'','','test','test','test','help@abc.com','','','','','qqqq\r\n','qqqq\r\n','','','','','','H','','','','','','','','','','','','','','','','','','','','','','','','','','','','','test',1,0,1,'121.134.141.93',1235371178,'','','',0,'','test'),(2,'guest',2,2,0,'','','test','test','test','help@abc.com','','','','','eeee','eeee','','','','','','H','','','','','','','','','','','','','','','','','','','','','','','','','','','','','test',0,0,0,'121.134.141.93',1235371184,'','','',0,'','test'),(3,'guest',3,3,0,'','','test','test','test','help@abc.com','','','','','wwww','wwww','','','','','','H','','','','','','','','','','','','','','','','','','','','','','','','','','','','','test',0,0,0,'121.134.141.93',1235371189,'','','',0,'','test');
+/*!40000 ALTER TABLE `wiz_mini_guest` ENABLE KEYS */;
+
+--
+-- Table structure for table `wiz_mini_info`
+--
+
+DROP TABLE IF EXISTS `wiz_mini_info`;
+CREATE TABLE `wiz_mini_info` (
+  `idx` int(11) NOT NULL auto_increment,
+  `memid` varchar(20) default NULL,
+  `title` varchar(50) default NULL,
+  `photo` varchar(50) default NULL,
+  `miniurl` varchar(50) default NULL,
+  `skin` varchar(50) default NULL,
+  `searchkey` mediumtext,
+  `info` mediumtext,
+  `best` enum('Y','N') default NULL,
+  `privacy` enum('Y','N') default NULL,
+  `birthday_privacy` enum('Y','N','F') default NULL,
+  `email_pricacy` enum('Y','N','F') default NULL,
+  `tphone_privacy` enum('Y','N','F') default NULL,
+  `hphone_privacy` enum('Y','N','F') default NULL,
+  `address_privacy` enum('Y','N','F') default NULL,
+  `menu_use` varchar(255) default NULL,
+  `bbs_permi` enum('Y','N','F') default NULL,
+  `data_permi` enum('Y','N','F') default NULL,
+  `photo_permi` enum('Y','N','F') default NULL,
+  `movie_permi` enum('Y','N','F') default NULL,
+  `guest_permi` enum('Y','N','F') default NULL,
+  `wdate` datetime default NULL,
+  PRIMARY KEY  (`idx`)
+) TYPE=MyISAM AUTO_INCREMENT=9;
+
+--
+-- Dumping data for table `wiz_mini_info`
+--
+
+/*!40000 ALTER TABLE `wiz_mini_info` DISABLE KEYS */;
+INSERT INTO `wiz_mini_info` VALUES (1,'test','�׽�Ʈ Ȩ������','test.jpg','test','0902090211087.jpg','1112','�Ƹ��ٿ��Լ���\r\n����������ģ���Ѹ����϶�\r\n\r\n\r\n���������������\r\n���������������\r\n����»����������','','Y','F','N','N','N','N','PRO/BBS/DATA/PHOTO/MOVIE/VISIT/','F','F','F','F','Y','2009-02-05 19:36:09'),(2,'test2','test2���� �̴�Ȩ��','','test2','','','','','Y','N','N','N','N','N','PRO/BBS/DATA/PHOTO/MOVIE/VISIT/','Y','Y','Y','Y','Y','2009-02-12 19:06:25');
+/*!40000 ALTER TABLE `wiz_mini_info` ENABLE KEYS */;
+
+--
+-- Table structure for table `wiz_mini_movie`
+--
+
+DROP TABLE IF EXISTS `wiz_mini_movie`;
+CREATE TABLE `wiz_mini_movie` (
+  `idx` int(10) NOT NULL auto_increment,
+  `code` varchar(30) default NULL,
+  `prino` int(10) default NULL,
+  `grpno` int(10) default NULL,
+  `depno` int(2) default NULL,
+  `notice` char(1) default NULL,
+  `category` varchar(80) default NULL,
+  `memid` varchar(20) default NULL,
+  `memgrp` varchar(255) default NULL,
+  `name` varchar(20) default NULL,
+  `email` varchar(50) default NULL,
+  `tphone` varchar(20) default NULL,
+  `hphone` varchar(20) default NULL,
+  `zipcode` varchar(20) default NULL,
+  `address` varchar(20) default NULL,
+  `subject` varchar(100) default NULL,
+  `content` mediumtext,
+  `addinfo1` varchar(255) default NULL,
+  `addinfo2` varchar(255) default NULL,
+  `addinfo3` varchar(255) default NULL,
+  `addinfo4` varchar(255) default NULL,
+  `addinfo5` varchar(255) default NULL,
+  `ctype` enum('T','H') default NULL,
+  `privacy` enum('Y','N') default NULL,
+  `upfile1` varchar(40) default NULL,
+  `upfile2` varchar(40) default NULL,
+  `upfile3` varchar(40) default NULL,
+  `upfile4` varchar(40) default NULL,
+  `upfile5` varchar(40) default NULL,
+  `upfile6` varchar(40) default NULL,
+  `upfile7` varchar(40) default NULL,
+  `upfile8` varchar(40) default NULL,
+  `upfile9` varchar(40) default NULL,
+  `upfile10` varchar(40) default NULL,
+  `upfile11` varchar(40) default NULL,
+  `upfile12` varchar(40) default NULL,
+  `upfile1_name` varchar(255) default NULL,
+  `upfile2_name` varchar(255) default NULL,
+  `upfile3_name` varchar(255) default NULL,
+  `upfile4_name` varchar(255) default NULL,
+  `upfile5_name` varchar(255) default NULL,
+  `upfile6_name` varchar(255) default NULL,
+  `upfile7_name` varchar(255) default NULL,
+  `upfile8_name` varchar(255) default NULL,
+  `upfile9_name` varchar(255) default NULL,
+  `upfile10_name` varchar(255) default NULL,
+  `upfile11_name` varchar(255) default NULL,
+  `upfile12_name` varchar(255) default NULL,
+  `movie1` mediumtext,
+  `movie2` mediumtext,
+  `movie3` mediumtext,
+  `passwd` varchar(30) default NULL,
+  `count` int(8) default NULL,
+  `recom` int(8) default NULL,
+  `comment` int(8) default NULL,
+  `ip` varchar(15) default NULL,
+  `wdate` int(10) default NULL,
+  `ucc_file` varchar(255) default NULL,
+  `ucc_movie` varchar(255) default NULL,
+  `ucc_img` varchar(255) default NULL,
+  `ucc_size` int(11) default NULL,
+  `ucc_time` varchar(10) default NULL,
+  `miniid` varchar(20) default NULL,
+  PRIMARY KEY  (`idx`),
+  KEY `code` (`code`)
+) TYPE=MyISAM AUTO_INCREMENT=3;
+
+--
+-- Dumping data for table `wiz_mini_movie`
+--
+
+/*!40000 ALTER TABLE `wiz_mini_movie` DISABLE KEYS */;
+INSERT INTO `wiz_mini_movie` VALUES (1,'movie',1,1,0,'','9','test','test','�׽�Ʈ','help@abc.com','','','','','test','test','','','','','','H','','','','','','','','','','','','','','','','','','','','','','','','','','','','','test',8,0,0,'121.134.141.93',1235370763,'0809040917045_m1.wmv','200922513587_162439373052.flv','200922513587_162439373052.jpg',15421674,'00:01:02','test'),(2,'movie',2,2,0,'','9','test','test','�׽�Ʈ','help@abc.com','','','','','44','44','','','','','','H','','','','','','','','','','','','','','','','','','','','','','','','','','','','','test',11,0,0,'121.134.141.93',1235379159,'0809040917045_m1.wmv','200922513592_162982033232.flv','200922513592_162982033232.jpg',15421674,'00:01:02','test');
+/*!40000 ALTER TABLE `wiz_mini_movie` ENABLE KEYS */;
+
+--
+-- Table structure for table `wiz_mini_music`
+--
+
+DROP TABLE IF EXISTS `wiz_mini_music`;
+CREATE TABLE `wiz_mini_music` (
+  `idx` int(11) NOT NULL auto_increment,
+  `miniid` varchar(20) default NULL,
+  `title` varchar(255) default NULL,
+  `artist` varchar(255) default NULL,
+  `upfile` varchar(50) default NULL,
+  `words` mediumtext,
+  `wdate` datetime default NULL,
+  PRIMARY KEY  (`idx`)
+) TYPE=MyISAM AUTO_INCREMENT=12;
+
+--
+-- Dumping data for table `wiz_mini_music`
+--
+
+/*!40000 ALTER TABLE `wiz_mini_music` DISABLE KEYS */;
+INSERT INTO `wiz_mini_music` VALUES (2,'test','�˼������λ�','�̹���','0903310256182.mp3','','2009-02-10 17:37:18'),(3,'test','���ƶ󺴾Ƹ�','����ö','0902131038116.mp3','���� 13131313','2009-02-10 17:40:38'),(4,'test','�������ڸ�','�̾�','0902110713144.mp3','','2009-02-11 19:13:14'),(5,'test','���� ���� ���̻�','�輺ȣ','0902130521515.mp3','','2009-02-13 17:21:51');
+/*!40000 ALTER TABLE `wiz_mini_music` ENABLE KEYS */;
+
+--
+-- Table structure for table `wiz_mini_photo`
+--
+
+DROP TABLE IF EXISTS `wiz_mini_photo`;
+CREATE TABLE `wiz_mini_photo` (
+  `idx` int(10) NOT NULL auto_increment,
+  `code` varchar(30) default NULL,
+  `prino` int(10) default NULL,
+  `grpno` int(10) default NULL,
+  `depno` int(2) default NULL,
+  `notice` char(1) default NULL,
+  `category` varchar(80) default NULL,
+  `memid` varchar(20) default NULL,
+  `memgrp` varchar(255) default NULL,
+  `name` varchar(20) default NULL,
+  `email` varchar(50) default NULL,
+  `tphone` varchar(20) default NULL,
+  `hphone` varchar(20) default NULL,
+  `zipcode` varchar(20) default NULL,
+  `address` varchar(20) default NULL,
+  `subject` varchar(100) default NULL,
+  `content` mediumtext,
+  `addinfo1` varchar(255) default NULL,
+  `addinfo2` varchar(255) default NULL,
+  `addinfo3` varchar(255) default NULL,
+  `addinfo4` varchar(255) default NULL,
+  `addinfo5` varchar(255) default NULL,
+  `ctype` enum('T','H') default NULL,
+  `privacy` enum('Y','N') default NULL,
+  `upfile1` varchar(40) default NULL,
+  `upfile2` varchar(40) default NULL,
+  `upfile3` varchar(40) default NULL,
+  `upfile4` varchar(40) default NULL,
+  `upfile5` varchar(40) default NULL,
+  `upfile6` varchar(40) default NULL,
+  `upfile7` varchar(40) default NULL,
+  `upfile8` varchar(40) default NULL,
+  `upfile9` varchar(40) default NULL,
+  `upfile10` varchar(40) default NULL,
+  `upfile11` varchar(40) default NULL,
+  `upfile12` varchar(40) default NULL,
+  `upfile1_name` varchar(255) default NULL,
+  `upfile2_name` varchar(255) default NULL,
+  `upfile3_name` varchar(255) default NULL,
+  `upfile4_name` varchar(255) default NULL,
+  `upfile5_name` varchar(255) default NULL,
+  `upfile6_name` varchar(255) default NULL,
+  `upfile7_name` varchar(255) default NULL,
+  `upfile8_name` varchar(255) default NULL,
+  `upfile9_name` varchar(255) default NULL,
+  `upfile10_name` varchar(255) default NULL,
+  `upfile11_name` varchar(255) default NULL,
+  `upfile12_name` varchar(255) default NULL,
+  `movie1` mediumtext,
+  `movie2` mediumtext,
+  `movie3` mediumtext,
+  `passwd` varchar(30) default NULL,
+  `count` int(8) default NULL,
+  `recom` int(8) default NULL,
+  `comment` int(8) default NULL,
+  `ip` varchar(15) default NULL,
+  `wdate` int(10) default NULL,
+  `ucc_file` varchar(255) default NULL,
+  `ucc_movie` varchar(255) default NULL,
+  `ucc_img` varchar(255) default NULL,
+  `ucc_size` int(11) default NULL,
+  `ucc_time` varchar(10) default NULL,
+  `miniid` varchar(20) default NULL,
+  PRIMARY KEY  (`idx`),
+  KEY `code` (`code`)
+) TYPE=MyISAM AUTO_INCREMENT=5;
+
+--
+-- Dumping data for table `wiz_mini_photo`
+--
+
+/*!40000 ALTER TABLE `wiz_mini_photo` DISABLE KEYS */;
+INSERT INTO `wiz_mini_photo` VALUES (1,'photo',1,1,0,'','11','test','test','�׽�Ʈ','help@abc.com','','','','','test','test','','','','','','H','','0902250157157_1.jpg','','','','','','','','','','','','photo_s01.jpg','','','','','','','','','','','','','','','test',8,0,0,'121.134.141.93',1235370577,'','','',0,'','test'),(2,'photo',2,2,0,'','11','test','test','�׽�Ʈ','help@abc.com','','','','','22','222','','','','','','H','','0902250157221_1.jpg','','','','','','','','','','','','photo_s03.jpg','','','','','','','','','','','','','','','test',4,0,0,'121.134.141.93',1235370593,'','','',0,'','test'),(3,'photo',3,3,0,'','11','test','test','�׽�Ʈ','help@abc.com','','','','','33','33','','','','','','H','','0902250154496_1.jpg','','','','','','','','','','','','picture.jpg','','','','','','','','','','','','','','','test',6,0,0,'121.134.141.93',1235379149,'','','',0,'','test');
+/*!40000 ALTER TABLE `wiz_mini_photo` ENABLE KEYS */;
+
+--
+-- Table structure for table `wiz_mini_profile`
+--
+
+DROP TABLE IF EXISTS `wiz_mini_profile`;
+CREATE TABLE `wiz_mini_profile` (
+  `idx` int(11) NOT NULL auto_increment,
+  `miniid` varchar(20) default NULL,
+  `content` mediumtext,
+  `wdate` datetime default NULL,
+  PRIMARY KEY  (`idx`)
+) TYPE=MyISAM AUTO_INCREMENT=13;
+
+--
+-- Dumping data for table `wiz_mini_profile`
+--
+
+/*!40000 ALTER TABLE `wiz_mini_profile` DISABLE KEYS */;
+INSERT INTO `wiz_mini_profile` VALUES (10,'test','�Ƹ��ٿ��Լ��� <BR>����������ģ���Ѹ����϶� <BR><BR><BR>��������������� <BR>��������������� <BR>����»����������','2009-02-20 10:40:04');
+/*!40000 ALTER TABLE `wiz_mini_profile` ENABLE KEYS */;
+
+--
+-- Table structure for table `wiz_mini_skin`
+--
+
+DROP TABLE IF EXISTS `wiz_mini_skin`;
+CREATE TABLE `wiz_mini_skin` (
+  `idx` int(11) NOT NULL auto_increment,
+  `title` varchar(255) default NULL,
+  `thumb` varchar(255) default NULL,
+  `skin` varchar(255) default NULL,
+  `miniid` varchar(20) default NULL,
+  PRIMARY KEY  (`idx`)
+) TYPE=MyISAM AUTO_INCREMENT=13;
+
+--
+-- Dumping data for table `wiz_mini_skin`
+--
+
+/*!40000 ALTER TABLE `wiz_mini_skin` DISABLE KEYS */;
+INSERT INTO `wiz_mini_skin` VALUES (1,'��Ų 1','0902251115065_thumb.jpg','0902251115065.jpg',''),(3,'��Ų 2','0902090210442_thumb.jpg','0902090210442.jpg',''),(4,'��Ų 3','0902090210562_thumb.jpg','0902090210562.jpg',''),(5,'��Ų 4','0902090211087_thumb.jpg','0902090211087.jpg',''),(6,'��Ų 5','0902090211189_thumb.jpg','0902090211189.jpg',''),(12,'test','0902200434429_thumb.jpg','0902160510414.jpg','test');
+/*!40000 ALTER TABLE `wiz_mini_skin` ENABLE KEYS */;
+
+--
+-- Table structure for table `wiz_otherinfo`
+--
+
+DROP TABLE IF EXISTS `wiz_otherinfo`;
+CREATE TABLE `wiz_otherinfo` (
+  `idx` int(10) NOT NULL auto_increment,
+  `type` varchar(20) default NULL,
+  `info01` varchar(255) default NULL,
+  `info02` varchar(255) default NULL,
+  `info03` varchar(255) default NULL,
+  `info04` varchar(255) default NULL,
+  `info05` varchar(255) default NULL,
+  `info06` varchar(255) default NULL,
+  `info07` varchar(255) default NULL,
+  `info08` varchar(255) default NULL,
+  `info09` varchar(255) default NULL,
+  `info10` varchar(255) default NULL,
+  PRIMARY KEY  (`idx`),
+  KEY `type` (`type`)
+) TYPE=MyISAM AUTO_INCREMENT=10;
+
+--
+-- Dumping data for table `wiz_otherinfo`
+--
+
+/*!40000 ALTER TABLE `wiz_otherinfo` DISABLE KEYS */;
+INSERT INTO `wiz_otherinfo` VALUES (1,'domain','test.com','test.com','test','test','2007-10-01','','','','',''),(2,'email','test@test.com','test','test','test','','','','','','');
+/*!40000 ALTER TABLE `wiz_otherinfo` ENABLE KEYS */;
+
+--
+-- Table structure for table `wiz_page`
+--
+
+DROP TABLE IF EXISTS `wiz_page`;
+CREATE TABLE `wiz_page` (
+  `idx` int(10) NOT NULL auto_increment,
+  `code` varchar(30) default NULL,
+  `title` varchar(255) default NULL,
+  `menu` varchar(255) default NULL,
+  `url` mediumtext,
+  `level` varchar(6) default NULL,
+  `content` mediumtext,
+  `prior` int(11) default NULL,
+  `wdate` date default NULL,
+  PRIMARY KEY  (`idx`),
+  UNIQUE KEY `code` (`code`)
+) TYPE=MyISAM AUTO_INCREMENT=18;
+
+--
+-- Dumping data for table `wiz_page`
+--
+
+/*!40000 ALTER TABLE `wiz_page` DISABLE KEYS */;
+/*!40000 ALTER TABLE `wiz_page` ENABLE KEYS */;
+
+--
+-- Table structure for table `wiz_point`
+--
+
+DROP TABLE IF EXISTS `wiz_point`;
+CREATE TABLE `wiz_point` (
+  `idx` int(10) unsigned NOT NULL auto_increment,
+  `bidx` int(10) unsigned default NULL,
+  `cidx` int(10) unsigned default NULL,
+  `midx` int(10) unsigned default NULL,
+  `ptype` varchar(7) default NULL,
+  `mode` varchar(5) default NULL,
+  `memid` varchar(20) default NULL,
+  `point` int(11) default NULL,
+  `memo` varchar(255) default NULL,
+  `wdate` datetime default NULL,
+  PRIMARY KEY  (`idx`)
+) TYPE=MyISAM AUTO_INCREMENT=315;
+
+--
+-- Dumping data for table `wiz_point`
+--
+
+/*!40000 ALTER TABLE `wiz_point` DISABLE KEYS */;
+INSERT INTO `wiz_point` VALUES (164,483,0,0,'BBS','recom','test',10,'�Խ��� ��õ ����Ʈ','2008-12-24 14:50:37'),(165,0,0,0,'','point','test',1000,'����Ʈ �׽�Ʈ','2008-12-24 14:56:09'),(166,483,0,0,'BBS','recom','test',10,'�Խ��� ��õ ����Ʈ','2008-12-24 16:32:55'),(167,483,0,0,'BBS','view','test',-10,'�Խ��� ���� ����Ʈ','2008-12-24 17:04:53'),(312,0,0,0,'','point','test2',1111,'����Ʈ����','2009-03-23 19:07:55'),(313,0,0,0,'LOGIN','','test',10,'�α��� ����Ʈ','2009-06-17 10:06:53');
+/*!40000 ALTER TABLE `wiz_point` ENABLE KEYS */;
+
+--
+-- Table structure for table `wiz_poll`
+--
+
+DROP TABLE IF EXISTS `wiz_poll`;
+CREATE TABLE `wiz_poll` (
+  `idx` int(10) NOT NULL auto_increment,
+  `code` varchar(20) default NULL,
+  `polluse` enum('Y','N') default NULL,
+  `pollmain` enum('Y','N') default NULL,
+  `sdate` date default NULL,
+  `edate` date default NULL,
+  `apermi` enum('N','M') default NULL,
+  `cpermi` enum('N','M') default NULL,
+  `subject` varchar(150) default NULL,
+  `content` mediumtext,
+  `wdate` date default NULL,
+  `cnt` int(10) default '0',
+  PRIMARY KEY  (`idx`)
+) TYPE=MyISAM AUTO_INCREMENT=21;
+
+--
+-- Dumping data for table `wiz_poll`
+--
+
+/*!40000 ALTER TABLE `wiz_poll` DISABLE KEYS */;
+/*!40000 ALTER TABLE `wiz_poll` ENABLE KEYS */;
+
+--
+-- Table structure for table `wiz_polldata`
+--
+
+DROP TABLE IF EXISTS `wiz_polldata`;
+CREATE TABLE `wiz_polldata` (
+  `idx` int(10) NOT NULL auto_increment,
+  `pidx` int(10) NOT NULL default '0',
+  `question` varchar(150) default NULL,
+  `answer01` varchar(100) default NULL,
+  `count01` int(10) default NULL,
+  `answer02` varchar(100) default NULL,
+  `count02` int(10) default NULL,
+  `answer03` varchar(100) default NULL,
+  `count03` int(10) default NULL,
+  `answer04` varchar(100) default NULL,
+  `count04` int(10) default NULL,
+  `answer05` varchar(100) default NULL,
+  `count05` int(10) default NULL,
+  `answer06` varchar(100) default NULL,
+  `count06` int(10) default NULL,
+  `answer07` varchar(100) default NULL,
+  `count07` int(10) default NULL,
+  `answer08` varchar(100) default NULL,
+  `count08` int(10) default NULL,
+  `answer09` varchar(100) default NULL,
+  `count09` int(10) default NULL,
+  `answer10` varchar(100) default NULL,
+  `count10` int(10) default NULL,
+  PRIMARY KEY  (`idx`),
+  KEY `code` (`pidx`)
+) TYPE=MyISAM AUTO_INCREMENT=23;
+
+--
+-- Dumping data for table `wiz_polldata`
+--
+
+/*!40000 ALTER TABLE `wiz_polldata` DISABLE KEYS */;
+/*!40000 ALTER TABLE `wiz_polldata` ENABLE KEYS */;
+
+--
+-- Table structure for table `wiz_pollinfo`
+--
+
+DROP TABLE IF EXISTS `wiz_pollinfo`;
+CREATE TABLE `wiz_pollinfo` (
+  `code` varchar(20) NOT NULL default '',
+  `title` varchar(100) NOT NULL default '',
+  `lpermi` varchar(6) default NULL,
+  `rpermi` varchar(6) default NULL,
+  `apermi` varchar(6) default NULL,
+  `cpermi` varchar(6) default NULL,
+  `skin` varchar(100) default NULL,
+  `permsg` varchar(255) default NULL,
+  `perurl` varchar(255) default NULL,
+  `mainskin` mediumtext,
+  `purl` mediumtext,
+  `wdate` date default NULL,
+  `datetype_list` varchar(30) default NULL,
+  `datetype_view` varchar(30) default NULL,
+  `rows` int(3) default NULL,
+  `lists` int(3) default NULL,
+  `newc` int(3) default NULL,
+  `subject_len` int(3) default NULL,
+  `spam_check` enum('Y','N') default NULL,
+  `comment` enum('Y','N') default NULL,
+  `abuse` enum('Y','N') default NULL,
+  `abtxt` mediumtext,
+  PRIMARY KEY  (`code`)
+) TYPE=MyISAM;
+
+--
+-- Dumping data for table `wiz_pollinfo`
+--
+
+/*!40000 ALTER TABLE `wiz_pollinfo` DISABLE KEYS */;
+INSERT INTO `wiz_pollinfo` VALUES ('poll','��������','','','','','pollBasic','������ �����ϴ�.','/sub/login.php','<table width=\"100%\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\">\r\n  <tr>\r\n    <td height=\"20\" align=\"left\"><b>{SUBJECT}</b></td>\r\n  </tr>\r\n  <tr><td height=\"5\"></td></tr>\r\n  <tr><td bgcolor=\"f3f3f3\" style=\"padding:4px\" align=\"left\">{CONTENT}</td></tr>\r\n  <tr><td height=\"7\"></td></tr>\r\n\r\n  [LOOP]\r\n  <tr><td align=\"left\"><img src=\"{SKIN_DIR}/image/point.gif\" align=\"absmiddle\"> {QUESTION}</td></tr>\r\n\r\n  [LOOP2]\r\n  <tr><td align=\"left\">{ANSWER}</td></tr>\r\n  [/LOOP2]\r\n\r\n  [/LOOP]\r\n\r\n  <tr><td height=\"10\"></td></tr>\r\n  <tr>\r\n    <td align=\"right\">{VOTE_BTN} {VIEW_BTN}</td>\r\n  </tr>\r\n</table>','sub03/sub03_11.php','2007-10-14','%Y.%m.%d','%Y.%m.%d',10,10,3,0,'Y','Y','Y','');
+/*!40000 ALTER TABLE `wiz_pollinfo` ENABLE KEYS */;
+
+--
+-- Table structure for table `wiz_popup`
+--
+
+DROP TABLE IF EXISTS `wiz_popup`;
+CREATE TABLE `wiz_popup` (
+  `idx` int(3) NOT NULL auto_increment,
+  `isuse` enum('Y','N') default NULL,
+  `scroll` enum('Y','N') default NULL,
+  `posi_x` int(3) default NULL,
+  `posi_y` int(3) default NULL,
+  `size_x` int(3) default NULL,
+  `size_y` int(3) default NULL,
+  `sdate` date default NULL,
+  `edate` date default NULL,
+  `linkurl` varchar(255) default NULL,
+  `popup_type` char(1) default NULL,
+  `title` varchar(255) default NULL,
+  `content` mediumtext,
+  `wdate` date default NULL,
+  PRIMARY KEY  (`idx`)
+) TYPE=MyISAM AUTO_INCREMENT=12;
+
+--
+-- Dumping data for table `wiz_popup`
+--
+
+/*!40000 ALTER TABLE `wiz_popup` DISABLE KEYS */;
+INSERT INTO `wiz_popup` VALUES (1,'Y','Y',300,200,300,300,'2007-01-01','2012-12-31','','W','�˾� �׽�Ʈ','�˾��׽�Ʈ','2007-04-04');
+/*!40000 ALTER TABLE `wiz_popup` ENABLE KEYS */;
+
+--
+-- Table structure for table `wiz_prdinfo`
+--
+
+DROP TABLE IF EXISTS `wiz_prdinfo`;
+CREATE TABLE `wiz_prdinfo` (
+  `skin` varchar(100) default NULL,
+  `wdate` date default NULL,
+  `purl` mediumtext,
+  `prdcnt` int(3) default NULL,
+  `prdline` int(3) default NULL,
+  `maintype` varchar(20) default NULL,
+  `mainskin` mediumtext,
+  `prdname_len` int(3) default NULL
+) TYPE=MyISAM;
+
+--
+-- Dumping data for table `wiz_prdinfo`
+--
+
+/*!40000 ALTER TABLE `wiz_prdinfo` DISABLE KEYS */;
+INSERT INTO `wiz_prdinfo` VALUES ('prdBasic','2007-10-14','',4,0,'wdate','<table width=\'100%\' cellspacing=\'0\' cellpadding=\'0\' border=\'0\'>\r\n[LOOP]\r\n<td>\r\n  <table>\r\n    <tr><td align=\'center\'><img src=\'{PRDIMG}\' width=\'100\' height=\'100\' {PRDLINK}></td></tr>\r\n    <tr><td align=\'center\'>{PRDNAME}</td></tr>\r\n    <tr><td align=\'center\'>{PRDPRICE}��</td></tr>\r\n  </table>\r\n</td>\r\n[/LOOP]\r\n</table>',0);
+/*!40000 ALTER TABLE `wiz_prdinfo` ENABLE KEYS */;
+
+--
+-- Table structure for table `wiz_prdmain`
+--
+
+DROP TABLE IF EXISTS `wiz_prdmain`;
+CREATE TABLE `wiz_prdmain` (
+  `idx` int(10) unsigned NOT NULL auto_increment,
+  `prdcnt` smallint(6) default NULL,
+  `prdline` smallint(6) default NULL,
+  `maintype` varchar(20) default NULL,
+  `mainskin` mediumtext,
+  `prdname_len` smallint(6) default NULL,
+  `prdexp_len` smallint(6) default NULL,
+  PRIMARY KEY  (`idx`)
+) TYPE=MyISAM AUTO_INCREMENT=4;
+
+--
+-- Dumping data for table `wiz_prdmain`
+--
+
+/*!40000 ALTER TABLE `wiz_prdmain` DISABLE KEYS */;
+INSERT INTO `wiz_prdmain` VALUES (2,2,2,'wdate','<table border=\"0\" cellspacing=\"0\" cellpadding=\"0\">\r\n<tr>\r\n[LOOP]\r\n<td>\r\n  <table border=\"0\" cellspacing=\"0\" cellpadding=\"4\">\r\n    <tr>\r\n      <td rowspan=\"2\">\r\n      <a href=\"{PRDLINK}\"><img src=\"{PRDIMG}\" width=\"78\" height=\"78\" border=\"0\"></a>\r\n      </td>\r\n      <td><strong><a href=\"{PRDLINK}\">{PRDNAME}</a></strong><br>\r\n      <span class=\"s01\"><a href=\"{PRDLINK}\">{PRDEXP}</a></span>\r\n      </td>\r\n    </tr>\r\n  </table>\r\n</td>\r\n[/LOOP]\r\n</tr>\r\n</table>',30,30),(3,2,0,'recom','<table border=\"0\" cellspacing=\"0\" cellpadding=\"0\">\r\n<tr>\r\n[LOOP]\r\n<td>\r\n  <table width=\"190\" border=\"0\" cellspacing=\"0\" cellpadding=\"4\">\r\n    <tr>\r\n      <td rowspan=\"2\">\r\n      <a href=\"{PRDLINK}\"><img src=\"{PRDIMG}\" width=\"90\" height=\"72\" border=\"0\"></a>\r\n      </td>\r\n      <td align=\"left\" style=\"padding:5px\"><strong><a href=\"{PRDLINK}\">{PRDNAME}</a></strong><br>\r\n      <span class=\"s01\"><a href=\"{PRDLINK}\">{PRDEXP}</a></span>\r\n      </td>\r\n    </tr>\r\n  </table>\r\n</td>\r\n[/LOOP]\r\n</tr>\r\n</table>',30,30);
+/*!40000 ALTER TABLE `wiz_prdmain` ENABLE KEYS */;
+
+--
+-- Table structure for table `wiz_product`
+--
+
+DROP TABLE IF EXISTS `wiz_product`;
+CREATE TABLE `wiz_product` (
+  `prdcode` varchar(10) NOT NULL default '',
+  `prdnum` varchar(50) default NULL,
+  `prdname` varchar(100) default NULL,
+  `prdprice` int(10) default NULL,
+  `showset` enum('Y','N') default NULL,
+  `prior` bigint(14) default NULL,
+  `prdicon` varchar(255) default NULL,
+  `recom` enum('Y','N') default NULL,
+  `info_name1` varchar(80) default NULL,
+  `info_value1` varchar(255) default NULL,
+  `info_name2` varchar(80) default NULL,
+  `info_value2` varchar(255) default NULL,
+  `info_name3` varchar(80) default NULL,
+  `info_value3` varchar(255) default NULL,
+  `info_name4` varchar(80) default NULL,
+  `info_value4` varchar(255) default NULL,
+  `info_name5` varchar(80) default NULL,
+  `info_value5` varchar(255) default NULL,
+  `info_name6` varchar(80) default NULL,
+  `info_value6` varchar(255) default NULL,
+  `info_name7` varchar(80) default NULL,
+  `info_value7` varchar(255) default NULL,
+  `info_name8` varchar(80) default NULL,
+  `info_value8` varchar(255) default NULL,
+  `info_name9` varchar(80) default NULL,
+  `info_value9` varchar(255) default NULL,
+  `info_name10` varchar(80) default NULL,
+  `info_value10` varchar(255) default NULL,
+  `addinfo1` mediumtext,
+  `addinfo2` mediumtext,
+  `addinfo3` mediumtext,
+  `addinfo4` mediumtext,
+  `addinfo5` mediumtext,
+  `prdimg_R` varchar(30) default NULL,
+  `prdimg_L1` varchar(30) default NULL,
+  `prdimg_M1` varchar(30) default NULL,
+  `prdimg_S1` varchar(30) default NULL,
+  `prdimg_L2` varchar(30) default NULL,
+  `prdimg_M2` varchar(30) default NULL,
+  `prdimg_S2` varchar(30) default NULL,
+  `prdimg_L3` varchar(30) default NULL,
+  `prdimg_M3` varchar(30) default NULL,
+  `prdimg_S3` varchar(30) default NULL,
+  `prdimg_L4` varchar(30) default NULL,
+  `prdimg_M4` varchar(30) default NULL,
+  `prdimg_S4` varchar(30) default NULL,
+  `prdimg_L5` varchar(30) default NULL,
+  `prdimg_M5` varchar(30) default NULL,
+  `prdimg_S5` varchar(30) default NULL,
+  `prdimg_L6` varchar(30) default NULL,
+  `prdimg_M6` varchar(30) default NULL,
+  `prdimg_S6` varchar(30) default NULL,
+  `prdimg_L7` varchar(30) default NULL,
+  `prdimg_M7` varchar(30) default NULL,
+  `prdimg_S7` varchar(30) default NULL,
+  `prdimg_L8` varchar(30) default NULL,
+  `prdimg_M8` varchar(30) default NULL,
+  `prdimg_S8` varchar(30) default NULL,
+  `prdimg_L9` varchar(30) default NULL,
+  `prdimg_M9` varchar(30) default NULL,
+  `prdimg_S9` varchar(30) default NULL,
+  `prdimg_L10` varchar(30) default NULL,
+  `prdimg_M10` varchar(30) default NULL,
+  `prdimg_S10` varchar(30) default NULL,
+  `prdimg_L11` varchar(30) default NULL,
+  `prdimg_M11` varchar(30) default NULL,
+  `prdimg_S11` varchar(30) default NULL,
+  `prdimg_L12` varchar(30) default NULL,
+  `prdimg_M12` varchar(30) default NULL,
+  `prdimg_S12` varchar(30) default NULL,
+  `upfile1` varchar(40) default NULL,
+  `upfile2` varchar(40) default NULL,
+  `upfile3` varchar(40) default NULL,
+  `upfile4` varchar(40) default NULL,
+  `upfile5` varchar(40) default NULL,
+  `upfile1_name` varchar(255) default NULL,
+  `upfile2_name` varchar(255) default NULL,
+  `upfile3_name` varchar(255) default NULL,
+  `upfile4_name` varchar(255) default NULL,
+  `upfile5_name` varchar(255) default NULL,
+  `shortexp` mediumtext,
+  `content` mediumtext,
+  PRIMARY KEY  (`prdcode`)
+) TYPE=MyISAM;
+
+--
+-- Dumping data for table `wiz_product`
+--
+
+/*!40000 ALTER TABLE `wiz_product` DISABLE KEYS */;
+/*!40000 ALTER TABLE `wiz_product` ENABLE KEYS */;
+
+--
+-- Table structure for table `wiz_schedule`
+--
+
+DROP TABLE IF EXISTS `wiz_schedule`;
+CREATE TABLE `wiz_schedule` (
+  `idx` int(10) unsigned NOT NULL auto_increment,
+  `memid` varchar(15) NOT NULL default '',
+  `prior` int(1) default NULL,
+  `subject` varchar(255) default NULL,
+  `content` mediumtext,
+  `sdate` datetime default NULL,
+  `edate` datetime default NULL,
+  PRIMARY KEY  (`idx`)
+) TYPE=MyISAM AUTO_INCREMENT=25;
+
+--
+-- Dumping data for table `wiz_schedule`
+--
+
+/*!40000 ALTER TABLE `wiz_schedule` DISABLE KEYS */;
+/*!40000 ALTER TABLE `wiz_schedule` ENABLE KEYS */;
+
+--
+-- Table structure for table `wiz_siteinfo`
+--
+
+DROP TABLE IF EXISTS `wiz_siteinfo`;
+CREATE TABLE `wiz_siteinfo` (
+  `site_name` varchar(30) default NULL,
+  `site_url` varchar(100) default NULL,
+  `site_email` varchar(80) default NULL,
+  `site_tel` varchar(20) default NULL,
+  `site_hand` varchar(20) default NULL,
+  `site_key` mediumtext,
+  `site_date` varchar(20) default NULL,
+  `ftp_host` varchar(80) default NULL,
+  `ftp_id` varchar(20) default NULL,
+  `ftp_pw` varchar(20) default NULL,
+  `admin_title` varchar(255) default NULL,
+  `admin_copyright` mediumtext,
+  `addbbs_use` enum('Y','N') default NULL,
+  `ssl_use` enum('Y','N') default NULL,
+  `ssl_port` varchar(4) default NULL,
+  `msg_use` enum('Y','N') default NULL,
+  `msg_skin` varchar(50) default NULL,
+  `msg_url` varchar(255) default NULL,
+  `mini_use` enum('Y','N') default NULL,
+  `mini_skin` varchar(50) default NULL,
+  `mini_url` varchar(255) default NULL,
+  `sms_use` enum('Y','N') default NULL,
+  `sms_type` char(1) default NULL,
+  `sms_id` varchar(80) default NULL,
+  `sms_pw` varchar(20) default NULL,
+  `search_skin` varchar(50) default NULL,
+  `search_url` varchar(255) default NULL,
+  `namecheck_use` enum('Y','N') default NULL,
+  `namecheck_id` varchar(20) default NULL,
+  `namecheck_pw` varchar(20) default NULL,
+  `point_use` enum('Y','N') default NULL,
+  `point_skin` varchar(50) default NULL,
+  `point_url` varchar(255) default NULL,
+  `join_point` int(11) default NULL,
+  `login_point` int(11) default NULL,
+  `msg_point` int(11) default NULL,
+  `view_point` int(11) default NULL,
+  `write_point` int(11) default NULL,
+  `down_point` int(11) default NULL,
+  `comment_point` int(11) default NULL,
+  `recom_point` int(11) default NULL,
+  `point_msg` varchar(255) default NULL,
+  `designer_id` varchar(20) default NULL,
+  `designer_pw` varchar(20) default NULL,
+  `anywiz_id` varchar(60) default NULL,
+  `anywiz_pw` varchar(60) default NULL,
+  `start_page` varchar(255) default NULL,
+  `menu_use` varchar(100) default NULL,
+  `solution` varchar(100) default NULL,
+  `prdimg_R` int(3) default NULL,
+  `prdimg_L` int(3) default NULL,
+  `prdimg_M` int(3) default NULL,
+  `prdimg_S` int(3) default NULL,
+  `com_num` varchar(20) default NULL,
+  `com_name` varchar(30) default NULL,
+  `com_owner` varchar(20) default NULL,
+  `com_post` varchar(7) default NULL,
+  `com_address` varchar(80) default NULL,
+  `com_kind` varchar(50) default NULL,
+  `com_class` varchar(50) default NULL,
+  `com_tel` varchar(20) default NULL,
+  `com_fax` varchar(20) default NULL,
+  `con_parameter` varchar(255) default NULL,
+  `bbs_grp` mediumtext,
+  `page_grp` mediumtext,
+  `up_date` date default NULL
+) TYPE=MyISAM;
+
+--
+-- Dumping data for table `wiz_siteinfo`
+--
+
+/*!40000 ALTER TABLE `wiz_siteinfo` DISABLE KEYS */;
+INSERT INTO `wiz_siteinfo` VALUES ('Ȩ������','http://test.com','test@test.com','00-0000-0000','000-0000-0000','','1323158223','abc.com','abc','1234','Ȩ������ ������','Copyright �� 2009 ����Ʈ�� All rights reserved.','N','N','','N','msgBasic','','N','','','Y','C','','','searchBasic','sub08/search.php','N','','','N','pointBasic','',0,0,0,0,0,0,0,1,'����Ʈ�� �����մϴ�.','wizhome','1/admin2/4138f076d918cb3b7f91205181fb3ab','663c13d1d636f6ea10e3be4d8a25710b','/admin/manage/main/main.php','BASIC/BBS/LOG/MEMBER/BANNER/FORMMAIL/POLL/SCHEGUAL/PRODUCT/PAGE/','wizhome',120,500,250,50,'000-00-00000','�׽�Ʈ','�׽�Ʈ','000-000','���� ���ʱ� ���ʵ�  000-0���� 000ȣ','����','Ȩ����������','00-0000-0000','00-0000-0000','p,q,query','','\n1^ȸ��Ұ�\n2^��������','2011-12-06');
+/*!40000 ALTER TABLE `wiz_siteinfo` ENABLE KEYS */;
+
+--
+-- Table structure for table `wiz_tabledesc`
+--
+
+DROP TABLE IF EXISTS `wiz_tabledesc`;
+CREATE TABLE `wiz_tabledesc` (
+  `idx` int(10) NOT NULL auto_increment,
+  `tname` varchar(100) default NULL,
+  `tdesc` text,
+  `field` varchar(100) default NULL,
+  `fdesc` text,
+  PRIMARY KEY  (`idx`)
+) TYPE=MyISAM AUTO_INCREMENT=1113;
+
+--
+-- Dumping data for table `wiz_tabledesc`
+--
+
+/*!40000 ALTER TABLE `wiz_tabledesc` DISABLE KEYS */;
+INSERT INTO `wiz_tabledesc` VALUES (1,'wiz_admin','������ ����','',NULL),(2,'wiz_admin','<b>���������̺�</b>\r\n������ ������̺��Դϴ�.','anywiz',NULL),(3,'wiz_admin',NULL,'id','���̵�'),(4,'wiz_admin',NULL,'passwd','��й�ȣ'),(5,'wiz_admin',NULL,'name','�̸�'),(6,'wiz_admin',NULL,'icon','������'),(7,'wiz_admin',NULL,'resno','�ֹι�ȣ'),(8,'wiz_admin',NULL,'email','�̸���'),(9,'wiz_admin',NULL,'tphone','��ȭ��ȣ'),(10,'wiz_admin',NULL,'hphone','�޴���'),(11,'wiz_admin',NULL,'post','������ȣ'),(12,'wiz_admin',NULL,'address1','�ּ�'),(13,'wiz_admin',NULL,'address2','���ּ�'),(14,'wiz_admin',NULL,'part','����'),(15,'wiz_admin',NULL,'permi','������ ���ٱ���'),(16,'wiz_admin',NULL,'last','������ ���ӽð�'),(17,'wiz_admin',NULL,'wdate','�����'),(18,'wiz_admin',NULL,'descript','������ �ּ�'),(19,'wiz_banner',NULL,'idx','�ε���'),(20,'wiz_banner',NULL,'code','��ʱ׷��ڵ�'),(21,'wiz_banner',NULL,'align','�������'),(22,'wiz_banner',NULL,'prior','�켱����'),(23,'wiz_banner',NULL,'isuse','��뿩��'),(24,'wiz_banner',NULL,'link_url','��ũ�ּ�'),(25,'wiz_banner',NULL,'link_target','��ũ Target'),(26,'wiz_banner',NULL,'de_type','�����ι��'),(27,'wiz_banner',NULL,'de_img','����̹���'),(28,'wiz_banner',NULL,'de_html','��ʳ���'),(29,'wiz_banner','','anywiz',NULL),(30,'wiz_banner','<b>������̺�</b>\r\n��� ���̺��Դϴ�.','anywiz',NULL),(31,'wiz_bannerinfo','<b>��ʱ׷����̺�</b>\r\n��ʱ׷� ���̺��Դϴ�.','anywiz',NULL),(32,'wiz_bannerinfo',NULL,'idx','�ε���'),(33,'wiz_bannerinfo',NULL,'title','��ʱ׷��̸�'),(34,'wiz_bannerinfo',NULL,'code','��ʱ׷��ڵ�'),(35,'wiz_bannerinfo',NULL,'types','�������'),(36,'wiz_bannerinfo',NULL,'types_num','��ʰ���'),(37,'wiz_bannerinfo',NULL,'padding','��ʰ���'),(38,'wiz_bannerinfo',NULL,'isuse','��뿩��'),(39,'wiz_bbs','<b>�Խù����̺�</b>\r\n�Խù� ���̺��Դϴ�.','anywiz',NULL),(40,'wiz_bbs',NULL,'idx','�ε���'),(41,'wiz_bbs',NULL,'code','�Խ����ڵ�'),(42,'wiz_bbs',NULL,'prino','���İ�'),(43,'wiz_bbs',NULL,'grpno','�亯�׷찪'),(44,'wiz_bbs',NULL,'depno','�亯���̰�'),(45,'wiz_bbs',NULL,'notice','������'),(46,'wiz_bbs',NULL,'category','ī�װ���'),(47,'wiz_bbs',NULL,'memid','�۾���ID'),(48,'wiz_bbs',NULL,'memgrp','�亯�׷�ID'),(49,'wiz_bbs',NULL,'name','�̸�'),(50,'wiz_bbs',NULL,'nick','�г���'),(51,'wiz_bbs',NULL,'email','�̸���'),(52,'wiz_bbs',NULL,'tphone','��ȭ��ȣ'),(53,'wiz_bbs',NULL,'hphone','�޴���ȭ��ȣ'),(54,'wiz_bbs',NULL,'zipcode','������ȣ'),(55,'wiz_bbs',NULL,'address','�ּ�'),(56,'wiz_bbs',NULL,'subject','����'),(57,'wiz_bbs',NULL,'content','����'),(58,'wiz_bbs',NULL,'addinfo1','�߰�����1'),(59,'wiz_bbs',NULL,'addinfo2','�߰�����2'),(60,'wiz_bbs',NULL,'addinfo3','�߰�����3'),(61,'wiz_bbs',NULL,'addinfo4','�߰�����4'),(62,'wiz_bbs',NULL,'addinfo5','�߰�����5'),(63,'wiz_bbs',NULL,'ctype','HTML��뿩��'),(64,'wiz_bbs',NULL,'privacy','��б�'),(65,'wiz_bbs',NULL,'upfile1','÷������1'),(66,'wiz_bbs',NULL,'upfile2','÷������2'),(67,'wiz_bbs',NULL,'upfile3','÷������3'),(68,'wiz_bbs',NULL,'upfile4','÷������4'),(69,'wiz_bbs',NULL,'upfile5','÷������5'),(70,'wiz_bbs',NULL,'upfile6','÷������6'),(71,'wiz_bbs',NULL,'upfile7','÷������7'),(72,'wiz_bbs',NULL,'upfile8','÷������8'),(73,'wiz_bbs',NULL,'upfile9','÷������9'),(74,'wiz_bbs',NULL,'upfile10','÷������10'),(75,'wiz_bbs',NULL,'upfile11','÷������11'),(76,'wiz_bbs',NULL,'upfile12','÷������12'),(77,'wiz_bbs',NULL,'upfile1_name','÷�����ϸ�1'),(78,'wiz_bbs',NULL,'upfile2_name','÷�����ϸ�2'),(79,'wiz_bbs',NULL,'upfile3_name','÷�����ϸ�3'),(80,'wiz_bbs',NULL,'upfile4_name','÷�����ϸ�4'),(81,'wiz_bbs',NULL,'upfile5_name','÷�����ϸ�5'),(82,'wiz_bbs',NULL,'upfile6_name','÷�����ϸ�6'),(83,'wiz_bbs',NULL,'upfile7_name','÷�����ϸ�7'),(84,'wiz_bbs',NULL,'upfile8_name','÷�����ϸ�8'),(85,'wiz_bbs',NULL,'upfile9_name','÷�����ϸ�9'),(86,'wiz_bbs',NULL,'upfile10_name','÷�����ϸ�10'),(87,'wiz_bbs',NULL,'upfile11_name','÷�����ϸ�11'),(88,'wiz_bbs',NULL,'upfile12_name','÷�����ϸ�12'),(89,'wiz_bbs',NULL,'movie1','������1'),(90,'wiz_bbs',NULL,'movie2','������2'),(91,'wiz_bbs',NULL,'movie3','������3'),(92,'wiz_bbs',NULL,'passwd','��й�ȣ'),(93,'wiz_bbs',NULL,'count','��ȸ��'),(94,'wiz_bbs',NULL,'recom','��õ��'),(95,'wiz_bbs',NULL,'comment','���ۼ�'),(96,'wiz_bbs',NULL,'ip','IP'),(97,'wiz_bbs',NULL,'wdate','�ۼ���'),(98,'wiz_bbscat','<b>�Խ��� ī�װ��� ���̺�</b>\r\n�Խ��� ī�װ��� ���̺��Դϴ�.','anywiz',NULL),(99,'wiz_bbscat',NULL,'idx','�ε���'),(100,'wiz_bbscat',NULL,'gubun','ī�װ�������(��ü, �Ϲ�)'),(101,'wiz_bbscat',NULL,'code','�Խ����ڵ�'),(102,'wiz_bbscat',NULL,'catname','ī�װ�����'),(103,'wiz_bbscat',NULL,'catimg','�޴��̹���'),(104,'wiz_bbscat',NULL,'catimg_over','�޴� �ѿ��� �̹���'),(105,'wiz_bbscat',NULL,'caticon','������'),(106,'wiz_bbsinfo','<b>�Խ��� ���� ���̺�</b>\r\n�Խ��� ���� ���̺��Դϴ�.','anywiz',NULL),(107,'wiz_bbsinfo',NULL,'code','�Խ����ڵ�'),(108,'wiz_bbsinfo',NULL,'type','�Խ�������(�Ϲ�, ����)'),(109,'wiz_bbsinfo',NULL,'title','�Խ��Ǹ�'),(110,'wiz_bbsinfo',NULL,'titleimg','Ÿ��Ʋ�̹���'),(111,'wiz_bbsinfo',NULL,'header','�������'),(112,'wiz_bbsinfo',NULL,'footer','�ϴ�����'),(113,'wiz_bbsinfo',NULL,'category','ī�װ���'),(114,'wiz_bbsinfo',NULL,'bbsadmin','�Խ��ǰ�����'),(115,'wiz_bbsinfo',NULL,'lpermi','��Ϻ��� ����'),(116,'wiz_bbsinfo',NULL,'rpermi','���뺸�� ����'),(117,'wiz_bbsinfo',NULL,'wpermi','�۾��� ����'),(118,'wiz_bbsinfo',NULL,'apermi','��۾��� ����'),(119,'wiz_bbsinfo',NULL,'cpermi','�ڸ�Ʈ���� ����'),(120,'wiz_bbsinfo',NULL,'datetype_list','��¥����(���������)'),(121,'wiz_bbsinfo',NULL,'datetype_view','��¥����(����������)'),(122,'wiz_bbsinfo',NULL,'skin','��Ų'),(123,'wiz_bbsinfo',NULL,'permsg','������ ���� ��� ����޼���'),(124,'wiz_bbsinfo',NULL,'perurl','������ ���� ��� �̵�������'),(125,'wiz_bbsinfo',NULL,'pageurl','�Խ��� ������ �ּ�'),(126,'wiz_bbsinfo',NULL,'editor','�������� ��뿩��'),(127,'wiz_bbsinfo',NULL,'usetype','�Խ��� ��뿩��'),(128,'wiz_bbsinfo',NULL,'privacy','�ڵ� ��б� ��뿩��'),(129,'wiz_bbsinfo',NULL,'upfile','���Ͼ��ε� ��뿩�� �� ���ε尹��'),(130,'wiz_bbsinfo',NULL,'movie','������ ��뿩�� �� ������ ����'),(131,'wiz_bbsinfo',NULL,'comment','�ڸ�Ʈ ��뿩��'),(132,'wiz_bbsinfo',NULL,'remail','��� ���Ͼ˶� ��뿩��'),(133,'wiz_bbsinfo',NULL,'imgview','�̹��� ÷������ ���������� ���⿩��'),(134,'wiz_bbsinfo',NULL,'recom','��õ��� ��뿩��'),(135,'wiz_bbsinfo',NULL,'abuse','�弳,���� ���͸� ��뿩��'),(136,'wiz_bbsinfo',NULL,'abtxt','�弳,���� ���͸� ����'),(137,'wiz_bbsinfo',NULL,'simgsize','��������� �̹���ũ��'),(138,'wiz_bbsinfo',NULL,'mimgsize','���������� �̹���ũ��'),(139,'wiz_bbsinfo',NULL,'rows','������ ��¼�'),(140,'wiz_bbsinfo',NULL,'lists','����Ʈ ��¼�'),(141,'wiz_bbsinfo',NULL,'newc','NEW �Ⱓ����'),(142,'wiz_bbsinfo',NULL,'hotc','HOT ��ȸ�� ����'),(143,'wiz_bbsinfo',NULL,'line','�ٹٲ� �Խù���'),(144,'wiz_bbsinfo',NULL,'subject_len','���� ���ڼ�'),(145,'wiz_bbsinfo',NULL,'view_point','�ۺ��� ����Ʈ'),(146,'wiz_bbsinfo',NULL,'write_point','�۾��� ����Ʈ'),(147,'wiz_bbsinfo',NULL,'down_point','÷������ �ٿ�ε� ����Ʈ'),(148,'wiz_bbsinfo',NULL,'comment_point','�ڸ�Ʈ ����Ʈ'),(149,'wiz_bbsinfo',NULL,'recom_point','��õ ����Ʈ'),(150,'wiz_bbsinfo',NULL,'point_msg','����Ʈ�� ���� ��� ����޼���'),(151,'wiz_bbsinfo',NULL,'img_align','÷������ �̹��� ���İ�'),(152,'wiz_bbsinfo',NULL,'btn_view','������ ���� ��� �۾��� ��ư ���⿩��'),(153,'wiz_bbsinfo',NULL,'spam_check','���Ա�üũ��� ��뿩��'),(154,'wiz_bbsinfo',NULL,'name_type','�۾��� ����'),(155,'wiz_bbsmain','<b>���� �Խù� ���̺�</b>\r\n���� �Խù� ���̺��Դϴ�.','anywiz',NULL),(156,'wiz_bbsmain',NULL,'idx','�ε���'),(157,'wiz_bbsmain',NULL,'code','�Խ����ڵ�'),(158,'wiz_bbsmain',NULL,'btype','�Խ�������'),(159,'wiz_bbsmain',NULL,'purl','����������'),(160,'wiz_bbsmain',NULL,'cnt','�Խù���'),(161,'wiz_bbsmain',NULL,'line','�ٹٲ� �Խù���'),(162,'wiz_bbsmain',NULL,'skin','�Խù���Ų'),(163,'wiz_bbsmain',NULL,'subject_len','���� ���ڼ�'),(164,'wiz_bbsmain',NULL,'content_len','���� ���ڼ�'),(165,'wiz_catainfo','<b>īŻ�α� ���� ���̺�</b>\r\nīŻ�α� ���� ���̺��Դϴ�.','anywiz',NULL),(166,'wiz_catainfo',NULL,'idx','�ε���'),(167,'wiz_catainfo',NULL,'code','īŻ�α� �ڵ�'),(168,'wiz_catainfo',NULL,'title','īŻ�α� ����'),(169,'wiz_catainfo',NULL,'status','īŻ�α� ����'),(170,'wiz_catalog','<b>īŻ�α� ���̺�</b>\r\nīŻ�α� ���̺��Դϴ�.','anywiz',NULL),(171,'wiz_catalog',NULL,'idx','�ε���'),(172,'wiz_catalog',NULL,'code','īŻ�α� �ڵ�'),(173,'wiz_catalog',NULL,'filename','���ϸ�'),(174,'wiz_catalog',NULL,'status','����'),(175,'wiz_category','<b>ī�װ��� ���̺�</b>\r\nī�װ��� ���̺��Դϴ�.','anywiz',NULL),(176,'wiz_category',NULL,'catcode','�з��ڵ�'),(177,'wiz_category',NULL,'depthno','�з���ġ��'),(178,'wiz_category',NULL,'priorno01','��з� ���İ�'),(179,'wiz_category',NULL,'priorno02','�ߺз� ���İ�'),(180,'wiz_category',NULL,'priorno03','�Һз� ���İ�'),(181,'wiz_category',NULL,'catname','�з���'),(182,'wiz_category',NULL,'catuse','��뿩��'),(183,'wiz_category',NULL,'catimg','�з��̹���'),(184,'wiz_category',NULL,'subimg','�з�����̹���'),(185,'wiz_category',NULL,'subimg_type','�з��������'),(186,'wiz_category',NULL,'prd_skin','��ǰ��Ų'),(187,'wiz_category',NULL,'prd_num','��ǰ��'),(188,'wiz_category',NULL,'prd_width','��ǰ�̹��� ����ũ��'),(189,'wiz_category',NULL,'prd_height','��ǰ�̹��� ����ũ��'),(190,'wiz_category',NULL,'purl','����������'),(191,'wiz_comment','<b>�ڸ�Ʈ ���̺�</b>\r\n�ڸ�Ʈ ���̺��Դϴ�.','anywiz',NULL),(192,'wiz_comment',NULL,'idx','�ε���'),(193,'wiz_comment',NULL,'ctype','�ڸ�Ʈ ����'),(194,'wiz_comment',NULL,'cidx','�Խù� ��ȣ'),(195,'wiz_comment',NULL,'star','��ȣ��'),(196,'wiz_comment',NULL,'memid','�ۼ���ID'),(197,'wiz_comment',NULL,'name','�̸�'),(198,'wiz_comment',NULL,'nick','�г���'),(199,'wiz_comment',NULL,'content','����'),(200,'wiz_comment',NULL,'passwd','��й�ȣ'),(201,'wiz_comment',NULL,'wdate','�ۼ���'),(202,'wiz_comment',NULL,'ip','IP'),(203,'wiz_conrefer','<b>���Ӱ�� ���̺�</b>\r\n���Ӱ�� ���̺��Դϴ�.','anywiz',NULL),(204,'wiz_conrefer',NULL,'referer','���Ӱ��'),(205,'wiz_conrefer',NULL,'host','����HOST'),(206,'wiz_conrefer',NULL,'wdate','������'),(207,'wiz_conrefer',NULL,'cnt','�����ڼ�'),(208,'wiz_contime','<b>������ ���̺�</b>\r\n������ ���̺��Դϴ�.','anywiz',NULL),(209,'wiz_contime',NULL,'time','���ӽð�'),(210,'wiz_contime',NULL,'cnt','�����ڼ�'),(211,'wiz_cprelation','<b>��ǰ,��ǰ�з� ���� ���̺�</b>\r\n��ǰ, ��ǰ�з� ���� ���̺��Դϴ�.','anywiz',NULL),(212,'wiz_cprelation',NULL,'idx','�ε���'),(213,'wiz_cprelation',NULL,'prdcode','��ǰ�ڵ�'),(214,'wiz_cprelation',NULL,'catcode','�з��ڵ�'),(215,'wiz_filedesc','<b>���ϱ��� ���̺�</b>\r\n���ϱ��� ���̺��Դϴ�.','anywiz',NULL),(216,'wiz_filedesc',NULL,'idx','�ε���'),(217,'wiz_filedesc',NULL,'fdir','���ϰ��'),(218,'wiz_filedesc',NULL,'fdesc','���ϼ���'),(219,'wiz_form','<b>������ ���̺�</b>\r\n������ ���̺��Դϴ�.','anywiz',NULL),(220,'wiz_form',NULL,'idx','�ε���'),(221,'wiz_form',NULL,'code','�������ڵ�'),(222,'wiz_form',NULL,'name','�ۼ���'),(223,'wiz_form',NULL,'phone','��ȭ��ȣ'),(224,'wiz_form',NULL,'email','�̸���'),(225,'wiz_form',NULL,'subject','����'),(226,'wiz_form',NULL,'content','����'),(227,'wiz_form',NULL,'reply','�亯'),(228,'wiz_form',NULL,'upfile1','÷������1'),(229,'wiz_form',NULL,'upfile2','÷������2'),(230,'wiz_form',NULL,'upfile3','÷������3'),(231,'wiz_form',NULL,'upfile1_name','÷�����ϸ�1'),(232,'wiz_form',NULL,'upfile2_name','÷�����ϸ�2'),(233,'wiz_form',NULL,'upfile3_name','÷�����ϸ�3'),(234,'wiz_form',NULL,'wdate','�ۼ���'),(235,'wiz_form',NULL,'ip','IP'),(236,'wiz_form',NULL,'status','ó������'),(237,'wiz_formfield','<b>������ �׸� ���̺�</b>\r\n������ �׸� ���̺��Դϴ�.','anywiz',NULL),(238,'wiz_formfield',NULL,'idx','�ε���'),(239,'wiz_formfield',NULL,'fidx','������ ��ȣ'),(240,'wiz_formfield',NULL,'fprior','�׸����'),(241,'wiz_formfield',NULL,'fname','�׸��'),(242,'wiz_formfield',NULL,'ftype','�׸�Ӽ�'),(243,'wiz_formfield',NULL,'fessen','�׸� �ʼ�üũ ����'),(244,'wiz_formfield',NULL,'fsize','�׸������'),(245,'wiz_formfield',NULL,'fnum','�׸񰹼�'),(246,'wiz_formfield',NULL,'fimg','�׸��̹���'),(247,'wiz_formfield',NULL,'flist','�����׸�'),(248,'wiz_forminfo','<b>������ ���� ���̺�</b>\r\n������ ���� ���̺��Դϴ�.','anywiz',NULL),(249,'wiz_forminfo',NULL,'idx','�ε���'),(250,'wiz_forminfo',NULL,'code','�������ڵ�'),(251,'wiz_forminfo',NULL,'title','�����ϸ�'),(252,'wiz_forminfo',NULL,'skin','��Ų'),(253,'wiz_forminfo',NULL,'rece_sms','SMS ���ſ���'),(254,'wiz_forminfo',NULL,'rece_email','�̸��� ���ſ���'),(255,'wiz_forminfo',NULL,'rece_bbs','�Խ��� ���ſ���'),(256,'wiz_forminfo',NULL,'sms_list','SMS ���Ź�ȣ'),(257,'wiz_forminfo',NULL,'email_list','�̸��� �����̸���'),(258,'wiz_friend','<b>ģ�� ���̺�</b>\r\nģ�� ���̺��Դϴ�.','anywiz',NULL),(259,'wiz_friend',NULL,'idx','�ε���'),(260,'wiz_friend',NULL,'myid','�ڽ��� ID'),(261,'wiz_friend',NULL,'frdid','ģ���� ID'),(262,'wiz_friend',NULL,'wdate','�����'),(263,'wiz_level','<b>ȸ����� ���̺�</b>\r\nȸ����� ���̺��Դϴ�.','anywiz',NULL),(264,'wiz_level',NULL,'idx','�ε���'),(265,'wiz_level',NULL,'level','��޷���'),(266,'wiz_level',NULL,'icon','������'),(267,'wiz_level',NULL,'name','��޸�'),(268,'wiz_level',NULL,'permi','��ޱ���'),(269,'wiz_level',NULL,'memo','����'),(270,'wiz_mailsms','<b>�̸���, SMS �޼��� ���� ���̺�</b>\r\n�̸���, SMS �޼��� ���� ���̺��Դϴ�.','anywiz',NULL),(271,'wiz_mailsms',NULL,'code','�޼��� �ڵ�'),(272,'wiz_mailsms',NULL,'type','�޼��� ����'),(273,'wiz_mailsms',NULL,'subject','�з���'),(274,'wiz_mailsms',NULL,'sms_send','SMS �߼ۿ���'),(275,'wiz_mailsms',NULL,'sms_msg','SMS �޼���'),(276,'wiz_mailsms',NULL,'email_subj','�̸��� ����'),(277,'wiz_mailsms',NULL,'email_send','�̸��� �߼ۿ���'),(278,'wiz_mailsms',NULL,'email_msg','�̸��� �޼���'),(279,'wiz_mailsms',NULL,'wdate','�ۼ���'),(280,'wiz_member','<b>ȸ�� ���̺�</b>\r\nȸ�� ���̺��Դϴ�.','anywiz',NULL),(281,'wiz_member',NULL,'idx','�ε���'),(282,'wiz_member',NULL,'id','���̵�'),(283,'wiz_member',NULL,'passwd','��й�ȣ'),(284,'wiz_member',NULL,'name','�̸�'),(285,'wiz_member',NULL,'photo','ȸ������'),(286,'wiz_member',NULL,'icon','������'),(287,'wiz_member',NULL,'nick','�г���'),(288,'wiz_member',NULL,'resno','�ֹε�Ϲ�ȣ'),(289,'wiz_member',NULL,'email','�̸���'),(290,'wiz_member',NULL,'tphone','��ȭ��ȣ'),(291,'wiz_member',NULL,'hphone','�޴���ȭ��ȣ'),(292,'wiz_member',NULL,'comtel','ȸ����ȭ��ȣ'),(293,'wiz_member',NULL,'homepage','Ȩ������'),(294,'wiz_member',NULL,'post','������ȣ'),(295,'wiz_member',NULL,'address1','�ּ�'),(296,'wiz_member',NULL,'address2','���ּ�'),(297,'wiz_member',NULL,'reemail','�̸��� ���ſ���'),(298,'wiz_member',NULL,'resms','SMS ���ſ���'),(299,'wiz_member',NULL,'birthday','�������'),(300,'wiz_member',NULL,'bgubun','���, ����'),(301,'wiz_member',NULL,'marriage','��ȥ����'),(302,'wiz_member',NULL,'memorial','��ȥ�����'),(303,'wiz_member',NULL,'scholarship','�з�'),(304,'wiz_member',NULL,'job','����'),(305,'wiz_member',NULL,'income','����ռ���'),(306,'wiz_member',NULL,'car','�ڵ�������'),(307,'wiz_member',NULL,'hobby','���'),(308,'wiz_member',NULL,'consph','���ɺо�'),(309,'wiz_member',NULL,'conprd',''),(310,'wiz_member',NULL,'level','ȸ�����'),(311,'wiz_member',NULL,'recom','��õ��'),(312,'wiz_member',NULL,'visit','�湮��'),(313,'wiz_member',NULL,'visit_time','������ �湮��'),(314,'wiz_member',NULL,'intro','�ڱ�Ұ�'),(315,'wiz_member',NULL,'memo','�����ڸ޸�'),(316,'wiz_member',NULL,'addinfo1','�߰�����1'),(317,'wiz_member',NULL,'addinfo2','�߰�����2'),(318,'wiz_member',NULL,'addinfo3','�߰�����3'),(319,'wiz_member',NULL,'addinfo4','�߰�����4'),(320,'wiz_member',NULL,'addinfo5','�߰�����5'),(321,'wiz_member',NULL,'wdate','������'),(322,'wiz_meminfo','<b>ȸ�� ���� ���̺�</b>\r\nȸ�� ���� ���̺��Դϴ�.','anywiz',NULL),(323,'wiz_meminfo',NULL,'skin','��Ų'),(324,'wiz_meminfo',NULL,'agreement','���Ծ��'),(325,'wiz_meminfo',NULL,'safeinfo','�������� ��ȣ��å'),(326,'wiz_meminfo',NULL,'infouse','�Է����� ��뿩��'),(327,'wiz_meminfo',NULL,'infoess','�Է����� �ʼ��׸񿩺�'),(328,'wiz_meminfo',NULL,'join_url','ȸ������ ������'),(329,'wiz_meminfo',NULL,'login_url','�α��� ������'),(330,'wiz_meminfo',NULL,'idpw_url','���̵�/��й�ȣ ã�� ������'),(331,'wiz_meminfo',NULL,'myinfo_url','ȸ������ ������'),(332,'wiz_meminfo',NULL,'out_url','�α׾ƿ� �� �̵�������'),(333,'wiz_meminfo',NULL,'login_img','�α��� �̹���'),(334,'wiz_meminfo',NULL,'logout_img','�α׾ƿ� �̹���'),(335,'wiz_meminfo',NULL,'join_img','ȸ������ �̹���'),(336,'wiz_meminfo',NULL,'myinfo_img','ȸ������ �̹���'),(337,'wiz_meminfo',NULL,'job_list','���� ���'),(338,'wiz_meminfo',NULL,'sch_list','�з� ���'),(339,'wiz_meminfo',NULL,'income_list','����ռҵ� ���'),(340,'wiz_meminfo',NULL,'consph_list','���ɺо� ���'),(341,'wiz_meminfo',NULL,'addname','�߰��׸��'),(342,'wiz_meminfo',NULL,'method','���̵�/��й�ȣ ã�� ���'),(343,'wiz_message','<b>���� ���̺�</b>\r\n���� ���̺��Դϴ�.','anywiz',NULL),(344,'wiz_message',NULL,'idx','�ε���'),(345,'wiz_message',NULL,'se_id','������ ID'),(346,'wiz_message',NULL,'se_name','������ �̸�'),(347,'wiz_message',NULL,'re_id','�޴��� ID'),(348,'wiz_message',NULL,'re_name','�޴��� �̸�'),(349,'wiz_message',NULL,'subject','����'),(350,'wiz_message',NULL,'content','����'),(351,'wiz_message',NULL,'upfile','÷������'),(352,'wiz_message',NULL,'upfile_name','÷�����ϸ�'),(353,'wiz_message',NULL,'addinfo1','�߰�����1'),(354,'wiz_message',NULL,'addinfo2','�߰�����2'),(355,'wiz_message',NULL,'addinfo3','�߰�����3'),(356,'wiz_message',NULL,'wdate','�߼���'),(357,'wiz_message',NULL,'status','����Ȯ��'),(358,'wiz_message',NULL,'re_status','�޴��� ��������'),(359,'wiz_message',NULL,'se_status','������ ��������'),(360,'wiz_mini_bbs','<b>�̴�Ȩ�� �Խ��� ���̺�</b>\r\n�̴�Ȩ�� �Խ��� ���̺��Դϴ�.','anywiz',NULL),(361,'wiz_mini_bbs',NULL,'idx','�ε���'),(362,'wiz_mini_bbs',NULL,'code','�Խ��� �ڵ�'),(363,'wiz_mini_bbs',NULL,'prino','���İ�'),(364,'wiz_mini_bbs',NULL,'grpno','���۱׷찪'),(365,'wiz_mini_bbs',NULL,'depno','���۱��̰�'),(366,'wiz_mini_bbs',NULL,'notice','��������'),(367,'wiz_mini_bbs',NULL,'category','ī�װ���'),(368,'wiz_mini_bbs',NULL,'memid','�۾���ID'),(369,'wiz_mini_bbs',NULL,'memgrp','���۱׷�ID'),(370,'wiz_mini_bbs',NULL,'name','�ۼ���'),(371,'wiz_mini_bbs',NULL,'email','�̸���'),(372,'wiz_mini_bbs',NULL,'tphone','��ȭ��ȣ'),(373,'wiz_mini_bbs',NULL,'hphone','�޴���ȭ��ȣ'),(374,'wiz_mini_bbs',NULL,'zipcode','������ȣ'),(375,'wiz_mini_bbs',NULL,'address','�ּ�'),(376,'wiz_mini_bbs',NULL,'subject','����'),(377,'wiz_mini_bbs',NULL,'content','����'),(378,'wiz_mini_bbs',NULL,'addinfo1','�߰�����1'),(379,'wiz_mini_bbs',NULL,'addinfo2','�߰�����2'),(380,'wiz_mini_bbs',NULL,'addinfo3','�߰�����3'),(381,'wiz_mini_bbs',NULL,'addinfo4','�߰�����4'),(382,'wiz_mini_bbs',NULL,'addinfo5','�߰�����5'),(383,'wiz_mini_bbs',NULL,'ctype','HTML ��뿩��'),(384,'wiz_mini_bbs',NULL,'privacy','��б�'),(385,'wiz_mini_bbs',NULL,'upfile1','÷������1'),(386,'wiz_mini_bbs',NULL,'upfile2','÷������2'),(387,'wiz_mini_bbs',NULL,'upfile3','÷������3'),(388,'wiz_mini_bbs',NULL,'upfile4','÷������4'),(389,'wiz_mini_bbs',NULL,'upfile5','÷������5'),(390,'wiz_mini_bbs',NULL,'upfile6','÷������6'),(391,'wiz_mini_bbs',NULL,'upfile7','÷������7'),(392,'wiz_mini_bbs',NULL,'upfile8','÷������8'),(393,'wiz_mini_bbs',NULL,'upfile9','÷������9'),(394,'wiz_mini_bbs',NULL,'upfile10','÷������10'),(395,'wiz_mini_bbs',NULL,'upfile11','÷������11'),(396,'wiz_mini_bbs',NULL,'upfile12','÷������12'),(397,'wiz_mini_bbs',NULL,'upfile1_name','÷�����ϸ�1'),(398,'wiz_mini_bbs',NULL,'upfile2_name','÷�����ϸ�2'),(399,'wiz_mini_bbs',NULL,'upfile3_name','÷�����ϸ�3'),(400,'wiz_mini_bbs',NULL,'upfile4_name','÷�����ϸ�4'),(401,'wiz_mini_bbs',NULL,'upfile5_name','÷�����ϸ�5'),(402,'wiz_mini_bbs',NULL,'upfile6_name','÷�����ϸ�6'),(403,'wiz_mini_bbs',NULL,'upfile7_name','÷�����ϸ�7'),(404,'wiz_mini_bbs',NULL,'upfile8_name','÷�����ϸ�8'),(405,'wiz_mini_bbs',NULL,'upfile9_name','÷�����ϸ�9'),(406,'wiz_mini_bbs',NULL,'upfile10_name','÷�����ϸ�10'),(407,'wiz_mini_bbs',NULL,'upfile11_name','÷�����ϸ�11'),(408,'wiz_mini_bbs',NULL,'upfile12_name','÷�����ϸ�12'),(409,'wiz_mini_bbs',NULL,'movie1','������1'),(410,'wiz_mini_bbs',NULL,'movie2','������2'),(411,'wiz_mini_bbs',NULL,'movie3','������3'),(412,'wiz_mini_bbs',NULL,'passwd','��й�ȣ'),(413,'wiz_mini_bbs',NULL,'count','��ȸ��'),(414,'wiz_mini_bbs',NULL,'recom','��õ��'),(415,'wiz_mini_bbs',NULL,'comment','�ڸ�Ʈ��'),(416,'wiz_mini_bbs',NULL,'ip','IP '),(417,'wiz_mini_bbs',NULL,'wdate','�ۼ���'),(418,'wiz_mini_bbs',NULL,'ucc_file','UCC ���ϸ� '),(419,'wiz_mini_bbs',NULL,'ucc_movie','UCC �������'),(420,'wiz_mini_bbs',NULL,'ucc_img','UCC ����ϸ�'),(421,'wiz_mini_bbs',NULL,'ucc_size','UCC ũ��'),(422,'wiz_mini_bbs',NULL,'ucc_time','UCC ����ð�'),(423,'wiz_mini_bbs',NULL,'miniid','�̴�Ȩ�� ID'),(424,'wiz_mini_bbscat','<b>�̴�Ȩ�� �Խ��� ī�װ��� ���̺�</b>\r\n�̴�Ȩ�� �Խ��� ī�װ��� ���̺��Դϴ�.','anywiz',NULL),(425,'wiz_mini_bbscat',NULL,'idx','�ε���'),(426,'wiz_mini_bbscat',NULL,'gubun','ī�װ�������(��ü, �Ϲ�)'),(427,'wiz_mini_bbscat',NULL,'code','�Խ����ڵ�'),(428,'wiz_mini_bbscat',NULL,'catname','ī�װ�����'),(429,'wiz_mini_bbscat',NULL,'catimg','�޴��̹���'),(430,'wiz_mini_bbscat',NULL,'catimg_over','�޴� �ѿ��� �̹���'),(431,'wiz_mini_bbscat',NULL,'caticon','������'),(432,'wiz_mini_bbscat',NULL,'miniid','�̴�Ȩ�� ID'),(433,'wiz_mini_comment','<b>�̴�Ȩ�� �ڸ�Ʈ ���̺�</b>\r\n�̴�Ȩ�� �ڸ�Ʈ ���̺��Դϴ�.','anywiz',NULL),(434,'wiz_mini_comment',NULL,'idx','�ε���'),(435,'wiz_mini_comment',NULL,'ctype','�ڸ�Ʈ ����'),(436,'wiz_mini_comment',NULL,'code','�Խ��� �ڵ�'),(437,'wiz_mini_comment',NULL,'cidx','�Խù� ��ȣ'),(438,'wiz_mini_comment',NULL,'star','��ȣ��'),(439,'wiz_mini_comment',NULL,'memid','�ۼ��� ID'),(440,'wiz_mini_comment',NULL,'name','�̸�'),(441,'wiz_mini_comment',NULL,'content','����'),(442,'wiz_mini_comment',NULL,'passwd','��й�ȣ'),(443,'wiz_mini_comment',NULL,'wdate','�ۼ���'),(444,'wiz_mini_comment',NULL,'ip','IP'),(445,'wiz_mini_comment',NULL,'miniid','�̴�Ȩ�� ID'),(446,'wiz_mini_conrefer','<b>�̴�Ȩ�� ���Ӱ�� ���̺�</b>\r\n�̴�Ȩ�� ���Ӱ�� ���̺��Դϴ�.','anywiz',NULL),(447,'wiz_mini_conrefer',NULL,'referer','���Ӱ�� '),(448,'wiz_mini_conrefer',NULL,'host','����HOST'),(449,'wiz_mini_conrefer',NULL,'wdate','������'),(450,'wiz_mini_conrefer',NULL,'cnt','�����ڼ�'),(451,'wiz_mini_conrefer',NULL,'miniid','�̴�Ȩ�� ID'),(452,'wiz_mini_contime','<b>�̴�Ȩ�� ������ ���̺�</b>\r\n�̴�Ȩ�� ������ ���̺��Դϴ�.','anywiz',NULL),(453,'wiz_mini_contime',NULL,'time','���ӽð�'),(454,'wiz_mini_contime',NULL,'cnt','�����ڼ�'),(455,'wiz_mini_contime',NULL,'miniid','�̴�Ȩ�� ID'),(456,'wiz_mini_data','<b>�̴�Ȩ�� �ڷ�� ���̺�</b>\r\n�̴�Ȩ�� �ڷ�� ���̺��Դϴ�.','anywiz',NULL),(457,'wiz_mini_data',NULL,'idx','�ε���'),(458,'wiz_mini_data',NULL,'code','�Խ��� �ڵ�'),(459,'wiz_mini_data',NULL,'prino','���İ�'),(460,'wiz_mini_data',NULL,'grpno','���۱׷찪'),(461,'wiz_mini_data',NULL,'depno','���۱��̰�'),(462,'wiz_mini_data',NULL,'notice','��������'),(463,'wiz_mini_data',NULL,'category','ī�װ���'),(464,'wiz_mini_data',NULL,'memid','�۾���ID'),(465,'wiz_mini_data',NULL,'memgrp','���۱׷�ID'),(466,'wiz_mini_data',NULL,'name','�̸�'),(467,'wiz_mini_data',NULL,'email','�̸���'),(468,'wiz_mini_data',NULL,'tphone','��ȭ��ȣ'),(469,'wiz_mini_data',NULL,'hphone','�޴���ȭ��ȣ'),(470,'wiz_mini_data',NULL,'zipcode','������ȣ'),(471,'wiz_mini_data',NULL,'address','�ּ�'),(472,'wiz_mini_data',NULL,'subject','����'),(473,'wiz_mini_data',NULL,'content','����'),(474,'wiz_mini_data',NULL,'addinfo1','�߰�����1'),(475,'wiz_mini_data',NULL,'addinfo2','�߰�����2'),(476,'wiz_mini_data',NULL,'addinfo3','�߰�����3'),(477,'wiz_mini_data',NULL,'addinfo4','�߰�����4'),(478,'wiz_mini_data',NULL,'addinfo5','�߰�����5'),(479,'wiz_mini_data',NULL,'ctype','HTML ��뿩��'),(480,'wiz_mini_data',NULL,'privacy','��б�'),(481,'wiz_mini_data',NULL,'upfile1','÷������1'),(482,'wiz_mini_data',NULL,'upfile2','÷������2'),(483,'wiz_mini_data',NULL,'upfile3','÷������3'),(484,'wiz_mini_data',NULL,'upfile4','÷������4'),(485,'wiz_mini_data',NULL,'upfile5','÷������5'),(486,'wiz_mini_data',NULL,'upfile6','÷������6'),(487,'wiz_mini_data',NULL,'upfile7','÷������7'),(488,'wiz_mini_data',NULL,'upfile8','÷������8'),(489,'wiz_mini_data',NULL,'upfile9','÷������9'),(490,'wiz_mini_data',NULL,'upfile10','÷������10'),(491,'wiz_mini_data',NULL,'upfile11','÷������11'),(492,'wiz_mini_data',NULL,'upfile12','÷������12'),(493,'wiz_mini_data',NULL,'upfile1_name','÷�����ϸ�1'),(494,'wiz_mini_data',NULL,'upfile2_name','÷�����ϸ�2'),(495,'wiz_mini_data',NULL,'upfile3_name','÷�����ϸ�3'),(496,'wiz_mini_data',NULL,'upfile4_name','÷�����ϸ�4'),(497,'wiz_mini_data',NULL,'upfile5_name','÷�����ϸ�5'),(498,'wiz_mini_data',NULL,'upfile6_name','÷�����ϸ�6'),(499,'wiz_mini_data',NULL,'upfile7_name','÷�����ϸ�7'),(500,'wiz_mini_data',NULL,'upfile8_name','÷�����ϸ�8'),(501,'wiz_mini_data',NULL,'upfile9_name','÷�����ϸ�9'),(502,'wiz_mini_data',NULL,'upfile10_name','÷�����ϸ�10'),(503,'wiz_mini_data',NULL,'upfile11_name','÷�����ϸ�11'),(504,'wiz_mini_data',NULL,'upfile12_name','÷�����ϸ�12'),(505,'wiz_mini_data',NULL,'movie1','������1'),(506,'wiz_mini_data',NULL,'movie2','������2'),(507,'wiz_mini_data',NULL,'movie3','������3'),(508,'wiz_mini_data',NULL,'passwd','��й�ȣ'),(509,'wiz_mini_data',NULL,'count','��ȸ��'),(510,'wiz_mini_data',NULL,'recom','��õ��'),(511,'wiz_mini_data',NULL,'comment','�ڸ�Ʈ��'),(512,'wiz_mini_data',NULL,'ip','IP'),(513,'wiz_mini_data',NULL,'wdate','�ۼ���'),(514,'wiz_mini_data',NULL,'ucc_file','UCC ���ϸ� '),(515,'wiz_mini_data',NULL,'ucc_movie','UCC �������'),(516,'wiz_mini_data',NULL,'ucc_img','UCC ����ϸ�'),(517,'wiz_mini_data',NULL,'ucc_size','UCC ũ��'),(518,'wiz_mini_data',NULL,'ucc_time','UCC ����ð�'),(519,'wiz_mini_data',NULL,'miniid','�̴�Ȩ�� ID'),(520,'wiz_mini_friend','<b>�̴�Ȩ�� ģ�� ���̺�</b>\r\n�̴�Ȩ�� ģ�� ���̺��Դϴ�.','anywiz',NULL),(521,'wiz_mini_friend',NULL,'idx','�ε���'),(522,'wiz_mini_friend',NULL,'myid','�ڽ��� ID'),(523,'wiz_mini_friend',NULL,'mynick','�ڽ��� �г���'),(524,'wiz_mini_friend',NULL,'frdid','ģ���� ID'),(525,'wiz_mini_friend',NULL,'frdnick','ģ���� �г���'),(526,'wiz_mini_friend',NULL,'message','ģ����û �޼���'),(527,'wiz_mini_friend',NULL,'status','���ο���'),(528,'wiz_mini_friend',NULL,'wdate','��û��'),(529,'wiz_mini_guest','<b>�̴�Ȩ�� ����� ���̺�</b>\r\n�̴�Ȩ�� ����� ���̺��Դϴ�.','anywiz',NULL),(530,'wiz_mini_guest',NULL,'idx','�ε���'),(531,'wiz_mini_guest',NULL,'code','�Խ����ڵ�'),(532,'wiz_mini_guest',NULL,'prino','���İ�'),(533,'wiz_mini_guest',NULL,'grpno','���۱׷찪'),(534,'wiz_mini_guest',NULL,'depno','���۱��̰�'),(535,'wiz_mini_guest',NULL,'notice','��������'),(536,'wiz_mini_guest',NULL,'category','ī�װ���'),(537,'wiz_mini_guest',NULL,'memid','�۾���ID'),(538,'wiz_mini_guest',NULL,'memgrp','���۱׷�ID'),(539,'wiz_mini_guest',NULL,'name','�ۼ���'),(540,'wiz_mini_guest',NULL,'email','�̸���'),(541,'wiz_mini_guest',NULL,'tphone','��ȭ��ȣ'),(542,'wiz_mini_guest',NULL,'hphone','�޴���ȭ��ȣ'),(543,'wiz_mini_guest',NULL,'zipcode','������ȣ'),(544,'wiz_mini_guest',NULL,'address','�ּ�'),(545,'wiz_mini_guest',NULL,'subject','����'),(546,'wiz_mini_guest',NULL,'content','����'),(547,'wiz_mini_guest',NULL,'addinfo1','�߰�����1'),(548,'wiz_mini_guest',NULL,'addinfo2','�߰�����2'),(549,'wiz_mini_guest',NULL,'addinfo3','�߰�����3'),(550,'wiz_mini_guest',NULL,'addinfo4','�߰�����4'),(551,'wiz_mini_guest',NULL,'addinfo5','�߰�����5'),(552,'wiz_mini_guest',NULL,'ctype','HTML ��뿩��'),(553,'wiz_mini_guest',NULL,'privacy','��б�'),(554,'wiz_mini_guest',NULL,'upfile1','÷������1'),(555,'wiz_mini_guest',NULL,'upfile2','÷������2'),(556,'wiz_mini_guest',NULL,'upfile3','÷������3'),(557,'wiz_mini_guest',NULL,'upfile4','÷������4'),(558,'wiz_mini_guest',NULL,'upfile5','÷������5'),(559,'wiz_mini_guest',NULL,'upfile6','÷������6'),(560,'wiz_mini_guest',NULL,'upfile7','÷������7'),(561,'wiz_mini_guest',NULL,'upfile8','÷������8'),(562,'wiz_mini_guest',NULL,'upfile9','÷������9'),(563,'wiz_mini_guest',NULL,'upfile10','÷������10'),(564,'wiz_mini_guest',NULL,'upfile11','÷������11'),(565,'wiz_mini_guest',NULL,'upfile12','÷������12'),(566,'wiz_mini_guest',NULL,'upfile1_name','÷�����ϸ�1'),(567,'wiz_mini_guest',NULL,'upfile2_name','÷�����ϸ�2'),(568,'wiz_mini_guest',NULL,'upfile3_name','÷�����ϸ�3'),(569,'wiz_mini_guest',NULL,'upfile4_name','÷�����ϸ�4'),(570,'wiz_mini_guest',NULL,'upfile5_name','÷�����ϸ�5'),(571,'wiz_mini_guest',NULL,'upfile6_name','÷�����ϸ�6'),(572,'wiz_mini_guest',NULL,'upfile7_name','÷�����ϸ�7'),(573,'wiz_mini_guest',NULL,'upfile8_name','÷�����ϸ�8'),(574,'wiz_mini_guest',NULL,'upfile9_name','÷�����ϸ�9'),(575,'wiz_mini_guest',NULL,'upfile10_name','÷�����ϸ�10'),(576,'wiz_mini_guest',NULL,'upfile11_name','÷�����ϸ�11'),(577,'wiz_mini_guest',NULL,'upfile12_name','÷�����ϸ�12'),(578,'wiz_mini_guest',NULL,'movie1','������1'),(579,'wiz_mini_guest',NULL,'movie2','������2'),(580,'wiz_mini_guest',NULL,'movie3','������3'),(581,'wiz_mini_guest',NULL,'passwd','��й�ȣ'),(582,'wiz_mini_guest',NULL,'count','��ȸ��'),(583,'wiz_mini_guest',NULL,'recom','��õ��'),(584,'wiz_mini_guest',NULL,'comment','�ڸ�Ʈ��'),(585,'wiz_mini_guest',NULL,'ip','IP'),(586,'wiz_mini_guest',NULL,'wdate','�ۼ���'),(587,'wiz_mini_guest',NULL,'ucc_file','UCC ���ϸ�'),(588,'wiz_mini_guest',NULL,'ucc_movie','UCC �������'),(589,'wiz_mini_guest',NULL,'ucc_img','UCC ����ϸ�'),(590,'wiz_mini_guest',NULL,'ucc_size','UCC ũ��'),(591,'wiz_mini_guest',NULL,'ucc_time','UCC ����ð�'),(592,'wiz_mini_guest',NULL,'miniid','�̴�Ȩ�� ID'),(593,'wiz_mini_info','<b>�̴�Ȩ�� ���� ���̺�</b>\r\n�̴�Ȩ�� ���� ���̺��Դϴ�.','anywiz',NULL),(594,'wiz_mini_info',NULL,'idx','�ε���'),(595,'wiz_mini_info',NULL,'memid','���̵�'),(596,'wiz_mini_info',NULL,'title','�̴�Ȩ�Ǹ�'),(597,'wiz_mini_info',NULL,'photo','����'),(598,'wiz_mini_info',NULL,'miniurl','URL'),(599,'wiz_mini_info',NULL,'skin','��Ų'),(600,'wiz_mini_info',NULL,'searchkey','�˻���'),(601,'wiz_mini_info',NULL,'info','�Ұ���'),(602,'wiz_mini_info',NULL,'best','����Ʈ �̴�Ȩ��'),(603,'wiz_mini_info',NULL,'privacy','�̴�Ȩ�� ��������'),(604,'wiz_mini_info',NULL,'birthday_privacy','������� ��������'),(605,'wiz_mini_info',NULL,'email_pricacy','�̸��� ��������'),(606,'wiz_mini_info',NULL,'tphone_privacy','��ȭ��ȣ ��������'),(607,'wiz_mini_info',NULL,'hphone_privacy','�޴���ȭ��ȣ ��������'),(608,'wiz_mini_info',NULL,'address_privacy','�ּ� ��������'),(609,'wiz_mini_info',NULL,'menu_use','�޴� ��뿩��'),(610,'wiz_mini_info',NULL,'bbs_permi','�Խ��� ���۱���'),(611,'wiz_mini_info',NULL,'data_permi','�ڷ�� ���۱���'),(612,'wiz_mini_info',NULL,'photo_permi','������ ���۱���'),(613,'wiz_mini_info',NULL,'movie_permi','������ ���۱���'),(614,'wiz_mini_info',NULL,'guest_permi','����� ���۱���'),(615,'wiz_mini_info',NULL,'wdate','������'),(616,'wiz_mini_movie','<b>�̴�Ȩ�� ������ ���̺�</b>\r\n�̴�Ȩ�� ������ ���̺��Դϴ�.','anywiz',NULL),(617,'wiz_mini_movie',NULL,'idx','�ε���'),(618,'wiz_mini_movie',NULL,'code','�Խ��� �ڵ�'),(619,'wiz_mini_movie',NULL,'prino','���İ�'),(620,'wiz_mini_movie',NULL,'grpno','���۱׷찪'),(621,'wiz_mini_movie',NULL,'depno','���۱��̰�'),(622,'wiz_mini_movie',NULL,'notice','��������'),(623,'wiz_mini_movie',NULL,'category','ī�װ���'),(624,'wiz_mini_movie',NULL,'memid','�۾���ID'),(625,'wiz_mini_movie',NULL,'memgrp','���۱׷�ID'),(626,'wiz_mini_movie',NULL,'name','�ۼ���'),(627,'wiz_mini_movie',NULL,'email','�̸���'),(628,'wiz_mini_movie',NULL,'tphone','��ȭ��ȣ'),(629,'wiz_mini_movie',NULL,'hphone','�޴���ȭ��ȣ'),(630,'wiz_mini_movie',NULL,'zipcode','������ȣ'),(631,'wiz_mini_movie',NULL,'address','�ּ�'),(632,'wiz_mini_movie',NULL,'subject','����'),(633,'wiz_mini_movie',NULL,'content','����'),(634,'wiz_mini_movie',NULL,'addinfo1','�߰�����1'),(635,'wiz_mini_movie',NULL,'addinfo2','�߰�����2'),(636,'wiz_mini_movie',NULL,'addinfo3','�߰�����3'),(637,'wiz_mini_movie',NULL,'addinfo4','�߰�����4'),(638,'wiz_mini_movie',NULL,'addinfo5','�߰�����5'),(639,'wiz_mini_movie',NULL,'ctype','HTML ��뿩��'),(640,'wiz_mini_movie',NULL,'privacy','��б�'),(641,'wiz_mini_movie',NULL,'upfile1','÷������1'),(642,'wiz_mini_movie',NULL,'upfile2','÷������2'),(643,'wiz_mini_movie',NULL,'upfile3','÷������3'),(644,'wiz_mini_movie',NULL,'upfile4','÷������4'),(645,'wiz_mini_movie',NULL,'upfile5','÷������5'),(646,'wiz_mini_movie',NULL,'upfile6','÷������6'),(647,'wiz_mini_movie',NULL,'upfile7','÷������7'),(648,'wiz_mini_movie',NULL,'upfile8','÷������8'),(649,'wiz_mini_movie',NULL,'upfile9','÷������9'),(650,'wiz_mini_movie',NULL,'upfile10','÷������10'),(651,'wiz_mini_movie',NULL,'upfile11','÷������11'),(652,'wiz_mini_movie',NULL,'upfile12','÷������12'),(653,'wiz_mini_movie',NULL,'upfile1_name','÷�����ϸ�1'),(654,'wiz_mini_movie',NULL,'upfile2_name','÷�����ϸ�2'),(655,'wiz_mini_movie',NULL,'upfile3_name','÷�����ϸ�3'),(656,'wiz_mini_movie',NULL,'upfile4_name','÷�����ϸ�4'),(657,'wiz_mini_movie',NULL,'upfile5_name','÷�����ϸ�5'),(658,'wiz_mini_movie',NULL,'upfile6_name','÷�����ϸ�6'),(659,'wiz_mini_movie',NULL,'upfile7_name','÷�����ϸ�7'),(660,'wiz_mini_movie',NULL,'upfile8_name','÷�����ϸ�8'),(661,'wiz_mini_movie',NULL,'upfile9_name','÷�����ϸ�9'),(662,'wiz_mini_movie',NULL,'upfile10_name','÷�����ϸ�10'),(663,'wiz_mini_movie',NULL,'upfile11_name','÷�����ϸ�11'),(664,'wiz_mini_movie',NULL,'upfile12_name','÷�����ϸ�12'),(665,'wiz_mini_movie',NULL,'movie1','������1'),(666,'wiz_mini_movie',NULL,'movie2','������2'),(667,'wiz_mini_movie',NULL,'movie3','������3'),(668,'wiz_mini_movie',NULL,'passwd','��й�ȣ'),(669,'wiz_mini_movie',NULL,'count','��ȸ��'),(670,'wiz_mini_movie',NULL,'recom','��õ��'),(671,'wiz_mini_movie',NULL,'comment','�ڸ�Ʈ��'),(672,'wiz_mini_movie',NULL,'ip','IP'),(673,'wiz_mini_movie',NULL,'wdate','�ۼ���'),(674,'wiz_mini_movie',NULL,'ucc_file','UCC ���ϸ�'),(675,'wiz_mini_movie',NULL,'ucc_movie','UCC �������'),(676,'wiz_mini_movie',NULL,'ucc_img','UCC ����ϸ�'),(677,'wiz_mini_movie',NULL,'ucc_size','UCC ũ��'),(678,'wiz_mini_movie',NULL,'ucc_time','UCC ����ð�'),(679,'wiz_mini_movie',NULL,'miniid','�̴�Ȩ�� ID'),(680,'wiz_mini_movie','<b>�̴�Ȩ�� ������ ���̺�</b>\r\n�̴�Ȩ�� ������ ���̺��Դϴ�.','anywiz',NULL),(681,'wiz_mini_movie',NULL,'idx','�ε���'),(682,'wiz_mini_movie',NULL,'code','�Խ��� �ڵ�'),(683,'wiz_mini_movie',NULL,'prino','���İ�'),(684,'wiz_mini_movie',NULL,'grpno','���۱׷찪'),(685,'wiz_mini_movie',NULL,'depno','���۱��̰�'),(686,'wiz_mini_movie',NULL,'notice','��������'),(687,'wiz_mini_movie',NULL,'category','ī�װ���'),(688,'wiz_mini_movie',NULL,'memid','�۾���ID'),(689,'wiz_mini_movie',NULL,'memgrp','���۱׷�ID'),(690,'wiz_mini_movie',NULL,'name','�ۼ���'),(691,'wiz_mini_movie',NULL,'email','�̸���'),(692,'wiz_mini_movie',NULL,'tphone','��ȭ��ȣ'),(693,'wiz_mini_movie',NULL,'hphone','�޴���ȭ��ȣ'),(694,'wiz_mini_movie',NULL,'zipcode','������ȣ'),(695,'wiz_mini_movie',NULL,'address','�ּ�'),(696,'wiz_mini_movie',NULL,'subject','����'),(697,'wiz_mini_movie',NULL,'content','����'),(698,'wiz_mini_movie',NULL,'addinfo1','�߰�����1'),(699,'wiz_mini_movie',NULL,'addinfo2','�߰�����2'),(700,'wiz_mini_movie',NULL,'addinfo3','�߰�����3'),(701,'wiz_mini_movie',NULL,'addinfo4','�߰�����4'),(702,'wiz_mini_movie',NULL,'addinfo5','�߰�����5'),(703,'wiz_mini_movie',NULL,'ctype','HTML ��뿩��'),(704,'wiz_mini_movie',NULL,'privacy','��б�'),(705,'wiz_mini_movie',NULL,'upfile1','÷������1'),(706,'wiz_mini_movie',NULL,'upfile2','÷������2'),(707,'wiz_mini_movie',NULL,'upfile3','÷������3'),(708,'wiz_mini_movie',NULL,'upfile4','÷������4'),(709,'wiz_mini_movie',NULL,'upfile5','÷������5'),(710,'wiz_mini_movie',NULL,'upfile6','÷������6'),(711,'wiz_mini_movie',NULL,'upfile7','÷������7'),(712,'wiz_mini_movie',NULL,'upfile8','÷������8'),(713,'wiz_mini_movie',NULL,'upfile9','÷������9'),(714,'wiz_mini_movie',NULL,'upfile10','÷������10'),(715,'wiz_mini_movie',NULL,'upfile11','÷������11'),(716,'wiz_mini_movie',NULL,'upfile12','÷������12'),(717,'wiz_mini_movie',NULL,'upfile1_name','÷�����ϸ�1'),(718,'wiz_mini_movie',NULL,'upfile2_name','÷�����ϸ�2'),(719,'wiz_mini_movie',NULL,'upfile3_name','÷�����ϸ�3'),(720,'wiz_mini_movie',NULL,'upfile4_name','÷�����ϸ�4'),(721,'wiz_mini_movie',NULL,'upfile5_name','÷�����ϸ�5'),(722,'wiz_mini_movie',NULL,'upfile6_name','÷�����ϸ�6'),(723,'wiz_mini_movie',NULL,'upfile7_name','÷�����ϸ�7'),(724,'wiz_mini_movie',NULL,'upfile8_name','÷�����ϸ�8'),(725,'wiz_mini_movie',NULL,'upfile9_name','÷�����ϸ�9'),(726,'wiz_mini_movie',NULL,'upfile10_name','÷�����ϸ�10'),(727,'wiz_mini_movie',NULL,'upfile11_name','÷�����ϸ�11'),(728,'wiz_mini_movie',NULL,'upfile12_name','÷�����ϸ�12'),(729,'wiz_mini_movie',NULL,'movie1','������1'),(730,'wiz_mini_movie',NULL,'movie2','������2'),(731,'wiz_mini_movie',NULL,'movie3','������3'),(732,'wiz_mini_movie',NULL,'passwd','��й�ȣ'),(733,'wiz_mini_movie',NULL,'count','��ȸ��'),(734,'wiz_mini_movie',NULL,'recom','��õ��'),(735,'wiz_mini_movie',NULL,'comment','�ڸ�Ʈ��'),(736,'wiz_mini_movie',NULL,'ip','IP'),(737,'wiz_mini_movie',NULL,'wdate','�ۼ���'),(738,'wiz_mini_movie',NULL,'ucc_file','UCC ���ϸ�'),(739,'wiz_mini_movie',NULL,'ucc_movie','UCC �������'),(740,'wiz_mini_movie',NULL,'ucc_img','UCC ����ϸ�'),(741,'wiz_mini_movie',NULL,'ucc_size','UCC ũ��'),(742,'wiz_mini_movie',NULL,'ucc_time','UCC ����ð�'),(743,'wiz_mini_movie',NULL,'miniid','�̴�Ȩ�� ID'),(744,'wiz_mini_music','<b>�̴�Ȩ�� ���� ���̺�</b>\r\n�̴�Ȩ�� ���� ���̺��Դϴ�.','anywiz',NULL),(745,'wiz_mini_music',NULL,'idx','�ε���'),(746,'wiz_mini_music',NULL,'miniid','�̴�Ȩ�� ID'),(747,'wiz_mini_music',NULL,'title','���'),(748,'wiz_mini_music',NULL,'artist','��Ƽ��Ʈ'),(749,'wiz_mini_music',NULL,'upfile','��������'),(750,'wiz_mini_music',NULL,'words','����'),(751,'wiz_mini_music',NULL,'wdate','�ۼ���'),(752,'wiz_mini_photo','<b>�̴�Ȩ�� ������ ���̺�</b>\r\n�̴�Ȩ�� ������ ���̺��Դϴ�.','anywiz',NULL),(753,'wiz_mini_photo',NULL,'idx','�ε���'),(754,'wiz_mini_photo',NULL,'code','�Խ��� �ڵ�'),(755,'wiz_mini_photo',NULL,'prino','���İ�'),(756,'wiz_mini_photo',NULL,'grpno','���۱׷찪'),(757,'wiz_mini_photo',NULL,'depno','���۱��̰�'),(758,'wiz_mini_photo',NULL,'notice','��������'),(759,'wiz_mini_photo',NULL,'category','ī�װ���'),(760,'wiz_mini_photo',NULL,'memid','�۾���ID'),(761,'wiz_mini_photo',NULL,'memgrp','���۱׷�ID'),(762,'wiz_mini_photo',NULL,'name','�ۼ���'),(763,'wiz_mini_photo',NULL,'email','�̸���'),(764,'wiz_mini_photo',NULL,'tphone','��ȭ��ȣ'),(765,'wiz_mini_photo',NULL,'hphone','�޴���ȭ��ȣ'),(766,'wiz_mini_photo',NULL,'zipcode','������ȣ'),(767,'wiz_mini_photo',NULL,'address','�ּ�'),(768,'wiz_mini_photo',NULL,'subject','����'),(769,'wiz_mini_photo',NULL,'content','����'),(770,'wiz_mini_photo',NULL,'addinfo1','�߰�����1'),(771,'wiz_mini_photo',NULL,'addinfo2','�߰�����2'),(772,'wiz_mini_photo',NULL,'addinfo3','�߰�����3'),(773,'wiz_mini_photo',NULL,'addinfo4','�߰�����4'),(774,'wiz_mini_photo',NULL,'addinfo5','�߰�����5'),(775,'wiz_mini_photo',NULL,'ctype','HTML ��뿩��'),(776,'wiz_mini_photo',NULL,'privacy','��б�'),(777,'wiz_mini_photo',NULL,'upfile1','÷������1'),(778,'wiz_mini_photo',NULL,'upfile2','÷������2'),(779,'wiz_mini_photo',NULL,'upfile3','÷������3'),(780,'wiz_mini_photo',NULL,'upfile4','÷������4'),(781,'wiz_mini_photo',NULL,'upfile5','÷������5'),(782,'wiz_mini_photo',NULL,'upfile6','÷������6'),(783,'wiz_mini_photo',NULL,'upfile7','÷������7'),(784,'wiz_mini_photo',NULL,'upfile8','÷������8'),(785,'wiz_mini_photo',NULL,'upfile9','÷������9'),(786,'wiz_mini_photo',NULL,'upfile10','÷������10'),(787,'wiz_mini_photo',NULL,'upfile11','÷������11'),(788,'wiz_mini_photo',NULL,'upfile12','÷������12'),(789,'wiz_mini_photo',NULL,'upfile1_name','÷�����ϸ�1'),(790,'wiz_mini_photo',NULL,'upfile2_name','÷�����ϸ�2'),(791,'wiz_mini_photo',NULL,'upfile3_name','÷�����ϸ�3'),(792,'wiz_mini_photo',NULL,'upfile4_name','÷�����ϸ�4'),(793,'wiz_mini_photo',NULL,'upfile5_name','÷�����ϸ�5'),(794,'wiz_mini_photo',NULL,'upfile6_name','÷�����ϸ�6'),(795,'wiz_mini_photo',NULL,'upfile7_name','÷�����ϸ�7'),(796,'wiz_mini_photo',NULL,'upfile8_name','÷�����ϸ�8'),(797,'wiz_mini_photo',NULL,'upfile9_name','÷�����ϸ�9'),(798,'wiz_mini_photo',NULL,'upfile10_name','÷�����ϸ�10'),(799,'wiz_mini_photo',NULL,'upfile11_name','÷�����ϸ�11'),(800,'wiz_mini_photo',NULL,'upfile12_name','÷�����ϸ�12'),(801,'wiz_mini_photo',NULL,'movie1','������1'),(802,'wiz_mini_photo',NULL,'movie2','������2'),(803,'wiz_mini_photo',NULL,'movie3','������3'),(804,'wiz_mini_photo',NULL,'passwd','��й�ȣ'),(805,'wiz_mini_photo',NULL,'count','��ȸ��'),(806,'wiz_mini_photo',NULL,'recom','��õ��'),(807,'wiz_mini_photo',NULL,'comment','�ڸ�Ʈ��'),(808,'wiz_mini_photo',NULL,'ip','IP'),(809,'wiz_mini_photo',NULL,'wdate','�ۼ���'),(810,'wiz_mini_photo',NULL,'ucc_file','UCC ���ϸ�'),(811,'wiz_mini_photo',NULL,'ucc_movie','UCC �������'),(812,'wiz_mini_photo',NULL,'ucc_img','UCC ����ϸ�'),(813,'wiz_mini_photo',NULL,'ucc_size','UCC ũ��'),(814,'wiz_mini_photo',NULL,'ucc_time','UCC ����ð�'),(815,'wiz_mini_photo',NULL,'miniid','�̴�Ȩ�� ID'),(816,'wiz_mini_profile','<b>�̴�Ȩ�� ���Ұ� ���̺�</b>\r\n�̴�Ȩ�� ���Ұ� ���̺��Դϴ�.','anywiz',NULL),(817,'wiz_mini_profile',NULL,'idx','�ε���'),(818,'wiz_mini_profile',NULL,'miniid','�̴�Ȩ�� ID'),(819,'wiz_mini_profile',NULL,'content','����'),(820,'wiz_mini_profile',NULL,'wdate','�ۼ���'),(821,'wiz_mini_skin','<b>�̴�Ȩ�� ��Ų ���̺�</b>\r\n�̴�Ȩ�� ��Ų ���̺��Դϴ�.','anywiz',NULL),(822,'wiz_mini_skin',NULL,'idx','�ε���'),(823,'wiz_mini_skin',NULL,'title','��Ų��'),(824,'wiz_mini_skin',NULL,'thumb','����� �̹���'),(825,'wiz_mini_skin',NULL,'skin','��Ų �̹���'),(826,'wiz_mini_skin',NULL,'miniid','�̴�Ȩ�� ID'),(827,'wiz_otherinfo','<b>��Ÿ���� ���̺�</b>\r\n��Ÿ���� ���̺��Դϴ�.','anywiz',NULL),(828,'wiz_otherinfo',NULL,'idx','�ε���'),(829,'wiz_otherinfo',NULL,'type','�Է�����'),(830,'wiz_otherinfo',NULL,'info01','�߰�����1'),(831,'wiz_otherinfo',NULL,'info02','�߰�����2'),(832,'wiz_otherinfo',NULL,'info03','�߰�����3'),(833,'wiz_otherinfo',NULL,'info04','�߰�����4'),(834,'wiz_otherinfo',NULL,'info05','�߰�����5'),(835,'wiz_otherinfo',NULL,'info06','�߰�����6'),(836,'wiz_otherinfo',NULL,'info07','�߰�����7'),(837,'wiz_otherinfo',NULL,'info08','�߰�����8'),(838,'wiz_otherinfo',NULL,'info09','�߰�����9'),(839,'wiz_otherinfo',NULL,'info10','�߰�����10'),(840,'wiz_page','<b>������ ���̺�</b>\r\n������ ���̺��Դϴ�.','anywiz',NULL),(841,'wiz_page',NULL,'idx','�ε���'),(842,'wiz_page',NULL,'code','������ �ڵ�'),(843,'wiz_page',NULL,'title','��������'),(844,'wiz_page',NULL,'menu','�޴�'),(845,'wiz_page',NULL,'url','������URL'),(846,'wiz_page',NULL,'level','������ ���'),(847,'wiz_page',NULL,'content','������ ����'),(848,'wiz_page',NULL,'wdate','�ۼ���'),(849,'wiz_point','<b>����Ʈ ���̺�</b>\r\n����Ʈ ���̺��Դϴ�.','anywiz',NULL),(850,'wiz_point',NULL,'idx','�ε���'),(851,'wiz_point',NULL,'bidx','�Խ��� ��ȣ'),(852,'wiz_point',NULL,'cidx','�ڸ�Ʈ ��ȣ'),(853,'wiz_point',NULL,'midx','���� ��ȣ'),(854,'wiz_point',NULL,'ptype','����Ʈ ����'),(855,'wiz_point',NULL,'mode','�Խ��� ���'),(856,'wiz_point',NULL,'memid','ȸ�� ID'),(857,'wiz_point',NULL,'point','����Ʈ'),(858,'wiz_point',NULL,'memo','����Ʈ ����'),(859,'wiz_point',NULL,'wdate','����Ʈ ������'),(860,'wiz_poll','<b>�������� ���̺�</b>\r\n�������� ���̺��Դϴ�.','anywiz',NULL),(861,'wiz_poll',NULL,'idx','�ε���'),(862,'wiz_poll',NULL,'code','�����ڵ�'),(863,'wiz_poll',NULL,'polluse','���࿩��'),(864,'wiz_poll',NULL,'pollmain','�������⿩��'),(865,'wiz_poll',NULL,'sdate','���������'),(866,'wiz_poll',NULL,'edate','����������'),(867,'wiz_poll',NULL,'apermi','���� ����'),(868,'wiz_poll',NULL,'cpermi','�ڸ�Ʈ�ۼ� ����'),(869,'wiz_poll',NULL,'subject','������'),(870,'wiz_poll',NULL,'content','��������'),(871,'wiz_poll',NULL,'wdate','�ۼ���'),(872,'wiz_poll',NULL,'cnt','�����ڼ�'),(873,'wiz_polldata','<b>�������� ���̺�</b>\r\n�������� ���̺��Դϴ�.','anywiz',NULL),(874,'wiz_polldata',NULL,'idx','�ε���'),(875,'wiz_polldata',NULL,'pidx','�������� ��ȣ'),(876,'wiz_polldata',NULL,'question','����'),(877,'wiz_polldata',NULL,'answer01','�亯1'),(878,'wiz_polldata',NULL,'count01','�����ڼ�1'),(879,'wiz_polldata',NULL,'answer02','�亯2'),(880,'wiz_polldata',NULL,'count02','�����ڼ�2'),(881,'wiz_polldata',NULL,'answer03','�亯3'),(882,'wiz_polldata',NULL,'count03','�����ڼ�3'),(883,'wiz_polldata',NULL,'answer04','�亯4'),(884,'wiz_polldata',NULL,'count04','�����ڼ�4'),(885,'wiz_polldata',NULL,'answer05','�亯5'),(886,'wiz_polldata',NULL,'count05','�����ڼ�5'),(887,'wiz_polldata',NULL,'answer06','�亯6'),(888,'wiz_polldata',NULL,'count06','�����ڼ�6'),(889,'wiz_polldata',NULL,'answer07','�亯7'),(890,'wiz_polldata',NULL,'count07','�����ڼ�7'),(891,'wiz_polldata',NULL,'answer08','�亯8'),(892,'wiz_polldata',NULL,'count08','�����ڼ�8'),(893,'wiz_polldata',NULL,'answer09','�亯9'),(894,'wiz_polldata',NULL,'count09','�����ڼ�9'),(895,'wiz_polldata',NULL,'answer10','�亯10'),(896,'wiz_polldata',NULL,'count10','�����ڼ�10'),(897,'wiz_pollinfo','<b>�������� ���� ���̺�</b>\r\n�������� ���� ���̺��Դϴ�.','anywiz',NULL),(898,'wiz_pollinfo',NULL,'code','�����ڵ�'),(899,'wiz_pollinfo',NULL,'title','������'),(900,'wiz_pollinfo',NULL,'lpermi','��Ϻ��� ����'),(901,'wiz_pollinfo',NULL,'rpermi','���뺸�� ����'),(902,'wiz_pollinfo',NULL,'apermi','�������� ����'),(903,'wiz_pollinfo',NULL,'cpermi','�ڸ�Ʈ���� ����'),(904,'wiz_pollinfo',NULL,'skin','��Ų'),(905,'wiz_pollinfo',NULL,'permsg','������ ���� ��� ��� �޼���'),(906,'wiz_pollinfo',NULL,'perurl','������ ���� ��� �̵�������'),(907,'wiz_pollinfo',NULL,'mainskin','�������� ��Ų'),(908,'wiz_pollinfo',NULL,'purl','����������'),(909,'wiz_pollinfo',NULL,'wdate','�ۼ���'),(910,'wiz_popup','<b>�˾� ���̺�</b>\r\n�˾� ���̺��Դϴ�.','anywiz',NULL),(911,'wiz_popup',NULL,'idx','�ε���'),(912,'wiz_popup',NULL,'isuse','��뿩��'),(913,'wiz_popup',NULL,'scroll','��ũ�ѿ���'),(914,'wiz_popup',NULL,'posi_x','���� ��ġ'),(915,'wiz_popup',NULL,'posi_y','��� ��ġ'),(916,'wiz_popup',NULL,'size_x','���� ũ��'),(917,'wiz_popup',NULL,'size_y','���� ũ��'),(918,'wiz_popup',NULL,'sdate','�ԽñⰣ ������'),(919,'wiz_popup',NULL,'edate','�ԽñⰣ ������'),(920,'wiz_popup',NULL,'linkurl','��ũ�ּ�'),(921,'wiz_popup',NULL,'popup_type','�˾�����'),(922,'wiz_popup',NULL,'title','����'),(923,'wiz_popup',NULL,'content','�˾�����'),(924,'wiz_popup',NULL,'wdate','�ۼ���'),(925,'wiz_prdinfo','<b>��ǰ���� ���̺�</b>\r\n��ǰ���� ���̺��Դϴ�.','anywiz',NULL),(926,'wiz_prdinfo',NULL,'skin','��Ų'),(927,'wiz_prdinfo',NULL,'wdate','�ۼ���'),(928,'wiz_prdinfo',NULL,'purl','����������'),(929,'wiz_prdinfo',NULL,'prdcnt','��ǰ��'),(930,'wiz_prdinfo',NULL,'prdline','�ٹٲ� ��ǰ��'),(931,'wiz_prdinfo',NULL,'maintype','�����ǰ ����'),(932,'wiz_prdinfo',NULL,'mainskin','��ǰ���ν�Ų'),(933,'wiz_prdinfo',NULL,'prdname_len','��ǰ�� ���ڼ�'),(934,'wiz_prdmain','<b>��ǰ �������� ���̺�</b>\r\n��ǰ �������� ���̺��Դϴ�.','anywiz',NULL),(935,'wiz_prdmain',NULL,'idx','�ε���'),(936,'wiz_prdmain',NULL,'prdcnt','��ǰ��'),(937,'wiz_prdmain',NULL,'prdline','�ٹٲ� ��ǰ��'),(938,'wiz_prdmain',NULL,'maintype','�����ǰ ����'),(939,'wiz_prdmain',NULL,'mainskin','��ǰ���ν�Ų'),(940,'wiz_prdmain',NULL,'prdname_len','��ǰ�� ���ڼ�'),(941,'wiz_prdmain',NULL,'prdexp_len','���ܼ��� ���ڼ�'),(942,'wiz_product','<b>��ǰ ���̺�</b>\r\n��ǰ ���̺��Դϴ�.','anywiz',NULL),(943,'wiz_product',NULL,'prdcode','��ǰ�ڵ�'),(944,'wiz_product',NULL,'prdnum','��ǰ��ȣ'),(945,'wiz_product',NULL,'prdname','��ǰ��'),(946,'wiz_product',NULL,'prdprice','��ǰ����'),(947,'wiz_product',NULL,'showset','��������'),(948,'wiz_product',NULL,'prior','��������'),(949,'wiz_product',NULL,'prdicon','������'),(950,'wiz_product',NULL,'recom','��õ��ǰ'),(951,'wiz_product',NULL,'info_name1','��ǰ���� �̸�1'),(952,'wiz_product',NULL,'info_value1','��ǰ���� ����1'),(953,'wiz_product',NULL,'info_name2','��ǰ���� �̸�2'),(954,'wiz_product',NULL,'info_value2','��ǰ���� ����2'),(955,'wiz_product',NULL,'info_name3','��ǰ���� �̸�3'),(956,'wiz_product',NULL,'info_value3','��ǰ���� ����3'),(957,'wiz_product',NULL,'info_name4','��ǰ���� �̸�4'),(958,'wiz_product',NULL,'info_value4','��ǰ���� ����4'),(959,'wiz_product',NULL,'info_name5','��ǰ���� �̸�5'),(960,'wiz_product',NULL,'info_value5','��ǰ���� ����5'),(961,'wiz_product',NULL,'info_name6','��ǰ���� �̸�6'),(962,'wiz_product',NULL,'info_value6','��ǰ���� ����6'),(963,'wiz_product',NULL,'info_name7','��ǰ���� �̸�7'),(964,'wiz_product',NULL,'info_value7','��ǰ���� ����7'),(965,'wiz_product',NULL,'info_name8','��ǰ���� �̸�8'),(966,'wiz_product',NULL,'info_value8','��ǰ���� ����8'),(967,'wiz_product',NULL,'info_name9','��ǰ���� �̸�9'),(968,'wiz_product',NULL,'info_value9','��ǰ���� ����9'),(969,'wiz_product',NULL,'info_name10','��ǰ���� �̸�10'),(970,'wiz_product',NULL,'info_value10','��ǰ���� ����10'),(971,'wiz_product',NULL,'addinfo1','�߰�����1 '),(972,'wiz_product',NULL,'addinfo2','�߰�����2'),(973,'wiz_product',NULL,'addinfo3','�߰�����3'),(974,'wiz_product',NULL,'addinfo4','�߰�����4'),(975,'wiz_product',NULL,'addinfo5','�߰�����5'),(976,'wiz_product',NULL,'prdimg_R','��ǰ��� �̹���'),(977,'wiz_product',NULL,'prdimg_L1','Ȯ�뺸�� �̹���1'),(978,'wiz_product',NULL,'prdimg_M1','��ǰ�� �̹���1'),(979,'wiz_product',NULL,'prdimg_S1','��� �̹���1'),(980,'wiz_product',NULL,'prdimg_L2','Ȯ�뺸�� �̹���2'),(981,'wiz_product',NULL,'prdimg_M2','��ǰ�� �̹���2'),(982,'wiz_product',NULL,'prdimg_S2','��� �̹���2'),(983,'wiz_product',NULL,'prdimg_L3','Ȯ�뺸�� �̹���3'),(984,'wiz_product',NULL,'prdimg_M3','��ǰ�� �̹���3'),(985,'wiz_product',NULL,'prdimg_S3','��� �̹���3'),(986,'wiz_product',NULL,'prdimg_L4','Ȯ�뺸�� �̹���4'),(987,'wiz_product',NULL,'prdimg_M4','��ǰ�� �̹���4'),(988,'wiz_product',NULL,'prdimg_S4','��� �̹���4'),(989,'wiz_product',NULL,'prdimg_L5','Ȯ�뺸�� �̹���5'),(990,'wiz_product',NULL,'prdimg_M5','��ǰ�� �̹���5'),(991,'wiz_product',NULL,'prdimg_S5','��� �̹���5'),(992,'wiz_product',NULL,'prdimg_L6','Ȯ�뺸�� �̹���6'),(993,'wiz_product',NULL,'prdimg_M6','��ǰ�� �̹���6'),(994,'wiz_product',NULL,'prdimg_S6','��� �̹���6'),(995,'wiz_product',NULL,'prdimg_L7','Ȯ�뺸�� �̹���7'),(996,'wiz_product',NULL,'prdimg_M7','��ǰ�� �̹���7'),(997,'wiz_product',NULL,'prdimg_S7','��� �̹���7'),(998,'wiz_product',NULL,'prdimg_L8','Ȯ�뺸�� �̹���8'),(999,'wiz_product',NULL,'prdimg_M8','��ǰ�� �̹���8'),(1000,'wiz_product',NULL,'prdimg_S8','��� �̹���8'),(1001,'wiz_product',NULL,'prdimg_L9','Ȯ�뺸�� �̹���9'),(1002,'wiz_product',NULL,'prdimg_M9','��ǰ�� �̹���9'),(1003,'wiz_product',NULL,'prdimg_S9','��� �̹���9'),(1004,'wiz_product',NULL,'prdimg_L10','Ȯ�뺸�� �̹���10'),(1005,'wiz_product',NULL,'prdimg_M10','��ǰ�� �̹���10'),(1006,'wiz_product',NULL,'prdimg_S10','��� �̹���10'),(1007,'wiz_product',NULL,'prdimg_L11','Ȯ�뺸�� �̹���11'),(1008,'wiz_product',NULL,'prdimg_M11','��ǰ�� �̹���11'),(1009,'wiz_product',NULL,'prdimg_S11','��� �̹���11'),(1010,'wiz_product',NULL,'prdimg_L12','Ȯ�뺸�� �̹���12'),(1011,'wiz_product',NULL,'prdimg_M12','��ǰ�� �̹���12'),(1012,'wiz_product',NULL,'prdimg_S12','��� �̹���12'),(1013,'wiz_product',NULL,'shortexp','��ǰ���ܼ���'),(1014,'wiz_product',NULL,'content','��ǰ������'),(1015,'wiz_schedule','<b>���� ���̺�</b>\r\n���� ���̺��Դϴ�.','anywiz',NULL),(1016,'wiz_schedule',NULL,'idx','�ε���'),(1017,'wiz_schedule',NULL,'memid','ȸ�� ID'),(1018,'wiz_schedule',NULL,'prior','����'),(1019,'wiz_schedule',NULL,'subject','����'),(1020,'wiz_schedule',NULL,'content','����'),(1021,'wiz_schedule',NULL,'sdate','������'),(1022,'wiz_schedule',NULL,'edate','������'),(1023,'wiz_siteinfo','<b>����Ʈ ���� ���̺�</b>\r\n����Ʈ ���� ���̺��Դϴ�.','anywiz',NULL),(1024,'wiz_siteinfo',NULL,'site_name','����Ʈ��'),(1025,'wiz_siteinfo',NULL,'site_url','����Ʈ URL'),(1026,'wiz_siteinfo',NULL,'site_email','������ �̸���'),(1027,'wiz_siteinfo',NULL,'site_tel','������ ��ȭ��ȣ'),(1028,'wiz_siteinfo',NULL,'site_hand','������ �޴���ȭ��ȣ'),(1029,'wiz_siteinfo',NULL,'site_key','���̼���Ű'),(1030,'wiz_siteinfo',NULL,'site_date','����Ʈ ��ġ��'),(1031,'wiz_siteinfo',NULL,'ftp_host','FTP �����ּ�'),(1032,'wiz_siteinfo',NULL,'ftp_id','FTP ���̵�'),(1033,'wiz_siteinfo',NULL,'ftp_pw','FTP ��й�ȣ'),(1034,'wiz_siteinfo',NULL,'admin_title','������ Ÿ��Ʋ'),(1035,'wiz_siteinfo',NULL,'admin_copyright','������ ī�Ƕ���'),(1036,'wiz_siteinfo',NULL,'addbbs_use','�Խ����߰� ��뿩��'),(1037,'wiz_siteinfo',NULL,'ssl_use','SSL ��뿩��'),(1038,'wiz_siteinfo',NULL,'ssl_port','SSL ��Ʈ��ȣ'),(1039,'wiz_siteinfo',NULL,'msg_use','���� ��뿩��'),(1040,'wiz_siteinfo',NULL,'msg_skin','���� ��Ų'),(1041,'wiz_siteinfo',NULL,'msg_url','���� ����������'),(1042,'wiz_siteinfo',NULL,'mini_use','�̴�Ȩ�� ��뿩��'),(1043,'wiz_siteinfo',NULL,'mini_skin','�̴�Ȩ�� ��Ų'),(1044,'wiz_siteinfo',NULL,'mini_url','�̴�Ȩ�� ���� �ּ�'),(1045,'wiz_siteinfo',NULL,'sms_use','SMS ��뿩��'),(1046,'wiz_siteinfo',NULL,'sms_type','SMS ����'),(1047,'wiz_siteinfo',NULL,'sms_id','SMS ���̵�'),(1048,'wiz_siteinfo',NULL,'sms_pw','SMS ��й�ȣ'),(1049,'wiz_siteinfo',NULL,'namecheck_use','�Ǹ����� ��뿩��'),(1050,'wiz_siteinfo',NULL,'namecheck_id','�Ǹ����� ���̵�'),(1051,'wiz_siteinfo',NULL,'namecheck_pw','�Ǹ����� ��й�ȣ'),(1052,'wiz_siteinfo',NULL,'point_use','����Ʈ ��뿩��'),(1053,'wiz_siteinfo',NULL,'point_skin','����Ʈ ��Ų'),(1054,'wiz_siteinfo',NULL,'point_url','����Ʈ ����������'),(1055,'wiz_siteinfo',NULL,'join_point','ȸ������ ����Ʈ'),(1056,'wiz_siteinfo',NULL,'login_point','�α��� ����Ʈ'),(1057,'wiz_siteinfo',NULL,'msg_point','���� ����Ʈ'),(1058,'wiz_siteinfo',NULL,'view_point','���� ����Ʈ'),(1059,'wiz_siteinfo',NULL,'write_point','�۾��� ����Ʈ'),(1060,'wiz_siteinfo',NULL,'down_point','÷������ �ٿ�ε� ����Ʈ'),(1061,'wiz_siteinfo',NULL,'comment_point','�ڸ�Ʈ ����Ʈ'),(1062,'wiz_siteinfo',NULL,'recom_point','��õ ����Ʈ'),(1063,'wiz_siteinfo',NULL,'point_msg','����Ʈ�� ���� ��� ����޼���'),(1064,'wiz_siteinfo',NULL,'designer_id','�����̳� ���̵�'),(1065,'wiz_siteinfo',NULL,'designer_pw','�����̳� ��й�ȣ'),(1066,'wiz_siteinfo',NULL,'anywiz_id','�ִ����� ���̵�'),(1067,'wiz_siteinfo',NULL,'anywiz_pw','�ִ����� ��й�ȣ'),(1068,'wiz_siteinfo',NULL,'start_page','������ �α��� �� �̵�������'),(1069,'wiz_siteinfo',NULL,'menu_use','�޴���뿩��'),(1070,'wiz_siteinfo',NULL,'prdimg_R','��ǰ ��� �̹���'),(1071,'wiz_siteinfo',NULL,'prdimg_L','��ǰ Ȯ�� �̹���'),(1072,'wiz_siteinfo',NULL,'prdimg_M','��ǰ �� �̹���'),(1073,'wiz_siteinfo',NULL,'prdimg_S','��ǰ ����� �̹���'),(1074,'wiz_siteinfo',NULL,'com_num','����ڵ�Ϲ�ȣ'),(1075,'wiz_siteinfo',NULL,'com_name','��ȣ'),(1076,'wiz_siteinfo',NULL,'com_owner','��ǥ�ڸ�'),(1077,'wiz_siteinfo',NULL,'com_post','������ȣ'),(1078,'wiz_siteinfo',NULL,'com_address','�ּ�'),(1079,'wiz_siteinfo',NULL,'com_kind','����'),(1080,'wiz_siteinfo',NULL,'com_class','����'),(1081,'wiz_siteinfo',NULL,'com_tel','��ȭ��ȣ'),(1082,'wiz_siteinfo',NULL,'com_fax','�ѽ���ȣ'),(1083,'wiz_siteinfo',NULL,'con_parameter','�˻� Ű���� �м� �Ķ����'),(1084,'','','anywiz',NULL),(1085,'wiz_bbs',NULL,'reply','�亯����'),(1086,'wiz_bbs',NULL,'status','ó������'),(1087,'wiz_bbsinfo',NULL,'sms','���ۼ� �� �����ڿ��� SMS �߼� ����'),(1088,'wiz_bbsinfo',NULL,'grp','�Խ��Ǳ׷�'),(1089,'wiz_bbsinfo',NULL,'prior','�켱����'),(1090,'wiz_pollinfo',NULL,'datetype_list','��¥����(���������) '),(1091,'wiz_pollinfo',NULL,'datetype_view','��¥����(����������) '),(1092,'wiz_pollinfo',NULL,'rows','������ ��¼�'),(1093,'wiz_pollinfo',NULL,'lists','����Ʈ ��¼�'),(1094,'wiz_pollinfo',NULL,'newc','NEW �Ⱓ����'),(1095,'wiz_pollinfo',NULL,'subject_len','���� ���ڼ� '),(1096,'wiz_pollinfo',NULL,'spam_check','���Ա�üũ��� ��뿩�� '),(1097,'wiz_pollinfo',NULL,'comment','�ڸ�Ʈ ��뿩�� '),(1098,'wiz_pollinfo',NULL,'abuse','�弳,���� ���͸� ��뿩�� '),(1099,'wiz_pollinfo',NULL,'abtxt','�弳,���� ���͸� ���� '),(1100,'wiz_product',NULL,'upfile1','÷������1'),(1101,'wiz_product',NULL,'upfile2','÷������2'),(1102,'wiz_product',NULL,'upfile3','÷������3'),(1103,'wiz_product',NULL,'upfile4','÷������4'),(1104,'wiz_product',NULL,'upfile5','÷������5'),(1105,'wiz_product',NULL,'upfile1_name','÷�����ϸ�1'),(1106,'wiz_product',NULL,'upfile2_name','÷�����ϸ�2'),(1107,'wiz_product',NULL,'upfile3_name','÷�����ϸ�3'),(1108,'wiz_product',NULL,'upfile4_name','÷�����ϸ�4'),(1109,'wiz_product',NULL,'upfile5_name','÷�����ϸ�5'),(1110,'wiz_siteinfo',NULL,'bbs_grp','�Խ��Ǳ׷�'),(1111,'wiz_siteinfo',NULL,'up_date','���� ������Ʈ ��¥'),(1112,'','','anywiz',NULL);
+/*!40000 ALTER TABLE `wiz_tabledesc` ENABLE KEYS */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
