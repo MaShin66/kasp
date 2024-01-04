@@ -1,9 +1,9 @@
 <?php
 if (!defined('_GNUBOARD_')) exit;
 define('G5_MYSQL_HOST', 'localhost');
-define('G5_MYSQL_USER', 'kasp');
-define('G5_MYSQL_PASSWORD', 'db20140325kasp');
-define('G5_MYSQL_DB', 'kasp');
+define('G5_MYSQL_USER', 'enkasp');
+define('G5_MYSQL_PASSWORD', 'kaspen2014');
+define('G5_MYSQL_DB', 'enkasp');
 define('G5_MYSQL_SET_MODE', false);
 
 define('G5_TABLE_PREFIX', 'g5_');

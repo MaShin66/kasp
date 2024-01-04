@@ -1,6 +1,6 @@
 <?
 $mysql_host = 'localhost';
-$mysql_user = 'kasp';
-$mysql_password = 'db20140325kasp';
-$mysql_db = 'kasp';
+$mysql_user = 'enkasp';
+$mysql_password = 'kaspen2014';
+$mysql_db = 'enkasp';
 ?>
