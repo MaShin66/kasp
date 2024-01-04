@@ -1,4 +1,4 @@
-<? include ("/home/hosting_users/kasp/www/common/include/header2.html"); ?>
+<? include ("/home/hosting_users/enkasp/www/common/include/header2.html"); ?>
 <? ini_set('memory_limit','512M');
 
 
@@ -65,7 +65,7 @@ unset($banner_data);
 							<li><button type="button">국내동향</button><a href="/center/space_news.html" class="more">더보기</a></li>
 							<li><button type="button">글로벌동향</button><a href="/center/space_globalnews.html" class="more">더보기</a></li>
 						</ul>
-						<? 
+						<?
 							for ($i=0; $i<4; $i++){
 								if($i == 0){
 									$code = "kasp_notice";	//공지사항
@@ -89,7 +89,7 @@ unset($banner_data);
 									from wiz_bbs as wb left join wiz_bbscat as wc on wb.category = wc.idx
 									where wb.code = '$code' order by wb.prino desc limit 4";
 							$result = mysql_query($sql);
-						?>	
+						?>
 							<ul class="new_list">
 						<?
 								while($row = mysql_fetch_array($result)){
@@ -162,12 +162,12 @@ unset($banner_data);
 									<div class="date">2021.05.18</div>
 								</li-->
 							</ul>
-						</div>		
+						</div>
 
 						<? } //end for ?>
 
 					</div>
-					
+
 
 
 					<div class="bidding_list">
@@ -206,7 +206,7 @@ unset($banner_data);
 
 								if(file_exists("/kasp/www/admin/data/bbs/kasp_news/M".$row[upfile1])) $main_photo = "http://kasp.or.kr/admin/data/bbs/kasp_news/M".$row[upfile1];		// img
 								else $main_photo = "http://kasp.or.kr/admin/bbs/skin/bbsBasic/image/noimg.gif";
-							?>	
+							?>
 							<a href="/kasp_news/kasp_news.html?ptype=view&amp;idx=<?=$row[idx]?>">
 								<div class="img">
 									<img src="<?=$main_photo?>" alt="">
@@ -280,7 +280,7 @@ unset($banner_data);
 								</a>
 								<? } ?>
 							</li>
-	
+
 							<?
 								$background4 = $banner_proc_data[4][0]['file1'];
 								$show4 = $banner_proc_data[4][0]['show'];
@@ -351,7 +351,7 @@ unset($banner_data);
 		}).on('beforeChange', function(event, slick, currentSlide, nextSlide){
 			$('#currentCnt').html(nextSlide+1);
 		});
-	
+
 	$('.enterprise_logo_area').slick({
       rows: 2,
 			slidesToShow: 6,
@@ -359,19 +359,19 @@ unset($banner_data);
 			arrows: false,
 			dots : true,
       responsive: [
-        {  
+        {
           breakpoint: 1140,
           settings: {
             slidesToShow: 5,
             slidesToScroll: 5,
-          } 
+          }
         },
-        { 
+        {
           breakpoint: 768,
-          settings: {	
+          settings: {
             slidesToShow: 4,
             slidesToScroll: 4,
-          } 
+          }
         }
       ]
 		})
@@ -390,4 +390,4 @@ unset($banner_data);
 </script>
 
 
-<? include ("/home/hosting_users/kasp/www/common/include/footer2.html"); ?>
+<? include ("/home/hosting_users/enkasp/www/common/include/footer2.html"); ?>
