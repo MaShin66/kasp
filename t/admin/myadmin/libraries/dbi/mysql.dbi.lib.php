@@ -200,7 +200,7 @@ function PMA_DBI_fetch_row($result) {
  */
 function PMA_DBI_free_result() {
     foreach (func_get_args() as $result) {
-        if (is_resource($result)
+        if (is_object($result)
          && get_resource_type($result) === 'mysql result') {
             mysql_free_result($result);
         }

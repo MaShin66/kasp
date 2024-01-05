@@ -75,7 +75,7 @@ class writeexcel_olewriter {
          * If the filename is a resource it is assumed that it is a valid
          * filehandle, if not we create a filehandle.
          */
-        if (is_resource($OLEfile)) {
+        if (is_object($OLEfile)) {
             $fh = $OLEfile;
         } else {
             // Create a new file, open for writing
