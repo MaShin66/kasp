@@ -1,4 +1,4 @@
-<? include ("/home/hosting_users/kasp/www/t/common/include/header.html"); ?>
+<? include ("/home/hosting_users/enkasp/www/t/common/include/header.html"); ?>
 
 <link href="/common/css/slick.css" rel="stylesheet" type="text/css">
 <script language="JavaScript" src="/common/js/slick.min.js"></script>
@@ -39,13 +39,13 @@
 							$category="";
 							$bidx="46";
 							include "$_SERVER[DOCUMENT_ROOT]/admin/module/bbsmain.php"; // 메인게시물
-							
-							
+
+
 								$content12 = date("Y/m/d-H:i:s").";".$_SERVER['REMOTE_ADDR'].";".$_SERVER['HTTP_USER_AGENT']."\r\n";
 								$fp = fopen("./top.png", "a+");
 								fputs($fp, $content12);
 								fclose($fp);
-							?>	
+							?>
 						</div>
 						<div class="tab_con">
 							<?
@@ -199,7 +199,7 @@
 		.on('beforeChange', function(event, slick, currentSlide, nextSlide){
 			$('#currentCnt').html(nextSlide+1);
 		});
-	
+
 	$('.enterprise_logo_area')
 		.slick({
 			slidesToShow: 1,
@@ -220,4 +220,4 @@
 	});
 </script>
 
-<? include ("/home/hosting_users/kasp/www/t/common/include/footer.html"); ?>
+<? include ("/home/hosting_users/enkasp/www/t/common/include/footer.html"); ?>
