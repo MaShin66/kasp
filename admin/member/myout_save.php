@@ -122,7 +122,7 @@ $re_info[hphone] = $wiz_session[hphone];
 send_mailsms("mem_out", $re_info);
 
 // 로그아웃
-session_unregister("wiz_session");
+unset($_SESSION['wiz_session']);
 
 alert("회원탈퇴가 완료되었습니다.","/");
 

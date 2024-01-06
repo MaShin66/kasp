@@ -28,7 +28,8 @@ if(!$view_exist){
 	$view_list[$view_idx][prdcode] = $prdcode;
 	$view_list[$view_idx][purl] = $row[purl];
 	$view_list[$view_idx][prdimg] = $row[prdimg_R];
-	session_register("view_list",$view_list);
+//	session_register("view_list",$view_list);
+    $_SESSION['view_list'] = $view_list;
 }
 
 // 스킨위치
@@ -150,9 +151,9 @@ $brow++;
 
 // 하위 카테고리가 없을 경우 현재 카테고리
 if($brow <= 1) {
-	
+
 	$cat_info[depthno] = $cat_info[depthno] - 1;
-	
+
 	if($cat_info[depthno] == 1) $tmp_catcode = substr($catcode,0,2);
 	else if($cat_info[depthno] == 2) $tmp_catcode = substr($catcode,0,2);
 	else if($cat_info[depthno] == 3) $tmp_catcode = substr($catcode,0,4);
@@ -162,7 +163,7 @@ if($brow <= 1) {
 	while($crow = mysql_fetch_array($cresult)){
 		$tr = "";
 		if($brow % 5 == 0 && $brow != 0) $tr = "<tr>";
-	
+
 		if($catcode == $crow[catcode]) $crow[catname] = "<strong>".$crow[catname]."</strong>";
 		if(!empty($crow[purl])) $purl = "/".$crow[purl];
 		else $purl = $PHP_SELF;
