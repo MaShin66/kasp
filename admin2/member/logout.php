@@ -3,7 +3,7 @@ include_once "$_SERVER[DOCUMENT_ROOT]/admin2/common.php";
 include "$_SERVER[DOCUMENT_ROOT]/admin2/inc/mem_info.php";
 
 if(!empty($wiz_session[id])){
-	session_unregister("wiz_session"); 
+	unset($_SESSION['wiz_session']);
 }
 
 $go_url = "/";
