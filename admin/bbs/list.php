@@ -182,10 +182,10 @@ while($row = mysql_fetch_array($result)){
 	$recom = $row[recom];
 
 	$upimg_l = $row[upfile1];
-	if(file_exists("/kasp/www/admin/data/bbs/".$code."/S".$row[upfile1])) $upimg_s = "http://www.kasp.or.kr/admin/data/bbs/$code/S".$row[upfile1];							// img
+	if(file_exists("/enkasp/www/admin/data/bbs/".$code."/S".$row[upfile1])) $upimg_s = "http://www.kasp.or.kr/admin/data/bbs/$code/S".$row[upfile1];							// img
 	else $upimg_s = "$skin_dir/image/noimg.gif";
 
-	if(file_exists("/kasp/www/admin/data/bbs/".$code."/M".$row[upfile1])) $upimg_m = "http://www.kasp.or.kr/admin/data/bbs/$code/M".$row[upfile1];							// img
+	if(file_exists("/enkasp/www/admin/data/bbs/".$code."/M".$row[upfile1])) $upimg_m = "http://www.kasp.or.kr/admin/data/bbs/$code/M".$row[upfile1];							// img
 	else $upimg_m = "$skin_dir/image/noimg.gif";
 
 	$viewImg = "javascript:viewImg('".$upimg_l."')";
@@ -205,8 +205,8 @@ while($row = mysql_fetch_array($result)){
 
 	$ip = $row[ip];
 
-	if(img_type("/kasp/www/admin/data/member/".$row[memid]."_icon.gif")) $icon = "<img src='/admin/data/member/".$row[memid]."_icon.gif' align='absmiddle'>";
-	else if(img_type("/kasp/www/admin/data/member/".$row[memid]."_icon.jpg")) $icon = "<img src='/admin/data/member/".$row[memid]."_icon.jpg' align='absmiddle'>";
+	if(img_type("/enkasp/www/admin/data/member/".$row[memid]."_icon.gif")) $icon = "<img src='/admin/data/member/".$row[memid]."_icon.gif' align='absmiddle'>";
+	else if(img_type("/enkasp/www/admin/data/member/".$row[memid]."_icon.jpg")) $icon = "<img src='/admin/data/member/".$row[memid]."_icon.jpg' align='absmiddle'>";
 	else $icon = "";
 
 	if(!strcmp($bbs_info[name_type], "name")) $name = $name;
@@ -423,16 +423,16 @@ while($row = mysql_fetch_array($result)){
 	for($ii=0; $ii < $row[depno]; $ii++) 					$re_space .= "&nbsp;&nbsp;";																													// respace
 
 	$upimg_l = $row[upfile1];
-	if(file_exists("/kasp/www/admin/data/bbs/".$code."/S".$row[upfile1])) $upimg_s = "http://www.kasp.or.kr/admin/data/bbs/$code/S".$row[upfile1];							// img
+	if(file_exists("/enkasp/www/admin/data/bbs/".$code."/S".$row[upfile1])) $upimg_s = "http://www.kasp.or.kr/admin/data/bbs/$code/S".$row[upfile1];							// img
 	else $upimg_s = "$skin_dir/image/noimg.gif";
 
-	if(file_exists("/kasp/www/admin/data/bbs/".$code."/M".$row[upfile1])) $upimg_m = "http://www.kasp.or.kr/admin/data/bbs/$code/M".$row[upfile1];							// img
+	if(file_exists("/enkasp/www/admin/data/bbs/".$code."/M".$row[upfile1])) $upimg_m = "http://www.kasp.or.kr/admin/data/bbs/$code/M".$row[upfile1];							// img
 	else $upimg_m = "$skin_dir/image/noimg.gif";
 
 	$viewImg = "javascript:viewImg('".$upimg_l."')";
 
-	if(img_type("/kasp/www/admin/data/member/".$row[memid]."_icon.gif")) $icon = "<img src='/admin/data/member/".$row[memid]."_icon.gif' align='absmiddle'>";
-	else if(img_type("/kasp/www/admin/data/member/".$row[memid]."_icon.jpg")) $icon = "<img src='/admin/data/member/".$row[memid]."_icon.jpg' align='absmiddle'>";
+	if(img_type("/enkasp/www/admin/data/member/".$row[memid]."_icon.gif")) $icon = "<img src='/admin/data/member/".$row[memid]."_icon.gif' align='absmiddle'>";
+	else if(img_type("/enkasp/www/admin/data/member/".$row[memid]."_icon.jpg")) $icon = "<img src='/admin/data/member/".$row[memid]."_icon.jpg' align='absmiddle'>";
 	else $icon = "";
 
 	if(!strcmp($bbs_info[name_type], "name")) $name = $name;

@@ -199,7 +199,7 @@ unset($banner_data);
 								$main_subject = cut_str($row[subject],$subject_len);
 								//$main_content = cut_str($row[content],$content_len);
 
-								if(file_exists("/kasp/www/admin/data/bbs/kasp_news/M".$row[upfile1])) $main_photo = "http://kasp.or.kr/admin/data/bbs/kasp_news/M".$row[upfile1];		// img
+								if(file_exists("/enkasp/www/admin/data/bbs/kasp_news/M".$row[upfile1])) $main_photo = "http://kasp.or.kr/admin/data/bbs/kasp_news/M".$row[upfile1];		// img
 								else $main_photo = "http://kasp.or.kr/admin/bbs/skin/bbsBasic/image/noimg.gif";
 							?>
 							<a href="/kasp_news/kasp_news.html?ptype=view&amp;idx=<?=$row[idx]?>" class="img"><img src="<?=$main_photo?>" alt=""></a>

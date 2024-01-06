@@ -14,7 +14,7 @@ if($gugun != "") $param .= "&gugun=$gugun";
 
 if($code=="googic"){
 	if($addinfo2 != "") $param .= "&addinfo2=$addinfo2";
-	if($zipcode != "") $param .="&zipcode=$zipcode"; 
+	if($zipcode != "") $param .="&zipcode=$zipcode";
 } elseif($code=="gooin"){
 	if($zipcode != "") $param .="&zipcode=$zipcode";
 	if($w_field != "") $param .="&w_field=$w_field";
@@ -184,10 +184,10 @@ while($row = mysql_fetch_array($result)){
 
 	$upimg_l = $row[upfile1];
 
-	if(file_exists("/kasp/www/admin2/data/bbs/".$code."/S".$row[upfile1])) $upimg_s = "http://www.kasp.or.kr/admin2/data/bbs/$code/S".$row[upfile1];							// img
+	if(file_exists("/enkasp/www/admin2/data/bbs/".$code."/S".$row[upfile1])) $upimg_s = "http://www.kasp.or.kr/admin2/data/bbs/$code/S".$row[upfile1];							// img
 	else $upimg_s = "$skin_dir/image/noimg.gif";
 
-	if(file_exists("/kasp/www/admin2/data/bbs/".$code."/M".$row[upfile1])) $upimg_m = "http://www.kasp.or.kr/admin2/data/bbs/$code/M".$row[upfile1];							// img
+	if(file_exists("/enkasp/www/admin2/data/bbs/".$code."/M".$row[upfile1])) $upimg_m = "http://www.kasp.or.kr/admin2/data/bbs/$code/M".$row[upfile1];							// img
 	else $upimg_m = "$skin_dir/image/noimg.gif";
 
 	$viewImg = "javascript:viewImg('".$upimg_l."')";
@@ -207,8 +207,8 @@ while($row = mysql_fetch_array($result)){
 
 	$ip = $row[ip];
 
-	if(img_type("/kasp/www/admin2/data/member/".$row[memid]."_icon.gif")) $icon = "<img src='/admin2/data/member/".$row[memid]."_icon.gif' align='absmiddle'>";
-	else if(img_type("/kasp/www/admin2/data/member/".$row[memid]."_icon.jpg")) $icon = "<img src='/admin2/data/member/".$row[memid]."_icon.jpg' align='absmiddle'>";
+	if(img_type("/enkasp/www/admin2/data/member/".$row[memid]."_icon.gif")) $icon = "<img src='/admin2/data/member/".$row[memid]."_icon.gif' align='absmiddle'>";
+	else if(img_type("/enkasp/www/admin2/data/member/".$row[memid]."_icon.jpg")) $icon = "<img src='/admin2/data/member/".$row[memid]."_icon.jpg' align='absmiddle'>";
 	else $icon = "";
 
 	if(!strcmp($bbs_info[name_type], "name")) $name = $name;
@@ -253,7 +253,7 @@ if($searchopt) {
 	} else {
 		if(!strcmp($searchopt, "subcon")) $search_sql = " and (subject like '%$searchkey%' or content like '%$searchkey%') ";
 		else $search_sql = " and $searchopt like '%$searchkey%' ";
-	}	
+	}
 }
 // 자신이 쓴 글 또는 자신의 글에 달린 답변글
 if($mybbs) $my_sql = " and (memid='$wiz_session[id]' or memgrp like '".$wiz_session[id].",%')";
@@ -263,10 +263,10 @@ if($gugun) $address_sql .= " and address like '%".$gugun."%' ";
 if($code=="googic"){
 	//지원분야 검색
 	if($addinfo2 != "") $addinfo_sql = "and addinfo2 like '%$addinfo2%'";
-	if($zipcode != "") $zipcode_sql ="and (zipcode = '$zipcode' or zipcode = '무관')"; 
+	if($zipcode != "") $zipcode_sql ="and (zipcode = '$zipcode' or zipcode = '무관')";
 } elseif($code=="gooin"){
 	if($w_field != "") $gooin_wfield_sql = " and substring_index(substring_index(addinfo4,'/+gooin+/',3),'/+gooin+/',-1) = '$w_field'";
-	if($zipcode != "") $zipcode_sql ="and (zipcode = '$zipcode' or zipcode = '전국')"; 
+	if($zipcode != "") $zipcode_sql ="and (zipcode = '$zipcode' or zipcode = '전국')";
 	if($w_type != "") $gooin_wtype_sql = " and substring_index(addinfo4,'/+gooin+/',1) = '$w_type'";
 	if($salary != "") $gooin_salary_sql = " and addinfo9 = '$salary'";
 	//중소기업중 사원수가 100명 이상인 검색 쿼리
@@ -289,7 +289,7 @@ if($code=="googic"){
 		$checkbox_chk++;
 	}
 	if($c_type4 != ""){
-		$check_sql  = $check_sql." substring_index(addinfo2,'/+gooin+/',1) = '$c_type4' or";	
+		$check_sql  = $check_sql." substring_index(addinfo2,'/+gooin+/',1) = '$c_type4' or";
 		$checkbox_chk++;
 	}
 	if($c_type5 != ""){
@@ -300,7 +300,7 @@ if($code=="googic"){
 		$check_sql  = $check_sql." substring_index(addinfo2,'/+gooin+/',1) = '$c_type6' or";
 		$checkbox_chk++;
 	}
-	if($c_type7 != ""){ 
+	if($c_type7 != ""){
 		$check_sql  = $check_sql." substring_index(addinfo2,'/+gooin+/',1) = '$c_type7' or";
 		$checkbox_chk++;
 	}
@@ -313,7 +313,7 @@ if($code=="googic"){
 	if($checkbox_chk != 1){
 		$check_sql = " and(".$check_sql.") ";
 	}
-	
+
 }
 $sql = "select idx from wiz_bbs where code = '$code' and notice != 'Y' $my_sql $category_sql $search_sql $address_sql $addinfo_sql $zipcode_sql $gooin_wfield_sql $gooin_wtype_sql $gooin_salary_sql $check_sql order by prino desc";
 $result = mysql_query($sql) or error(mysql_error());
@@ -353,7 +353,7 @@ while($row = mysql_fetch_array($result)){
 
 	$home_icon 	= "";
 	$status    	= "";
-	
+
 	$name 		= $row[name];
 	$nick 		= $row[nick];
 	$email 		= $row[email];
@@ -422,19 +422,19 @@ while($row = mysql_fetch_array($result)){
 	if($row[count] > $bbs_info[hotc]) 						$hot_icon = "<img src='$skin_dir/image/hot.gif' border='0' align='absmiddle'>";				// hot
 	if($row[depno] != 0) 													$re_icon = "<img src='$skin_dir/image/re.gif' border='0' align='absmiddle'>";					// re
 
-	for($ii=0; $ii < $row[depno]; $ii++) 					$re_space .= "&nbsp;&nbsp;";						
-		
+	for($ii=0; $ii < $row[depno]; $ii++) 					$re_space .= "&nbsp;&nbsp;";
+
 	$upimg_l = $row[upfile1];
-	if(file_exists("/kasp/www/admin/data/bbs/".$code."/S".$row[upfile1])) $upimg_s = "http://www.kasp.or.kr/admin/data/bbs/$code/S".$row[upfile1];							// img
+	if(file_exists("/enkasp/www/admin/data/bbs/".$code."/S".$row[upfile1])) $upimg_s = "http://www.kasp.or.kr/admin/data/bbs/$code/S".$row[upfile1];							// img
 	else $upimg_s = "$skin_dir/image/noimg.gif";
 
-	if(file_exists("/kasp/www/admin/data/bbs/".$code."/M".$row[upfile1])) $upimg_m = "http://www.kasp.or.kr/admin/data/bbs/$code/M".$row[upfile1];							// img
+	if(file_exists("/enkasp/www/admin/data/bbs/".$code."/M".$row[upfile1])) $upimg_m = "http://www.kasp.or.kr/admin/data/bbs/$code/M".$row[upfile1];							// img
 	else $upimg_m = "$skin_dir/image/noimg.gif";
 
 	$viewImg = "javascript:viewImg('".$upimg_l."')";
 
-	if(img_type("/kasp/www/admin/data/member/".$row[memid]."_icon.gif")) $icon = "<img src='/admin/data/member/".$row[memid]."_icon.gif' align='absmiddle'>";
-	else if(img_type("/kasp/www/admin/data/member/".$row[memid]."_icon.jpg")) $icon = "<img src='/admin/data/member/".$row[memid]."_icon.jpg' align='absmiddle'>";
+	if(img_type("/enkasp/www/admin/data/member/".$row[memid]."_icon.gif")) $icon = "<img src='/admin/data/member/".$row[memid]."_icon.gif' align='absmiddle'>";
+	else if(img_type("/enkasp/www/admin/data/member/".$row[memid]."_icon.jpg")) $icon = "<img src='/admin/data/member/".$row[memid]."_icon.jpg' align='absmiddle'>";
 	else $icon = "";
 
 	if(!strcmp($bbs_info[name_type], "name")) $name = $name;
@@ -496,7 +496,7 @@ if($code=="googic"){
 	$addinfo3 = explode("/+gooin+/",$addinfo3);
 	//[0]고용형태[1]접수방법[2]근무분야
 	$addinfo4 = explode("/+gooin+/",$addinfo4);
-	
+
 	if($addinfo9 == 1)$addinfo9 = "회사내규";
 	elseif($addinfo9 == 2)$addinfo9 = "면접 후 협의";
 	elseif($addinfo9 == 3)$addinfo9 = "1500";
