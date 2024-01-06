@@ -59,7 +59,7 @@ function mysql_close($conn = null)
 /**
  * Open a connection to a MySQL Server.
  */
-function mysql_connect2($server = null, $username = null, $password = null, $new_link = false, $client_flags = 0)
+function mysql_connect($server = null, $username = null, $password = null, $new_link = false, $client_flags = 0)
 {
     $conn = new MySQL_Compat($server, $username, $password);
     MySQL_Compat::setLastInstance($conn);
