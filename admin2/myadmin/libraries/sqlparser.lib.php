@@ -1155,7 +1155,7 @@ if (! defined('PMA_MINIMUM_COMMON')) {
                         break;
                 } // end switch
 
-                if ($subresult['querytype'] == 'SELECT' 
+                if ($subresult['querytype'] == 'SELECT'
                  && ! $in_group_concat
                  && ! ($seen_subquery && $arr[$i - 1]['type'] == 'punct_bracket_close_round')) {
                     if (!$seen_from) {
@@ -1697,7 +1697,7 @@ if (! defined('PMA_MINIMUM_COMMON')) {
                     $unsorted_query .= $sep;
                 }
             }
-            
+
             if ($in_limit) {
                 if ($upper_data == 'OFFSET') {
                     $limit_clause .= $sep;
@@ -1707,7 +1707,7 @@ if (! defined('PMA_MINIMUM_COMMON')) {
                     $limit_clause .= $sep;
                 }
             }
-            if ($after_limit && $seen_limit) { 
+            if ($after_limit && $seen_limit) {
                 $section_after_limit .= $arr[$i]['data'] . $sep;
             }
 
@@ -2295,7 +2295,7 @@ if (! defined('PMA_MINIMUM_COMMON')) {
                         && ($typearr[1] != 'punct_level_plus')
                         && (!PMA_STR_binarySearchInArr($arr[$i]['data'], $keywords_no_newline, $keywords_no_newline_cnt))) {
                         // do not put a space before the first token, because
-                        // we use a lot of eregi() checking for the first
+                        // we use a lot of preg_match() checking for the first
                         // reserved word at beginning of query
                         // so do not put a newline before
                         //
@@ -2407,7 +2407,7 @@ if (! defined('PMA_MINIMUM_COMMON')) {
                 case 'quote_backtick':
                     // here we check for punct_user to handle correctly
                     // DEFINER = `username`@`%`
-                    // where @ is the punct_user and `%` is the quote_backtick 
+                    // where @ is the punct_user and `%` is the quote_backtick
                     if ($typearr[3] != 'punct_qualifier' && $typearr[3] != 'alpha_variable' && $typearr[3] != 'punct_user') {
                         $after     .= ' ';
                     }

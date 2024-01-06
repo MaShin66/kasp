@@ -332,8 +332,8 @@ function PMA_exportStructure($db, $table, $crlf, $error_url, $do_relation = fals
         // loic1: set or enum types: slashes single quotes inside options
         $field_name = $row['Field'];
         $type = $row['Type'];
-        if (eregi('^(set|enum)\((.+)\)$', $type, $tmp)) {
-            $tmp[2]       = substr(ereg_replace('([^,])\'\'', '\\1\\\'', ',' . $tmp[2]), 1);
+        if (preg_match('^(set|enum)\((.+)\)$', $type, $tmp)) {
+            $tmp[2]       = substr(preg_replace('([^,])\'\'', '\\1\\\'', ',' . $tmp[2]), 1);
             $type         = $tmp[1] . '(' . str_replace(',', ', ', $tmp[2]) . ')';
             $type_nowrap  = '';
 
@@ -342,16 +342,16 @@ function PMA_exportStructure($db, $table, $crlf, $error_url, $do_relation = fals
             $zerofill     = 0;
         } else {
             $type_nowrap  = ' nowrap="nowrap"';
-            $type         = eregi_replace('BINARY', '', $type);
-            $type         = eregi_replace('ZEROFILL', '', $type);
-            $type         = eregi_replace('UNSIGNED', '', $type);
+            $type         = preg_replace('BINARY', '', $type);
+            $type         = preg_replace('ZEROFILL', '', $type);
+            $type         = preg_replace('UNSIGNED', '', $type);
             if (empty($type)) {
                 $type     = '&nbsp;';
             }
 
-            $binary       = eregi('BINARY', $row['Type']);
-            $unsigned     = eregi('UNSIGNED', $row['Type']);
-            $zerofill     = eregi('ZEROFILL', $row['Type']);
+            $binary       = preg_match('BINARY', $row['Type']);
+            $unsigned     = preg_match('UNSIGNED', $row['Type']);
+            $zerofill     = preg_match('ZEROFILL', $row['Type']);
         }
         $GLOBALS['odt_buffer'] .= '<table:table-cell office:value-type="string">'
             . '<text:p>' . htmlspecialchars($type) . '</text:p>'

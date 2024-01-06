@@ -6,7 +6,7 @@ include("class.phpmailer.php");
 $mail             = new PHPMailer();
 
 $body             = $mail->getFile('contents.html');
-$body             = eregi_replace("[\]",'',$body);
+$body             = preg_replace("[\]",'',$body);
 
 $mail->IsSMTP();
 $mail->SMTPAuth   = true;                  // enable SMTP authentication

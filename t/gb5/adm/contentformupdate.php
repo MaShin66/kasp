@@ -28,7 +28,7 @@ $sql_common = " co_include_head     = '$co_include_head',
 
 if ($w == "")
 {
-    //if(eregi("[^a-z0-9_]", $co_id)) alert("ID 는 영문자, 숫자, _ 만 가능합니다.");
+    //if(preg_match("[^a-z0-9_]", $co_id)) alert("ID 는 영문자, 숫자, _ 만 가능합니다.");
     if(preg_match("/[^a-z0-9_]/i", $co_id)) alert("ID 는 영문자, 숫자, _ 만 가능합니다.");
 
     $sql = " select co_id from {$g5['content_table']} where co_id = '$co_id' ";

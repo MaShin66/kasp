@@ -56,7 +56,7 @@ foreach ($dbs_where_create_table_allowed as $allowed_db) {
         break;
     }
 
-    if (ereg('%|_', $allowed_db)) {
+    if (preg_match('%|_', $allowed_db)) {
         // take care of wildcards and escaped wildcards,
         // transforming them into regexp patterns
         $max_position = strlen($allowed_db) - 1;

@@ -5,7 +5,7 @@ include_once('../class.phpmailer.php');
 $mail             = new PHPMailer(); // defaults to using php "mail()"
 
 $body             = $mail->getFile('contents.html');
-$body             = eregi_replace("[\]",'',$body);
+$body             = preg_replace("[\]",'',$body);
 
 $mail->From       = "name@yourdomain.com";
 $mail->FromName   = "First Last";

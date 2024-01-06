@@ -22,7 +22,7 @@ if (! defined('PHPMYADMIN')) {
 if (!@function_exists('session_name')) {
     PMA_fatalError('strCantLoad', 'session');
 } elseif (ini_get('session.auto_start') == true && session_name() != 'phpMyAdmin') {
-    // Do not delete the existing session, it might be used by other 
+    // Do not delete the existing session, it might be used by other
     // applications; instead just close it.
     session_write_close();
 }
@@ -73,7 +73,7 @@ $session_name = 'phpMyAdmin';
 // strictly, PHP 4 since 4.4.2 would not need a verification
 if (version_compare(PHP_VERSION, '5.1.2', 'lt')
  && isset($_COOKIE[$session_name])
- && eregi("\r|\n", $_COOKIE[$session_name])) {
+ && preg_match("\r|\n", $_COOKIE[$session_name])) {
     die('attacked');
 }
 

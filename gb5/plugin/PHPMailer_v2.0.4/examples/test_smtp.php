@@ -6,7 +6,7 @@ include_once('class.phpmailer.php');
 $mail             = new PHPMailer();
 
 $body             = $mail->getFile('contents.html');
-$body             = eregi_replace("[\]",'',$body);
+$body             = preg_replace("[\]",'',$body);
 
 $mail->IsSMTP(); // telling the class to use SMTP
 $mail->Host       = "mail.yourdomain.com"; // SMTP server

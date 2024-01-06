@@ -31,13 +31,13 @@ function PMA_analyseShowGrant($rs_usr, &$is_create_db_priv, &$db_to_create, &$is
     $re1 = '(^|[^\])(\\\)+'; // escaped wildcards
     while ($row = PMA_DBI_fetch_row($rs_usr)) {
         $show_grants_dbname = substr($row[0], strpos($row[0], ' ON ') + 4, (strpos($row[0], '.', strpos($row[0], ' ON ')) - strpos($row[0], ' ON ') - 4));
-        $show_grants_dbname = ereg_replace('^`(.*)`', '\\1',  $show_grants_dbname);
+        $show_grants_dbname = preg_replace('^`(.*)`', '\\1',  $show_grants_dbname);
         $show_grants_str    = substr($row[0], 6, (strpos($row[0], ' ON ') - 6));
         if ($show_grants_str == 'RELOAD') {
             $is_reload_priv = true;
         }
         /**
-         * @todo if we find CREATE VIEW but not CREATE, do not offer  
+         * @todo if we find CREATE VIEW but not CREATE, do not offer
          * the create database dialog box
          */
         if (($show_grants_str == 'ALL') || ($show_grants_str == 'ALL PRIVILEGES') || ($show_grants_str == 'CREATE') || strpos($show_grants_str, 'CREATE,') !== false) {
@@ -64,14 +64,14 @@ function PMA_analyseShowGrant($rs_usr, &$is_create_db_priv, &$db_to_create, &$is
                     $dbname_to_test = $show_grants_dbname;
                 }
 
-                if ((ereg($re0 . '%|_', $show_grants_dbname)
-                 && !ereg('\\\\%|\\\\_', $show_grants_dbname))
+                if ((preg_match($re0 . '%|_', $show_grants_dbname)
+                 && !preg_match('\\\\%|\\\\_', $show_grants_dbname))
                  // does this db exist?
-                 || (!PMA_DBI_try_query('USE ' .  ereg_replace($re1 .'(%|_)', '\\1\\3', $dbname_to_test),  null, PMA_DBI_QUERY_STORE)
+                 || (!PMA_DBI_try_query('USE ' .  preg_replace($re1 .'(%|_)', '\\1\\3', $dbname_to_test),  null, PMA_DBI_QUERY_STORE)
                    && substr(PMA_DBI_getError(), 1, 4) != 1044)
                 ) {
-                    $db_to_create = ereg_replace($re0 . '%', '\\1...', ereg_replace($re0 . '_', '\\1?', $show_grants_dbname));
-                    $db_to_create = ereg_replace($re1 . '(%|_)', '\\1\\3', $db_to_create);
+                    $db_to_create = preg_replace($re0 . '%', '\\1...', preg_replace($re0 . '_', '\\1?', $show_grants_dbname));
+                    $db_to_create = preg_replace($re1 . '(%|_)', '\\1\\3', $db_to_create);
                     $is_create_db_priv     = true;
 
                     /**
@@ -141,10 +141,10 @@ if (PMA_MYSQL_INT_VERSION >= 40102) {
             $re1     = '(^|[^\])(\\\)+';       // escaped wildcards
             while ($row = PMA_DBI_fetch_assoc($rs_usr)) {
                 $dbs_where_create_table_allowed[] = $row['Db'];
-                if (ereg($re0 . '(%|_)', $row['Db'])
-                    || (!PMA_DBI_try_query('USE ' . ereg_replace($re1 . '(%|_)', '\\1\\3', $row['Db'])) && substr(PMA_DBI_getError(), 1, 4) != 1044)) {
-                    $db_to_create   = ereg_replace($re0 . '%', '\\1...', ereg_replace($re0 . '_', '\\1?', $row['Db']));
-                    $db_to_create   = ereg_replace($re1 . '(%|_)', '\\1\\3', $db_to_create);
+                if (preg_match($re0 . '(%|_)', $row['Db'])
+                    || (!PMA_DBI_try_query('USE ' . preg_replace($re1 . '(%|_)', '\\1\\3', $row['Db'])) && substr(PMA_DBI_getError(), 1, 4) != 1044)) {
+                    $db_to_create   = preg_replace($re0 . '%', '\\1...', preg_replace($re0 . '_', '\\1?', $row['Db']));
+                    $db_to_create   = preg_replace($re1 . '(%|_)', '\\1\\3', $db_to_create);
                     $is_create_db_priv = true;
                     break;
                 } // end if

@@ -9,8 +9,8 @@ $mail    = new PHPMailer();<br>
 <br>
 $body    = $mail->getFile('contents.html');<br>
 <br>
-$body    = eregi_replace("[\]",'',$body);<br>
-$subject = eregi_replace("[\]",'',$subject);<br>
+$body    = preg_replace("[\]",'',$body);<br>
+$subject = preg_replace("[\]",'',$subject);<br>
 <br>
 $mail->From     = "name@yourdomain.com";<br>
 $mail->FromName = "First Last";<br>

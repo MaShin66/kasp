@@ -354,13 +354,13 @@ require_once './libraries/List.class.php';
     }
 
     /**
-     * returns a part of the items 
+     * returns a part of the items
      *
      * @uses    PMA_List_Database::$items
      * @uses    array_slice()
      * @param   integer $offset
      * @param   integer $count
-     * @return  array  some items 
+     * @return  array  some items
      */
     function getLimitedItems($offset, $count)
     {
@@ -510,10 +510,10 @@ require_once './libraries/List.class.php';
                             // TODO: db names may contain characters
                             //       that are regexp instructions
                             $re        = '(^|(\\\\\\\\)+|[^\])';
-                            $tmp_regex = ereg_replace($re . '%', '\\1.*', ereg_replace($re . '_', '\\1.{1}', $tmp_matchpattern));
+                            $tmp_regex = preg_replace($re . '%', '\\1.*', preg_replace($re . '_', '\\1.{1}', $tmp_matchpattern));
                             // Fixed db name matching
                             // 2000-08-28 -- Benjamin Gandon
-                            if (ereg('^' . $tmp_regex . '$', $tmp_db)) {
+                            if (preg_match('^' . $tmp_regex . '$', $tmp_db)) {
                                 $dblist[] = $tmp_db;
                                 break;
                             }

@@ -22,13 +22,13 @@ function cut_char($word, $cut) {
 }
 
 function CheckCommonType($dest, $rsvTime) {
-	//$dest=eregi_replace("[^0-9]","",$dest);
+	//$dest=preg_replace("[^0-9]","",$dest);
 	$dest=preg_replace("/[^0-9]/i","",$dest);
 	if (strlen($dest)<10 || strlen($dest)>11) return "휴대폰 번호가 틀렸습니다";
 	$CID=substr($dest,0,3);
-	//if ( eregi("[^0-9]",$CID) || ($CID!='010' && $CID!='011' && $CID!='016' && $CID!='017' && $CID!='018' && $CID!='019') ) return "휴대폰 앞자리 번호가 잘못되었습니다";
+	//if ( preg_match("[^0-9]",$CID) || ($CID!='010' && $CID!='011' && $CID!='016' && $CID!='017' && $CID!='018' && $CID!='019') ) return "휴대폰 앞자리 번호가 잘못되었습니다";
 	if ( preg_match("/[^0-9]/i",$CID) || ($CID!='010' && $CID!='011' && $CID!='016' && $CID!='017' && $CID!='018' && $CID!='019') ) return "휴대폰 앞자리 번호가 잘못되었습니다";
-	//$rsvTime=eregi_replace("[^0-9]","",$rsvTime);
+	//$rsvTime=preg_replace("[^0-9]","",$rsvTime);
 	$rsvTime=preg_replace("/[^0-9]/i","",$rsvTime);
 	if ($rsvTime) {
 		if (!checkdate(substr($rsvTime,4,2),substr($rsvTime,6,2),substr($rsvTime,0,4))) return "예약날짜가 잘못되었습니다";
@@ -66,7 +66,7 @@ class SMS {
 		$Error = CheckCommonType($dest, $rsvTime);
 		if ($Error) return $Error;
 		// 내용 검사 2
-		//if ( eregi("[^0-9]",$callBack) ) return "회신 전화번호가 잘못되었습니다";
+		//if ( preg_match("[^0-9]",$callBack) ) return "회신 전화번호가 잘못되었습니다";
 		if ( preg_match("/[^0-9]/i",$callBack) ) return "회신 전화번호가 잘못되었습니다";
 
         $msg=cut_char($msg,80); // 80자 제한

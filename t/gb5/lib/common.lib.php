@@ -2645,7 +2645,7 @@ if (!function_exists("get_sock")) {
     function get_sock($url)
     {
         // host 와 uri 를 분리
-        //if (ereg("http://([a-zA-Z0-9_\-\.]+)([^<]*)", $url, $res))
+        //if (preg_match("http://([a-zA-Z0-9_\-\.]+)([^<]*)", $url, $res))
         if (preg_match("/http:\/\/([a-zA-Z0-9_\-\.]+)([^<]*)/", $url, $res))
         {
             $host = $res[1];

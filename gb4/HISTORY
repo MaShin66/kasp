@@ -40,10 +40,10 @@
             $_POST[bo_include_tail] = substr($_POST[bo_include_tail], 0, 255);
 
 4.37.34 (2015.08.13)
-    : 4.37.33 버전에서 버그가 있어 수정 
+    : 4.37.33 버전에서 버그가 있어 수정
       일부 서버에서 HTMLPurifier.standalone.php 파일 실행시 오류가 있어 htmlpurifier의 사용여부를 선택하게 하였습니다.
       XSS를 막는 필터링을 사용하기 위해서는 define('G4_HTML_PURIFIER', true); 로 사용하시면 됩니다.
-      
+
         config.php 에 추가 되었습니다.
 
             define('G4_HTML_PURIFIER', false);
@@ -51,11 +51,11 @@
         lib/html_purifier.lib.php 가 아래와 같이 수정 되었습니다.
 
             // 상수 선언이 되어 있지 않거나 상수의 값이 거짓이면 필터링 없이 반환
-            if (!defined('G4_HTML_PURIFIER') || !G4_HTML_PURIFIER) 
+            if (!defined('G4_HTML_PURIFIER') || !G4_HTML_PURIFIER)
                 return $html;
 
 4.37.33 (2015.08.12)
-    : 4.37.32 버전에서 버그가 있어 수정 
+    : 4.37.32 버전에서 버그가 있어 수정
       글저장시 htmlpurifier 를 작동하지 않고 글읽기에서 htmlpurifier 를 작동하게 하였습니다.
 
         bbs/write_update.php 가 아래와 같이 수정 되었습니다.
@@ -73,7 +73,7 @@
 
         lib/common.lib.php 가 아래와 같이 수정 되었습니다.
         iframe 태그를 사용하여 유튜브의 동영상을 재생하려는 경우에는 필히 수정해 주십시오
-            
+
             //return preg_replace("/\<([\/]?)(script|iframe|form|applet)([^\>]*)\>?/i", "&lt;$1$2$3&gt;", $code);
             return preg_replace("/\<([\/]?)(script|form|applet)([^\>]*)\>?/i", "&lt;$1$2$3&gt;", $code);
 
@@ -113,7 +113,7 @@
         &nbsp;<a href="javascript:;" onclick="win_zip5('fregisterform', 'mb_zip', 'mb_addr1', 'mb_addr2', 'mb_addr3', 'mb_addr_jibeon');" align=absmiddle><img width="74" height="20" src="<?=$member_skin_path?>/img/post_search_btn.gif" border=0 align=absmiddle></a>
 
       adm/member_form.php 가 아래와 같이 수정 되었습니다.
-      
+
         <!-- ... 기존 코드 주석 처리 ... -->
         <input type=text class=ed name='mb_zip' size=6 maxlength=5 itemname='우편번호' value='<? echo $mb[mb_zip1].$mb[mb_zip2] ?>'>
         <input type=hidden class=ed name='mb_zip1' value='<? echo $mb[mb_zip1] ?>'>
@@ -130,7 +130,7 @@
         adm/visit_list.php 에 아래 한줄이 추가 되었습니다.
 
             $row['vi_agent'] = get_text($row['vi_agent']);
-        
+
         adm/visit_search.php 가 아래와 같이 추가 및 수정 되었습니다.
 
             $row['vi_agent'] = get_text($row['vi_agent']);
@@ -155,7 +155,7 @@
         adm/visit_list.php 의
 
             $link = "<a href='$row[vi_referer]' target=_blank title='$title '>";
-        
+
             를
 
             $link = "<a href='".htmlspecialchars($row['vi_referer'])."' target=_blank title='$title '>";
@@ -167,12 +167,12 @@
 
       국내 기사) http://www.boannews.com/media/view.asp?idx=46219&kind=4
       취약점 발표) https://blog.whitehatsec.com/magic-hashes/
-      
+
       동작 환경)
       비밀번호 해시값이 '0e' + '숫자로만 생성'되었을 경우, 미리 알고 있는 Magic Hash 값을 통해 아무나 로그인할 수 있게 됩니다.
       그누보드에서는 mysql 의 password()함수로 hash 하므로,
       mysql 4.1 이전 버전이거나 old_password 설정이 활성화된 상태에서만 취약합니다.
-      
+
       해결방법)
       아래처럼 비밀번호 비교 구문을 모두 찾아, 동등 연산자(!=)를 일치 연산자(!==)로 변경해주시기만 하면 됩니다.
 
@@ -327,7 +327,7 @@
         bbs/zip.php - 아래의 코드가 추가 되었습니다.
             if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS']=='on') {   //https 통신
                 $g4['daum_juso_js'] = "<script src=\"https://spi.maps.daum.net/imap/map_js_init/postcode.js\"></script>";
-            } else {  //http 통신 
+            } else {  //http 통신
                 $g4['daum_juso_js'] = "<script src=\"http://dmaps.daum.net/map_js_init/postcode.js\"></script>";
             }
 
@@ -477,7 +477,7 @@
 
 4.37.07 (2014.03.24)
     : SQL Injection 취약점 해결 (코코파님께서 알려 주셨습니다.)
-        
+
         common.php
         lib/common.lib.php
 
@@ -561,14 +561,14 @@
     :   도로명주소 보완
         시군구에 "신안군 여수시" 로 나오는 버그가 있어 분리했습니다.
 
-        js/zip.js 
+        js/zip.js
             신안군 여수시 -> 신안군,여수시
 
 4.37.04 (2014.01.24)
     :   도로명주소 보완
         시군구에 "김제시 완주군" 으로 나오는 버그가 있어 분리했습니다.
 
-        js/zip.js 
+        js/zip.js
             김제시 완주군 -> 김제시,완주군
 
 4.37.03 (2014.01.07)
@@ -641,7 +641,7 @@
         adm/member_form_update.php
 
             mb_addr3        = '$_POST[mb_addr3]',
-            
+
         bbs/register_form_update.php
 
             mb_addr3        = '$mb_addr3', // if ($w == "")
@@ -662,7 +662,7 @@
             <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
                 <td height="25"><input class=ed type=text name='mb_zip1' size=4 maxlength=3 readonly <?=$config[cf_req_addr]?'required':'';?> itemname='우편번호 앞자리' value='<?=$member[mb_zip1]?>' style="vertical-align:middle">
-                     - 
+                     -
                     <input class=ed type=text name='mb_zip2' size=4 maxlength=3 readonly <?=$config[cf_req_addr]?'required':'';?> itemname='우편번호 뒷자리' value='<?=$member[mb_zip2]?>' style="vertical-align:middle">
                     &nbsp;<a href="javascript:;" onclick="win_zip('fregisterform', 'mb_zip1', 'mb_zip2', 'mb_addr1', 'mb_addr2', 'mb_addr3', 'mb_addr_jibeon');" align=absmiddle><img width="74" height="20" src="<?=$member_skin_path?>/img/post_search_btn.gif" border=0 align=absmiddle></a></td>
             </tr>
@@ -828,7 +828,7 @@
 4.36.23 (2013.07.11)
     :   embed 태그의 allowscriptaccess 속성을 이용한 XSS 취약점 해결 (i2sec 최호성님께서 알려 주셨습니다.)
         AllowScriptAccess 의 값 always 를 제거하고 never 로 적용하여 플래시에서 스크립트가 실행되지 않도록 합니다.
-        
+
         lib/common.lib.php 에서 conv_content() 함수의 내용 중
 
         //$content = preg_replace("/(sc)(ript)/i", "&#115;&#99;$2", $content);
@@ -890,11 +890,11 @@
     :   form 태그의 action 속성을 이용한 XSS 취약점 해결 (i2sec 13기 박성진님께서 직접 알려 주셨습니다.)
         이 취약점은 ie 브라우저에서만 발생하는 것으로 알려져 있습니다.
 
-        lib/common.lib.php 의 bad_tag_convert() 함수중에서 
+        lib/common.lib.php 의 bad_tag_convert() 함수중에서
 
             return preg_replace("/\<([\/]?)(script|iframe)([^\>]*)\>?/i", "&lt;$1$2$3&gt;", $code);
 
-            를 
+            를
 
             return preg_replace("/\<([\/]?)(script|iframe|form)([^\>]*)\>?/i", "&lt;$1$2$3&gt;", $code);
 
@@ -904,7 +904,7 @@
     :   iframe 태그에 주석문을 사용한 XSS 취약점 해결 (i2sec 13기 김태현님께서 직접 알려 주셨습니다.)
         기존 코드의 위치를 바꿔서 해결 했습니다.
 
-        lib/common.lib.php 의 conv_content() 함수중에서 
+        lib/common.lib.php 의 conv_content() 함수중에서
 
             $content = bad_tag_convert($content);
             이 코드의 위치가 변경 되었습니다.
@@ -937,7 +937,7 @@
             $me_id = (int)$me_id;
 
         bbs/memo_delete.php 의 SQL 코드 위에 아래와 같이 한줄 추가해 넣으시면 됩니다.
-            
+
             $me_id = (int)$me_id;
 
 4.36.14 (2013.02.02)
@@ -962,7 +962,7 @@
                 return '<'.$matches[1].preg_replace('#(\/\*|\*\/)#', '', $str).'>';
             }
             ...
-            $content = preg_replace_callback("/<([^>]+)>/s", 'bad130128', $content); 
+            $content = preg_replace_callback("/<([^>]+)>/s", 'bad130128', $content);
 
 4.36.12 (2013.01.09)
     :   XSS 취약점 해결, 패치된 내역 수정 보완
@@ -990,16 +990,16 @@
         UN Security팀에서 한국인터넷진흥원을 통하여 알려 주셨습니다.
 
         lib/common.lib.php 에 아래와 같이 추가합니다.
-        
+
         // <IMG STYLE="xss:e\xpression(alert('XSS'))"></IMG> 와 같은 코드에 취약점이 있어 수정함. 121213
-        $content = preg_replace("/(?<=style)(\s*=\s*[\"\']?xss\:)/i", '="__XSS__', $content); 
+        $content = preg_replace("/(?<=style)(\s*=\s*[\"\']?xss\:)/i", '="__XSS__', $content);
 
 4.36.10 (2012.12.04)
     :   크롬에서만 실행되는 XSS 취약점 보완
         서울 대원고등학교 현성원님 께서 한국인터넷진흥원을 통하여 알려 주셨습니다.
 
         common.php 에 아래와 같이 추가합니다.
-        
+
             // 코드 $sfl 변수값에서 < > ' " % = ( ) 공백 문자를 없앤다.
             $sfl = preg_replace("/[\<\>\'\"\%\=\(\)\s]/", "", $sfl);
 
@@ -1008,7 +1008,7 @@
         윤태성(삽지리)님 께서 한국인터넷진흥원을 통하여 알려 주셨습니다.
 
         lib/common.lib.php 를 아래와 같이 수정합니다.
-        
+
             //$content = preg_replace("/\<(\w|\s|\?)*(xml)/i", "", $content);
             $content = preg_replace("/\<(\w|\s|\?)*(xml)/i", "_$1$2_", $content);
 
@@ -1018,13 +1018,13 @@
     :   태그에 포함되지 않은 expression 속성이 변환되는 것을 방지
 
         bbs/memo_form.php 의
-            
+
             $me_id = mysql_real_escape_string($me_id);
 
         lib/common.lib.php 의
 
             //$content = preg_replace("/".$pattern."/i", "__EXPRESSION__", $content);
-            $content = preg_replace("/<[^>]*".$pattern."/i", "__EXPRESSION__", $content); 
+            $content = preg_replace("/<[^>]*".$pattern."/i", "__EXPRESSION__", $content);
 
 4.36.07 (2012.10.23)
     :   일부 브라우저에서 template.xml 로딩 오류 발생으로 인하여 template.xml 코드를 cheditor.js 에 포함시켜서 해결함.
@@ -1036,7 +1036,7 @@
 4.36.06 (2012.10.12)
     :   [보안] XSS 취약점 보완 (unsecurity 김강섭님께서 한국인터넷진흥원을 통하여 알려 주셨습니다.)
 
-        lib/common.lib.php 
+        lib/common.lib.php
 
         // 이런 경우를 방지함 <IMG STYLE="xss:expr/*XSS*/ession(alert('XSS'))">
         //$content = preg_replace("#\/\*.*\*\/#iU", "", $content);
@@ -1047,7 +1047,7 @@
 4.36.05 (2012.09.24)
     :   우편번호 2012.07.13.자 반영 52,017건
 
-        bbs/zip.db 
+        bbs/zip.db
 
 4.36.04 (2012.08.22)
     :   플래시 플레이어 업그레이드로 인한 에디터 파일업로드에 문제가 생겨 cheditor 5.04 에서 cheditor 5.09.2 로 업데이트 합니다.
@@ -1074,9 +1074,9 @@
             if (get_session('ss_bo_table') != $_POST['bo_table'] || get_session('ss_wr_id') != $_POST['wr_id']) {
                 alert('올바른 방법으로 수정하여 주십시오.');
             }
-        
+
         lib/common.lib.php 의 check_string() 함수중
-        
+
             else if ($oc >= 0x20) { 를
             else if ($oc == 0x20) { 와 같이 수정했습니다.
 
@@ -1101,7 +1101,7 @@
 4.36.01 (2012.06.26)
     :   XSS 취약점 수정 보완 (i2sec 강우석님께서 원인과 해결책을 모두 알려 주셨습니다.)
         기존코드에 헛점이 있어 코드를 수정 보완 하였습니다.
-            
+
         lib/common.lib.php 의 conv_content() 함수에 아래와 같이 한줄 추가 하였습니다.
 
             $content = preg_replace_callback("#<([^>]+)#", create_function('$m', 'return "<".htmlspecialchars($m[1], ENT_NOQUOTES);'), $content);
@@ -1110,7 +1110,7 @@
     :   DB SESSION 의 MySQL 과부하로 인하여 기존의 FILE SESSION 으로 되돌림
 
 
-        data/session 디렉토리를 생성하신 후 
+        data/session 디렉토리를 생성하신 후
         chmod 777 data/session 명령으로 세션데이터 쓰기가 가능하도록 퍼미션을 변경하시기 바랍니다.
 
 
@@ -1151,7 +1151,7 @@
 
 4.35.02 (2012.06.15)
     :   4.35.01 의 세션테이블 생성할때 utf-8 사용시 세션테이블을 utf8 로 생성 (내일을위하여 님이 알려주시고 모바일님이 해결해 주셨습니다.)
-        
+
         lib/dbsession.lib.php 에 추가하세요.
 
             if (strtolower($g4['charset']) == 'utf-8') {
@@ -1170,7 +1170,7 @@
             //-------------------------------------------
             include_once("$g4[path]/lib/dbsession.lib.php");
             $session = new g4_dbsession();
-            session_set_save_handler(array($session, 'open'), 
+            session_set_save_handler(array($session, 'open'),
                                      array($session, 'close'),
                                      array($session, 'read'),
                                      array($session, 'write'),
@@ -1195,7 +1195,7 @@
         lib/dbsession.lib.php 를 아래와 같이 수정하세요.
 
             $sql = " CREATE TABLE `$g4[session_table]` (`ss_id` CHAR(32) NOT NULL, `ss_data` TEXT NOT NULL, `ss_datetime` DATETIME NOT NULL, PRIMARY KEY (`ss_id`), KEY `ss_datetime` (`ss_datetime`)) ENGINE = MYISAM ";
-     
+
 4.35.00 (2012.06.12)
     :   SESSION Data 가 노출되지 않도록 DB SESSION 사용 (HSEngine 님께서 알려 주셨습니다.)
     :   $_SERVER['PHP_SELF'] 변수를 사용한 XSS 취약점 수정
@@ -1218,7 +1218,7 @@
             //-------------------------------------------
             include_once("$g4[path]/lib/dbsession.lib.php");
             $session = new g4_dbsession();
-            session_set_save_handler(array($session, 'open'), 
+            session_set_save_handler(array($session, 'open'),
                                      array($session, 'close'),
                                      array($session, 'read'),
                                      array($session, 'write'),
@@ -1291,13 +1291,13 @@
             }
 
 4.34.25 (2012.04.30)
-    :   [보안강화] 설치시 data 디렉토리에 .htaccess 파일을 생성하여 data 디렉토리 및 하위 디렉토리에서는 
+    :   [보안강화] 설치시 data 디렉토리에 .htaccess 파일을 생성하여 data 디렉토리 및 하위 디렉토리에서는
         .htaccess .htpasswd .php .phtml .html .htm .inc .cgi .pl 파일을 실행 할 수 없습니다.
 
         기존에 운영중인 사이트에서는 data 디렉토리에 .htaccess 파일을 아래와 같은 내용으로 작성하십시오.
 
         <FilesMatch "\.(htaccess|htpasswd|[Pp][Hh][Pp]|[Pp]?[Hh][Tt][Mm][Ll]?|[Ii][Nn][Cc]|[Cc][Gg][Ii]|[Pp][Ll])">
-        Order allow,deny 
+        Order allow,deny
         Deny from all
         </FilesMatch>
 
@@ -1364,7 +1364,7 @@
         lib/common.lib.php 의 function url_auto_link($str) 에서
 
             $str = preg_replace("/([^(HREF=\"?'?)|(SRC=\"?'?)]|\(|^)((http|https|ftp|telnet|news|mms):\/\/[a-zA-Z0-9\.-]+\.[\xA1-\xFEa-zA-Z0-9\.:&#=_\?\/~\+%@;\-\|\,\(\)]+)/i", "\\1<A HREF=\"\\2\" TARGET='$config[cf_link_target]'>\\2</A>", $str);
-            를 
+            를
 
             global $g4;
             ...
@@ -1383,7 +1383,7 @@
     :   우편번호 2012.01.26.자 반영 51,898건 (FM2fmedia님께서 도움 주셨습니다.)
 
         lib/common.lib.php 의 cut_str() 함수 수정
-        bbs/zip.db 
+        bbs/zip.db
 
 4.34.19 (2012.01.17)
     :   특정 서버에 따라 캡챠이미지의 결과를 인식하지 못하는 오류를 수정
@@ -1408,7 +1408,7 @@
 
         bbs/search.php 의
 
-            switch ($field[$k]) 
+            switch ($field[$k])
             {
                 case "mb_id" :
                 case "mb_name" :
@@ -1422,9 +1422,9 @@
                     break;
             }
 
-            위 코드를 
+            위 코드를
 
-            switch ($field[$k]) 
+            switch ($field[$k])
             {
                 case "mb_id" :
                 case "wr_name" :
@@ -1505,8 +1505,8 @@
     :   [보안패치] XSS 취약점 권고에 대한 수정 (i2Sec-김태형님)
 
         lib/common.lib.php 의 function conv_content() 에서
-    
-        $content = preg_replace("#\/\*.*\*\/#iU", "", $content); 
+
+        $content = preg_replace("#\/\*.*\*\/#iU", "", $content);
 
         이 코드의 위치를 바꿔 해결함
 
@@ -1534,7 +1534,7 @@
             $mb_homepage = trim(strip_tags(mysql_escape_string($_POST[mb_homepage])));
 
         bbs/write_update.php 에 추가 되었습니다.
-            
+
             $wr_link1 = mysql_real_escape_string($_POST['wr_link1']);
             $wr_link2 = mysql_real_escape_string($_POST['wr_link2']);
 
@@ -1587,7 +1587,7 @@
             두개의 파일 모두 아래 코드만 추가 되었습니다.
 
             $unique_email = array_values($unique_email);
-        
+
 4.34.11 (11.09.20)
     :   우편번호 2011.08.30.자 반영 (곱슬최씨님께서 도움 주셨습니다.)
 
@@ -1619,7 +1619,7 @@
 
         adm/admin.lib.php
 
-            if (!preg_match("/^admin.menu([0-9]{3}).*\.php$/", $entry, $m)) 
+            if (!preg_match("/^admin.menu([0-9]{3}).*\.php$/", $entry, $m))
 
 4.34.08 (11.07.22)
     :   접속자현황에서 한글 깨지는 오류 수정
@@ -1647,7 +1647,7 @@
 
 
         아래 3개 파일을 교체해 주시기 바랍니다.
-        
+
         cheditor5/imageUpload/upload.php
         cheditor5/imageUpload/delete.php
         bbs/zip.db
@@ -1670,23 +1670,23 @@
 
         참고) 심각한 사안이므로 되도록 빨리 패치해 주시는 것이 좋습니다.
 
-      
+
         아래 2개 파일을 교체해 주시기 바랍니다.
 
         cheditor5/imageUpload/upload.php
         cheditor5/popup/js/image.js
 
 
-        추가사항) 
+        추가사항)
         data 폴더에서 php 나 html 파일을 실행하지 못하게 하려면 아래의 파일을 data 폴더에 만들어 놓으시기 바랍니다.
         data 폴더에 하나만 만들어 놓으시면 됩니다.
 
         파일명 : .htaccess (파일명 앞에 점이 붙습니다. 숨김 기능을 합니다.)
 
-        내용 : 
+        내용 :
 
-        <FilesMatch "\.([Pp][Hh][Pp]|[Hh][Tt][Mm][Ll]?|[Ii][Nn][Cc]|[Cc][Gg][Ii]|[Pp][Ll])"> 
-            Order allow,deny 
+        <FilesMatch "\.([Pp][Hh][Pp]|[Hh][Tt][Mm][Ll]?|[Ii][Nn][Cc]|[Cc][Gg][Ii]|[Pp][Ll])">
+            Order allow,deny
             Deny from all
         </FilesMatch>
 
@@ -1715,7 +1715,7 @@
             $field[$k] = preg_match("/^[\w\,\|]+$/", $field[$k]) ? $field[$k] : "wr_subject";
 
         lib/common.lib.php 의 conv_content() 함수 추가
-            
+
             $content = preg_replace("/<(img[^>]+download\.php[^>]+bo_table[^>]+)/i", "*** CSRF 감지 : &lt;$1", $content);
 
 4.34.02 (11.05.13)
@@ -1736,13 +1736,13 @@
 
         if ($is_admin)
         {
-            if (!($token && get_session("ss_delete_token") == $token)) 
+            if (!($token && get_session("ss_delete_token") == $token))
                 alert("토큰 에러로 삭제 불가합니다.");
         }
-            
+
         bbs/view.php 에 아래 코드를 추가합니다.
 
-            if ($is_admin) 
+            if ($is_admin)
             {
                 set_session("ss_delete_token", $token = uniqid(time()));
                 $delete_href = "javascript:del('./delete.php?bo_table=$bo_table&wr_id=$wr_id&token=$token&page=$page".urldecode($qstr)."');";
@@ -1750,10 +1750,10 @@
 
         bbs/view_comment.php 에 추가 또는 수정합니다.
 
-            추가 
-            
+            추가
+
             // 코멘트를 새창으로 여는 경우 세션값이 없으므로 생성한다.
-            if ($is_admin && !$token) 
+            if ($is_admin && !$token)
             {
                 set_session("ss_delete_token", $token = uniqid(time()));
             }
@@ -1819,13 +1819,13 @@
         =======================================================
         cheditor5 적용 방법 (참! 쉽죠! 잉!)
         =======================================================
-        
-        cheditor5 폴더 전체 업로드 
-        
-        lib/cheditor4.lib.php 교체 
-        
+
+        cheditor5 폴더 전체 업로드
+
+        lib/cheditor4.lib.php 교체
+
         config.php 에 $g4['is_cheditor5']   = true; 추가
-        
+
         skin/board/?????/write.skin.php 의
 
             <?
@@ -1833,8 +1833,8 @@
             ?>
 
             if (document.getElementById('tx_wr_content')) {
-                if (!ed_wr_content.outputBodyText()) { 
-                    alert('내용을 입력하십시오.'); 
+                if (!ed_wr_content.outputBodyText()) {
+                    alert('내용을 입력하십시오.');
                     ed_wr_content.returnFalse();
                     return false;
                 }
@@ -1843,8 +1843,8 @@
             를
 
             if (document.getElementById('tx_wr_content')) {
-                if (!ed_wr_content.outputBodyText()) { 
-                    alert('내용을 입력하십시오.'); 
+                if (!ed_wr_content.outputBodyText()) {
+                    alert('내용을 입력하십시오.');
                     ed_wr_content.returnFalse();
                     return false;
                 }
@@ -1855,7 +1855,7 @@
             ?>
 
             이렇게 순서만 바꿔 주세요.
-            
+
         =======================================================
 
         bbs/register_form.php
@@ -1938,7 +1938,7 @@
 4.33.10 (11.04.27)
     :   [보안패치] 회원정보수정시 세션에 기록된 패스워드를 알아낼 수 있는 취약점이 발견되었습니다.
         (한국인터넷진흥원을 통하여 Null@Root 소속의 Hacker@n 님께서 알려주셨습니다.)
-    :   게시판복사시 복사되는 게시판 테이블의 CHARSET 이 제대로 생성되지 않는 오류를 수정하였습니다. 
+    :   게시판복사시 복사되는 게시판 테이블의 CHARSET 이 제대로 생성되지 않는 오류를 수정하였습니다.
         ( 밀로즈님께서 알려주셨습니다. )
 
         bbs/register_form.php
@@ -1958,14 +1958,14 @@
             global $g4;
 
             ...
-            
+
             if (strtolower($g4['charset']) == "utf-8")
                 $schema_create .= $crlf . ') DEFAULT CHARSET=utf8';
             else
                 $schema_create .= $crlf . ')';
 
 4.33.09 (11.04.15)
-    :   아래 두개의 취약점은 한국인터넷진흥원(KISA)을 통하여 
+    :   아래 두개의 취약점은 한국인터넷진흥원(KISA)을 통하여
         선린인터넷고등학교 1학년에 재학중인 강인욱님께서 알려 주셨습니다.
 
         XSS 취약점
@@ -1976,7 +1976,7 @@
 
 
         function conv_content($content, $html)
-            
+
             ...
 
             //$content = preg_replace("/(ex)(pression)/i", "&#101&#120;$2", $content);
@@ -2002,7 +2002,7 @@
 
 
         function bad_tag_convert($code)
-            
+
             ...
 
             if ($is_admin && $member[mb_id] != $view[mb_id]) {
@@ -2019,23 +2019,23 @@
 
 
 4.33.08 (11.04.01)
-    :   아래 두개의 취약점은 한국인터넷진흥원(KISA)을 통하여 
+    :   아래 두개의 취약점은 한국인터넷진흥원(KISA)을 통하여
         선린인터넷고등학교 1학년에 재학중인 강인욱님께서 알려 주셨습니다.
     :   [보안패치] XSS(Cross Site Scripting) 취약점 보완
-        이 취약점은 XML의 namespace를 이용하여 공격하는 방식입니다. 
+        이 취약점은 XML의 namespace를 이용하여 공격하는 방식입니다.
         게시판에서 DHTML 에디터를 사용하지 않는 경우에만 취약한 것으로 확인 되었습니다.
     :   [보안패치] RFI(Remote File Inclusion) 원격파일유입 취약점 보완
-        이 취약점은 관리자 권한을 취득한 후에 게시판 관리의 상단, 하단파일경로에 
-        Data URI scheme (http://en.wikipedia.org/wiki/Data_URI_scheme) 를 이용하여 
-        서버에 remote 파일을 생성하고 해당 remote 파일을 이용하여 해당 서버를 공격하는 
+        이 취약점은 관리자 권한을 취득한 후에 게시판 관리의 상단, 하단파일경로에
+        Data URI scheme (http://en.wikipedia.org/wiki/Data_URI_scheme) 를 이용하여
+        서버에 remote 파일을 생성하고 해당 remote 파일을 이용하여 해당 서버를 공격하는
         방식입니다.
         PHP 5.x 이상 그리고 allow_url_fopen 이 On 인 경우에만 발생합니다.
-        
+
         lib/common.lib.php
 
             $content = preg_replace("/\<(\w|\s|\?)*(xml)/i", "", $content);
 
-        adm/board_form.php 
+        adm/board_form.php
 
             <tr class='ht'>
                 <td colspan='2'>
@@ -2047,7 +2047,7 @@
                 </td>
             </tr>
 
-        adm/board_form_update.php 
+        adm/board_form_update.php
 
             if ($member[mb_password] != sql_password($_POST['admin_password'])) {
                 alert("패스워드가 다릅니다.");
@@ -2068,13 +2068,13 @@
 4.33.06 (11.02.22)
     :   [보안패치] 스팸글 등록으로 인한 자동등록방지 캡챠이미지 관련 코드 보완
 
-        기존에 PHPSESSID를 사용하였으나 사용자가 PHPSESSID 값을 쉽게 확인할수 
-        있으므로 이것을 유추하여 자동등록방지 코드를 알아낼 수 있는 버그가 
+        기존에 PHPSESSID를 사용하였으나 사용자가 PHPSESSID 값을 쉽게 확인할수
+        있으므로 이것을 유추하여 자동등록방지 코드를 알아낼 수 있는 버그가
         있었습니다. (jacobswell 님께서 알려 주셨습니다.)
         사용자가 확인할수 없도록 코드를 수정하였으며 입력값이 5회이상 틀리면
         다시 입력을 하도록 하였습니다.
 
-        참고) 스팸으로 인하여 피해를 입고 계시다면 회원제로 글쓰기 해주실것을 
+        참고) 스팸으로 인하여 피해를 입고 계시다면 회원제로 글쓰기 해주실것을
               권해 드립니다. 비회원 글쓰기의 경우 프로그램 보다는 사람이 글을
               올리는 것으로 확인 되었습니다.
 
@@ -2087,7 +2087,7 @@
         -------------------------------------------------------------------------
             기타) 기존 스킨에 대한 패치방법
         -------------------------------------------------------------------------
-            
+
             if (typeof(f.wr_key) != 'undefined') {
                 if (hex_md5(f.wr_key.value) != md5_norobot_key) {
                     alert('자동등록방지용 글자가 제대로 입력되지 않았습니다.');
@@ -2110,10 +2110,10 @@
 
 4.33.05 (11.02.20)
     :   [보안패치] 스팸글 등록으로 인한 자동등록방지 캡챠이미지 관련 코드 변경
-        
-        요즈음의 그누보드 스팸등록기는 캡챠이미지 생성시 나오는 md5 값을 유추하여 
+
+        요즈음의 그누보드 스팸등록기는 캡챠이미지 생성시 나오는 md5 값을 유추하여
         원래 데이터(숫자)값을 알아내는 방법을 사용합니다.
-        쉽게 말씀드리자면 다음과 같습니다. 
+        쉽게 말씀드리자면 다음과 같습니다.
         md5 DB를 아래와 같이 구축해 놓습니다.
 
         왼쪽은 md5 해시키이며 오른쪽은 원래 데이터 입니다.
@@ -2122,11 +2122,11 @@
         eccbc87e4b5ce2fe28308fd9f2a7baf3 = 3
         ...
         52c69e3a57331081823331c4e69d3f2e = 999999
-        
-        가령 js/jquery.kcaptcha.js 의 md5_norobot_key 값이 52c69e3a57331081823331c4e69d3f2e 라면 
+
+        가령 js/jquery.kcaptcha.js 의 md5_norobot_key 값이 52c69e3a57331081823331c4e69d3f2e 라면
         md5 DB에서 52c69e3a57331081823331c4e69d3f2e 값을 찾아내어 원 데이터 999999 값을 알아낸다는 것이죠.
         (이것은 복호화가 아닙니다. 편법이죠. 어쨌든 뚫렸기 때문에 패치는 해야겠죠?)
-        그래서 이번 패치는 원래 데이터에 추가로 PHPSESSID 값을 넣어서 md5 DB 에서 값을 찾아낼 수 없도록 
+        그래서 이번 패치는 원래 데이터에 추가로 PHPSESSID 값을 넣어서 md5 DB 에서 값을 찾아낼 수 없도록
         만들었습니다.
 
 
@@ -2143,7 +2143,7 @@
         -------------------------------------------------------------------------
             기타) 기존 스킨에 대한 패치방법
         -------------------------------------------------------------------------
-            
+
             if (typeof(f.wr_key) != 'undefined') {
                 if (hex_md5(f.wr_key.value) != md5_norobot_key) {
                     alert('자동등록방지용 글자가 제대로 입력되지 않았습니다.');
@@ -2239,7 +2239,7 @@
 
 
         common.php
-        
+
             if (isset($sca))  {
                 $sca = preg_replace("/([\'\"\`\<\>\(\)\;\/~@?=%&!]+)/", "", $sca);
                 $qstr .= '&sca=' . urlencode($sca);
@@ -2273,12 +2273,12 @@
     :   [보안패치] XSS / CSRF
         4.33.00 에 object 태그로도 플래시를 실행할 수 없도록 수정한 코드입니다. (아갈갤러리님)
 
-        lib/common.lib.php 
+        lib/common.lib.php
             의 bad_tag_convert() 함수 코드만 수정
 
 4.33.00 (11.01.06)
     :   [보안패치] XSS / CSRF
-        FLASH 파일의 ACTION SCRIPT로 관리자의 세션값을 알아내고 공유하여 결국에는 관리자권한을 모두 갖게 되는 
+        FLASH 파일의 ACTION SCRIPT로 관리자의 세션값을 알아내고 공유하여 결국에는 관리자권한을 모두 갖게 되는
         치명적인 오류가 발견 되었습니다. (간단하게 말해서 플래시를 보는것만으로 세션값이 노출됩니다.)
         이것은 해커가 관리권한을 공유하는 것으로 관리자의 패스워드가 노출된것은 아닙니다.
         패치의 주된 내용은 게시판의 다른 회원이 올린 embed 태그는 관리자에게 보여지지 않게 하는 것입니다.
@@ -2291,9 +2291,9 @@
         아래 패치를 모두 적용하기 힘든 사이트는 중요라고 되어 있는 파일만 수정해 주시기 바랍니다.
 
         === 중요 ===
-        lib/common.lib.php 
+        lib/common.lib.php
             의 bad_tag_convert(), view_file_link() 함수 코드 수정
-        skin/board/basic/view_comment.skin.php 
+        skin/board/basic/view_comment.skin.php
             의 $str = preg_replace("/\[\<a\s.*href\=\"(http|https|ftp)\:\/\/([^[:space:]]+)\.(swf)\".*\<\/a\>\]/i", "<script>doc_write(flash_movie('$1://$2.$3'));</script>", $str);
             위 코드 제거 또는 주석처리
         bbs/login_check.php
@@ -2343,7 +2343,7 @@
 
 4.32.11 (10.09.11)
     :   [보안패치] 반드시 패치하시기 바랍니다.
-        자동로그인 기능에 심각한 버그가 존재합니다. 
+        자동로그인 기능에 심각한 버그가 존재합니다.
 
         common.php 의 코드를 아래와 같이 수정해 주십시오.
 
@@ -2361,7 +2361,7 @@
     :   아이디/패스워드 찾기 코드 보완 (보안서버 적용 등)
         기존에 사용하던 password_forget 을 더 이상 사용하지 않으며 password_lost 로 대체합니다.
         회원가입시 패스워드 분실시 질문, 답변을 더 이상 입력 받지 않습니다.
-    
+
         bbs/password_lost.php
         bbs/password_lost2.php
         bbs/password_lost_certify.php
@@ -2378,18 +2378,18 @@
 
 4.32.09 (10.09.07)
     :   게시판에서 \ 를 검색할 수 있도록 수정 (애나양님께서 알려주셨습니다.)
-    
+
         lib/common.lib.php                          : $search_text = trim(stripslashes($search_text)); 로 변경
         skin/board/basic/list.skin.php              : value='<?=stripslashes($stx)?>' 로 변경
 
 4.32.08 (10.08.25)
     :   url_auto_link() 함수 코드 보완
-    
-        lib/common.lib.php 
+
+        lib/common.lib.php
 
 4.32.07 (10.08.23)
     :   [보안] XSS(Cross Site Scripting) 공격에 의한 데이터 검증 및 차단 기능을 보완하였습니다. (sjsjin 님께서 알려주셨습니다.)
-    :   회원의 포인트가 0 미만일 경우 게시판의 글쓰기 포인트가 설정된 경우에 나오던 오류를 수정 (곱슬최씨님께서 다시 알려 주셨습니다.)    
+    :   회원의 포인트가 0 미만일 경우 게시판의 글쓰기 포인트가 설정된 경우에 나오던 오류를 수정 (곱슬최씨님께서 다시 알려 주셨습니다.)
     :   회원가입의 약관선택시 checkbox 에서 radio 선택으로 변경하였습니다. (한국인터넷진흥원 권고)
     :   회원가입의 생일 날짜선택시 달력을 jquery datepicker로 사용하도록 수정
 
@@ -2410,7 +2410,7 @@
     :   글쓰기, 코멘트쓰기시 욕 단어 필터링이 외부에서 보이지 않도록 AJAX 처리함
     :   게시판관리에서 게시판복사시 서브디렉토리도 복사가 가능하도록 수정 (김선용님께서 코드를 알려 주셨습니다.)
     :   받은쪽지를 타인이 읽은 상태로 변경할 수 있는 오류 수정 (유아원님께서 알려주셨습니다.)
-    
+
         adm/board_copy_update.php
         bbs/memo_view.php
         bbs/view_comment.php
@@ -2419,7 +2419,7 @@
         skin/board/basic/ajax.filter.php
         skin/board/basic/view_comment.skin.php
         skin/board/basic/write.skin.php
-        
+
 4.32.04 (10.07.02)
     :   게시판 이전, 다음 검색시 1페이지로 이동하도록 수정 (intel님께서 알려주셨습니다.)
     :   파일명에 특수문자가 들어간 경우 다운로드 되지 않던 오류 수정 (곱슬최씨님께서 알려주셨습니다.)
@@ -2467,17 +2467,17 @@
         skin/member/basic/ajax_register_form.jquery.js
         skin/member/basic/formmail.skin.php
         skin/member/basic/password_forget2.skin.php
-        skin/member/basic/register_form.skin.php                
+        skin/member/basic/register_form.skin.php
 
 4.31.15 (10.02.08)
     :   회원삭제시 주민등록번호도 공란으로 수정
         function member_delete($mb_id) { ... mb_jumin = '', ...
     :   접속자현황 OS에 Windows7 추가 (Justin님께서 알려주셨습니다.)
-    :   POSIX Regex 함수 제거 ( ereg_replace, ereg, eregi_replace, eregi, split, spliti, sql_regcase )
+    :   POSIX Regex 함수 제거 ( preg_replace, ereg, eregi_replace, eregi, split, spliti, sql_regcase )
         이 기능은 PHP 5.3.0 부터 배제되고 PHP 6.0.0 부터 제거됩니다. 이 기능에 의존하지 않기를 권합니다.
     :   기본시간대를 설정 PHP 5.1 부터 가능 date_default_timezone_set()
     :   2009년 제4차 우편번호 변경내역 (2009.12.16.자 : 50,742건) http://www.zipfinder.co.kr
-    :   password_check.php 의 $qstr 에 $sop 추가 
+    :   password_check.php 의 $qstr 에 $sop 추가
     :   js/common.js 의 del() 함수에 charset 별로 처리되도록 수정
 
         adm/admin.lib.php
@@ -2499,7 +2499,7 @@
 4.31.14 (09.10.15)
     :   관리자 게시판 등록시 상,하단 이미지, 상, 하단 파일 경로를 통한 보안 취약점 수정 (로빈아빠 님 091015)
 
-        adm/board_form_update.php        
+        adm/board_form_update.php
 
 4.31.13 (09.10.14)
     :   utf-8 버전에서 게시판분류 선택시 제대로 검색되지 않는 오류 수정
@@ -2521,7 +2521,7 @@
         $title = str_replace(array("<", ">"), array("&lt;", "&gt;"), urldecode($row[vi_referer]));
     :   접속자현황에 IE 8, CHROME, WINDOWS NT 6 이 제대로 표시되도록 수정
     :   첨부파일 첨부시 첨부파일명에 공백이 포함되어 있으면 일부 PC에서 보이지 않거나 다운로드 되지 않는 현상이 있습니다. (길상여의 님 090925)
-        (bbs/write_update.php) $upload[$i][file] = abs(ip2long($_SERVER[REMOTE_ADDR])).'_'.substr($shuffle,0,8).'_'.str_replace('%', '', urlencode(str_replace(' ', '_', $filename))); 
+        (bbs/write_update.php) $upload[$i][file] = abs(ip2long($_SERVER[REMOTE_ADDR])).'_'.substr($shuffle,0,8).'_'.str_replace('%', '', urlencode(str_replace(' ', '_', $filename)));
     :   파일다운로드시 실제 파일이 존재하지 않을 경우 포인트만 차감되는 오류 수정 (아빠불당님 090914)
 
         adm/visit_list.php
@@ -2592,7 +2592,7 @@
             ...
             shuffle($chars_array);
             $shuffle = implode("", $chars_array);
-            $upload[$i][file] = abs(ip2long($_SERVER[REMOTE_ADDR])).'_'.substr($shuffle,0,8).'_'.str_replace('%', '', urlencode($filename)); 
+            $upload[$i][file] = abs(ip2long($_SERVER[REMOTE_ADDR])).'_'.substr($shuffle,0,8).'_'.str_replace('%', '', urlencode($filename));
 
 
         // 수정된 파일
@@ -2625,7 +2625,7 @@
             unset($_POST['g4_path']);
             unset($g4_path);
         }
-    
+
         common.php
 
 4.31.03 (08.12.29)
@@ -2638,24 +2638,24 @@
 4.31.02 (08.11.03)
     :   HTML 쓰기에서 on으로 시작되는 이벤트(예:onclick) 사용시 에러나는 부분을 수정 : conv_content()
 
-        lib/common.lib.php            
+        lib/common.lib.php
 
 4.31.01 (08.10.29)
     :   extract($_GET); 으로 인한 오류 수정
         letsgolee 님께서 도움 주셨습니다.
     :   token 적용이 되지 않은 페이지 token 적용
-    
+
         adm/member_form.php
         adm/member_form_update.php
         common.php
-        lib/common.lib.php            
+        lib/common.lib.php
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 4.31.00 (08.10.28)
     :   CSRF 보안 강화를 위한 코드 수정
         관리자 > 기본환경설정 페이지에 cpatcha 적용
-        추천) 관리자 기본 폴더명인 adm 폴더를 다른 이름 변경하신 후 
+        추천) 관리자 기본 폴더명인 adm 폴더를 다른 이름 변경하신 후
               config.php 의 $g4['admin'] = "adm"; 값을 변경하시면 CSRF 에서 좀 더 안전할 수 있습니다.
     :   대부분의 관리자 페이지에 CSRF 보안 강화를 위한 토큰 적용
     :   cheditor4 코드 수정
@@ -2734,9 +2734,9 @@
         config.php
         head.php
         head.sub.php
-        img/capslock.gif 
+        img/capslock.gif
         index.php
-        js/capslock.js 
+        js/capslock.js
         lib/cheditor4.lib.php
         lib/common.lib.php
         skin/board/basic/list.skin.php
@@ -2776,7 +2776,7 @@
 
         common.php 를 아래와 같이 반드시 반드시 반드시 수정하시기 바랍니다.
         // 스킨경로
-        $board_skin_path = ''; // <!-- 이 코드 한줄이 반드시 들어가야 합니다. 
+        $board_skin_path = ''; // <!-- 이 코드 한줄이 반드시 들어가야 합니다.
         if (isset($board['bo_skin']))
             $board_skin_path = "{$g4['path']}/skin/board/{$board['bo_skin']}"; // 게시판 스킨 경로
 
@@ -2804,15 +2804,15 @@
 
 4.22.00 (08.02.18) [자동등록방지 필수 패치]
     :   상대경로 지정시 자동으로 절대경로로 바뀌던 오류 수정
-        
+
         cheditor/cheditor.js
 
     :   지에디터 사용시 본문 required 옵션 무시되는 오류를 수정
-        
+
         js/wrest.js
 
     :   자동등록방지 코드 추가 (gd lib 를 지원하는 서버에서만 정상 적용됩니다.)
-        
+
         bbs/norobot.inc.php
         bbs/norobot_image.php
         skin/member/basic/register_form.skin.php
@@ -2839,11 +2839,11 @@
 4.21.03 (07.11.30) [보안관련 필수 패치]
     :   외부에서 회원정보를 수정할 수 있는 오류를 수정
     :   폼메일에도 토큰 적용
-    :   기존 회원가입스킨(register_form.skin.php)에 
-        <input type=hidden name=token value="<?=$token?>"> 이 코드를 추가해 주십시오. 
-    :   기존 폼메일스킨(formmail.skin.php)에 
-        <input type=hidden name=token value="<?=$token?>"> 이 코드를 추가해 주십시오. 
-        
+    :   기존 회원가입스킨(register_form.skin.php)에
+        <input type=hidden name=token value="<?=$token?>"> 이 코드를 추가해 주십시오.
+    :   기존 폼메일스킨(formmail.skin.php)에
+        <input type=hidden name=token value="<?=$token?>"> 이 코드를 추가해 주십시오.
+
         bbs/register_form.php
         bbs/register_form_update.php
         skin/member/basic/register_form.skin.php
@@ -2935,12 +2935,12 @@
         bbs/oneanswer.php
         skin/oneboard/one/oneanswermail.skin.php
         skin/oneboard/one/oneview.skin.php
-    
+
 4.20.00 (07.04.23)
     :   접근가능 IP, 접근차단 IP 코드 수정
         sjsjin님께서 알려 주셨습니다.
     :   세션데이터 삭제 기능 추가
-        자동으로 삭제되지 않는 세션데이터를 삭제 
+        자동으로 삭제되지 않는 세션데이터를 삭제
     :   회원테이블에 mb_no AUTO_INCREMENT PRIMARY KEY 로 대체
     :   1:1 게시판 기능 추가
 
@@ -2974,7 +2974,7 @@
     :   스팸트랙백을 막기 위해 기능 수정
         config.php 에 $g4['token_time'] = 3; 추가
     :   head.sub.php 에 아래와 같이 한줄 추가하십시오.
-        <script type="text/javascript" src="<?=$g4['path']?>/js/ajax.js"></script> 
+        <script type="text/javascript" src="<?=$g4['path']?>/js/ajax.js"></script>
 
         테이블이 추가 되었으니 adm/upgrade.php 를 한번 이상 실행하여 주십시오.
 
@@ -2996,7 +2996,7 @@
 4.10.00 (06.11.27)
     :   cheditor 에서 입력이 없이 엔터만 치는 경우 <DIV>&nbsp;</DIV> 나오는 현상을 수정
     :   게시판관리에서 비밀글 사용에 '무조건' 비밀글 옵션 추가
-    :   RSS 보기 사용 필드 추가 
+    :   RSS 보기 사용 필드 추가
         비회원 글읽기가 가능하고 RSS 보기 사용에 체크가 되어야만 RSS(XML) 보기 가능
     :   게시판관리에서 DHTML 에디터 사용 선택 옵션 추가
         basic, cheditor 스킨을 통합함
@@ -3016,7 +3016,7 @@
     :   게시판스킨에 글자크기변경 기능 추가
         js/board.js 필수 추가
         head.sub.php 에 아래 코드 필수 추가
-            var g4_cookie_domain = "<?=$g4['cookie_domain']?>"; 
+            var g4_cookie_domain = "<?=$g4['cookie_domain']?>";
     :   접속자의 레벨이 설정된 읽기권한보다 작다면 경고창이 계속뜨는 오류를 수정
         나스카님께서 도움 주셨습니다.
 
@@ -3054,7 +3054,7 @@
     :   관리자 > 게시판 복사시에 트랙백쓰기 권한이 복사되지 않던 오류 수정
     :   게시판 글쓰기에 bo_table 없이 직접 접근하는 경우 메인으로 이동하도록 수정
     :   한글(2bytes)에서 마지막 글자가 1byte로 끝나는 경우
-        출력시 깨지는 현상이 발생하므로 
+        출력시 깨지는 현상이 발생하므로
         마지막 완전하지 않은 글자(1byte)를 하나 없앰 (cut_hangul_last)
     :   새창으로 코멘트로 띄운 경우 삭제하면 head.php, tail.php 가 적용되어 출력되던 오류 수정
     :   쪽지 보관일수를 알림
@@ -3220,7 +3220,7 @@
         adm/mail_select_update.php
 
 4.06.18 (06.03.07)
-    :   latest() 함수 수정 
+    :   latest() 함수 수정
         $skin_dir 인수가 넘어오지 않는 경우 오류나는 부분 수정
     :   페이징 함수 수정 (책갈피 변수 추가)
     :   wrest.js 의 trim 부분 코드 수정
@@ -3243,7 +3243,7 @@
     :   get_sql_search() 함수 수정 - 코멘트를 제외한 원글에서만 검색이 가능하도록 수정
     :   UTF-8 에서 한글 별명 오류 수정
         심플로그님께서 알려 주셨습니다.
-        
+
         필드가 추가, 변경 되었으니 adm/upgrade.php 를 한번 이상 실행하여 주십시오.
 
         adm/upgrade.php
@@ -3268,7 +3268,7 @@
         달빛온도님께서 알려 주셨습니다.
     :   우편번호 파일 변경
         네잎클로버님께서 제작해 주셨습니다.
-        
+
         head.sub.php
         tail.sub.php
         bbs/register_form_update.php
@@ -3444,8 +3444,8 @@
         cheditor/insert_image.php
 
 4.06.03 (05.10.12)
-    :   한글파일은 urlencode($filename) 처리를 할경우 '%'를 붙여주게 되는데 '%'표시는 미디어플레이어가 인식을 못하기 때문에 재생이 안됩니다. 
-        그래서 변경한 파일명에서 '%'부분을 빼주면 해결됩니다. 
+    :   한글파일은 urlencode($filename) 처리를 할경우 '%'를 붙여주게 되는데 '%'표시는 미디어플레이어가 인식을 못하기 때문에 재생이 안됩니다.
+        그래서 변경한 파일명에서 '%'부분을 빼주면 해결됩니다.
         달빛온도님께서 알려 주셨습니다.
     :   글삭제시 원글과 코멘트수가 정상적으로 업데이트 되지 않던 오류를 수정
         나라오름님께서 알려 주셨습니다.
@@ -3459,7 +3459,7 @@
     :   관리자 상단 메뉴 읽는 코드 수정
     :   패스워드 창에서 로그인 하는 경우 관리자 또는 자신의 글이면 바로 글보기로 가도록 수정
     :   회원관리에서 포인트부분 클릭시 오류 수정
-        
+
         adm/admin.lib.php
         adm/member_form.php
         bbs/password.php
@@ -3475,7 +3475,7 @@
     :   메일 발송에서 게시판그룹 회원을 선택할 수 있도록 수정
     :   업로드 하는 파일, 글내용의 크기가 서버에서 설정한 값을 넘었을 경우 오류메세지 출력
         php.ini 의 post_max_size, upload_max_filesize 와 관련이 있습니다.
-        
+
         adm/admin.menu300.php
         adm/index.php
         adm/member_list.php
@@ -3531,12 +3531,12 @@
     :   검색사용 게시판만 최근게시물에 출력
     :   게시판 설정에서 필드별로 그룹적용이 가능하도록 수정
     :   게시판 설정에 메일발송 사용 필드 추가
-    :   검색어 없이 검색페이지로 이동할 수 있게 수정 
+    :   검색어 없이 검색페이지로 이동할 수 있게 수정
     :   비회원에게 폼메일 보낼 경우 이름대신 메일 주소를 표시하도록 수정
         하나Yun님께서 알려 주셨습니다.
 
         필드가 추가, 변경 되었으니 adm/upgrade.php 를 한번 이상 실행하여 주십시오.
-    
+
         adm/upgrade.php
         adm/board_form.php
         adm/board_form_update.php
@@ -3605,7 +3605,7 @@
     :   관리자화면 디자인 변경
         adm/menu/m100900_etc.php 를 삭제하세요.
     :   포인트정리 추가
-        
+
         adm/img/*
         adm/admin.head.php
         adm/admin.lib.php
@@ -3730,7 +3730,7 @@
         adm/admin.head.php
         adm/board_copy_update.php
         adm/board_form.php
-        adm/board_form_update.php 
+        adm/board_form_update.php
         adm/config_form.php
         bbs/good.php
         bbs/login_check.php
@@ -3752,7 +3752,7 @@
     :   관리자일 경우에만 자바스크립트 변수에 관리자 디렉토리 정보 생성
     :   E-mail 본인인증 기능추가로 인한 코드 상당부분 수정
         bbs/mail_stop.php 를 bbs/email_stop.php 로 이름 변경합니다.
-        
+
         ※ 기존 사용자가 업그레이드 할 경우에는 별도로 email_certify.php, email_certify2.php 를 다운로드 하셔야 합니다.
 
         필드가 추가 되었으니 adm/upgrade.php 를 한번 이상 실행하여 주십시오.
@@ -3792,7 +3792,7 @@
         prosper 님께서 알려 주셨습니다.
 
     :   한국소프트웨어진흥원 공개SW지원센터에서 보내온 문서를 토대로 PHP, SQL Injection 에 대처하기 위해 코드 수정
-        한국소프트웨어진흥원 신민석님, 정현철연구원님, 서강대학교 김우현님, 
+        한국소프트웨어진흥원 신민석님, 정현철연구원님, 서강대학교 김우현님,
         ㈜A3 Security consulting 구본근님, 김동우님, 한남대학교 컴퓨터공학과 최민성님,
         함지만님, INetCop Security 유동훈님 께 감사드립니다.
 
@@ -3859,11 +3859,11 @@
     :   게시판설정에서 연관성없는 그룹동일적용 분리
     :   cheditor 연동 부분 상당부분 수정
     :   common.lib.php 의 goto_url() 수정
-    :   쪽지, 스크랩, 우편번호, 아이디/패스워드 찾기, 회원정보조회 페이지 
+    :   쪽지, 스크랩, 우편번호, 아이디/패스워드 찾기, 회원정보조회 페이지
         모두 스킨으로 대체 (skin/member/basic/*)
     :   투표한 회원을 저장하여 두번이상 투표를 하지 못하도록 수정
     :   필드가 추가 되었으니 adm/upgrade.php 를 한번 이상 실행하여 주십시오.
-        
+
         adm/version.php
         adm/menu/m100960_version.php
         adm/board_form.php
@@ -3912,7 +3912,7 @@
     :   코멘트 입력, 수정 후 코멘트로 이동
     :   admin.tail.php 하단에 있던 자바스크립트를 admin.js 로 분리
     :   [보안관련] 다른 회원의 쪽지를 읽을 수 있는 오류 수정
-        
+
         bbs/write_comment_update.php
         adm/mail_select_list.php
         adm/point_list.php
@@ -3950,10 +3950,10 @@
 4.00.12 (05.06.17)
     :   글복사, 이동시 게시판 선택창에서 제목을 클릭해도 체크되도록 수정
     :   게시판 스킨 코드 최적화
-    :   [ie 버그] 
-        게시판의 글내용이 많을시 <form> 바로 아래의 <input hidden 값 하나가 
+    :   [ie 버그]
+        게시판의 글내용이 많을시 <form> 바로 아래의 <input hidden 값 하나가
         사라지는 현상이 발생하는 경우가 있습니다. (그렇지 않은 경우가 더 많네요)
-        이것을 해결하는 방법은 <form> 태그 바로 아래에 
+        이것을 해결하는 방법은 <form> 태그 바로 아래에
         <input hidden=null> 을 한줄 추가시켜 주면 됩니다.
     :   RSS 링크 추가
 
@@ -3979,7 +3979,7 @@
         adm/point_update.php
         adm/poll_form_update.php
         adm/repair.php
-        adm/upgrade.php        
+        adm/upgrade.php
         adm/menu/m100991_repair.php
         bbs/formmail.php
         bbs/write_update.php
@@ -4073,7 +4073,7 @@
         bbs/scrap_popin.php
         bbs/login.php
         skin/member/*
-        
+
 
 4.00.04 (05.06.03)
     :   다른 디렉토리와 구조를 맞추기 위하여 파일 추가
@@ -4473,7 +4473,7 @@
 05.05.04
     : 제목 길이 자르기 수정
       김선용(sucjin)님께서 알려 주셨습니다.
-      bbs/list.php 
+      bbs/list.php
     : 코멘트보기 사용하지 않을 경우 오류 수정
       lib/common.lib.php
       skin/board/*/list.skin.php
@@ -4491,18 +4491,18 @@
 05.05.02
     : 게시판설정 > 수정에서 bo_image_size 필드 존재하지 않음 오류 수정
       adm/board_form_update.php
-    
-    : 최신글의 글자수 표시 오류 수정 
+
+    : 최신글의 글자수 표시 오류 수정
       get_list() 함수에서 $len => $subject_len 으로 수정
       김선용(sucjin)님께서 알려 주셨습니다.
-      lib/common.lib.php 
-    
+      lib/common.lib.php
+
     : get_view() 함수 수정
-      lib/common.lib.php 
-    
+      lib/common.lib.php
+
     : url_auto_list() 함수 수정
-      lib/common.lib.php 
-    
+      lib/common.lib.php
+
     : 답사기 게시판 변환기 추가
       convert/g3_dabsagi.php
 
@@ -4531,7 +4531,7 @@
 
     : FireFox 에서 가변파일 업로드 되지 않던 오류를 수정
       김선용(sucjin)님께서 알려 주셨습니다.
-      <!-- 김선용 2005.4 - FF(불여우) 에서는 innerHTML 사용시 폼이 <table> 아래에 있으면 인식하지 못합니다. --> 
+      <!-- 김선용 2005.4 - FF(불여우) 에서는 innerHTML 사용시 폼이 <table> 아래에 있으면 인식하지 못합니다. -->
       게시판스킨의 write.skin.php
 
     : 게시판설정 > 수정시 공지사항 없어지던 오류를 수정
@@ -4587,12 +4587,12 @@
 05.04.24
     : 카페24 에서 설치 되지 않던 문제와 설치시 Unknown table 'g4_board' 오류 수정
 
-05.04.22    
+05.04.22
     : 그룹접근 사용에 따른 글목록 보기 차단 기능 추가
     : 그룹접근 사용에 따른 검색 차단 기능 추가
     : 최고관리자는 포인트 추가 내역 남기지 않음
 
-05.04.21    
+05.04.21
     : 게시판 테이블의 wr_option 에서 set(html, htmlbr) 을 set(html1, html2) 로 변경
     : 관리자 > 회원정보 수정시 오류 수정
     : 회원가입시 추천인 아이디 입력 부분 수정

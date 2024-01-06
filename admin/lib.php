@@ -737,7 +737,7 @@ function file_check($filename, $file_str = "php|htm|html|inc|htm|shtm|ztx|dot|cg
 	$file_str = strtolower($file_str);
 
 	//업로드 금지 확장자 체크
-	if(eregi($file_str, $fext)) {
+	if(preg_match($file_str, $fext)) {
 		error("해당 파일은 업로드할 수 없는 형식입니다.");
 		exit;
 	}
