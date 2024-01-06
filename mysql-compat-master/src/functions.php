@@ -196,7 +196,8 @@ function mysql_fetch_lengths(mysqli_result $result)
  */
 function mysql_fetch_object(mysqli_result $result, $class_name = 'stdClass', $params = array())
 {
-    return $result->fetch_object($class_name, $params);
+//    return $result->fetch_object($class_name, $params);
+    return $result->fetch_object();
 }
 
 /**
