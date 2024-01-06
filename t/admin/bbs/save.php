@@ -32,7 +32,7 @@ if($code=="googic"){//"/+googic+/"//구인 구직 게시판 addinfo 추가시 �
 		if($i != $educhk){
 			$addinfo6 .="/+edu+googic+edu+/";
 		}
-	}	
+	}
 } elseif($code=="gooin"){
 
 	$name = sql_filter($_POST["name"]);
@@ -44,11 +44,11 @@ if($code=="googic"){//"/+googic+/"//구인 구직 게시판 addinfo 추가시 �
 	$subject = sql_filter($_POST["subject"]);
 	$content = sql_filter($_POST["content"]);
 	$reply = sql_filter($_POST["reply"]);
-	//addinfo1 기관명 + 설립년도 + 매출액 
+	//addinfo1 기관명 + 설립년도 + 매출액
 	$addinfo1 = sql_filter($_POST["c_name"])."/+gooin+/".sql_filter($_POST["c_est"])."/+gooin+/".sql_filter($_POST["c_sales"]);
 	//addinfo2 기업형태 + 사원수 + 홈페이지
 	$addinfo2 = sql_filter($_POST["c_type"])."/+gooin+/".sql_filter($_POST["c_emp"])."/+gooin+/".sql_filter($_POST["c_url"]);
-	//addinfo 지원자격 경력 + 학력 + 접수기간 시작 + 종료 
+	//addinfo 지원자격 경력 + 학력 + 접수기간 시작 + 종료
 	$addinfo3 = sql_filter($_POST["career"])."/+gooin+/".sql_filter($_POST["edu"])."/+gooin+/".sql_filter($_POST["sdate"])."/+gooin+/".sql_filter($_POST["edate"]);
 	//addinfo4 고용형태 + 접수방법 + 근무분야+ 업무시간1 + 업무시간2
 	$addinfo4 = sql_filter($_POST["w_type"])."/+gooin+/".sql_filter($_POST["method"])."/+gooin+/".sql_filter($_POST["w_field"])."/+gooin+/".sql_filter($_POST["w_time1"])."/+gooin+/".sql_filter($_POST["w_time2"]);
@@ -479,7 +479,7 @@ if($mode == "insert"){
 // 추천하기
 }else if($mode == "recom"){
 
-	if(strlen($HTTP_COOKIE_VARS["bbs_recom".$idx])==0){
+	if(strlen($_COOKIE["bbs_recom".$idx])==0){
 
 		$sql = "select memid from wiz_bbs where idx = '$idx'";
 		$result = mysql_query($sql) or error(mysql_error());

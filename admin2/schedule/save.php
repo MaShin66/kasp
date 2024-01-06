@@ -90,7 +90,7 @@ if($mode == "insert"){
 	if($sch_info[editor] == "Y") $ctype = "H";
 
 	if(!empty($wdate)) $wdate_sql = ", wdate=unix_timestamp('".$wdate."') ";
-	
+
 	$sql = "update wiz_bbs set notice='$notice',category='$category',name='$name',nick='$nick',email='$email',tphone='$tphone',hphone='$hphone',zipcode='$zipcode',address='$address',subject='$subject',content='$content',addinfo1='$addinfo1',addinfo2='$addinfo2',addinfo3='$addinfo3',addinfo4='$addinfo4',addinfo5='$addinfo5',ctype='$ctype',privacy='$privacy' $upfile_sql $movie1_sql ,movie2='$movie2',movie3='$movie3' $reply_sql $wdate_sql $count_sql where idx = '$idx'";
 	mysql_query($sql) or error(mysql_error());
 
@@ -202,7 +202,7 @@ if($mode == "insert"){
 }else if($mode == "comment"){
 
 	$ctype = "BBS";
-	
+
 	// 스팸글 차단
 	$pos = strpos($HTTP_REFERER, $HTTP_HOST);
   if($pos === false) error("잘못된 경로 입니다.");
@@ -280,19 +280,19 @@ if($mode == "insert"){
 // 추천하기
 }else if($mode == "recom"){
 
-	if(strlen($HTTP_COOKIE_VARS["bbs_recom".$idx])==0){
-		
+	if(strlen($_COOKIE["bbs_recom".$idx])==0){
+
 		$sql = "select memid from wiz_bbs where idx = '$idx'";
 		$result = mysql_query($sql) or error(mysql_error());
 		$row = mysql_fetch_array($result);
-		
+
 		$memid = $row[memid];
 
 		$sql = "update wiz_bbs set recom = recom + 1 where idx='$idx'";
 		$result = mysql_query($sql) or error(mysql_error());
 
 		setcookie("bbs_recom".$idx, $idx, time()+60*60*24*365);
-		
+
 		echo "<script>alert('추천 되었습니다.');document.location='$prev?ptype=view&recom=ok&idx=$idx&$param';</script>";
 
 	}else{

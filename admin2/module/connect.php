@@ -1,7 +1,7 @@
 <?
 include_once "$_SERVER[DOCUMENT_ROOT]/admin2/common.php";
 
-if(strlen($HTTP_COOKIE_VARS["wiz_connect"]) == 0 && check_robots($_SERVER['HTTP_USER_AGENT'])){
+if(strlen($_COOKIE["wiz_connect"]) == 0 && check_robots($_SERVER['HTTP_USER_AGENT'])){
 
 	setcookie("wiz_connect", "true");
 
@@ -28,18 +28,18 @@ if(strlen($HTTP_COOKIE_VARS["wiz_connect"]) == 0 && check_robots($_SERVER['HTTP_
 		}
 
 	}
-	
+
 	// 브라우저 OS저장
 	$os_browser = get_osbrowser($_SERVER['HTTP_USER_AGENT']);
 	$browser = $os_browser["browser"];
 	$os = $os_browser["os"];
-	
+
 	$sql = "select cnt from wiz_conother where browser='$browser'";
 	$result = mysql_query($sql); $total = mysql_num_rows($result);
 	if($total > 0) $sql = "update wiz_conother set cnt = cnt+1 where browser='$browser'";
 	else $sql = "insert into wiz_conother(browser,cnt) values('$browser','1')";
 	mysql_query($sql);
-	
+
 	$sql = "select cnt from wiz_conother where os='$os'";
 	$result = mysql_query($sql); $total = mysql_num_rows($result);
 	if($total > 0) $sql = "update wiz_conother set cnt = cnt+1 where os='$os'";
