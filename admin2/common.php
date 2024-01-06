@@ -28,8 +28,8 @@ session_set_cookie_params(0, "/");
 @extract($_REQUEST);
 @extract($_FILES);
 
-define(WIZHOME_DIR, "admin");
-define(WIZHOME_PATH, $_SERVER['DOCUMENT_ROOT']."/".WIZHOME_DIR);
+define('WIZHOME_DIR', "admin");
+define('WIZHOME_PATH', $_SERVER['DOCUMENT_ROOT']."/".WIZHOME_DIR);
 
 @header("Content-Type: text/html; charset=UTF-8");
 //echo "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">";
