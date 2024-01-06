@@ -1,6 +1,6 @@
 <?
 // prev, 스팸글 체크등 HTTP_HOST 체크 시 SSL 포트번호와 분리
-list($_http_host, $_http_port) = explode(":", $_SERVER[HTTP_HOST]);
+list($_http_host) = explode(":", $_SERVER[HTTP_HOST]);
 
 // 에러 출력
 function error($msg, $go_url=""){
@@ -1058,7 +1058,7 @@ function get_osbrowser($user_agent){
 // 게시물 번호 ($no)
 function get_bbs_no($data) {
 
-	global $bbs_info, $wiz_session; 
+	global $bbs_info, $wiz_session;
 	@extract($data);
 
 	// 게시물 쿼리
@@ -1071,7 +1071,7 @@ function get_bbs_no($data) {
 		} else {
 			if(!strcmp($searchopt, "subcon")) $search_sql = " and (subject like '%$searchkey%' or content like '%$searchkey%') ";
 			else $search_sql = " and $searchopt like '%$searchkey%' ";
-		}	
+		}
 	}
 	// 자신이 쓴 글 또는 자신의 글에 달린 답변글
 	if($mybbs) $my_sql = " and (memid='$wiz_session[id]' or memgrp like '".$wiz_session[id].",%')";
